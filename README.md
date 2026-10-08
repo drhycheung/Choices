@@ -2,7 +2,7 @@
 
 **Built for:** [The Education University of Hong Kong (EdUHK)](https://www.eduhk.hk) — **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and also usable in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
 
-**Live demo (GitHub Pages):** https://&lt;your-username&gt;.github.io/Choices/
+**Live demo (GitHub Pages):** https://drhycheung.github.io/Choices/
 
 ![一念之差 promo poster](docs/cover.png)
 
