@@ -24,9 +24,7 @@
       finalRisk: '最终风险',
       brandSub: '文字交互式分支叙事模拟器',
       hudTitle: '⚠ 风险监测 · RISK MONITOR',
-      startSub: '文字交互式分支叙事模拟器',
-      startHint: '点击开始 · 进入后可随时切换语言',
-      startBtn: '开始游戏'
+      footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开'
     },
     en: {
       traceTitle: 'Decision Trail',
@@ -38,11 +36,36 @@
       finalRisk: 'Final risk',
       brandSub: 'Interactive Branching Narrative Simulator',
       hudTitle: '⚠ RISK MONITOR',
-      startSub: 'Interactive Branching Narrative Simulator',
-      startHint: 'Click to start · toggle language anytime after',
-      startBtn: 'PRESS START'
+      footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly'
     }
   };
+
+  /* ============ 街机音效（Web Audio 合成，无需音频文件） ============ */
+  var audioCtx = null;
+  var muted = false;
+  function ensureAudio() {
+    if (!audioCtx) {
+      try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      catch (e) { audioCtx = null; }
+    }
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  function beep(freq, dur, type, when, vol) {
+    if (!audioCtx || muted) return;
+    var t = audioCtx.currentTime + (when || 0);
+    var o = audioCtx.createOscillator();
+    var g = audioCtx.createGain();
+    o.type = type || 'square';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || 0.12, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  }
+  function playStart() { ensureAudio(); beep(523, 0.09, 'square', 0); beep(659, 0.09, 'square', 0.10); beep(784, 0.12, 'square', 0.20); beep(1046, 0.18, 'square', 0.32); }
+  function playBlip() { ensureAudio(); beep(680, 0.06, 'square', 0, 0.10); }
+  function playEnding() { ensureAudio(); beep(392, 0.14, 'triangle', 0); beep(523, 0.14, 'triangle', 0.14); beep(659, 0.22, 'triangle', 0.28); }
   var TYPE = {
     zh: { success: '成功', fail: '失败', compromise: '妥协', unknown: '未知' },
     en: { success: 'Success', fail: 'Fail', compromise: 'Compromise', unknown: 'Unknown' }
@@ -147,6 +170,7 @@
   function onChoose(i) {
     try { ChoicesEngine.choose(scenario, state, i); }
     catch (e) { showBanner('错误: ' + e.message, 'error'); return; }
+    playBlip();
     renderDims();
     renderNode();
   }
@@ -156,6 +180,7 @@
   }
 
   function renderEnding() {
+    playEnding();
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
     var box = $('ending');
     box.className = 'ending type-' + (ending ? ending.type : 'unknown');
@@ -232,37 +257,37 @@
 
     $('scenario-title').textContent = pick(scenario.title, lang);
     $('scenario-theme').textContent = pick(scenario.theme, lang);
-    var bs = $('brand-sub'); if (bs) bs.textContent = UI[lang].brandSub;
+    applyChrome();
     state = ChoicesEngine.createState(scenario);
     renderDims();
     renderNode();
   }
 
-  // 刷新 PRESS START 开场画面文案（随语言）
-  function renderStart() {
-    var sub = $('start-sub'); if (sub) sub.textContent = UI[lang].startSub;
-    var hint = $('start-hint'); if (hint) hint.textContent = UI[lang].startHint;
-    var btn = $('start-btn'); if (btn) btn.textContent = UI[lang].startBtn;
+  // 同步页眉副标题与页脚文案（随语言；英文模式下页脚为英文）
+  function applyChrome() {
+    var bs = $('brand-sub'); if (bs) bs.textContent = UI[lang].brandSub;
+    var ft = $('app-footer'); if (ft) ft.textContent = UI[lang].footer;
+    var ht = $('hud-title'); if (ht) ht.textContent = UI[lang].hudTitle;
   }
 
   // 切换语言：更新开关高亮并即时重渲染当前可见视图
   function setLang(l) {
     lang = l;
-    renderStart();
-    if (!scenario) {  // 场景尚未加载完成，仅更新高亮
-      var btns0 = document.querySelectorAll('#lang-toggle button');
-      for (var z = 0; z < btns0.length; z++) {
-        btns0[z].classList.toggle('active', btns0[z].getAttribute('data-lang') === l);
-      }
-      return;
-    }
-    var btns = document.querySelectorAll('#lang-toggle button');
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].classList.toggle('active', btns[i].getAttribute('data-lang') === l);
-    }
+    markToggles();
+    applyChrome();
+    if (!scenario) return;  // 场景尚未加载，仅记录语言偏好
     renderDims();
     if (state && state.finished) renderEnding();
     else renderNode();
+  }
+
+  // 同步两处语言开关（页眉 + 开场画面）的高亮状态
+  function markToggles() {
+    var sel = '#lang-toggle button, #lang-toggle-start button';
+    var btns = document.querySelectorAll(sel);
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', btns[i].getAttribute('data-lang') === lang);
+    }
   }
 
   function init() {
@@ -270,24 +295,32 @@
     var langParam = params.get('lang');
     if (langParam === 'en' || langParam === 'zh') lang = langParam;
 
-    // 绑定右上角语言切换开关
-    var btns = document.querySelectorAll('#lang-toggle button');
-    for (var i = 0; i < btns.length; i++) {
+    // 绑定两处语言切换开关（页眉 + 开场画面）
+    var allToggles = document.querySelectorAll('#lang-toggle button, #lang-toggle-start button');
+    for (var i = 0; i < allToggles.length; i++) {
       (function (b) {
         b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
-      })(btns[i]);
+      })(allToggles[i]);
     }
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
-    }
+    markToggles();
+    applyChrome();
+
+    // 静音键
+    var soundBtn = $('sound-toggle');
+    if (soundBtn) soundBtn.addEventListener('click', function () {
+      muted = !muted;
+      soundBtn.textContent = muted ? '🔇' : '🔊';
+      if (!muted) { ensureAudio(); playBlip(); }
+    });
 
     var scenarioParam = params.get('scenario');
     var isFile = location.protocol === 'file:';
 
-    // PRESS START 开场画面：点击进入；文案随当前语言
-    renderStart();
+    // PRESS START 开场画面：点击进入 + 播放街机开机音效
     var startBtn = $('start-btn');
     if (startBtn) startBtn.addEventListener('click', function () {
+      ensureAudio();
+      playStart();
       var s = $('start-screen'); if (s) s.classList.add('hidden');
     });
 

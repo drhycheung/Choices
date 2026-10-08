@@ -60,6 +60,23 @@ A scenario is a JSON file with: `dimensions` (risk axes + icons), a `start` node
 }
 ```
 
+### Changing or adding a theme
+
+The shipped theme is **student entrepreneurship × national security / law / ethics**. To use a different
+topic (internship, research, campus life, …) you only rewrite the *story data* — the engine never changes:
+
+1. **Copy the packet:** `cp scenarios/student-startup.json scenarios/your-topic.json`.
+2. **Edit the story:** change `dimensions` (the risk axes), `nodes` (text + `choices` with `effects`),
+   and `endings` (gated by `condition`). Keep the `{ "zh": …, "en": … }` shape for bilingual text.
+3. **Run it:** open `?scenario=scenarios/your-topic.json`, or set it as the default in `player.js`
+   (change the fetch path inside `init`).
+4. **Offline build:** also paste the edited JSON into the `<script id="embedded-scenario">` block in
+   `index.html` so double-clicking the file uses the new story.
+5. **Validate:** `node validate.js scenarios/your-topic.json` to prove no dead-ends and that every
+   ending is reachable before shipping.
+
+Tip: you can author scenes with an AI assistant — just feed it this schema and run the validator.
+
 ---
 
 ## 3. Design decisions: Technology choices

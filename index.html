@@ -15,9 +15,12 @@
       <span class="brand">一念之差 <span class="brand-en">Choices</span></span>
       <span class="brand-sub" id="brand-sub">文字交互式分支叙事模拟器</span>
     </div>
-    <div id="lang-toggle" class="lang-toggle" role="group" aria-label="语言切换">
-      <button type="button" data-lang="zh">中文</button>
-      <button type="button" data-lang="en">EN</button>
+    <div class="header-right">
+      <div id="lang-toggle" class="lang-toggle" role="group" aria-label="语言切换">
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <button id="sound-toggle" type="button" class="icon-btn" aria-label="声音开关" title="Sound on/off">🔊</button>
     </div>
   </header>
 
@@ -50,13 +53,26 @@
   <!-- CRT 扫描线 + 暗角（覆盖全局，不拦截点击） -->
   <div id="crt" aria-hidden="true"></div>
 
-  <!-- PRESS START 开场画面 -->
+  <!-- PRESS START 开场画面（中英对照，进入前即可切换语言） -->
   <div id="start-screen">
     <div class="start-inner">
+      <div id="lang-toggle-start" class="lang-toggle start-toggle" role="group" aria-label="语言切换">
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
       <div class="start-logo">一念之差<span>CHOICES</span></div>
-      <div class="start-sub" id="start-sub">Interactive Branching Narrative Simulator</div>
-      <button id="start-btn" type="button" class="start-btn">PRESS START</button>
-      <div class="start-hint" id="start-hint">Click to start · toggle language anytime after</div>
+      <div class="start-sub">
+        <div class="en">Interactive Branching Narrative Simulator</div>
+        <div class="zh">文字交互式分支叙事模拟器</div>
+      </div>
+      <button id="start-btn" type="button" class="start-btn">
+        <span class="en">PRESS START</span>
+        <span class="zh">开始游戏</span>
+      </button>
+      <div class="start-hint">
+        <div class="en">Click to Start · Toggle Language Anytime After</div>
+        <div class="zh">点击开始 · 进入后随时切换语言</div>
+      </div>
     </div>
   </div>
 
