@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choices · 文字交互式分支叙事模拟器</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="app-header">
+    <span class="brand">Choices</span>
+    <span class="brand-sub">文字交互式分支叙事模拟器</span>
+  </header>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <main id="app">
+    <section id="stage">
+      <h1 id="scenario-title"></h1>
+      <p id="scenario-theme" class="muted"></p>
+      <div id="dims" class="dims"></div>
+      <div id="node-text" class="node-text"></div>
+      <div id="choices" class="choices"></div>
+    </section>
+
+    <aside id="trace-panel" class="trace-panel hidden">
+      <h2>决策轨迹</h2>
+      <p class="muted">每一步选择如何改变风险，因果链一目了然。</p>
+      <ol id="trace-list"></ol>
+    </aside>
+  </main>
+
+  <section id="ending" class="ending hidden"></section>
+
+  <footer id="app-footer" class="muted">
+    核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站，可部署 GitHub Pages
+  </footer>
+
+  <script src="engine.js"></script>
+  <script src="validate.js"></script>
+  <script src="player.js"></script>
+</body>
+</html>

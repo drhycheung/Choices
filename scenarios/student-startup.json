@@ -1,0 +1,92 @@
+{
+  "id": "student-startup",
+  "title": "学生创业：风险抉择",
+  "theme": "国家安全 / 法律 / 伦理",
+  "description": "首个示范场景。玩家是一名大学生创业者，在融资、数据、知识产权等环节持续做出抉择，每个选择确定性地改变国家安全、法律、伦理三类风险，最终触发对应结局。反思内容可选，教师可在课堂上补充。",
+  "dimensions": {
+    "national_security": { "label": "国家安全风险", "initial": 0, "min": 0, "max": 10, "higherIsRisk": true },
+    "legal": { "label": "法律合规风险", "initial": 0, "min": 0, "max": 10, "higherIsRisk": true },
+    "ethics": { "label": "伦理风险", "initial": 0, "min": 0, "max": 10, "higherIsRisk": true }
+  },
+  "start": "intro",
+  "nodes": {
+    "intro": {
+      "text": "你是一名大学生，和同学开发了一款基于自研算法的数据处理工具，准备创业。产品刚有点起色，各种“机会”和风险也找上门来。你的每一个决定，都会改变公司面临的国家安全、法律与伦理风险。",
+      "choices": [
+        { "text": "开始创业旅程", "next": "overseas_contact" }
+      ]
+    },
+    "overseas_contact": {
+      "text": "一位自称来自海外机构的联系人欣赏你们的技术，希望“深入合作”，并索要核心算法源码以评估投资价值。",
+      "choices": [
+        { "text": "拒绝提供源码，只分享已公开的论文与技术白皮书", "next": "data_usage", "effects": {} },
+        { "text": "先签署保密协议(NDA)，再提供脱敏的算法示例", "next": "data_usage", "effects": { "national_security": 1 } },
+        { "text": "为尽快拿到投资，直接发送核心算法完整源码", "next": "data_usage", "effects": { "national_security": 3 } }
+      ]
+    },
+    "data_usage": {
+      "text": "训练模型需要大量数据。你们还在起步，买不起合规数据授权。",
+      "choices": [
+        { "text": "使用公开数据集 + 自采合规样本", "next": "ip_protect", "effects": {} },
+        { "text": "从黑市购买来路不明的用户数据包", "next": "ip_protect", "effects": { "legal": 2, "ethics": 3 } },
+        { "text": "爬取竞品平台的用户数据", "next": "ip_protect", "effects": { "legal": 1, "ethics": 1 } }
+      ]
+    },
+    "ip_protect": {
+      "text": "算法很有价值，但你们还没做任何知识产权保护。",
+      "choices": [
+        { "text": "尽快申请专利 / 软件著作权", "next": "funding", "effects": {} },
+        { "text": "先上线抢市场，保护“以后再说”", "next": "funding", "effects": { "legal": 2 } }
+      ]
+    },
+    "funding": {
+      "text": "你们需要资金扩大团队。",
+      "choices": [
+        { "text": "接受国内正规孵化器 / 天使投资", "next": "outcome", "effects": {} },
+        { "text": "接受身份不明的境外基金注资", "next": "outcome", "effects": { "national_security": 2, "legal": 1 } },
+        { "text": "面向学生群体众筹", "next": "outcome", "effects": { "ethics": 2 } }
+      ]
+    },
+    "outcome": {
+      "text": "一年过去了，是时候看看当初的那些选择，把公司带向了哪里。",
+      "choices": []
+    }
+  },
+  "endings": {
+    "fail_ns": {
+      "title": "技术外泄危机",
+      "type": "fail",
+      "condition": { "national_security": ">=5" },
+      "text": "核心算法流入境外不明机构，可能涉及关键技术违规外流。公司被立案调查，创业戛然而止。",
+      "reflection": "在涉及自研核心技术时，哪些信息可以向境外合作方披露？保密协议是否足以覆盖国家安全红线？"
+    },
+    "fail_legal": {
+      "title": "法律纠纷缠身",
+      "type": "fail",
+      "condition": { "legal": ">=5" },
+      "text": "来路不明的数据与缺失的知识产权保护，让公司接连陷入侵权与违规诉讼，难以为继。",
+      "reflection": "创业早期的数据来源与知识产权布局，为什么是法律合规的底线？"
+    },
+    "fail_ethics": {
+      "title": "伦理争议爆发",
+      "type": "fail",
+      "condition": { "ethics": ">=5" },
+      "text": "未经同意使用用户数据的行为被曝光，公众信任崩塌，品牌一夜归零。",
+      "reflection": "在‘增长优先’的诱惑下，如何守住对数据主体最基本的伦理尊重？"
+    },
+    "success": {
+      "title": "合规创业典范",
+      "type": "success",
+      "condition": { "national_security": "<=1", "legal": "<=1", "ethics": "<=1" },
+      "text": "你守住了对技术、法律和伦理的敬畏：核心技术受控、数据来源合规、知识产权清晰。公司在稳健中成长。",
+      "reflection": "回顾全程，哪些‘慢一步’的决定，反而成了最稳健的优势？"
+    },
+    "compromise": {
+      "title": "在灰色地带挣扎",
+      "type": "compromise",
+      "condition": {},
+      "text": "你没有被立即反噬，却也埋下了隐患。公司在模糊地带前行，随时可能因一次检查或一次曝光而失控。",
+      "reflection": "‘暂时没出事’等于‘没问题’吗？灰色地带的风险会以什么形式迟早显现？"
+    }
+  }
+}
