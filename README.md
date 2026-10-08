@@ -6,8 +6,6 @@ A retro arcade–style interactive branching-narrative simulator for classroom t
 
 **▶ Play Online: <https://drhycheung.github.io/Choices/>**
 
-English ｜ 简体中文 (in-game toggle)
-
 </div>
 
 ---
