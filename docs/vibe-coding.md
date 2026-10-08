@@ -2,6 +2,8 @@
 
 > How this project was built with an AI coding tool, the design thinking behind it, and a complete prompt you can paste into an AI coding assistant to reproduce (or adapt) it for your own classroom.
 
+
+
 ---
 
 ## 1. What "vibe-coding" means here
@@ -17,20 +19,29 @@ This repo was built exactly that way, in short iterative turns, each checked wit
 
 ## 2. Design thinking
 
-**The problem.** Students often don't *feel* how a small, ordinary decision can cross a legal, ethical, or national-security line. Telling them "don't do X" is forgettable. Letting them *live* the consequence — and see the numbers move — is not.
+The project follows the Stanford d.school design-thinking model — empathise, define, ideate, prototype, test — applied to one problem: students don't *feel* how a small, ordinary decision can cross a legal, ethical, or national-security red line, because being told "don't do X" is forgettable.
 
-**The core insight.** A branching narrative becomes a teaching instrument only if the **causality is real and visible**:
-- choice → explicit effect (no randomness) → risk score → ending.
-- The same sequence of choices *always* reaches the same ending (reproducible, explainable, testable).
+| Stage            | This project's arc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Empathise** | Many students struggle to feel how an everyday decision can cross a legal, ethical, or national-security line. Abstract warnings rarely land; learners disengage, rush through, or avoid the topic. Observation: interactive, game-like experiences hold attention far longer than lecture warnings, and letting learners *see* a consequence (the risk numbers move) makes the lesson stick. The classroom need: a reusable, low-barrier tool for EdUHK's GEL2026 / GEL1032 courses.                                                                                                                     |
+| **2. Define**    | **Problem statement:** *students lack an experiential grasp of how ordinary choices escalate into legal, ethical, or national-security risk.* **Design goal:** a safe, repeatable, low-barrier experience where each choice visibly changes risk and deterministically leads to a corresponding ending. **Success criterion:** a student can replay a scenario and trace exactly which single choice pushed a risk past the threshold.                                                                                                                                                                    |
+| **3. Ideate**    | Options considered: lecture + case study, graded quiz with feedback, role-play, branching-narrative game. The interactive branching-narrative (game) format was chosen because it makes causality visible and repeatable, lowers the barrier with a familiar arcade frame, and cleanly separates a generic engine from pluggable topic data so the tool can be reused across courses (internship, research, …).                                                                                                                                                                                           |
+| **4. Prototype** | A static, front-end-only web app — vanilla HTML/CSS/JS, no build, no backend. A deterministic engine (`engine.js`) tracks risk dimensions and applies explicit `effects` (no RNG); a validator (`validate.js`) proves no dead-ends and that every ending is reachable; a scenario JSON packet (`scenarios/student-startup.json`) holds the first story; a player (`player.js` + `index.html` + `styles.css`) renders the narrative, Risk Monitor, endings, and Decision Trail with a retro arcade skin. Bilingual ZH / EN, with the scenario embedded so the file also works on double-click (`file://`). |
+| **5. Test**      | Tested locally and on mobile; iterated on readability, the centred single-column arcade layout, the language toggle, and the opening sound. Ran `node test.js` (multiple paths reach their expected endings) and `node validate.js` (no dead-ends; all five endings reachable). The Decision Trail panel and the validator are the pedagogical test instruments — they make the causal chain explicit and catch broken scenes before class.                                                                                                                                                               |
 
-**The hard constraints we set up front** (these shaped every later decision):
-1. **Static site** — no backend, deployable to GitHub Pages, works in China (no Google services). This ruled out Streamlit and any server dependency.
-2. **Generic engine + pluggable JSON scenarios** — add topics (internship, research, …) as data packets, never touch the engine.
+### Design constraints (from Define)
+
+These shaped every later decision:
+
+1. **Static site** — no backend, deployable to GitHub Pages; works offline by double-clicking the file. This ruled out Streamlit and any server dependency.
+2. **Generic engine + pluggable JSON scenarios** — add topics as data packets; never touch the engine.
 3. **Deterministic causality** — no dice, no RNG; educational stakes must not be luck.
-4. **Bilingual ZH / EN** — same screen, toggle anytime.
-5. **Reflection optional** — the teacher facilitates it; the engine doesn't force it. AIs can author the scenario text.
+4. **Bilingual ZH / EN** — same experience, toggle anytime.
+5. **Reflection optional** — the teacher facilitates it; the engine doesn't force it. AI can author the scenario text.
 
-**Why an arcade skin.** The topic (national security / law / ethics) is "serious". A retro neon arcade frame makes it feel like a game, lowers the barrier, and makes "one thought away" (一念之差) viscerally game-like. The visual style here is inspired by classic arcade games (see also the sibling demo *MathInvaders*).
+### Why an arcade skin (from Ideate)
+
+The topic (national security / law / ethics) is "serious". A retro neon arcade frame makes it feel like a game, lowers the barrier, and makes "one thought away" (一念之差) viscerally game-like. The visual style here is inspired by classic arcade games (see also the sibling demo *MathInvaders*).
 
 ---
 
@@ -54,7 +65,7 @@ Every step was checked with `node test.js` and `node validate.js` before committ
 
 Paste this into an AI coding assistant. It reproduces the architecture and the educational guarantees; swap the topic to fit your class.
 
-````markdown
+```markdown
 Build a **static, front-end-only interactive branching-narrative simulator** for education. Repository name: Choices. No build step, no backend, no API key. Vanilla HTML/CSS/JS only.
 
 ## Hard constraints (do not violate)
@@ -84,7 +95,7 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 - `node test.js` runs several choice paths and prints the ending + final scores.
 - `node validate.js scenarios/student-startup.json` reports no dead-ends and all endings reachable.
 - Opening index.html shows the arcade UI, the Risk Monitor updates on each choice, the same sequence always yields the same ending, and the ZH/EN toggle works.
-````
+```
 
 ---
 
@@ -98,6 +109,8 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 ## 6. Tips
 
 - Keep `effects` explicit and never use randomness for educational stakes; reproducibility is the point.
+
+
 - Always run the validator before publishing a scenario, especially one written by an AI.
 - The embedded copy in `index.html` must be re-synced whenever you edit `scenarios/*.json` and still want the offline double-click build to match.
 - Treat the arcade skin as motivation, not distraction: the Risk Monitor + Decision Trail are where the learning lives.
