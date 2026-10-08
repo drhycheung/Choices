@@ -21,7 +21,12 @@
       restart: '重新开始',
       undefined: '未定义结局',
       undefinedDesc: '当前状态未匹配任何结局，场景需补全（见校验器）。',
-      finalRisk: '最终风险'
+      finalRisk: '最终风险',
+      brandSub: '文字交互式分支叙事模拟器',
+      hudTitle: '⚠ 风险监测 · RISK MONITOR',
+      startSub: '文字交互式分支叙事模拟器',
+      startHint: '点击开始 · 进入后可随时切换语言',
+      startBtn: '开始游戏'
     },
     en: {
       traceTitle: 'Decision Trail',
@@ -30,7 +35,12 @@
       restart: 'Restart',
       undefined: 'Undefined ending',
       undefinedDesc: 'No ending matched the current state; the scenario needs completion (see validator).',
-      finalRisk: 'Final risk'
+      finalRisk: 'Final risk',
+      brandSub: 'Interactive Branching Narrative Simulator',
+      hudTitle: '⚠ RISK MONITOR',
+      startSub: 'Interactive Branching Narrative Simulator',
+      startHint: 'Click to start · toggle language anytime after',
+      startBtn: 'PRESS START'
     }
   };
   var TYPE = {
@@ -81,6 +91,7 @@
   function renderDims() {
     var wrap = $('dims');
     wrap.innerHTML = '';
+    var ht = $('hud-title'); if (ht) ht.textContent = UI[lang].hudTitle;
     for (var k in scenario.dimensions) {
       var d = scenario.dimensions[k];
       var val = state.dims[k] || 0;
@@ -210,6 +221,7 @@
 
   function start(err, json) {
     if (err) {
+      var ss = $('start-screen'); if (ss) ss.classList.add('hidden');
       showBanner('无法加载场景：' + err.message + '（请用静态服务器打开，例如 python -m http.server）', 'error');
       return;
     }
@@ -220,14 +232,23 @@
 
     $('scenario-title').textContent = pick(scenario.title, lang);
     $('scenario-theme').textContent = pick(scenario.theme, lang);
+    var bs = $('brand-sub'); if (bs) bs.textContent = UI[lang].brandSub;
     state = ChoicesEngine.createState(scenario);
     renderDims();
     renderNode();
   }
 
+  // 刷新 PRESS START 开场画面文案（随语言）
+  function renderStart() {
+    var sub = $('start-sub'); if (sub) sub.textContent = UI[lang].startSub;
+    var hint = $('start-hint'); if (hint) hint.textContent = UI[lang].startHint;
+    var btn = $('start-btn'); if (btn) btn.textContent = UI[lang].startBtn;
+  }
+
   // 切换语言：更新开关高亮并即时重渲染当前可见视图
   function setLang(l) {
     lang = l;
+    renderStart();
     if (!scenario) {  // 场景尚未加载完成，仅更新高亮
       var btns0 = document.querySelectorAll('#lang-toggle button');
       for (var z = 0; z < btns0.length; z++) {
@@ -262,6 +283,13 @@
 
     var scenarioParam = params.get('scenario');
     var isFile = location.protocol === 'file:';
+
+    // PRESS START 开场画面：点击进入；文案随当前语言
+    renderStart();
+    var startBtn = $('start-btn');
+    if (startBtn) startBtn.addEventListener('click', function () {
+      var s = $('start-screen'); if (s) s.classList.add('hidden');
+    });
 
     if (scenarioParam) {
       // 指定了 ?scenario=：尝试加载独立 JSON 数据包（file:// 下会失败 → 内嵌兜底）
