@@ -10,7 +10,7 @@
 
   var scenario = null;
   var state = null;
-  var lang = 'zh';   // 当前界面语言：'zh' | 'en'
+  var lang = 'en';   // 当前界面语言：'en' | 'zh'（默认英文）
 
   // 界面固定文案（随语言切换）
   var UI = {
