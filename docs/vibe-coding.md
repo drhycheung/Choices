@@ -66,22 +66,41 @@ Every step was checked with `node test.js` and `node validate.js` before committ
 Paste this into an AI coding assistant. It reproduces the architecture and the educational guarantees; swap the topic to fit your class.
 
 ```markdown
-Build a **static, front-end-only interactive branching-narrative simulator** for education. Repository name: Choices. No build step, no backend, no API key. Vanilla HTML/CSS/JS only.
+Build a **static, front-end-only interactive branching-narrative simulator** for classroom teaching. Repository name: Choices. No build step, no backend, no API key. Vanilla HTML/CSS/JS only.
 
-## Hard constraints (do not violate)
+## Problem statement (context / design intent)
+The goal is to help students *feel* how a small, ordinary decision can escalate into a legal, ethical, or national-security risk. Abstract warnings ("don't do X") are forgettable; an interactive experience where the learner sees risk numbers move and reaches a concrete ending is not. The simulator is built for EdUHK's GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security (and also GEL1032). It must be reusable across topics: the engine is generic, and each scenario is an independent JSON data packet the teacher can swap.
+
+## Core design / learning model
+- Branching narrative: the student reads a node's text, picks one of several choices, and is taken to the next node or an ending.
+- Deterministic causality (the pedagogical core): every choice applies explicit numeric `effects` to risk dimensions — NO randomness, NO dice, NO RNG anywhere. The same choice sequence ALWAYS reaches the same ending. This makes the cause -> effect chain reproducible, explainable, and testable.
+- Risk dimensions: each scenario defines a few axes (e.g. National Security / Law / Ethics), each scored 0-N with `higherIsRisk`. The Risk Monitor shows each axis as a segmented bar; crossing the threshold triggers a visible danger state.
+- Multiple endings gated by conditions on the risk scores (e.g. { "national_security": ">=5" }): success, per-dimension failure, and compromise. Every ending must be reachable and every path must terminate (no dead-ends).
+- Decision Trail: record each choice + its effect + the resulting scores, and replay it on the result screen so the causal chain is explicit.
+- Reflection prompts are OPTIONAL per ending (teacher-led in class).
+
+## Visual / style
+- Retro ARCADE theme to lower the barrier on a "serious" topic and make "one thought away" (一念之差) viscerally game-like.
+- Pixel font (Press Start 2P), CRT scanlines, neon palette (cyan/magenta/yellow), blocky drop-shadow buttons, a "PRESS START" intro overlay.
+- Risk Monitor = segmented neon "health-bar" meters per dimension with a danger pulse past the threshold.
+- Responsive: desktop and mobile; centre the play area in a single column on desktop.
+
+## Language
+- Bilingual ZH / EN: every player-facing string is { "zh": "...", "en": "..." }. A header toggle switches the whole UI (narrative, choices, endings, trail, labels) between ZH and EN, sharing one engine state. The opening screen shows both languages side by side (no toggle needed there).
+
+## Technical constraints
 - Must run by double-clicking index.html (file://) AND from a static server / GitHub Pages.
 - Engine and content are SEPARATE: the engine is generic; each scenario is an independent JSON data packet in scenarios/.
-- Causality is DETERMINISTIC: a choice applies explicit numeric `effects` to risk dimensions; NO randomness/dice anywhere. The same choice sequence always reaches the same ending.
-- Player-facing text is bilingual: every string is { "zh": "...", "en": "..." }. A header toggle switches the whole UI (narrative, choices, endings, trail, labels) between ZH and EN, sharing one engine state.
-- Reflection prompts are OPTIONAL per ending.
+- No framework, no build, no bundler; vanilla HTML/CSS/JS only.
+- Works offline: embed a copy of the default scenario inside index.html (in a <script type="application/json"> or similar) so the file works despite browser CORS rules on local fetch.
 
 ## Files
 - engine.js — pure logic, no DOM: createState(scenario), currentNode, availableChoices, choose(state, i) applying effects, getEnding(state). Records a decision trail (choice + effect + score snapshot).
 - validate.js — given a scenario, prove: every non-ending node has an exit; every `next`/ending reference exists; every ending is reachable (BFS); no "choice with zero effect" unless explicitly narrative-only. Return {ok, errors[], warnings[]}.
-- player.js — fetch the scenario JSON (fall back to an embedded copy inside index.html when file://), render the current node's narrative + choice buttons, a Risk Monitor (segmented bars per dimension, danger pulse past threshold), the ending screen, and a Decision Trail. Header language toggle.
-- index.html — embeds a default scenario copy in a <script type="application/json"> for offline use; loads engine.js/validate.js/player.js.
-- styles.css — retro ARCADE theme: pixel font (Press Start 2P), CRT scanlines, neon palette (cyan/magenta/yellow), blocky drop-shadow buttons, a "PRESS START" intro overlay. Responsive (desktop + mobile).
-- scenarios/student-startup.json — first scenario: a student entrepreneur facing National Security / Law / Ethics risk choices; three risk dimensions (0–10, higherIsRisk); 5 endings (success / per-dimension fail / compromise) gated by conditions like { "national_security": ">=5" }.
+- player.js — fetch the scenario JSON (fall back to the embedded copy when file://), render the current node's narrative + choice buttons, a Risk Monitor (segmented bars per dimension, danger pulse past threshold), the ending screen, and a Decision Trail. Header language toggle. A PRESS START intro that plays an opening sound effect (no other sounds afterwards).
+- index.html — embeds a default scenario copy for offline use; loads engine.js/validate.js/player.js.
+- styles.css — retro ARCADE theme (as above). Responsive (desktop + mobile).
+- scenarios/student-startup.json — first scenario: a student entrepreneur facing National Security / Law / Ethics risk choices; three risk dimensions (0-10, higherIsRisk); 5 endings (success / per-dimension fail / compromise) gated by conditions like { "national_security": ">=5" }.
 
 ## Scenario JSON shape
 {
@@ -91,10 +110,16 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
   "endings": { "fail_ns": { "title":{"zh":"…","en":"…"}, "type":"fail", "condition":{"national_security":">=5"}, "text":{"zh":"…","en":"…"}, "reflection":{"zh":"…","en":"…"} } }
 }
 
+## Implementation details
+- The engine advances nodes by player choices; keep no hidden state beyond the documented risk dimensions and the decision trail.
+- The validator uses BFS over the node graph to prove reachability and the absence of dead-ends; run it before shipping any scenario.
+- The player renders the SAME engine state for both languages; switching language never re-runs the engine.
+- Opening sound only: a short arcade "power-on" arpeggio on PRESS START; no choice or ending sounds.
+
 ## Deliverables to verify
 - `node test.js` runs several choice paths and prints the ending + final scores.
 - `node validate.js scenarios/student-startup.json` reports no dead-ends and all endings reachable.
-- Opening index.html shows the arcade UI, the Risk Monitor updates on each choice, the same sequence always yields the same ending, and the ZH/EN toggle works.
+- Opening index.html shows the arcade UI (bilingual opening screen), the Risk Monitor updates on each choice, the same sequence always yields the same ending, the ZH/EN toggle works, and the opening sound plays once on start.
 ```
 
 ---
