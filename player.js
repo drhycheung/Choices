@@ -2,7 +2,7 @@
  * Choices 静态播放器（player.js）
  * --------------------------------------------------------------------------
  * 纯前端 UI：fetch 加载场景 JSON -> 引擎推进 -> 渲染节点/选项/风险条/结局/决策轨迹。
- * 支持中英双语：同一版面左右双栏对照（中文 | EN），点击任一语言按钮推进同一状态。
+ * 支持中英双语：版面右上角开关随时切换中/英，整页内容（叙事/选项/结局/轨迹/界面）随切换即时更新。
  * 无任何构建步骤、无依赖。引擎逻辑全在 engine.js，校验在 validate.js。
  */
 (function () {
@@ -10,6 +10,33 @@
 
   var scenario = null;
   var state = null;
+  var lang = 'zh';   // 当前界面语言：'zh' | 'en'
+
+  // 界面固定文案（随语言切换）
+  var UI = {
+    zh: {
+      traceTitle: '决策轨迹',
+      traceDesc: '每一步选择如何改变风险，因果链一目了然。',
+      choicesHead: '你的选择',
+      restart: '重新开始',
+      undefined: '未定义结局',
+      undefinedDesc: '当前状态未匹配任何结局，场景需补全（见校验器）。',
+      finalRisk: '最终风险'
+    },
+    en: {
+      traceTitle: 'Decision Trail',
+      traceDesc: 'How each choice changes the risks — the causal chain at a glance.',
+      choicesHead: 'Your choice',
+      restart: 'Restart',
+      undefined: 'Undefined ending',
+      undefinedDesc: 'No ending matched the current state; the scenario needs completion (see validator).',
+      finalRisk: 'Final risk'
+    }
+  };
+  var TYPE = {
+    zh: { success: '成功', fail: '失败', compromise: '妥协', unknown: '未知' },
+    en: { success: 'Success', fail: 'Fail', compromise: 'Compromise', unknown: 'Unknown' }
+  };
 
   function $(id) { return document.getElementById(id); }
   function textEl(tag, txt, cls) {
@@ -60,7 +87,7 @@
       var max = (typeof d.max === 'number') ? d.max : 10;
       var ratio = Math.max(0, Math.min(1, max ? val / max : 0));
       var bar = textEl('div', '', 'dim');
-      var label = textEl('span', pick(d.label, 'zh') + ' / ' + pick(d.label, 'en'), 'dim-label');
+      var label = textEl('span', pick(d.label, lang), 'dim-label');
       var track = textEl('div', '', 'dim-track');
       var fill = textEl('div', '', 'dim-fill');
       fill.style.width = (ratio * 100) + '%';
@@ -72,12 +99,11 @@
     }
   }
 
-  // 渲染某一语言栏：叙事 + 选项
-  function langCol(cls, label, node, lang) {
-    var col = textEl('div', '', 'lang-col ' + cls);
-    col.appendChild(textEl('div', label, 'lang-label'));
-    col.appendChild(textEl('div', pick(node.text, lang), 'node-text'));
-    col.appendChild(textEl('div', lang === 'zh' ? '你的选择' : 'Your choice', 'choices-head'));
+  // 渲染当前语言下的单语节点：叙事 + 选项
+  function renderStage(node) {
+    var frag = document.createDocumentFragment();
+    frag.appendChild(textEl('div', pick(node.text, lang), 'node-text'));
+    frag.appendChild(textEl('div', UI[lang].choicesHead, 'choices-head'));
     var cw = textEl('div', '', 'choices');
     ChoicesEngine.availableChoices(scenario, state).forEach(function (c) {
       var btn = textEl('button', pick(c.text, lang), 'choice');
@@ -85,8 +111,8 @@
       btn.onclick = function () { onChoose(c.index); };
       cw.appendChild(btn);
     });
-    col.appendChild(cw);
-    return col;
+    frag.appendChild(cw);
+    return frag;
   }
 
   function renderNode() {
@@ -94,8 +120,7 @@
     if (state.finished) { renderEnding(); return; }
     var bc = $('bilingual');
     bc.innerHTML = '';
-    bc.appendChild(langCol('zh', '中文', node, 'zh'));
-    bc.appendChild(langCol('en', 'EN', node, 'en'));
+    bc.appendChild(renderStage(node));
   }
 
   function onChoose(i) {
@@ -106,7 +131,7 @@
   }
 
   function typeLabel(t) {
-    return t === 'success' ? '成功 / Success' : t === 'fail' ? '失败 / Fail' : t === 'compromise' ? '妥协 / Compromise' : '未知 / Unknown';
+    return (TYPE[lang] && TYPE[lang][t]) || t || '';
   }
 
   function renderEnding() {
@@ -115,20 +140,18 @@
     box.className = 'ending type-' + (ending ? ending.type : 'unknown');
     box.innerHTML = '';
     if (!ending) {
-      box.appendChild(textEl('h2', '未定义结局 / Undefined ending'));
-      box.appendChild(textEl('p', '当前状态未匹配任何结局，场景需补全（见校验器）。'));
+      box.appendChild(textEl('h2', UI[lang].undefined));
+      box.appendChild(textEl('p', UI[lang].undefinedDesc));
     } else {
       box.appendChild(textEl('div', '结局 · ' + typeLabel(ending.type), 'ending-tag'));
-      box.appendChild(textEl('h2', pick(ending.title, 'zh')));
-      box.appendChild(textEl('h2', pick(ending.title, 'en'), 'en-sub'));
-      box.appendChild(textEl('p', pick(ending.text, 'zh')));
-      box.appendChild(textEl('p', pick(ending.text, 'en'), 'en-sub'));
+      box.appendChild(textEl('h2', pick(ending.title, lang)));
+      box.appendChild(textEl('p', pick(ending.text, lang)));
       if (ending.reflection) {
-        box.appendChild(textEl('div', '(反思) ' + pick(ending.reflection, 'zh'), 'reflection'));
-        box.appendChild(textEl('div', '(Reflection) ' + pick(ending.reflection, 'en'), 'reflection en-sub'));
+        var rf = (lang === 'zh' ? '(反思) ' : '(Reflection) ') + pick(ending.reflection, lang);
+        box.appendChild(textEl('div', rf, 'reflection'));
       }
     }
-    var restart = textEl('button', '重新开始 / Restart', 'btn-restart');
+    var restart = textEl('button', UI[lang].restart, 'btn-restart');
     restart.onclick = restartGame;
     box.appendChild(restart);
     box.classList.remove('hidden');
@@ -139,30 +162,31 @@
   function renderTrace() {
     var panel = $('trace-panel');
     panel.classList.remove('hidden');
+    $('trace-title').textContent = UI[lang].traceTitle;
+    $('trace-desc').textContent = UI[lang].traceDesc;
     var list = $('trace-list');
     list.innerHTML = '';
     state.history.forEach(function (h) {
       var li = textEl('li', '');
-      li.appendChild(textEl('div', '选择了 / Chose: ' + pick(h.choiceText, 'zh')));
-      li.appendChild(textEl('div', pick(h.choiceText, 'en'), 'en-sub'));
+      li.appendChild(textEl('div', (lang === 'zh' ? '选择了：' : 'Chose: ') + pick(h.choiceText, lang)));
       if (h.effects && Object.keys(h.effects).length) {
         var parts = [];
         for (var k in h.effects) {
-          parts.push(pick(scenario.dimensions[k].label, 'zh') + ' ' + (h.effects[k] >= 0 ? '+' : '') + h.effects[k]);
+          parts.push(pick(scenario.dimensions[k].label, lang) + ' ' + (h.effects[k] >= 0 ? '+' : '') + h.effects[k]);
         }
-        li.appendChild(textEl('div', '→ ' + parts.join('，'), 'en-sub'));
+        li.appendChild(textEl('div', '→ ' + parts.join(lang === 'zh' ? '，' : ', '), 'trace-effect'));
       }
       list.appendChild(li);
     });
-    list.appendChild(textEl('li', '最终风险 / Final risk: ' + dimSummary(), 'trace-final'));
+    list.appendChild(textEl('li', UI[lang].finalRisk + '：' + dimSummary(), 'trace-final'));
   }
 
   function dimSummary() {
     var parts = [];
     for (var k in scenario.dimensions) {
-      parts.push(pick(scenario.dimensions[k].label, 'zh') + '=' + (state.dims[k] || 0));
+      parts.push(pick(scenario.dimensions[k].label, lang) + '=' + (state.dims[k] || 0));
     }
-    return parts.join('，');
+    return parts.join(lang === 'zh' ? '，' : ', ');
   }
 
   function restartGame() {
@@ -184,15 +208,48 @@
     if (res.errors.length) showBanner('场景校验未通过：' + res.errors.join('；'), 'error');
     // 校验通过时不显示横幅，避免打扰玩家；仅在校验出错时才提示。
 
-    $('scenario-title').textContent = pick(scenario.title, 'zh') + '  ·  ' + pick(scenario.title, 'en');
-    $('scenario-theme').textContent = pick(scenario.theme, 'zh') + ' / ' + pick(scenario.theme, 'en');
+    $('scenario-title').textContent = pick(scenario.title, lang);
+    $('scenario-theme').textContent = pick(scenario.theme, lang);
     state = ChoicesEngine.createState(scenario);
     renderDims();
     renderNode();
   }
 
+  // 切换语言：更新开关高亮并即时重渲染当前可见视图
+  function setLang(l) {
+    lang = l;
+    if (!scenario) {  // 场景尚未加载完成，仅更新高亮
+      var btns0 = document.querySelectorAll('#lang-toggle button');
+      for (var z = 0; z < btns0.length; z++) {
+        btns0[z].classList.toggle('active', btns0[z].getAttribute('data-lang') === l);
+      }
+      return;
+    }
+    var btns = document.querySelectorAll('#lang-toggle button');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', btns[i].getAttribute('data-lang') === l);
+    }
+    renderDims();
+    if (state && state.finished) renderEnding();
+    else renderNode();
+  }
+
   function init() {
     var params = new URLSearchParams(location.search);
+    var langParam = params.get('lang');
+    if (langParam === 'en' || langParam === 'zh') lang = langParam;
+
+    // 绑定右上角语言切换开关
+    var btns = document.querySelectorAll('#lang-toggle button');
+    for (var i = 0; i < btns.length; i++) {
+      (function (b) {
+        b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+      })(btns[i]);
+    }
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].classList.toggle('active', btns[j].getAttribute('data-lang') === lang);
+    }
+
     var scenarioParam = params.get('scenario');
     var isFile = location.protocol === 'file:';
 

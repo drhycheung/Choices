@@ -26,15 +26,38 @@ body {
 
 #app-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  padding: 16px 24px;
+  padding: 14px 24px;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
   flex-wrap: wrap;
 }
+.brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
 .brand { font-weight: 700; font-size: 20px; color: var(--accent); }
 .brand-sub { color: var(--muted); font-size: 13px; }
+
+/* 右上角语言切换开关 */
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  flex: none;
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.lang-toggle button + button { border-left: 1px solid var(--line); }
+.lang-toggle button.active { background: var(--accent); color: #fff; }
+.lang-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 .banner {
   margin: 12px 24px 0;
@@ -49,14 +72,21 @@ body {
 .hidden { display: none !important; }
 
 #app {
-  max-width: 1000px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 880px) {
+  #app { grid-template-columns: 1fr; gap: 16px; }
 }
 
 #scenario-title { margin: 0 0 4px; font-size: 24px; }
 .muted { color: var(--muted); font-size: 13px; }
-.en-sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.trace-effect { color: var(--muted); font-size: 12px; margin-top: 2px; }
 
 /* 维度风险条 */
 .dims { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
@@ -66,29 +96,10 @@ body {
 .dim-fill { height: 100%; border-radius: 999px; transition: width .3s ease; }
 .dim-val { font-size: 12px; color: var(--muted); text-align: right; }
 
-/* 双栏中英对照 */
+/* 单语版面（由右上角开关切换语言） */
 .bilingual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
   margin-top: 8px;
 }
-.lang-col {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  min-width: 0;
-}
-.lang-col.en { background: #fbfcfe; border-style: dashed; }
-.lang-label {
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.lang-col.en .lang-label { color: var(--muted); }
 
 /* 叙事（问题）区：静色卡片，明显区别于选项 */
 .node-text {
@@ -173,8 +184,16 @@ body {
 
 #app-footer { text-align: center; padding: 16px; font-size: 12px; }
 
-/* 窄屏：双栏回退为单栏（先中文后英文） */
+/* 响应式：桌面与移动端适配 */
 @media (max-width: 720px) {
-  .bilingual { grid-template-columns: 1fr; }
-  .dim { grid-template-columns: 140px 1fr 56px; }
+  #app-header { padding: 12px 16px; }
+  .brand { font-size: 18px; }
+  #app { padding: 16px; }
+  #scenario-title { font-size: 20px; }
+  .node-text { font-size: 14px; padding: 12px 14px; }
+  .choice { font-size: 13px; padding: 11px 13px; }
+  .dim { grid-template-columns: 110px 1fr 52px; }
+  .dim-label { font-size: 12px; }
+  .ending { padding: 20px; }
+  .ending h2 { font-size: 19px; }
 }
