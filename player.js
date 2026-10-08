@@ -64,8 +64,6 @@
     o.start(t); o.stop(t + dur + 0.02);
   }
   function playStart() { ensureAudio(); beep(523, 0.09, 'square', 0); beep(659, 0.09, 'square', 0.10); beep(784, 0.12, 'square', 0.20); beep(1046, 0.18, 'square', 0.32); }
-  function playBlip() { ensureAudio(); beep(680, 0.06, 'square', 0, 0.10); }
-  function playEnding() { ensureAudio(); beep(392, 0.14, 'triangle', 0); beep(523, 0.14, 'triangle', 0.14); beep(659, 0.22, 'triangle', 0.28); }
   var TYPE = {
     zh: { success: '成功', fail: '失败', compromise: '妥协', unknown: '未知' },
     en: { success: 'Success', fail: 'Fail', compromise: 'Compromise', unknown: 'Unknown' }
@@ -170,7 +168,6 @@
   function onChoose(i) {
     try { ChoicesEngine.choose(scenario, state, i); }
     catch (e) { showBanner('错误: ' + e.message, 'error'); return; }
-    playBlip();
     renderDims();
     renderNode();
   }
@@ -180,7 +177,6 @@
   }
 
   function renderEnding() {
-    playEnding();
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
     var box = $('ending');
     box.className = 'ending type-' + (ending ? ending.type : 'unknown');
@@ -281,9 +277,9 @@
     else renderNode();
   }
 
-  // 同步两处语言开关（页眉 + 开场画面）的高亮状态
+  // 同步页眉语言开关的高亮状态
   function markToggles() {
-    var sel = '#lang-toggle button, #lang-toggle-start button';
+    var sel = '#lang-toggle button';
     var btns = document.querySelectorAll(sel);
     for (var i = 0; i < btns.length; i++) {
       btns[i].classList.toggle('active', btns[i].getAttribute('data-lang') === lang);
@@ -295,8 +291,8 @@
     var langParam = params.get('lang');
     if (langParam === 'en' || langParam === 'zh') lang = langParam;
 
-    // 绑定两处语言切换开关（页眉 + 开场画面）
-    var allToggles = document.querySelectorAll('#lang-toggle button, #lang-toggle-start button');
+    // 绑定页眉语言切换开关
+    var allToggles = document.querySelectorAll('#lang-toggle button');
     for (var i = 0; i < allToggles.length; i++) {
       (function (b) {
         b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
@@ -310,7 +306,7 @@
     if (soundBtn) soundBtn.addEventListener('click', function () {
       muted = !muted;
       soundBtn.textContent = muted ? '🔇' : '🔊';
-      if (!muted) { ensureAudio(); playBlip(); }
+      if (!muted) { ensureAudio(); }
     });
 
     var scenarioParam = params.get('scenario');

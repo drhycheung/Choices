@@ -2,8 +2,6 @@
 
 > How this project was built with an AI coding tool, the design thinking behind it, and a complete prompt you can paste into an AI coding assistant to reproduce (or adapt) it for your own classroom.
 
-*(中文简释见文末。)*
-
 ---
 
 ## 1. What "vibe-coding" means here
@@ -29,7 +27,7 @@ This repo was built exactly that way, in short iterative turns, each checked wit
 1. **Static site** — no backend, deployable to GitHub Pages, works in China (no Google services). This ruled out Streamlit and any server dependency.
 2. **Generic engine + pluggable JSON scenarios** — add topics (internship, research, …) as data packets, never touch the engine.
 3. **Deterministic causality** — no dice, no RNG; educational stakes must not be luck.
-4. **Bilingual 中 / EN** — same screen, toggle anytime.
+4. **Bilingual ZH / EN** — same screen, toggle anytime.
 5. **Reflection optional** — the teacher facilitates it; the engine doesn't force it. AIs can author the scenario text.
 
 **Why an arcade skin.** The topic (national security / law / ethics) is "serious". A retro neon arcade frame makes it feel like a game, lowers the barrier, and makes "one thought away" (一念之差) viscerally game-like. The visual style here is inspired by classic arcade games (see also the sibling demo *MathInvaders*).
@@ -63,7 +61,7 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 - Must run by double-clicking index.html (file://) AND from a static server / GitHub Pages.
 - Engine and content are SEPARATE: the engine is generic; each scenario is an independent JSON data packet in scenarios/.
 - Causality is DETERMINISTIC: a choice applies explicit numeric `effects` to risk dimensions; NO randomness/dice anywhere. The same choice sequence always reaches the same ending.
-- Player-facing text is bilingual: every string is { "zh": "...", "en": "..." }. A header toggle switches the whole UI (narrative, choices, endings, trail, labels) between 中 and EN, sharing one engine state.
+- Player-facing text is bilingual: every string is { "zh": "...", "en": "..." }. A header toggle switches the whole UI (narrative, choices, endings, trail, labels) between ZH and EN, sharing one engine state.
 - Reflection prompts are OPTIONAL per ending.
 
 ## Files
@@ -76,7 +74,7 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 
 ## Scenario JSON shape
 {
-  "dimensions": { "national_security": { "label": {"zh":"国家安全风险","en":"National Security Risk"}, "initial":0,"min":0,"max":10,"higherIsRisk":true,"icon":"🛡️" } },
+  "dimensions": { "national_security": { "label": {"zh":"…","en":"National Security Risk"}, "initial":0,"min":0,"max":10,"higherIsRisk":true,"icon":"🛡️" } },
   "start": "intro",
   "nodes": { "intro": { "text":{"zh":"…","en":"…"}, "choices":[ {"text":{"zh":"…","en":"…"},"next":"next_id","effects":{"national_security":2}} ] } },
   "endings": { "fail_ns": { "title":{"zh":"…","en":"…"}, "type":"fail", "condition":{"national_security":">=5"}, "text":{"zh":"…","en":"…"}, "reflection":{"zh":"…","en":"…"} } }
@@ -85,7 +83,7 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 ## Deliverables to verify
 - `node test.js` runs several choice paths and prints the ending + final scores.
 - `node validate.js scenarios/student-startup.json` reports no dead-ends and all endings reachable.
-- Opening index.html shows the arcade UI, the Risk Monitor updates on each choice, the same sequence always yields the same ending, and the 中/EN toggle works.
+- Opening index.html shows the arcade UI, the Risk Monitor updates on each choice, the same sequence always yields the same ending, and the ZH/EN toggle works.
 ````
 
 ---
@@ -103,11 +101,3 @@ Build a **static, front-end-only interactive branching-narrative simulator** for
 - Always run the validator before publishing a scenario, especially one written by an AI.
 - The embedded copy in `index.html` must be re-synced whenever you edit `scenarios/*.json` and still want the offline double-click build to match.
 - Treat the arcade skin as motivation, not distraction: the Risk Monitor + Decision Trail are where the learning lives.
-
----
-
-## 中文简释
-
-**vibe-coding（氛围编程）**：不先写函数签名，而是先描述「想要的氛围与学习目标」，让 AI 起草架构、代码和文档，你再用**硬性约束**和**可运行的校验器**来把控。本项目的两条铁律是：① 不可违反的约束（必须是静态站、选择→结局必须确定性因果）；② 一个能跑的校验器，保证 AI 生成的场景不会悄悄断头或不可达。
-
-完整可复现 prompt 见第 4 节——把它贴进任意 AI 编程助手，即可重建一个同架构的模拟器，只需把主题换成你的课堂内容。第 5 节给出一个「学生用 AI 写新场景 + 跑校验器」的课堂活动。

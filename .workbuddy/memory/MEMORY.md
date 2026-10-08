@@ -22,6 +22,9 @@
 - dev 期可用 Python 做校验器/编译器（仅开发时，不进运行时）。
 - 参考项目：引擎架构取 NetStrider/text-adventure-engine；场景 Schema 与教育层（反思题/多结局/变量评分）取 Liberty Park Scenario Engine 的 config.json 模式（但 Liberty Park 的 Streamlit 绑定不适合，仅作模板参考）。
 
+## 文档约定
+- README.md 与 docs/vibe-coding.md 一律用英文撰写（除项目中文名「一念之差」保留外，不出现任何中文解释性文字）。中文简释段落已删除；示例 JSON 中的 zh 字段值用 "…" 占位，不写真实中文。应用本身仍是中英双语（player.js 的 UI 文案与场景数据不受影响）。
+
 ## 关键决策记录
 - 2026-10-08 调研同类开源项目：Ink(4963★,MIT) / Twine2(2904★,GPL-3.0) / ChoiceScript(461★) 为成熟创作工具；教育向数据驱动引擎（Liberty Park / NetStrider 等）均 0★，市场空白。结论：NetStrider 与 Liberty Park 互补，不二选一。
 - 2026-10-08 确认"静态站必须" → 排除 Streamlit 服务端方案。

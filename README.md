@@ -1,10 +1,12 @@
-# 一念之差 · Choices: Interactive Branching Narrative Simulator (EdTech Teaching Demo)
+# 一念之差 · Choices: Interactive Branching Narrative Simulator
+
+**Built for:** [The Education University of Hong Kong (EdUHK)](https://www.eduhk.hk) — **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and also usable in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
 
 **Live demo (GitHub Pages):** https://&lt;your-username&gt;.github.io/Choices/
 
-![一念之差 concept preview](docs/cover.png)
+![一念之差 promo poster](docs/cover.png)
 
-A retro arcade–style educational game where students read a story, make choices, and trigger different branches and endings. The first scenario puts a student entrepreneur in situations involving **national-security, legal, and ethical** risk — every choice deterministically changes risk scores and leads to a corresponding ending. Built as a front-end-only, no-build, no-backend EdTech demo for classroom discussion on decision-making, responsibility, and the rule of law.
+A retro arcade–style educational game where students read a story, make choices, and trigger different branches and endings. The first scenario puts a student entrepreneur in situations involving **national-security, legal, and ethical** risk — every choice deterministically changes risk scores and leads to a corresponding ending. It was created as a front-end-only, no-build, no-backend teaching tool for **EdUHK (The Education University of Hong Kong) GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security** (and is likewise suited to **GEL1032 Technology Entrepreneurship in AI-enhanced Business**) to spark classroom discussion on decision-making, responsibility, and the rule of law.
 
 Files: `index.html`, `engine.js`, `player.js`, `validate.js`, `scenarios/*.json` — no build step, no backend, no API key. Open it in a browser or deploy to GitHub Pages. The pixel/retro fonts load from a CDN; everything else runs locally (a copy of the scenario is also embedded in `index.html` so the file works even when double-clicked).
 
@@ -30,7 +32,7 @@ Many students struggle to feel how an everyday decision can cross a legal, ethic
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG); endings are gated by risk-score `condition` |
 | Risk Monitor (HUD) | Three segmented neon bars — National Security / Law / Ethics — with a danger pulse past the threshold |
 | Multiple endings | success / per-dimension fail / compromise; all reachable and validator-checked |
-| Bilingual 中 / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |
+| Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |
 | Decision Trail | Records each choice + its effect + final scores, shown on the result screen |
 | Optional reflection | Per-ending reflection prompts; not enforced, by design (teacher-led) |
 | Static & portable | No server required; deploy to GitHub Pages or double-click the HTML |
@@ -43,7 +45,7 @@ A scenario is a JSON file with: `dimensions` (risk axes + icons), a `start` node
 ```json
 {
   "dimensions": {
-    "national_security": { "label": { "zh": "国家安全风险", "en": "National Security Risk" },
+    "national_security": { "label": { "zh": "…", "en": "National Security Risk" },
                             "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "icon": "🛡️" }
   },
   "start": "intro",
@@ -53,7 +55,7 @@ A scenario is a JSON file with: `dimensions` (risk axes + icons), a `start` node
                               "effects": { "national_security": 2 } } ] }
   },
   "endings": {
-    "fail_ns": { "title": { "zh": "技术外泄危机", "en": "Technology Leak Crisis" },
+    "fail_ns": { "title": { "zh": "…", "en": "Technology Leak Crisis" },
                  "type": "fail", "condition": { "national_security": ">=5" },
                  "text": { "zh": "…", "en": "…" } }
   }
