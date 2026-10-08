@@ -22,7 +22,7 @@ Choices/
 ├── styles.css            # 样式（叙事静色卡片 / 选项强调色按钮 / 风险条 / 结局 / 轨迹）
 ├── engine.js             # 核心引擎（纯逻辑，无 DOM，确定性因果 + 决策轨迹）
 ├── validate.js           # 因果/路径校验器（无死路、结局可达、引用合法），含 CLI
-├── player.js             # 静态 UI 控制器（fetch 场景 -> 双栏渲染 -> 引擎推进）
+├── player.js             # 静态 UI 控制器（双模加载场景：静态服务器 fetch JSON / file:// 用内嵌副本 -> 双栏渲染 -> 引擎推进）
 ├── test.js               # Node 冒烟测试（无需浏览器）
 ├── scenarios/
 │   └── student-startup.json   # 首个场景：学生创业（中英双语）
@@ -31,7 +31,13 @@ Choices/
 
 ## 运行
 
-### 本地预览（必须用静态服务器，不能直接 file:// 打开）
+### 方式 A：直接双击打开（file://，无需任何服务器）
+
+直接用浏览器打开 `index.html` 即可。player 会读取页面内 `<script id="embedded-scenario">` 中**内嵌的默认场景**运行（浏览器在 `file://` 协议下禁止 `fetch` 本地 JSON，故用内嵌副本兜底）。适合离线分发给学生（U 盘 / 微信发送单个 HTML）。
+
+> ⚠️ 内嵌副本是 `scenarios/student-startup.json` 的副本。若你修改了 `scenarios/*.json`，**需同步更新 `index.html` 里的内嵌块**，否则离线双击打开时仍是旧内容。新增的其他场景在 `file://` 下不会被加载（只在方式 B 的服务器模式下生效）。
+
+### 方式 B：静态服务器 / GitHub Pages（数据驱动，推荐用于部署与新增场景）
 
 ```bash
 python3 -m http.server 8000
@@ -39,7 +45,7 @@ python3 -m http.server 8000
 npx serve .
 ```
 
-浏览器打开 `http://localhost:8000/`。页面左右双栏分别显示中文与英文，点击任一语言下的选项都推进同一故事状态。
+浏览器打开 `http://localhost:8000/`。在 `http(s)://` 协议下，player **以 `scenarios/student-startup.json` 为准**（数据驱动，便于 AI 新增场景），页面左右双栏分别显示中文与英文，点击任一语言下的选项都推进同一故事状态。
 
 ### 自测（Node，无需浏览器）
 
@@ -49,7 +55,7 @@ node test.js
 
 输出场景校验结果与若干条“确定性因果”演示路径（同一序列必得同一结局）。
 
-### 指定其他场景
+### 指定其他场景（仅方式 B 生效）
 
 ```
 http://localhost:8000/?scenario=scenarios/your-scenario.json

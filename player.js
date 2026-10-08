@@ -25,7 +25,14 @@
     return v;
   }
 
-  function loadScenario(path, cb) {
+  // 读取内嵌场景（用于 file:// 直接双击打开 HTML，无需服务器）
+  function readEmbedded() {
+    var block = document.getElementById('embedded-scenario');
+    if (!block || !block.textContent.trim()) return null;
+    try { return JSON.parse(block.textContent); } catch (e) { return null; }
+  }
+
+  function fetchJSON(path, cb) {
     fetch(path)
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (json) { cb(null, json); })
@@ -167,26 +174,49 @@
     renderNode();
   }
 
+  function start(err, json) {
+    if (err) {
+      showBanner('无法加载场景：' + err.message + '（请用静态服务器打开，例如 python -m http.server）', 'error');
+      return;
+    }
+    scenario = json;
+    var res = ChoicesValidate.validate(scenario);
+    if (res.errors.length) showBanner('场景校验未通过：' + res.errors.join('；'), 'error');
+    // 校验通过时不显示横幅，避免打扰玩家；仅在校验出错时才提示。
+
+    $('scenario-title').textContent = pick(scenario.title, 'zh') + '  ·  ' + pick(scenario.title, 'en');
+    $('scenario-theme').textContent = pick(scenario.theme, 'zh') + ' / ' + pick(scenario.theme, 'en');
+    state = ChoicesEngine.createState(scenario);
+    renderDims();
+    renderNode();
+  }
+
   function init() {
     var params = new URLSearchParams(location.search);
-    var path = params.get('scenario') || 'scenarios/student-startup.json';
-    loadScenario(path, function (err, json) {
-      if (err) {
-        showBanner('无法加载场景 ' + path + '：' + err.message + '（请用静态服务器打开，例如 python -m http.server）', 'error');
-        return;
-      }
-      scenario = json;
-      var res = ChoicesValidate.validate(scenario);
-      if (res.errors.length) showBanner('场景校验未通过：' + res.errors.join('；'), 'error');
-      else if (res.warnings.length) showBanner('场景校验通过（提示：' + res.warnings.join('；') + '）', 'warn');
-      else showBanner('场景校验通过 ✓', 'ok');
+    var scenarioParam = params.get('scenario');
+    var isFile = location.protocol === 'file:';
 
-      $('scenario-title').textContent = pick(scenario.title, 'zh') + '  ·  ' + pick(scenario.title, 'en');
-      $('scenario-theme').textContent = pick(scenario.theme, 'zh') + ' / ' + pick(scenario.theme, 'en');
-      state = ChoicesEngine.createState(scenario);
-      renderDims();
-      renderNode();
-    });
+    if (scenarioParam) {
+      // 指定了 ?scenario=：尝试加载独立 JSON 数据包（file:// 下会失败 → 内嵌兜底）
+      fetchJSON(scenarioParam, function (err, json) {
+        if (!err) return start(null, json);
+        var emb = readEmbedded();
+        if (emb) return start(null, emb);
+        start(err, null);
+      });
+      return;
+    }
+
+    if (isFile) {
+      // 直接双击打开 HTML（file:// 协议）：浏览器禁止 fetch 本地文件，使用内嵌场景
+      var emb = readEmbedded();
+      if (emb) return start(null, emb);
+      showBanner('无法通过 file:// 加载场景：未找到内嵌场景（请用静态服务器打开，例如 python -m http.server）', 'error');
+      return;
+    }
+
+    // 静态服务器 / GitHub Pages：加载独立 JSON 数据包（数据驱动，便于 AI 新增场景）
+    fetchJSON('scenarios/student-startup.json', start);
   }
 
   document.addEventListener('DOMContentLoaded', init);
