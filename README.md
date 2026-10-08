@@ -12,19 +12,20 @@
 3. **场景 = 独立 JSON 数据包**：新增场景 = 新增一个 JSON 文件，`fetch` 加载，零配置插拔。
 4. **反思层可选**：教师可在课堂上补充；schema 中 `reflection` 为可选字段，缺省不阻断运行。
 5. **场景内容可由 AI 辅助生成**：因此 schema 设计得对 LLM 友好，并由 `validate.js` 兜底保证因果完整。
+6. **中英双语对照**：面向玩家的文本写成 `{ "zh": "...", "en": "..." }`，播放器以**同一版面左右双栏（中文 | EN）**对照渲染；纯字符串也兼容（单语场景）。
 
 ## 目录结构
 
 ```
 Choices/
-├── index.html            # 静态播放器页面
-├── styles.css            # 样式（阅读式 UI、风险条、结局/轨迹面板）
+├── index.html            # 静态播放器页面（双栏中英对照）
+├── styles.css            # 样式（叙事静色卡片 / 选项强调色按钮 / 风险条 / 结局 / 轨迹）
 ├── engine.js             # 核心引擎（纯逻辑，无 DOM，确定性因果 + 决策轨迹）
-├── validate.js           # 因果/路径校验器（无死路、结局可达、引用合法）
-├── player.js             # 静态 UI 控制器（fetch 场景 -> 渲染 -> 引擎推进）
+├── validate.js           # 因果/路径校验器（无死路、结局可达、引用合法），含 CLI
+├── player.js             # 静态 UI 控制器（fetch 场景 -> 双栏渲染 -> 引擎推进）
 ├── test.js               # Node 冒烟测试（无需浏览器）
 ├── scenarios/
-│   └── student-startup.json   # 首个场景：学生创业
+│   └── student-startup.json   # 首个场景：学生创业（中英双语）
 └── README.md
 ```
 
@@ -33,13 +34,12 @@ Choices/
 ### 本地预览（必须用静态服务器，不能直接 file:// 打开）
 
 ```bash
-# 任选其一，在项目根目录执行
 python3 -m http.server 8000
 # 或
 npx serve .
 ```
 
-然后浏览器打开 `http://localhost:8000/`。
+浏览器打开 `http://localhost:8000/`。页面左右双栏分别显示中文与英文，点击任一语言下的选项都推进同一故事状态。
 
 ### 自测（Node，无需浏览器）
 
@@ -47,7 +47,7 @@ npx serve .
 node test.js
 ```
 
-会输出场景校验结果与若干条“确定性因果”演示路径（同一序列必得同一结局）。
+输出场景校验结果与若干条“确定性因果”演示路径（同一序列必得同一结局）。
 
 ### 指定其他场景
 
@@ -57,23 +57,24 @@ http://localhost:8000/?scenario=scenarios/your-scenario.json
 
 ## 场景 Schema（数据包规范）
 
-一个场景 = 一个 JSON 对象，引擎只认 schema，不认识任何具体内容：
+一个场景 = 一个 JSON 对象，引擎只认 schema，不认识任何具体内容。**所有面向玩家的字符串都支持双语**：
+写成 `{ "zh": "...", "en": "..." }` 即可；写纯字符串也兼容（单语场景）。播放器自动以双栏对照渲染。
 
 ```jsonc
 {
   "id": "student-startup",
-  "title": "学生创业：风险抉择",
-  "theme": "国家安全 / 法律 / 伦理",
+  "title": { "zh": "学生创业：风险抉择", "en": "Student Startup: Risky Choices" },
+  "theme": { "zh": "国家安全 / 法律 / 伦理", "en": "National Security / Law / Ethics" },
   "dimensions": {                       // 风险维度（确定性状态）
-    "<key>": { "label": "国家安全风险", "initial": 0, "min": 0, "max": 10, "higherIsRisk": true }
+    "<key>": { "label": { "zh": "国家安全风险", "en": "National Security Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true }
   },
   "start": "intro",                    // 起始节点 id
   "nodes": {
     "<nodeId>": {
-      "text": "叙事文本",
+      "text": { "zh": "叙事文本", "en": "Narrative text" },
       "choices": [
         {
-          "text": "选项文案",
+          "text": { "zh": "选项文案", "en": "Option text" },
           "next": "<nodeId>",           // 跳转目标（必须存在）
           "effects": { "<dimKey>": 2 }, // 确定性效果（可正可负，无随机）
           "requirements": { "<dimKey>": ">=2" }, // 可选：前置条件门控（不满足则不可选）
@@ -85,11 +86,11 @@ http://localhost:8000/?scenario=scenarios/your-scenario.json
   },
   "endings": {                         // 状态门控结局（按声明顺序求值，命中即止）
     "<endingId>": {
-      "title": "结局标题",
+      "title": { "zh": "结局标题", "en": "Ending title" },
       "type": "success | fail | compromise",
       "condition": { "<dimKey>": ">=5" },  // 多维为 AND；空对象 {} 表示默认/兜底
-      "text": "结局叙事",
-      "reflection": "可选反思提示（教师亦可在课堂补充）"
+      "text": { "zh": "结局叙事", "en": "Ending narrative" },
+      "reflection": { "zh": "可选反思提示", "en": "Optional reflection (teacher may add in class)" }
     }
   }
 }
@@ -97,20 +98,19 @@ http://localhost:8000/?scenario=scenarios/your-scenario.json
 
 ### 因果是如何被强制保证的
 
-- **选择 → 效果 → 维度 → 结局**全部确定性：引擎对 `effects` 做加减（无随机数），结局由 `condition` 对维度求值触发。
+- **选择 → 效果 → 维度 → 结局**全部确定性：引擎对 `effects` 做加减（**无随机数**），结局由 `condition` 对维度求值触发。
 - **结局按声明顺序求值、命中即止**：把“兜底/妥协”结局放在最后、用空 `condition: {}` 承接所有未被具体结局覆盖的状态。
 - **`validate.js` 在运行前证明三件事**：① 结构合法（start/next 引用、维度与表达式合法）；② 无死路（每条可达路径都落在一个合法结局上）；③ 因果可达（每个声明结局都存在至少一条选择序列能触发）。
   用 AI 生成场景后，先跑 `node test.js` / `node validate.js scenarios/xxx.json` 即可确认因果完整。
 
 ## 新增一个场景
 
-1. 复制 `scenarios/student-startup.json`，改 `id` / 维度 / 节点 / 结局。
-2. 跑 `node test.js`（或单独校验：`node -e "console.log(require('./validate.js').validate(require('./scenarios/xxx.json')))"`）确认无错误。
+1. 复制 `scenarios/student-startup.json`，改 `id` / 维度 / 节点 / 结局（文本用 `{zh,en}` 双语）。
+2. 跑 `node test.js`（或单独校验：`node validate.js scenarios/xxx.json`）确认无错误。
 3. 用 `?scenario=scenarios/xxx.json` 打开预览。
 4. 部署：把整个仓库推到 GitHub 并开启 Pages，即得可分享的静态站。
 
 ## 引擎 / UI 解耦
 
 - `engine.js`：纯状态机与因果计算，无 DOM，可在 Node 单测。
-- `player.js`：仅负责渲染与事件。
-- 这保证“核心引擎通用、场景可插拔”的架构目标，也便于未来替换 UI（如接入微信/小程序 WebView）而不动引擎。
+- `player.js`：仅负责渲染与事件（含中英双栏）。引擎与 UI 解耦，便于未来替换界面（如接入微信/小程序 WebView）而不动引擎。

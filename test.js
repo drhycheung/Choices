@@ -12,6 +12,12 @@ const scenario = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'scenarios', 'student-startup.json'), 'utf8')
 );
 
+// 双语取值：v 可能是 {zh,en} 或纯字符串
+function pick(v, lang) {
+  if (v && typeof v === 'object' && (v.zh || v.en)) return v[lang] || v.zh;
+  return v;
+}
+
 const res = Validate.validate(scenario);
 console.log('=== 场景校验 ===');
 console.log(res.ok ? '结果：通过 ✓' : '结果：未通过 ✗');
@@ -25,7 +31,7 @@ function play(seq) {
   return s;
 }
 function dims(s) {
-  return Object.keys(scenario.dimensions).map((k) => scenario.dimensions[k].label + '=' + s.dims[k]).join(' ');
+  return Object.keys(scenario.dimensions).map((k) => pick(scenario.dimensions[k].label, 'zh') + '=' + s.dims[k]).join(' ');
 }
 
 console.log('\n=== 确定性因果演示（相同选择序列 = 相同结局）===');
@@ -40,7 +46,7 @@ let allOk = res.ok;
 cases.forEach(([name, seq]) => {
   const s = play(seq);
   const e = Engine.getEnding(scenario, s.endingId);
-  console.log(`[${name}] 结局：${e ? e.title : '（无）'}  |  ${dims(s)}`);
+  console.log(`[${name}] 结局：${e ? pick(e.title, 'zh') : '（无）'}  |  ${dims(s)}`);
 
   // 确定性：再跑一次应完全一致
   const s2 = play(seq);
