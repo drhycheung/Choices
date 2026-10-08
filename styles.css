@@ -35,7 +35,8 @@ body {
   flex-wrap: wrap;
 }
 .brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
-.brand { font-weight: 700; font-size: 20px; color: var(--accent); }
+.brand { font-weight: 700; font-size: 22px; color: var(--accent); letter-spacing: 1px; }
+.brand-en { font-weight: 600; font-size: 15px; color: var(--muted); letter-spacing: 0.5px; }
 .brand-sub { color: var(--muted); font-size: 13px; }
 
 /* 右上角语言切换开关 */
