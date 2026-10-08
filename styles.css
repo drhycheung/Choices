@@ -1,17 +1,22 @@
 :root {
-  --bg: #f7f8fa;
+  --bg: #eef1f8;
   --panel: #ffffff;
   --ink: #1f2430;
   --muted: #6b7280;
   --line: #e5e7eb;
   --accent: #2f6fed;
   --accent-soft: #eaf1fe;
-  --story-bg: #f3f5fb;     /* 叙事区底色：静色，区别于选项 */
+  --story-bg: #f3f5fb;
   --story-border: #c9d4ea;
   --ok: #2e9e5b;
   --warn: #e0a106;
   --error: #d6453d;
   --radius: 12px;
+  --hud-bg-a: #161d2e;
+  --hud-bg-b: #232f4d;
+  --hud-line: #2c3650;
+  --hud-text: #cdd6f4;
+  --hud-sub: #9aa6c4;
 }
 
 * { box-sizing: border-box; }
@@ -19,44 +24,48 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: var(--bg);
+  background: radial-gradient(1100px 520px at 50% -8%, #e7edfb 0%, var(--bg) 60%);
   color: var(--ink);
   line-height: 1.7;
+  min-height: 100vh;
 }
 
+/* ============ 游戏化标题栏 ============ */
 #app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 14px 24px;
-  background: var(--panel);
-  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--hud-bg-a), var(--hud-bg-b));
+  border-bottom: 1px solid var(--hud-line);
+  box-shadow: 0 4px 18px rgba(15, 22, 40, 0.28);
   flex-wrap: wrap;
 }
 .brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
-.brand { font-weight: 700; font-size: 22px; color: var(--accent); letter-spacing: 1px; }
-.brand-en { font-weight: 600; font-size: 15px; color: var(--muted); letter-spacing: 0.5px; }
-.brand-sub { color: var(--muted); font-size: 13px; }
+.brand { font-weight: 800; font-size: 22px; color: #fff; letter-spacing: 2px; text-shadow: 0 0 14px rgba(120, 160, 255, 0.55); }
+.brand-en { font-weight: 600; font-size: 14px; color: #9fb0d6; letter-spacing: 1px; }
+.brand-sub { color: #9aa6c4; font-size: 13px; }
 
-/* 右上角语言切换开关 */
+/* 右上角语言切换开关（适配深色标题栏） */
 .lang-toggle {
   display: inline-flex;
-  border: 1px solid var(--line);
+  border: 1px solid #3a4767;
   border-radius: 999px;
   overflow: hidden;
   flex: none;
+  background: rgba(255, 255, 255, 0.04);
 }
 .lang-toggle button {
   border: none;
   background: transparent;
   padding: 6px 16px;
   font-size: 13px;
-  color: var(--muted);
+  color: #b9c4e0;
   cursor: pointer;
   transition: background .15s ease, color .15s ease;
 }
-.lang-toggle button + button { border-left: 1px solid var(--line); }
+.lang-toggle button + button { border-left: 1px solid #3a4767; }
 .lang-toggle button.active { background: var(--accent); color: #fff; }
 .lang-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
@@ -89,81 +98,135 @@ body {
 .muted { color: var(--muted); font-size: 13px; }
 .trace-effect { color: var(--muted); font-size: 12px; margin-top: 2px; }
 
-/* 维度风险条 */
-.dims { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
-.dim { display: grid; grid-template-columns: 220px 1fr 64px; align-items: center; gap: 10px; }
-.dim-label { font-size: 13px; color: var(--muted); }
-.dim-track { height: 10px; background: #eceef2; border-radius: 999px; overflow: hidden; }
-.dim-fill { height: 100%; border-radius: 999px; transition: width .3s ease; }
-.dim-val { font-size: 12px; color: var(--muted); text-align: right; }
+/* ============ 主游戏面板 ============ */
+#stage {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 30px rgba(30, 40, 70, 0.06);
+}
+
+/* ============ 风险监测 HUD（游戏化状态条） ============ */
+.hud {
+  margin: 18px 0;
+  background: linear-gradient(160deg, var(--hud-bg-a), var(--hud-bg-b));
+  border: 1px solid var(--hud-line);
+  border-radius: 14px;
+  padding: 14px 16px 16px;
+  box-shadow: 0 6px 20px rgba(20, 28, 48, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.hud-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8ea0c8;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dims { display: flex; flex-direction: column; gap: 12px; }
+.dim.danger .dim-label { color: #ff8a82; }
+.dim-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 8px; }
+.dim-label { font-size: 13px; font-weight: 600; color: var(--hud-text); }
+.dim-val {
+  font-size: 12px; color: var(--hud-sub);
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 8px; border-radius: 999px; min-width: 46px; text-align: center;
+}
+.dim-track { display: flex; gap: 4px; }
+.dim-seg {
+  flex: 1; height: 12px; border-radius: 3px;
+  background: rgba(255, 255, 255, 0.10);
+  transition: background .3s ease, box-shadow .3s ease;
+}
 
 /* 单语版面（由右上角开关切换语言） */
-.bilingual {
-  margin-top: 8px;
-}
+.bilingual { margin-top: 8px; }
 
-/* 叙事（问题）区：静色卡片，明显区别于选项 */
+/* ============ 叙事（对话）区：静色，区别于选项 ============ */
 .node-text {
-  background: var(--story-bg);
-  border: 1px solid var(--story-border);
-  border-left: 4px solid var(--story-border);
-  border-radius: 10px;
-  padding: 14px 16px;
+  background: linear-gradient(180deg, #fbfcff, #f4f7ff);
+  border: 1px solid #d6e0f5;
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px 18px;
   font-size: 15px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(47, 111, 237, 0.06);
 }
 
-/* 选项区：强调色描边按钮，与叙事区配色不同 */
+/* ============ 选项（游戏菜单）区：强调色，区别于叙事 ============ */
 .choices-head {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 4px 0 10px;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; color: var(--accent); margin: 4px 0 10px;
+  display: flex; align-items: center; gap: 6px;
 }
+.choices-head::before { content: "◆"; font-size: 10px; }
 .choices { display: flex; flex-direction: column; gap: 10px; }
 .choice {
   text-align: left;
   background: var(--panel);
   border: 1.5px solid var(--accent);
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 12px 16px;
   font-size: 14px;
   color: var(--ink);
   cursor: pointer;
-  transition: background .15s ease, transform .05s ease;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(47, 111, 237, 0.10);
+  transition: background .15s ease, color .15s ease, transform .08s ease, box-shadow .15s ease;
 }
-.choice:hover:not(:disabled) { background: var(--accent-soft); }
-.choice:active:not(:disabled) { transform: scale(0.995); }
-.choice:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--line); }
+.choice::before { content: "▶"; color: var(--accent); margin-right: 8px; font-size: 11px; transition: color .15s ease; }
+.choice:hover:not(:disabled) { background: var(--accent); color: #fff; transform: translateX(3px); box-shadow: 0 6px 16px rgba(47, 111, 237, 0.30); }
+.choice:hover:not(:disabled)::before { color: #fff; }
+.choice:active:not(:disabled) { transform: translateX(1px) scale(0.995); }
+.choice:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--line); box-shadow: none; }
+.choice:disabled::before { color: var(--line); }
 
-/* 决策轨迹面板 */
+/* ============ 决策轨迹（日志）面板 ============ */
 .trace-panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  background: linear-gradient(180deg, #fbfcff, #f5f8ff);
+  border: 1px solid #dbe3f4;
+  border-radius: 14px;
   padding: 16px 18px;
-  margin-top: 18px;
 }
-.trace-panel h2 { margin: 0 0 4px; font-size: 16px; }
+.trace-panel h2 { margin: 0 0 4px; font-size: 16px; display: flex; align-items: center; gap: 6px; }
+.trace-panel h2::before { content: "📜"; }
 #trace-list { margin: 8px 0 0; padding-left: 18px; }
 #trace-list li { font-size: 13px; margin-bottom: 10px; }
-.trace-final { font-weight: 600; }
+.trace-final { font-weight: 600; color: var(--accent); }
 
-/* 结局页 */
+/* ============ 结局（结算）页 ============ */
 .ending {
   max-width: 1000px;
   margin: 8px auto 40px;
-  padding: 28px;
-  border-radius: var(--radius);
+  padding: 30px;
+  border-radius: 16px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--muted);
+  box-shadow: 0 12px 40px rgba(30, 40, 70, 0.12);
+  position: relative;
+  overflow: hidden;
 }
-.ending.type-success { border-top-color: var(--ok); }
-.ending.type-fail { border-top-color: var(--error); }
-.ending.type-compromise { border-top-color: var(--warn); }
-.ending h2 { margin: 6px 0 10px; font-size: 22px; }
-.ending-tag { font-size: 12px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+.ending::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--muted); }
+.ending.type-success::before { background: var(--ok); }
+.ending.type-fail::before { background: var(--error); }
+.ending.type-compromise::before { background: var(--warn); }
+.ending h2 { margin: 8px 0 10px; font-size: 22px; }
+.ending-tag {
+  display: inline-block;
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
+  padding: 3px 10px; border-radius: 999px;
+  background: #eef2fb; color: var(--muted);
+}
+.ending.type-success .ending-tag { background: #e7f7ee; color: var(--ok); }
+.ending.type-fail .ending-tag { background: #fdeceb; color: var(--error); }
+.ending.type-compromise .ending-tag { background: #fff7e3; color: #a9790a; }
 .reflection {
   margin-top: 16px;
   padding: 12px 14px;
@@ -181,20 +244,24 @@ body {
   padding: 10px 18px;
   font-size: 14px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(47, 111, 237, 0.25);
+  transition: transform .08s ease, box-shadow .15s ease;
 }
+.btn-restart:hover { box-shadow: 0 6px 18px rgba(47, 111, 237, 0.40); transform: translateY(-1px); }
 
-#app-footer { text-align: center; padding: 16px; font-size: 12px; }
+#app-footer { text-align: center; padding: 16px; font-size: 12px; color: var(--muted); }
 
-/* 响应式：桌面与移动端适配 */
+/* ============ 响应式：桌面与移动端适配 ============ */
 @media (max-width: 720px) {
   #app-header { padding: 12px 16px; }
   .brand { font-size: 18px; }
   #app { padding: 16px; }
+  #stage { padding: 18px 16px; }
   #scenario-title { font-size: 20px; }
   .node-text { font-size: 14px; padding: 12px 14px; }
-  .choice { font-size: 13px; padding: 11px 13px; }
-  .dim { grid-template-columns: 110px 1fr 52px; }
+  .choice { font-size: 13px; padding: 11px 14px; }
   .dim-label { font-size: 12px; }
-  .ending { padding: 20px; }
+  .dim-seg { height: 10px; }
+  .ending { padding: 22px 18px; }
   .ending h2 { font-size: 19px; }
 }

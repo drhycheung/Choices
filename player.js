@@ -86,16 +86,26 @@
       var val = state.dims[k] || 0;
       var max = (typeof d.max === 'number') ? d.max : 10;
       var ratio = Math.max(0, Math.min(1, max ? val / max : 0));
-      var bar = textEl('div', '', 'dim');
-      var label = textEl('span', pick(d.label, lang), 'dim-label');
+      var danger = ratio >= 0.5;            // 过半即进入“危险区”，HUD 发光警示
+      var color = riskColor(ratio);
+      var row = textEl('div', '', 'dim' + (danger ? ' danger' : ''));
+      var head = textEl('div', '', 'dim-head');
+      var icon = d.icon ? d.icon + ' ' : '';
+      head.appendChild(textEl('span', icon + pick(d.label, lang), 'dim-label'));
+      head.appendChild(textEl('span', val + ' / ' + max, 'dim-val'));
+      row.appendChild(head);
       var track = textEl('div', '', 'dim-track');
-      var fill = textEl('div', '', 'dim-fill');
-      fill.style.width = (ratio * 100) + '%';
-      fill.style.background = riskColor(ratio);
-      var valspan = textEl('span', val + ' / ' + max, 'dim-val');
-      track.appendChild(fill);
-      bar.appendChild(label); bar.appendChild(track); bar.appendChild(valspan);
-      wrap.appendChild(bar);
+      for (var i = 0; i < max; i++) {
+        var seg = textEl('div', '', 'dim-seg');
+        if (i < val) {
+          seg.className = 'dim-seg on';
+          seg.style.background = color;
+          if (danger) seg.style.boxShadow = '0 0 8px ' + color;
+        }
+        track.appendChild(seg);
+      }
+      row.appendChild(track);
+      wrap.appendChild(row);
     }
   }
 

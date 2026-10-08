@@ -4,9 +4,9 @@
   "theme": { "zh": "国家安全 / 法律 / 伦理", "en": "National Security / Law / Ethics" },
   "description": "首个示范场景。玩家是一名大学生创业者，在融资、数据、知识产权等环节持续做出抉择，每个选择确定性地改变国家安全、法律、伦理三类风险，最终触发对应结局。反思内容可选，教师可在课堂上补充。",
   "dimensions": {
-    "national_security": { "label": { "zh": "国家安全风险", "en": "National Security Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true },
-    "legal": { "label": { "zh": "法律合规风险", "en": "Legal Compliance Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true },
-    "ethics": { "label": { "zh": "伦理风险", "en": "Ethics Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true }
+    "national_security": { "label": { "zh": "国家安全风险", "en": "National Security Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "icon": "🛡️" },
+    "legal": { "label": { "zh": "法律合规风险", "en": "Legal Compliance Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "icon": "⚖️" },
+    "ethics": { "label": { "zh": "伦理风险", "en": "Ethics Risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "icon": "🧭" }
   },
   "start": "intro",
   "nodes": {
