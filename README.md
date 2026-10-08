@@ -1,8 +1,18 @@
-# 一念之差 · Choices: Interactive Branching Narrative Simulator
+<div align="center">
+
+# 一念之差 · Choices
+
+A retro arcade–style interactive branching-narrative simulator for classroom teaching — every choice deterministically changes risk scores and leads to its corresponding ending.
+
+**▶ Play Online: <https://drhycheung.github.io/Choices/>**
+
+English ｜ 简体中文 (in-game toggle)
+
+</div>
+
+---
 
 **Built for:** [The Education University of Hong Kong (EdUHK)](https://www.eduhk.hk) — **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and also usable in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
-
-**Live demo (GitHub Pages):** https://drhycheung.github.io/Choices/
 
 ![一念之差 promo poster](docs/cover.png)
 
