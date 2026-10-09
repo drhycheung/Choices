@@ -1068,8 +1068,8 @@
     "intro": {
       "act": "act1",
       "text": {
-        "zh": "七月，你们拿到校内创业基金，众创空间的工位第一次有了三个固定的人。投资人开始陆续加微信，也有人打听你们的数据。接下来的十二个抉择，每一个都会同时改变两件事：公司的前途，以及它可能碰到的国家安全、法律与伦理红线。",
-        "en": "In July you took the campus seed fund, and for the first time three people sat at the same desk every day. Investors started adding you on WeChat, and some asked about your data. Twelve decisions now follow, and each one changes two things at once: the company's prospects, and the national-security, legal and ethical lines it may cross."
+        "zh": "七月，你们拿到校内创业基金，众创空间的工位第一次有了三个固定的人。投资人开始陆续加微信，也有人打听你们的数据。接下来的一连串抉择，每一个都会同时改变两件事：公司的前途，以及它可能碰到的国家安全、法律与伦理红线。",
+        "en": "In July you took the campus seed fund, and for the first time three people sat at the same desk every day. Investors started adding you on WeChat, and some asked about your data. a chain of decisions now follow, and each one changes two things at once: the company's prospects, and the national-security, legal and ethical lines it may cross."
       },
       "choices": [
         {
@@ -1293,23 +1293,23 @@
     "ai-fitness_b1_clean": {
       "act": "act2",
       "text": {
-        "zh": "用公开赛事与授权数据训出来的模型不算漂亮：伤病预警的准确率比竞品低几个点，冷启动人群覆盖也窄。但每一条数据的来源都写得出处，用户问「凭什么说我可能受伤」时，你们答得上来。",
-        "en": "The model trained on public event data and consented samples is not pretty: accuracy sits a few points below rivals and cold-start coverage is narrow. But every record has a provenance, and when a user asks 'why do you say I might get injured', you can answer."
+        "zh": "用公开赛事与授权数据训出来的模型不算漂亮：伤病预警比竞品低几个点，冷启动覆盖也窄。但每一条数据都写得出来源，用户问「凭什么说我可能受伤」时你们答得上来。现在的问题是——怎么把这套「来源可查」变成产品本身，而不是应付审核的摆设？",
+        "en": "The model trained on public event data and consented samples is not pretty: accuracy sits a few points below rivals and cold-start coverage is narrow. But every record has a provenance, and when a user asks 'why do you say I might get injured' you can answer. The question now: how do you make 'traceable' part of the product itself, not just a review ritual?"
       },
       "choices": [
         {
           "text": {
-            "zh": "把数据来源与能力边界做成 App 里的一页说明",
-            "en": "Put data provenance and the model's limits on one page inside the app"
+            "zh": "把数据来源与能力边界做成 App 内一页说明，用户可随时自查",
+            "en": "Put data provenance and the model's limits on one in-app page users can check anytime"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
           },
           "why": {
-            "zh": "用户能自查的透明度会变成留存理由；对采购福利的企业雇主来说，这一页也是他们法务最想看到的东西。",
-            "en": "Transparency users can check for themselves becomes a retention reason; for employers buying the benefit, that page is exactly what their legal team wants to see."
+            "zh": "用户能自查的透明度会变成留存理由；对企业雇主来说，这一页正是他们法务最想看到的东西——它把合规成本前置，换来最难复制的信任。",
+            "en": "Transparency users can verify becomes a retention reason; for employers it is exactly what their legal team wants — front-loading compliance cost for the hardest trust to copy."
           }
         },
         {
@@ -1317,14 +1317,14 @@
             "zh": "对外宣称数据合规，具体来源等被问再解释",
             "en": "Claim compliance publicly; explain provenance only when asked"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
           },
           "why": {
-            "zh": "省下整理的时间，让包装更好看；但运动健康数据一旦被质疑来源，解释成本会一次性集中爆发。",
-            "en": "You save the sorting work and the packaging looks better — but when health data provenance is questioned, the explaining lands all at once."
+            "zh": "省下整理的时间让包装更好看，但运动健康数据一旦被质疑来源，解释成本会一次性爆发。",
+            "en": "You save sorting work and the packaging looks better, but when health-data provenance is questioned the explaining lands all at once."
           }
         }
       ]
@@ -1332,8 +1332,8 @@
     "ai-fitness_b1_dirty": {
       "act": "act2",
       "text": {
-        "zh": "第三方数据包把指标顶上去了，预警看起来灵敏得多。问题是：里面夹着某连锁健身房会员的体测记录，而你们没有任何一份授权文件。",
-        "en": "The third-party pack lifts the metrics and the warnings look far sharper. The problem: it contains fitness assessments from a chain gym's members, and you hold no authorisation for any of it."
+        "zh": "第三方数据包把指标顶上去了，预警看起来灵敏得多。问题：里面夹着某连锁健身房会员的体测记录，而你们没有任何一份授权文件。工程说先拖着，合规说必须现在处理。这段来源不明的素材已经进了训练集。",
+        "en": "The third-party pack lifts the metrics and warnings look sharper. The problem: it contains fitness assessments from a chain gym's members, and you hold no authorisation. Engineering says delay; compliance says handle it now. The untraceable clip is already in your training set."
       },
       "choices": [
         {
@@ -1341,15 +1341,15 @@
             "zh": "停用这批数据、重新训练，并通知已受影响的用户",
             "en": "Stop using the batch, retrain, and notify affected users"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
             "pmf": -1
           },
           "why": {
-            "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，指标也会回退；自己发现永远比被举报后整改便宜。",
-            "en": "Stopping limits further liability but does not undo processing already done, and metrics regress. Finding it yourself is always cheaper than remediating after a report."
+            "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，指标也会回退；自己发现永远比被举报后整改便宜。（这一步无法把已累积的风险归零。）",
+            "en": "Stopping limits further liability but does not undo processing already done, and metrics regress. Finding it yourself is cheaper than after a report. (This cannot zero out the risk already accumulated.)"
           }
         },
         {
@@ -1357,189 +1357,15 @@
             "zh": "继续用，先把版本跑起来，等有人问再说",
             "en": "Keep using it, ship the build, deal with questions later"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
             "ethics": 1
           },
           "why": {
-            "zh": "换来的是上线时间与漂亮指标，代价是把「合法性基础」这个举证责任整个留给了未来的自己。",
-            "en": "You buy shipping time and good metrics, and leave the entire burden of proving a lawful basis to your future self."
-          }
-        }
-      ]
-    },
-    "c2_annotate": {
-      "act": "act2",
-      "text": {
-        "zh": "标注环节卡住了：两千条运动片段需要人工打标签。本地团队报价贵三倍，境外外包两天就能交。",
-        "en": "Labelling is the bottleneck: two thousand movement clips need human tags. A local team quotes three times the price; an overseas vendor can deliver in two days."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "校内勤工俭学团队手工标注，全程数据不出境",
-            "en": "Use a campus work-study team; data never leaves the jurisdiction"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "内部标注虽然贵，但标注准则与质量控制成为团队自己的隐性知识，反向提升数据一致性；同时避免跨境传输评估、标准合同与安全审查这一整套合规负担。",
-            "en": "Internal labelling costs more, but the guidelines and quality control become in-house tacit knowledge, raising consistency; it also avoids the whole package of transfer assessments, standard contracts and security review."
-          }
-        },
-        {
-          "text": {
-            "zh": "外包给境外标注团队，先把版本发出去",
-            "en": "Outsource to an overseas labelling team and ship now"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把含位置与生理特征的数据发给境外处理方，通常触发跨境提供规则、第三方数据处理协议与安全评估义务；未做这些就直接流转，等于把合规缺口外包给了看不见的地方。速度确实最快。",
-            "en": "Sending location and physiological data to an overseas processor usually triggers cross-border transfer rules, third-party processing agreements and security assessments. Skipping them simply outsources your compliance gap somewhere invisible. It is the fastest route, though."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "用户开始增长，服务器账单也是。团队必须决定：这门生意到底怎么赚钱？",
-        "en": "Users grow, and so does the server bill. The team must decide how this is actually going to make money."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "会员订阅，并公开承诺不以位置数据变现",
-            "en": "Subscriptions, with a public promise never to monetise location data"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收入慢，但把「我们不会拿你的数据做什么」写进公开条款，会沉淀成最难复制的信任壁垒（Canvas 9）；同时收入路径干净，尽调、上市、跨境扩张都不受牵连。",
-            "en": "Subscription revenue is slow, but publishing 'we will never do X with your data' compounds into the hardest trust moat to copy (Canvas 9). The revenue path stays clean, so due diligence and expansion never get entangled."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费，把「去标识」的运动轨迹卖给保险公司",
-            "en": "Free app; sell 'de-identified' movement tracks to insurers"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "去标识不等于匿名：轨迹具有高度唯一性，通常仍属个人信息；卖给保险意味着用户的日常行踪进入核保决策，明显超出收集时的合理预期。收入最高，法律与伦理风险也最高。",
-            "en": "De-identified is not anonymous: movement traces are highly unique and usually still personal information. Selling them to insurers puts daily routines into underwriting decisions, far beyond what users reasonably expected. Highest revenue, highest legal and ethical risk."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费，只向运动品牌出售聚合洞察（不少于二十人的群体）",
-            "en": "Free app; sell only aggregated insights (minimum twenty people) to sports brands"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "提高聚合门槛能显著降低再识别风险，商业上仍可卖洞察。但「群体偏好」依旧来自个体行为，透明度与退出机制不到位时，仍会积累信任风险。",
-            "en": "Raising the aggregation threshold sharply lowers re-identification risk while still selling something commercially useful. But group preferences still derive from individual behaviour, and without transparency and opt-out, trust risk accumulates anyway."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "免费的三个推广名额用完了，现在要么慢慢长，要么花钱买。",
-        "en": "The three free promotion slots are spent. Now you either grow slowly or pay for growth."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "靠校园、跑团与运动社群口碑慢慢铺",
-            "en": "Grow through campus, run clubs and community word of mouth"
-          },
-          "next": "c3_label",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "社群渠道慢，但每一批使用者都愿意给反馈，直接提升产品契合度；这类流量后续留存最好，也是单位成本最低的长期渠道（Canvas 5）。",
-            "en": "Community channels are slow, but every cohort is willing to give feedback, directly improving fit; that traffic retains best and becomes the cheapest long-term channel (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "买量投放 + 邀请返现，冲应用商店榜单",
-            "en": "Paid acquisition plus referral cash to climb the app-store chart"
-          },
-          "next": "c3_label",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "买量最快，返现类活动常踩到平台规则、抽奖/返利合规与税务申报的边界；数据上的「增长」也无法代表产品真的好用。短期指标最好看。",
-            "en": "Paid acquisition is fastest, but referral-cash schemes brush against platform rules, promotional compliance and tax filing; the growth numbers also say nothing about whether the product is any good. Best-looking short-term metrics."
-          }
-        }
-      ]
-    },
-    "c3_label": {
-      "act": "act3",
-      "text": {
-        "zh": "为了让周报更有温度，你们用生成式模型写了「教练口吻」的周小结，还配了一个虚拟教练形象。合规的同学问了一句：这算 AI 生成内容吗？",
-        "en": "To make weekly summaries warmer, you generate them with a model wearing 'coach voice', plus a virtual coach avatar. Someone in compliance asks: does this count as AI-generated content?"
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "做显著标识，并提供真人教练复核通道",
-            "en": "Label it clearly and offer a human-coach review path"
-          },
-          "next": "c3_bias",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "标识与人工复核是成本项：短期不加分、不加收入。但在健康建议这种高风险场景里，可追溯性与诚实标识会变成信任壁垒，也是日后被审查时的免死金牌。",
-            "en": "Labelling and human review are pure cost: no immediate metric or revenue gain. But in high-stakes advice, traceability and honesty become a trust moat — and your best defence when someone audits you."
-          }
-        },
-        {
-          "text": {
-            "zh": "不标识，让用户以为是真人教练写的",
-            "en": "Skip the label; let users believe a human coach wrote it"
-          },
-          "next": "c3_bias",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "当前多个法域已要求对 AI 生成内容做显著标识并保留元数据；让用户误以为存在真人专业人士，还可能构成误导，在健康、医疗建议场景下后果更重。转化率确实更高。",
-            "en": "Several jurisdictions now require conspicuous labelling and metadata for AI-generated content. Implying a human professional exists may also be misleading, with heavier consequences for health advice. Conversion really is higher, though."
+            "zh": "换来上线时间与漂亮指标，代价是把「合法性基础」这个举证责任整个留给了未来的自己。",
+            "en": "You buy shipping time and good metrics, leaving the entire burden of proving a lawful basis to your future self."
           }
         }
       ]
@@ -1585,24 +1411,24 @@
       ]
     },
     "ai-fitness_b2_fixed": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "公开能力边界并加人工复核后，一部分用户觉得预警变啰嗦，日活掉了一截。同时，两家体检机构主动来谈合作：他们要的正是「说清自己不擅长什么」的那一版。",
-        "en": "After publishing the limits and adding human review, some users find the warnings naggy and daily active use dips. Meanwhile two health-check providers approach: they want precisely the version that states what it is not good at."
+        "en": "After publishing the limits and adding human review, some users find warnings naggy and daily use dips. Meanwhile two health-check providers approach: they want precisely the version that states what it is not good at."
       },
       "choices": [
         {
           "text": {
             "zh": "把适用人群与复核流程写进产品说明和合作协议",
-            "en": "Write the intended population and review flow into both the product notes and the contracts"
+            "en": "Write the intended population and review flow into both product notes and contracts"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
           "why": {
             "zh": "把「知道自己不擅长什么」写成条款，它就从自我检讨变成采购条件；这类信任最难被后来者复制。",
-            "en": "Written into contracts, 'knowing what it is not good at' stops being an apology and becomes a purchase condition — the hardest kind of trust to copy."
+            "en": "Written into contracts, 'knowing what it is not good at' stops being an apology and becomes a purchase condition — the hardest trust to copy."
           }
         },
         {
@@ -1610,23 +1436,23 @@
             "zh": "为保住日活，把复核提示折叠起来，预警照常推送",
             "en": "To protect engagement, collapse the review notice and keep pushing warnings"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
           },
           "why": {
-            "zh": "曲线立刻好看，但预警一旦漏掉一次真实的心悸，你要解释的不只是模型，还有为什么把提示藏起来。",
+            "zh": "曲线立刻好看，但预警一旦漏掉一次真实心悸，你要解释的不只是模型，还有为什么把提示藏起来。",
             "en": "The curve looks better at once — but the first missed palpitation means explaining not just the model, but why you hid the caveat."
           }
         }
       ]
     },
     "ai-fitness_b2_paper": {
-      "act": "act3",
+      "act": "act4",
       "text": {
-        "zh": "上线后第三周，一位中年女性用户在慢跑中晕倒，事后投诉说 App 从未提示过风险。她的运动记录显示，模型给出的评估一直是「状态良好」。",
-        "en": "Three weeks after launch a middle-aged user collapses on a run and complains the app never flagged a risk. Her logs show the model rated her 'fine' every time."
+        "zh": "上线后第三周，一位中年女性用户在慢跑中晕倒，事后投诉说 App 从未提示过风险。她的记录显示模型一直评估「状态良好」。媒体开始追问。",
+        "en": "Three weeks after launch a middle-aged user collapses on a run and complains the app never flagged a risk. Her logs show the model rated her 'fine' every time. The press starts asking."
       },
       "choices": [
         {
@@ -1634,7 +1460,7 @@
             "zh": "补做人群限制与人工复核通道，主动联系高风险用户",
             "en": "Add population limits and a human review channel, contact high-risk users proactively"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -1642,8 +1468,8 @@
             "pmf": 1
           },
           "why": {
-            "zh": "补救能止住继续误导，也向合作方证明你会修正；但它不能让这次晕倒不发生，收入也会先掉一块。",
-            "en": "Fixing it stops further misguidance and shows partners you correct course — but it cannot un-happen the collapse, and revenue dips first."
+            "zh": "补救能止住继续误导，也向合作方证明你会修正；但它不能让这次晕倒不发生，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
+            "en": "Fixing it stops further misguidance and shows partners you correct course — but it cannot un-happen the collapse, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
           }
         },
         {
@@ -1651,7 +1477,7 @@
             "zh": "不回应，把「不适用于慢病人群」补进免责条款",
             "en": "Stay silent and add 'not for people with chronic conditions' to the liability clause"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_paper_funding",
           "effects": {
             "ethics": 2,
             "business": 2
@@ -1784,10 +1610,358 @@
     "epilogue": {
       "act": "act4",
       "text": {
-        "zh": "一年过去了。是时候看看这十二个抉择，把公司带到了哪里。",
-        "en": "A year has passed. Time to see where those twelve decisions led the company."
+        "zh": "一年过去了。是时候看看这一连串抉择，把公司带到了哪里。",
+        "en": "A year has passed. Time to see where that chain of decisions led the company."
       },
       "choices": []
+    },
+    "ai-fitness_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售说有一种收法商家「几乎等于白拿」，但你们的卖点恰恰是可信。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales pitches a model where merchants get the service almost for free, but your edge is exactly trust."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "会员订阅，并公开承诺不以位置数据变现",
+            "en": "Subscriptions, with a public promise never to monetise location data"
+          },
+          "next": "ai-fitness_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收入慢，但把「我们不会拿你的数据做什么」写进公开条款，会沉淀成最难复制的信任壁垒；收入路径干净，尽调与跨境扩张都不受牵连。",
+            "en": "Subscription revenue is slow, but publishing 'we will never do X with your data' compounds into the hardest trust moat; the revenue path stays clean."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费，把「去标识」的运动轨迹卖给保险公司",
+            "en": "Free app; sell 'de-identified' movement tracks to insurers"
+          },
+          "next": "ai-fitness_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "去标识不等于匿名：轨迹高度唯一，通常仍属个人信息；卖给保险意味着日常行踪进入核保决策，远超合理预期。收入最高，法律与伦理风险也最高。",
+            "en": "De-identified is not anonymous: traces are highly unique and usually still personal. Selling to insurers puts routines into underwriting, far beyond expectation. Highest revenue, highest risk."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？你手上是「来源可查」的口碑资产。地推团队说一个月签三百家门店最来劲。",
+        "en": "How do you scale? You hold a 'traceable' reputation asset. Field sales promise three hundred stores a month."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "靠校园、跑团与运动社群口碑慢慢铺，每月只接能服务的数目",
+            "en": "Grow through campus, run clubs and community word of mouth; take only what you can serve"
+          },
+          "next": "ai-fitness_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "社群渠道慢，但每批使用者愿给反馈，直接提升契合度；同社群间口碑扩散是单位成本最低的渠道。",
+            "en": "Community channels are slow but every cohort gives feedback, lifting fit; peer contagion is the cheapest channel per win."
+          }
+        },
+        {
+          "text": {
+            "zh": "买量投放+邀请返现，冲应用商店榜单",
+            "en": "Paid acquisition plus referral cash to climb the app-store chart"
+          },
+          "next": "ai-fitness_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "买量最快，返现活动常踩平台规则与税务边界；数据上的增长无法代表产品真的好用。短期指标最好看。",
+            "en": "Paid acquisition is fastest; referral schemes brush platform and tax rules; the numbers say nothing about product quality. Best-looking short-term metrics."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "为了让周报更有温度，你们用生成式模型写了「教练口吻」的周小结，还配了虚拟教练形象。合规同学问：这算 AI 生成内容吗？",
+        "en": "To warm up weekly summaries you generate them in 'coach voice' with a virtual coach avatar. Compliance asks: does this count as AI-generated content?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "做显著标识，并提供真人教练复核通道",
+            "en": "Label it clearly and offer a human-coach review path"
+          },
+          "next": "c3_bias",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "标识与人工复核是成本项，但在健康建议这种高风险场景，可追溯与诚实标识会变成信任壁垒，也是被审查时的免死金牌。",
+            "en": "Labelling and human review are pure cost, but in high-stakes advice traceability and honesty become a trust moat — your best defence when audited."
+          }
+        },
+        {
+          "text": {
+            "zh": "不标识，让用户以为是真人教练写的",
+            "en": "Skip the label; let users believe a human coach wrote it"
+          },
+          "next": "c3_bias",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "多个法域已要求对 AI 生成内容显著标识；让用户误以为有真人专业人士，在健康建议场景后果更重。转化率更高。",
+            "en": "Several jurisdictions require conspicuous labelling; implying a human professional exists is worse for health advice. Conversion is higher, though."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但素材来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可客户问起体测数据的授权，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model, yet when a client asks about the gym data licence, you have no answer."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不以来源存疑数据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, promising never to train new models on questionable-source data — even if slow"
+          },
+          "next": "ai-fitness_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费+把去标识轨迹卖给保险公司（含来源不明样本）",
+            "en": "Free app; sell 'de-identified' tracks to insurers, questionable samples included"
+          },
+          "next": "ai-fitness_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
+            "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？地推团队说一个月签三百家最来劲；可你手上的数据包本身就不干净，铺得越快，被追责的用户越多。",
+        "en": "How do you scale? Field sales promise three hundred stores a month; but your data pack is already tainted, so the faster you spread, the more users drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆，不冲用户数",
+            "en": "Only do flagships you can serve; do not chase user count"
+          },
+          "next": "ai-fitness_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的用户数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "买量投放+邀请返现冲榜单",
+            "en": "Paid acquisition plus referral cash to climb the chart"
+          },
+          "next": "ai-fitness_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "返现结构会诱导销售替用户代注册，授权链条在第一米就断了；用户数很好看，责任链条却没人能还原。",
+            "en": "Referral schemes push sales to register users for them — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "为了让周报有温度，你们用生成式模型写了「教练口吻」的周小结，还配了虚拟教练形象。合规同学问：这算 AI 生成内容吗？你这条线恰恰缺的就是可追溯。",
+        "en": "To warm up weekly summaries you generate them in 'coach voice' with a virtual coach avatar. Compliance asks: is this AI-generated? Your line is exactly the one missing traceability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做显著标识+真人复核通道",
+            "en": "Add conspicuous labels plus human review"
+          },
+          "next": "c3_bias",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late labelling helps show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "不标识，让用户以为是真人教练写的",
+            "en": "Skip the label; let users believe a human coach wrote it"
+          },
+          "next": "c3_bias",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "去掉标识让转化率明显变好，这正是危险之处：多个法域已要求 AI 生成内容显著标识，不做可能被视为为欺诈提供条件。",
+            "en": "Dropping the label improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家体检机构的合作条款还在谈，三家投资机构也来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "Two health-check partners are still negotiating, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但保留数据主权",
+            "en": "Take a local industry fund: slower expansion, but keep data sovereignty"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做学校、医院客户时几乎不会被问出无法回答的问题。",
+            "en": "Local money is smaller and stricter, but data stays inside an explainable jurisdiction, so you are rarely caught out later."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，开放数据接口给对方生态",
+            "en": "Take offshore strategic investment and open data interfaces to their ecosystem"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
+            "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscription revenue alone"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但数据边界由你说了算，往后的决策都简洁。这种独立性本身也是一种优势。",
+            "en": "Tight cash and slower growth, but data boundaries stay yours. That independence is itself an advantage."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "风波还在发酵，三家投资机构却来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "The row is still running, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但保留数据主权",
+            "en": "Take a local industry fund: slower expansion, but keep data sovereignty"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做学校、医院客户时几乎不会被问出无法回答的问题。",
+            "en": "Local money is smaller and stricter, but data stays inside an explainable jurisdiction, so you are rarely caught out later."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，开放数据接口给对方生态",
+            "en": "Take offshore strategic investment and open data interfaces to their ecosystem"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
+            "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscription revenue alone"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但数据边界由你说了算。在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Tight cash and slower growth, but data boundaries stay yours. With trust already damaged, restraint adds no new dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
@@ -2191,7 +2365,7 @@
             "zh": "把「可解释的评分依据」做成对 HR 的标准交付物",
             "en": "Make 'explainable scoring basis' a standard deliverable for HR"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
@@ -2206,7 +2380,7 @@
             "zh": "对外宣称算法合规，评分依据只在被投诉时给",
             "en": "Claim algorithmic compliance; release the basis only after a complaint"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -2230,7 +2404,7 @@
             "zh": "删除抓取来的数据、重新训练，并书面告知相关候选人",
             "en": "Delete the scraped data, retrain, and notify affected candidates in writing"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
@@ -2246,7 +2420,7 @@
             "zh": "继续用，等有人正式投诉再说",
             "en": "Keep using it until someone complains formally"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
@@ -2255,180 +2429,6 @@
           "why": {
             "zh": "换来的是模型表现与交付时间，代价是把「我们凭什么持有这些数据」的举证责任整个留给了以后的自己。",
             "en": "You buy model performance and delivery time, and leave the burden of proving why you hold the data to your future self."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "推理与数据处理放在哪？本地机器贵，境外云服务便宜且带 GPU 券。",
-        "en": "Where do inference and processing run? Local hardware is expensive; offshore cloud is cheap and comes with GPU credits."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "境内算力 + 校内助教审核重要岗位评分，数据不出境",
-            "en": "Domestic compute plus campus assistants reviewing critical role scores; no data leaves"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "成本高、扩展慢，但人工复核会把判断标准固化成产品内的知识，而每一家客户都在替你验证模型；同时规避跨境与第三方处理义务。",
-            "en": "It costs more and scales slower, but human review turns judgement into in-product knowledge, so every customer validates the model for you; it also sidesteps cross-border and third-party processing duties."
-          }
-        },
-        {
-          "text": {
-            "zh": "用境外云服务跑模型和数据标注，便宜又快",
-            "en": "Run the model and labelling on offshore cloud: cheap and fast"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把候选人的完整履历（含任职单位与技能结构）送到境外云端处理与标注，通常会触发跨境提供规则与安全评估；而这些正是日后被问时最难补的手续。成本优势非常明显。",
-            "en": "Shipping candidates' full histories — employer and skills structure included — offshore for processing and labelling usually triggers transfer rules and security assessment: paperwork that is hardest to retrofit later. The cost advantage is real, though."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "客户愿意付钱了。销售同事提了三种收费法，其中一种「HR 一定会喜欢」。",
-        "en": "Customers are willing to pay. Sales proposes three models, one of which 'HR will definitely love'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "企业按席位订阅，明确承诺不转售候选人数据",
-            "en": "Per-seat subscription with a written promise never to resell candidate data"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅是最慢的收钱方式，但「不转售」写在合同里会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。",
-            "en": "Subscriptions collect money slowest, but 'we never resell' written into the contract becomes a two-sided promise to candidates and HR alike — and in this industry trust is the hardest advantage to copy (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费试用 + 把候选人画像打包转售给第三方",
-            "en": "Free trial, then resell the talent pool and candidate preference profiles"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "把求职者数据当成商品转售，通常远超收集时的目的与合理预期，几乎必然违反告知同意义务。财务回报最快，法律与伦理负债也最大。",
-            "en": "Treating jobseekers' data as inventory to resell goes far beyond the original purpose and reasonable expectation, which almost always breaches notice-and-consent duties. Fastest financial return, largest legal and ethical debt."
-          }
-        },
-        {
-          "text": {
-            "zh": "只出售聚合洞察：区域人才流动与技能缺口报告（不少于二十家企业）",
-            "en": "Sell only aggregated insight: regional talent-flow and skills-gap reports (minimum twenty firms)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "提高聚合门槛并剥离个体标识后，商业价值仍在而再识别风险大幅下降，是可行中间路线。但若报告没告知数据来自哪些候选人，透明度仍不足。",
-            "en": "Raising the aggregation threshold and stripping identifiers keeps commercial value while sharply cutting re-identification risk — a genuine middle path. Transparency still falls short if the report never says whose data produced it."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么让更多企业用上？一家招聘代理说，他手上有三百家企业愿意试用。",
-        "en": "How do you reach more employers? One recruitment agent says he can put you in front of three hundred firms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户",
-            "en": "Grow through HR communities and referrals, taking only clients you can serve"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。",
-            "en": "It is slow, but every client forces you to explain your scoring, which raises fit; referrals are the cheapest channel per win and renew best (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "交给招聘代理分销，按人头返佣冲合同量",
-            "en": "Distribute through recruiters with per-head commission to drive contract volume"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "代理能快速放大合同数，但按人头分成的结构会诱导代理夸大效果甚至代为填写岗位要求，把产品的可信度押在别人的销售话术上。",
-            "en": "Agents multiply contract count quickly, but per-head incentives push them to overstate results or even write job specs themselves, resting your credibility on someone else's sales pitch."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道，并有权要求人工复核。",
-        "en": "A friend in law school warns: if an AI helps decide who gets an interview, candidates usually have the right to know and to request human review."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "向候选人披露自动化评分事实，并提供申诉与人工复核通道",
-            "en": "Disclose automated scoring to candidates and offer appeal plus human review"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "披露与申诉通道是纯成本：不增加签约数也不提升短期指标。但在就业场景下，可问责的流程本身就是差异化优势，也是应对投诉与审查的第一道防线。",
-            "en": "Disclosure and appeals are pure cost: no extra deals, no short-term metric lift. But in employment contexts an accountable process is itself the differentiator, and your first line of defence against complaints and audits."
-          }
-        },
-        {
-          "text": {
-            "zh": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
-            "en": "No candidate-facing disclosure; externally it is a 'system assessment'"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "不披露可以避免大量解释成本，客户也更省事。但涉及就业、信贷等关键决定的自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。",
-            "en": "Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment or credit increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness."
           }
         }
       ]
@@ -2485,7 +2485,7 @@
             "zh": "把复核记录与偏差修正写进交付标准，接受审计",
             "en": "Write review logs and bias fixes into the delivery standard and accept audits"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -2499,7 +2499,7 @@
             "zh": "为保住「好用」，把复核改成走过场",
             "en": "To stay 'easy to use', reduce review to a rubber stamp"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -2523,7 +2523,7 @@
             "zh": "补做评分依据说明与人工复核通道，公开已知局限",
             "en": "Add score explanations and a human review channel; publish the known limitations"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -2540,7 +2540,7 @@
             "zh": "不回应，把「最终由企业决定」写得更清楚",
             "en": "Stay silent and sharpen the line 'the employer decides in the end'"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_paper_funding",
           "effects": {
             "ethics": 2,
             "business": 2
@@ -2677,6 +2677,354 @@
         "en": "Twelve months on, that HR lead still uses your tool. Her question now has an answer — or nobody has one."
       },
       "choices": []
+    },
+    "ai-hiring_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们的授权链条清清楚楚，怎么把「可解释的评分依据」变成收入？销售说有一种收法 HR 一定会喜欢，但你们的卖点恰恰是可信，而不是最便宜。",
+        "en": "Your authorisation chain is spotless — now how do you turn 'explainable scoring basis' into revenue? Sales pitches a model HR will love, but your edge is trust, not the lowest price."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "企业按席位订阅，并书面承诺不转售候选人数据",
+            "en": "Per-seat subscription with a written promise never to resell candidate data"
+          },
+          "next": "ai-hiring_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅是最慢的收钱方式，但「不转售」写在合同里，会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。",
+            "en": "Subscriptions collect money slowest, but 'we never resell' written into the contract becomes a two-sided promise to candidates and HR alike — and in this industry trust is the hardest advantage to copy (Canvas 9)."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费试用，再把候选人画像打包转售给第三方",
+            "en": "Free trial, then resell the candidate profiles to third parties"
+          },
+          "next": "ai-hiring_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把求职者数据当成商品转售，通常远超收集时的目的与合理预期，几乎必然违反告知同意义务。财务回报最快，法律与伦理负债也最大。",
+            "en": "Treating jobseekers' data as inventory to resell goes far beyond the original purpose and reasonable expectation, which almost always breaches notice-and-consent duties. Fastest financial return, largest legal and ethical debt."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么让更多企业用上？一家招聘代理说，他手上有三百家企业愿意试用。你手上是「可解释」的口碑资产，怎么放大它？",
+        "en": "How do you reach more employers? One recruitment agent says he can put you in front of three hundred firms. You hold an 'explainable' reputation asset — how do you amplify it?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户",
+            "en": "Grow through HR communities and referrals, taking only clients you can serve"
+          },
+          "next": "ai-hiring_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。",
+            "en": "It is slow, but every client forces you to explain your scoring, which raises fit; referrals are the cheapest channel per win and renew best (Canvas 5)."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给招聘代理分销，按人头返佣冲合同量",
+            "en": "Distribute through recruiters with per-head commission to drive contract volume"
+          },
+          "next": "ai-hiring_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "代理能快速放大合同数，但按人头分成的结构会诱导代理夸大效果甚至代为填写岗位要求，把产品的可信度押在别人的销售话术上。",
+            "en": "Agents multiply contract count quickly, but per-head incentives push them to overstate results or even write job specs themselves, resting your credibility on someone else's sales pitch."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道，并有权要求人工复核。你们这条线本来就是靠「可解释」吃饭的，是把它做成默认，还是为了转化把它藏起来？",
+        "en": "A friend in law school warns: if an AI helps decide who gets an interview, candidates usually have the right to know and to request human review. Your line lives on 'explainable' — make it the default, or hide it for conversion?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "向候选人披露自动化评分事实，并提供申诉与人工复核通道",
+            "en": "Disclose automated scoring to candidates and offer appeal plus human review"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "披露与申诉通道是纯成本：不增加签约数也不提升短期指标。但在就业场景下，可问责的流程本身就是差异化优势，也是应对投诉与审查的第一道防线。",
+            "en": "Disclosure and appeals are pure cost: no extra deals, no short-term metric lift. But in employment contexts an accountable process is itself the differentiator, and your first line of defence against complaints and audits."
+          }
+        },
+        {
+          "text": {
+            "zh": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
+            "en": "No candidate-facing disclosure; externally it is a 'system assessment'"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不披露可以避免大量解释成本，客户也更省事。但涉及就业的关键自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。",
+            "en": "Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但候选人的数据来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可一旦客户问起授权，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your data sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model to chase growth, yet when a client asks about consent, you have no answer. How do you bill without collapsing at the first consent query?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不转售候选人数据（哪怕增长慢）",
+            "en": "Monthly subscription, promise never to resell candidate data — even if slow"
+          },
+          "next": "ai-hiring_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费，再把候选人画像打包转售给第三方（含来源不明样本）",
+            "en": "Free, then resell candidate profiles to third parties, questionable samples included"
+          },
+          "next": "ai-hiring_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
+            "en": "Revenue share is the most popular; but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？招聘代理说一个月签三百家最来劲；可你手上这批简历本来就不干净，铺得越快，被追责的候选人越多。是继续冲数，还是只做能兜住的标杆？",
+        "en": "How do you scale? Recruiters promise three hundred firms a month; but your CV pool was never clean, so the faster you spread, the more candidates drawn into liability. Chase count, or only do flagships you can cover?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆客户，不冲合同数",
+            "en": "Only do flagships you can serve; do not chase contract count"
+          },
+          "next": "ai-hiring_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的候选人数量；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits the candidates later drawn into liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给招聘代理分销，按人头返佣冲合同量",
+            "en": "Distribute through recruiters with per-head commission to drive contract volume"
+          },
+          "next": "ai-hiring_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "按签约数提成的结构会诱导销售替企业代填岗位要求，授权链条在第一米就断了；合同数很好看，责任链条却没人能还原。",
+            "en": "Bonusing on signatures pushes sales to write job specs on the client's behalf — the authorisation chain breaks in the first metre. Contract count looks great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道。你们这条线恰恰缺的就是可追溯——是现在补披露与复核，还是为了转化继续不标？",
+        "en": "A friend in law school warns: if an AI helps decide who gets an interview, candidates usually have the right to know. Your line is exactly the one missing traceability — add disclosure and review now, or keep hiding it for conversion?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做披露 + 申诉与人工复核通道",
+            "en": "Add disclosure plus appeal and human review"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的披露能帮你在出事时自证「至少说了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late disclosure helps show 'at least we said so' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "不披露，让客户以为这是「综合评估」",
+            "en": "No disclosure; let clients present it as a 'system assessment'"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "去掉披露让转化明显变好，这正是危险之处：涉及就业的自动化决策，多地已要求告知与人工介入，不标识通常被视为程序不当。",
+            "en": "Dropping disclosure measurably improves conversion, which is exactly what makes it dangerous: automated employment decisions increasingly require notice and human involvement, and concealment is treated as procedural unfairness."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "审计与复核改造的报道还在发酵，三家机构却先后来谈钱：一家境外 HR SaaS 巨头条件最阔绰，但要求开放候选人数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The audit-and-review coverage is still running, and three institutions arrive with money: an offshore HR SaaS giant, generous but asking for candidate-data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone. Three term sheets — and the unfair advantage in Canvas 9 is usually written into those terms."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据留在本地",
+            "en": "Take a local industry fund: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外 HR SaaS 巨头的战略投资，候选人数据对其全球客户开放",
+            "en": "Take strategic investment from an offshore HR SaaS giant and open candidate data to its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。",
+            "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce — including who works in critical industries — is open to overseas clients, you have continuous outbound transfer and third-party sharing you no longer control."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流会紧、扩张会慢，但不必为增长牺牲数据边界，也不必向股东解释每一次取舍。这种独立性在这个行业本身就是一种稀缺优势。",
+            "en": "Cash gets tight and growth slows, but you never trade away data boundaries for growth nor justify every trade-off to shareholders. In this industry that independence is itself scarce."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "那位候选人的投诉还在发酵，三家机构却先后来谈钱：一家境外 HR SaaS 巨头条件最阔绰，但要求开放候选人数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "That candidate's complaint is still running, and three institutions arrive with money: an offshore HR SaaS giant, generous but asking for candidate-data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone. Three term sheets — and the unfair advantage in Canvas 9 is usually written into those terms."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据留在本地",
+            "en": "Take a local industry fund: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒。",
+            "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外 HR SaaS 巨头的战略投资，候选人数据对其全球客户开放",
+            "en": "Take strategic investment from an offshore HR SaaS giant and open candidate data to its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。",
+            "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce is open to overseas clients, you have continuous outbound transfer and third-party sharing you no longer control."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流会紧、扩张会慢，但数据边界不被外部流量目标拉扯；在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around by someone else's traffic targets; with trust already damaged, restraint adds no new external dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
@@ -4034,7 +4382,7 @@
             "zh": "把数据来源与保存期限做成给家长和教师的一页说明",
             "en": "Publish provenance and retention on one page for parents and teachers"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
@@ -4049,7 +4397,7 @@
             "zh": "对外称合规，具体清单等家长问了再给",
             "en": "Claim compliance; release the detail when parents ask"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -4073,7 +4421,7 @@
             "zh": "删除这批数据、重新训练，并书面告知学校与家长",
             "en": "Delete the batch, retrain, and notify the school and parents in writing"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
@@ -4089,7 +4437,7 @@
             "zh": "继续用，先把试点学校的续签拿下",
             "en": "Keep using it and secure the pilot school's renewal first"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
@@ -4098,180 +4446,6 @@
           "why": {
             "zh": "换来的是效果与续签机会，代价是：这些未成年人数据从哪来、凭什么用，举证责任已经落在你们身上。",
             "en": "You buy performance and the renewal, and inherit the burden of proving where that children's data came from and why you may use it."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "部署方式怎么选？本地服务器要学校自己买；境外云厂商愿意免费提供六个月。",
-        "en": "Which deployment? A local server means the school buys hardware; an offshore cloud provider offers six months free."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "校内私有化部署 + 校内助教参与质检，数据不离开校园",
-            "en": "On-premise deployment with teaching assistants doing QA; data never leaves the campus"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "部署成本高、复制慢，但每所学校都在替你校对准错因标准；同时规避未成年人信息跨境与第三方托管的一整套严格要求。",
-            "en": "Deployment is costly and replication slow, but every school helps calibrate your taxonomy; it also sidesteps the whole strict regime on cross-border and third-party hosting of minors' data."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外云托管 + 远程团队维护，省下服务器开销",
-            "en": "Host on offshore cloud with a remote ops team and save the hardware bill"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把一整所学校的教学数据、学生姓名与学习表现托管到境外，会同时触发重要数据识别、跨境提供与学生个人信息保护的严格要求；这些几乎不可能事后补齐。成本优势真实存在。",
-            "en": "Hosting an entire school's teaching data, student names and performance offshore triggers important-data identification, cross-border transfer and student-privacy requirements at once — almost impossible to retrofit. The cost saving is real."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "第一所学校愿意付费了。销售同事提出三种收法，其中一种「教育局一定会喜欢」。",
-        "en": "The first school is willing to pay. Sales proposes three models, one of which 'the district will definitely like'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "学校按年级订阅，明确承诺不向外输出学生数据",
-            "en": "Per-grade subscription with a written promise never to export student data"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费进校 + 向教培机构输出「待提升名单」",
-            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
-            "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
-          }
-        },
-        {
-          "text": {
-            "zh": "只出售聚合洞察：区域错因分布报告（不少于二十所学校）",
-            "en": "Sell only aggregated insight: district-level misconception reports (minimum twenty schools)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "提高聚合门槛后仍有商业价值，是可行中间路线。但如果学校的年级学生太少，聚合门槛实际形同虚设，透明度不足的问题依然存在。",
-            "en": "Aggregated insight still sells, making this a workable middle route. Where a school's cohort is small, though, the threshold is close to meaningless and the transparency gap remains."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么铺更多学校？一位代理商说他能把旗下的教育软件打包给教育局；也有前辈建议：先在一所学校做到无可替代。",
-        "en": "How do you reach more schools? One reseller offers to bundle you into a district software deal; a mentor suggests making yourself indispensable in one school first."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散",
-            "en": "Become indispensable in one school and let research-group reputation spread it"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低（Canvas 5）。",
-            "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
-            "en": "Bundle with the reseller into district deals and advertise average score gains"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
-            "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？",
-        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and even placement decisions?"
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效",
-            "en": "AI drafts only, clearly labelled, never effective until a teacher confirms"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
-            "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
-          }
-        },
-        {
-          "text": {
-            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
-            "en": "AI marks become final and system logs keep no record of the correction trail"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
-            "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
           }
         }
       ]
@@ -4317,7 +4491,7 @@
       ]
     },
     "edu-analytics_b2_fixed": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "公开局限、按校际差异重新加权并加入教师复核之后，系统给的建议变保守了，试点学校觉得「没以前敢说」。同时，区里另一所学校主动来问：他们要的正是教师能推翻系统的那一版。",
         "en": "After publishing limitations, reweighting for school differences and adding teacher review, the advice gets cautious and the pilot school says it is 'less decisive'. Another school in the district asks instead: they want the version a teacher can override."
@@ -4328,7 +4502,7 @@
             "zh": "把复核权与适用边界写进产品说明和采购合同",
             "en": "Write override rights and scope limits into both the product notes and the contract"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -4342,7 +4516,7 @@
             "zh": "为让系统「敢说」，把复核改成默认通过",
             "en": "To make the system 'decisive', default the review to pass"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -4355,7 +4529,7 @@
       ]
     },
     "edu-analytics_b2_paper": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "期末，一位家长拿着系统评语来学校质问：为什么孩子这一栏长期写着「粗心」。她问的其实不是分数，而是这句话会不会跟着孩子走。",
         "en": "At term end a parent comes to the school with the system's comments: why has her child's row said 'careless' for months. She is not asking about the score — she is asking whether that word follows the child."
@@ -4366,7 +4540,7 @@
             "zh": "补做校际差异修正与教师复核，复查已生成的评语",
             "en": "Fix school-difference weighting, add teacher review, re-check generated comments"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -4383,7 +4557,7 @@
             "zh": "维持原样，把适用说明补得更详细",
             "en": "Leave it and expand the scope notes"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_paper_funding",
           "effects": {
             "ethics": 2,
             "business": 2
@@ -4520,6 +4694,354 @@
         "en": "A year has passed. The pilot school still uses your tool, but the staff meeting no longer discusses how much time it saves — it discusses what entitles it to say that about a child."
       },
       "choices": []
+    },
+    "edu-analytics_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售同事提出几种收法，其中一种「教育局一定会喜欢」，但你们的卖点恰恰是可信。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales proposes several models, one of which 'the district will definitely like', but your edge is exactly trust."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "学校按年级订阅，明确承诺不向外输出学生数据",
+            "en": "Per-grade subscription with a written promise never to export student data"
+          },
+          "next": "edu-analytics_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势。",
+            "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费进校 + 向教培机构输出「待提升名单」",
+            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies"
+          },
+          "next": "edu-analytics_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
+            "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺更多学校？一位代理商说他能把旗下的教育软件打包给教育局；也有前辈建议：先在一所学校做到无可替代。",
+        "en": "How do you reach more schools? One reseller offers to bundle you into a district software deal; a mentor suggests making yourself indispensable in one school first."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散",
+            "en": "Become indispensable in one school and let research-group reputation spread it"
+          },
+          "next": "edu-analytics_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低。",
+            "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
+            "en": "Bundle with the reseller into district deals and advertise average score gains"
+          },
+          "next": "edu-analytics_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
+            "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？",
+        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and even placement decisions?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效",
+            "en": "AI drafts only, clearly labelled, never effective until a teacher confirms"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
+            "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
+          }
+        },
+        {
+          "text": {
+            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
+            "en": "AI marks become final and system logs keep no record of the correction trail"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
+            "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但素材来源经不起细看。销售想推「几乎白拿」的收法冲增长，可客户问起那些带着署名与班级的作业数据，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' model to chase growth, yet when a client asks about the homework data that still carries names and classes, you have no answer."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不以来源存疑数据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, promising never to train new models on questionable-source data — even if slow"
+          },
+          "next": "edu-analytics_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费进校 + 向教培机构输出「待提升名单」（含来源不明样本）",
+            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies, questionable samples included"
+          },
+          "next": "edu-analytics_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律与伦理风险最高。",
+            "en": "Indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal and ethical exposure."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？代理商说一个月签几十所学校最来劲；可你手上的数据包本身就不干净，铺得越快，被追责的学生越多。",
+        "en": "How do you scale? Resellers promise dozens of schools a month; but your data pack is already tainted, so the faster you spread, the more students drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆，不冲学生数",
+            "en": "Only do flagships you can serve; do not chase student count"
+          },
+          "next": "edu-analytics_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的学生数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
+            "en": "Bundle with the reseller into district deals and advertise average score gains"
+          },
+          "next": "edu-analytics_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "代理商不会替你维护数据边界；用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传。",
+            "en": "The reseller will not guard your data boundaries; advertising score improvements without causal evidence usually amounts to misleading claims in education marketing."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？你这条线恰恰缺的就是可追溯。",
+        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and placement? Your line is exactly the one missing traceability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做显著标识，并提供教师复核通道",
+            "en": "Add conspicuous labels plus a teacher review path"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late labelling helps show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
+            "en": "AI marks become final and system logs keep no record of the correction trail"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不留痕迹能避免日后被追责；但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
+            "en": "Keeping no trail avoids later challenges; but where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家机构的合作条款还在谈，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地教育公益/产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。",
+        "en": "Two partnership terms are still being negotiated, and three funders arrive with money: an offshore strategic investor, generous but asking for data access; a local education or industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
+            "en": "Take local education or industry funding: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
+            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。",
+            "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth. In education that restraint is your reputation."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "家长质疑还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地教育公益/产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。",
+        "en": "The parental challenge is still simmering, and three funders arrive with money: an offshore strategic investor, generous but asking for data access; a local education or industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
+            "en": "Take local education or industry funding: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
+            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但数据边界由你说了算。在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Cash gets tight and growth slows, but data boundaries stay yours. With trust already damaged, restraint adds no new dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
@@ -4914,8 +5436,8 @@
     "drone-inspection_b1_clean": {
       "act": "act2",
       "text": {
-        "zh": "只用自有飞行与客户授权影像训出来的模型，缺陷样本偏少，某些材质上的表现不稳定。但每一帧影像的拍摄时间、空域审批与授权范围都对得上。",
-        "en": "Trained only on your own flights and client-authorised imagery, the model has few defect samples and wobbles on some materials. But every frame matches a flight time, an airspace approval and an authorised scope."
+        "zh": "只用自有飞行与客户授权影像训出来的模型，缺陷样本偏少，某些材质上的表现不稳定。但每一帧影像的拍摄时间、空域审批与授权范围都对得上。现在的问题是——怎么把这套「来源可查」变成运营本身的一部分，而不是应付审核的摆设？",
+        "en": "Trained only on your own flights and client-authorised imagery, the model has few defect samples and wobbles on some materials. But every frame matches a flight time, an airspace approval and an authorised scope. The question now: how do you make 'traceable' part of the operation itself, not just a review ritual?"
       },
       "choices": [
         {
@@ -4923,14 +5445,14 @@
             "zh": "把空域审批与影像授权做成每份报告的固定附件",
             "en": "Attach airspace approvals and image authorisations to every report"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
           },
           "why": {
-            "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西。",
-            "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor."
+            "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西，也是别人抄不走的信任。",
+            "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor, and the trust rivals cannot copy."
           }
         },
         {
@@ -4938,7 +5460,7 @@
             "zh": "对外称合规，审批文件只在被质疑时补",
             "en": "Claim compliance; produce approvals only when challenged"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -4953,8 +5475,8 @@
     "drone-inspection_b1_dirty": {
       "act": "act2",
       "text": {
-        "zh": "外部影像包把缺陷样本补齐了，识别率明显上升。只是那批图里有一部分，明显不像商业航拍能取得的视角——其中几处还带着明显的围栏与岗哨。",
-        "en": "The external pack fills the defect samples and detection clearly improves. But part of that imagery uses angles commercial flights do not get — several frames show fences and guard posts."
+        "zh": "外部影像包把缺陷样本补齐了，识别率明显上升。只是那批图里有一部分，明显不像商业航拍能取得的视角——其中几处还带着明显的围栏与岗哨。工程说先拖着，合规说必须现在处理。这段来源不明的素材已经进了训练集。",
+        "en": "The external pack fills the defect samples and detection clearly improves. But part of that imagery uses angles commercial flights do not get — several frames show fences and guard posts. Engineering says delay; compliance says handle it now. The untraceable clip is already in your training set."
       },
       "choices": [
         {
@@ -4962,16 +5484,15 @@
             "zh": "停用外部影像包、重新训练，并向客户书面说明",
             "en": "Stop using the pack, retrain, and tell clients in writing"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
-            "pmf": -1,
-            "national_security": -1
+            "pmf": -1
           },
           "why": {
-            "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。",
-            "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation."
+            "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。（这一步无法把已累积的风险归零。）",
+            "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation. (This cannot zero out the risk already accumulated.)"
           }
         },
         {
@@ -4979,190 +5500,15 @@
             "zh": "继续用，先把这几单交付出去",
             "en": "Keep using it and get these jobs delivered first"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1,
-            "national_security": 1
+            "ethics": 1
           },
           "why": {
             "zh": "换来的是交付速度与识别率，代价是：这些影像的取得方式是否合规，举证责任已经落在你们身上。",
             "en": "You buy delivery speed and detection rate, and inherit the burden of proving how that imagery was obtained."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "判读环节怎么处理？自己标注量大；境外团队的报价只有三分之一。",
-        "en": "How do you handle the review step? Labelling in-house is heavy; an overseas team quotes a third of the price."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "境内判读 + 校内助教参与质检，影像不出境",
-            "en": "Review domestically with campus assistants checking work; imagery never leaves"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "成本高、产能低，但判读标准会沉淀成内部质检流程，每飞一次就更准；同时规避了影像跨境这一整套难以补齐的要求。",
-            "en": "It costs more and produces less, but the review rubric turns into internal QA and every flight improves it; you also avoid the whole set of cross-border imagery requirements that are so hard to retrofit."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外团队判读与标注，便宜又快",
-            "en": "Overseas team reviews and labels: cheap and fast"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把全线航拍影像交给境外团队处理，通常同时触发测绘成果与重要数据的跨境提供规则；而影像不像文本，一旦出去就无法追回。成本优势非常明显。",
-            "en": "Handing full-line footage to an overseas team usually triggers both survey-output and important-data transfer rules; unlike text, imagery cannot be recalled once it leaves. The cost advantage is stark."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "客户开始付费了。有人提醒：你们手上的影像库，也许本身就是一种可以卖的东西。",
-        "en": "Clients are paying. Someone points out that the imagery library itself might be a sellable asset."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "按巡检里程订阅，明确承诺影像不对外提供",
-            "en": "Charge per inspection distance, promising never to release imagery"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但「不看客户的图」在这个行业里比任何功能都值钱：它是你拿下政府与关键基础设施订单的钥匙，也是最难复制的信任（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but 'we never release your imagery' is worth more than any feature here: it is the key to winning government and critical-infrastructure contracts, and the hardest trust to copy (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "低价甚至免费巡检，把航线影像成果卖给第三方数据商",
-            "en": "Inspect cheap or free, then sell the route imagery library to data brokers"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "影像转售的利润远高于服务费，客户也更愿意签低价合同。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高。",
-            "en": "Imagery resale is far more profitable than service fees and clients happily sign cheap contracts. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin."
-          }
-        },
-        {
-          "text": {
-            "zh": "只出售聚合洞察：缺陷趋势与资产健康报告（不少于二十个单位）",
-            "en": "Sell only aggregated insight: defect trends and asset-health reports (minimum twenty operators)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "聚合报告能让洞察变现而不再交付原始影像，是务实的中间路线；但报告若没有说明数据来源与覆盖范围，透明度仍然不足。",
-            "en": "Aggregated reports monetise insight without shipping raw footage — a pragmatic middle path; but unless sources and coverage are stated, transparency still falls short."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么拿更多单？本地投标平台上有几十个政府项目；也有人说某某单位的关键人很关键。",
-        "en": "How do you win more work? The local tender portal lists dozens of government projects; someone also mentions a key contact at a certain bureau."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "靠完工质量与行业口碑慢慢铺，做出口碑案例",
-            "en": "Grow on delivery quality and industry referrals; build reference cases"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但每个案例都会把判读标准与报告格式磨得更准（契合度上升）；在这个行业，口头推荐比反复投标更可靠（Canvas 5）。",
-            "en": "It is slow, but every reference case sharpens both the reading standard and the report format (higher fit); in this industry a verbal recommendation beats tender effort (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "低价中标 + 关键人维系，先把项目数量冲上去",
-            "en": "Win with low bids and relationship management; prioritise project count"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节（这些最容易被省掉），也可能踩到不正当竞争的边界。",
-            "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review — precisely the steps easiest to drop — and can brush against unfair-competition rules."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "为了减少扯皮，工程师提议：把飞行日志和电子围栏记录关掉，这样没有人会因为偶发偏航被追责。",
-        "en": "To avoid arguments, your engineer suggests switching off flight logs and geofence records so nobody gets blamed for the occasional deviation."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "保留完整飞行日志与电子围栏留痕，接受偶发偏航被追问",
-            "en": "Keep full flight logs and geofence records, and accept being questioned about deviations"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "留痕意味着自己把把柄存下来，短期确实更麻烦。但在航空与关键基础设施场景，可追溯的记录是区分「专业」与「草台班子」的唯一证据，也是定价能力的来源。",
-            "en": "Keeping records means storing evidence against yourself and is genuinely more trouble short term. But in aviation and critical infrastructure, traceable records are the only proof separating professionals from cowboys — and the source of your pricing power."
-          }
-        },
-        {
-          "text": {
-            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
-            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管；偶发的偏航也不会因为没人记录就不存在。",
-            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight, and unrecorded deviations still happened."
           }
         }
       ]
@@ -5208,7 +5554,7 @@
       ]
     },
     "drone-inspection_b2_fixed": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "公开适用条件并对低置信度结果强制人工复核后，报告出得慢了，一线抱怨「不如以前快」。同时，两家能源客户续签时点名要这一版：他们要的是能作为举证材料的报告。",
         "en": "After publishing operating limits and requiring human review of low-confidence results, reports take longer and field crews say it is slower. Two energy clients renew and ask for this version by name: they need reports that hold up as evidence."
@@ -5219,7 +5565,7 @@
             "zh": "把复核记录与适用条件写进合同附件",
             "en": "Write review records and operating limits into the contract annex"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -5233,7 +5579,7 @@
             "zh": "为赶交付进度，把复核改成抽查",
             "en": "To keep the schedule, downgrade review to spot checks"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -5246,7 +5592,7 @@
       ]
     },
     "drone-inspection_b2_paper": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "雨季巡检过后，一段管渠在阴天拍摄的影像里被判为「无异常」，两周后发生渗漏。客户翻出报告：适用条件那几行写在免责条款的最后。",
         "en": "After the wet-season inspection, a pipe section shot under overcast sky was cleared as 'no anomaly' and leaked two weeks later. The client pulls the report: the operating limits sit at the end of the liability clause."
@@ -5257,7 +5603,7 @@
             "zh": "补做低置信度强制复核，主动复查雨季全部影像",
             "en": "Add mandatory review of low-confidence results and re-check the whole wet-season set"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -5265,8 +5611,8 @@
             "pmf": 1
           },
           "why": {
-            "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。",
-            "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first."
+            "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
+            "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
           }
         },
         {
@@ -5274,11 +5620,10 @@
             "zh": "按免责条款处理，等客户走完索赔流程",
             "en": "Rely on the liability clause and let the claim process run"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2,
-            "national_security": 1
+            "business": 2
           },
           "why": {
             "zh": "条款可能帮你赢下这一单索赔，也会帮客户记住：下次招标时，他们要找的是不会把限制藏在最后的供应商。",
@@ -5412,6 +5757,354 @@
         "en": "A year has passed. A route map hangs in the hangar, with some areas since painted permanently grey."
       },
       "choices": []
+    },
+    "drone-inspection_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售说有一种收法商家「几乎等于白拿」，但你们的卖点恰恰是可信。",
+        "en": "You have a clean, authorised foundation — how do you turn 'traceable' into revenue? Sales pitches a model where clients get the service 'almost for free', but your edge is exactly trust."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按巡检里程订阅，明确承诺影像不对外提供",
+            "en": "Charge per inspection distance, promising never to release imagery"
+          },
+          "next": "drone-inspection_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但「不看客户的图」在这个行业里比任何功能都值钱：它是拿下政府与关键基础设施订单的钥匙，也是最难复制的信任（Canvas 9）。",
+            "en": "Subscriptions bill slowly, but 'we never release your imagery' is worth more than any feature here: it is the key to winning government and critical-infrastructure contracts, and the hardest trust to copy (Canvas 9)."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价甚至免费巡检，把航线影像成果卖给第三方数据商",
+            "en": "Inspect cheap or free, then sell the route imagery library to data brokers"
+          },
+          "next": "drone-inspection_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "影像转售利润远高于服务费。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高，风险也最高。",
+            "en": "Imagery resale is far more profitable than service fees. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin, highest risk."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么拿更多单？本地投标平台上有几十个政府项目；也有人说某某单位的关键人很关键。你手上是「来源可查」的口碑资产。",
+        "en": "How do you win more work? The local tender portal lists dozens of government projects; someone also mentions a key contact at a certain bureau. You hold a 'traceable' reputation asset."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "靠完工质量与行业口碑慢慢铺，做出口碑案例",
+            "en": "Grow on delivery quality and industry referrals; build reference cases"
+          },
+          "next": "drone-inspection_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但每个案例都会把判读标准与报告格式磨得更准（契合度上升）；在这个行业，口头推荐比反复投标更可靠（Canvas 5）。",
+            "en": "It is slow, but every reference case sharpens the reading standard and report format (higher fit); in this industry a verbal recommendation beats tender effort (Canvas 5)."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价中标 + 关键人维系，先把项目数量冲上去",
+            "en": "Win with low bids and relationship management; prioritise project count"
+          },
+          "next": "drone-inspection_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节，也可能踩到不正当竞争边界。",
+            "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review, and can brush against unfair-competition rules."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "为了减少扯皮，工程师提议：把飞行日志和电子围栏记录关掉，这样没有人会因为偶发偏航被追责。你这条线本来就是靠「留痕」吃饭的，是保留记录，还是为了省事关掉？",
+        "en": "To avoid arguments, your engineer suggests switching off flight logs and geofence records so nobody gets blamed for the occasional deviation. Your line lives on 'leaving a trail' — keep the records, or turn them off for convenience?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "保留完整飞行日志与电子围栏留痕，接受偶发偏航被追问",
+            "en": "Keep full flight logs and geofence records, and accept being questioned about deviations"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "留痕意味着自己把把柄存下来，短期确实更麻烦。但在航空与关键基础设施场景，可追溯的记录是区分「专业」与「草台班子」的唯一证据，也是定价能力的来源。",
+            "en": "Keeping records means storing evidence against yourself and is more trouble short term. But in aviation and critical infrastructure, traceable records are the only proof separating professionals from cowboys — and the source of your pricing power."
+          }
+        },
+        {
+          "text": {
+            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
+            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管。",
+            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但素材来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可客户问起影像授权，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model, yet when a client asks about image licences, you have no answer. How do you bill without collapsing at the first licence query?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不以来源存疑数据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, promising never to train new models on questionable-source data — even if slow"
+          },
+          "next": "drone-inspection_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价巡检 + 把航线影像成果卖给第三方数据商（含来源不明样本）",
+            "en": "Cheap inspection plus selling the route imagery library to data brokers, questionable samples included"
+          },
+          "next": "drone-inspection_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "影像转售最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
+            "en": "Imagery resale is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么拿更多单？地推团队说一个月签三百家最来劲；可你手上的影像库本身就不干净，铺得越快，被追责的客户越多。",
+        "en": "How do you win more work? Field sales promise three hundred sites a month; but your imagery library is already tainted, so the faster you spread, the more clients drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆，不冲客户数",
+            "en": "Only do flagships you can serve; do not chase client count"
+          },
+          "next": "drone-inspection_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的客户数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价中标 + 关键人维系，冲项目数量",
+            "en": "Low bids plus relationship management to drive project count"
+          },
+          "next": "drone-inspection_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "返现与关系结构会诱导一线替客户代注册、代签，授权链条在第一米就断了；项目数很好看，责任链条却没人能还原。",
+            "en": "Rebates and relationships push field crews to register and sign for clients — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "工程师又提关日志的事：你们这条线恰恰缺的就是可追溯。是现在补飞行日志与电子围栏留痕，还是为了交付速度继续不记？",
+        "en": "Engineering raises turning off the logs again: your line is exactly the one missing traceability. Add flight logs and geofence records now, or keep skipping them for delivery speed?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做完整飞行日志与电子围栏留痕",
+            "en": "Add full flight logs and geofence records"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的留痕能帮你在出事时自证「至少记了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late records help show 'at least we logged it' when things break, but they cannot restore provenance; they stanch bleeding, not launder it."
+          }
+        },
+        {
+          "text": {
+            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
+            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管；这条线本就经不起查。",
+            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing them can count as obstructing oversight — and your line never survived a check anyway."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家能源客户的合作条款还在谈，三家投资机构也来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "Two energy clients are still negotiating, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，把影像成果向其全球客户开放检索",
+            "en": "Take offshore funding and make your imagery searchable for its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
+            "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。稳定且干净，在这个行业本身就是稀缺品。",
+            "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth, nor justify trade-offs to shareholders. Steady and clean is itself scarce in this industry."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "风波还在发酵，三家投资机构却来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "The row is still running, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，把影像成果向其全球客户开放检索",
+            "en": "Take offshore funding and make your imagery searchable for its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
+            "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth. With trust already damaged, restraint adds no new dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
@@ -5815,7 +6508,7 @@
             "zh": "把单据授权范围与删除时间做成客户的对账单",
             "en": "Give clients a statement of what was authorised and when it is deleted"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
@@ -5830,7 +6523,7 @@
             "zh": "对外称合规，授权清单等被查验时再整理",
             "en": "Claim compliance; assemble the authorisation list when inspected"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -5854,12 +6547,11 @@
             "zh": "停用这批单据、重新训练，并书面向客户说明",
             "en": "Stop using the batch, retrain, and tell clients in writing"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
-            "pmf": -1,
-            "national_security": -1
+            "pmf": -1
           },
           "why": {
             "zh": "止损能减少后续责任，但减不掉单据已经进入训练集这一事实，效果也会回退；自己发现永远比被查验后整改便宜。",
@@ -5871,7 +6563,7 @@
             "zh": "继续用，先把旺季的单子做完",
             "en": "Keep using it and clear the peak-season backlog first"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
@@ -5881,180 +6573,6 @@
           "why": {
             "zh": "换来的是旺季吞吐与准确率，代价是：这些单据从哪来、有没有传递管制的敏感信息，举证责任已经落在你们身上。",
             "en": "You buy peak-season throughput and accuracy, and inherit the burden of proving where those documents came from and whether controlled details moved."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "单据处理怎么部署？本地服务器成本高；境外云服务便宜，还自带更快的单据识别接口。",
-        "en": "Where do you process documents? A local server costs more; offshore cloud is cheap and ships with faster OCR."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "境内服务器 + 校内学生做抽检，单据不出境",
-            "en": "Domestic servers plus student spot-checks; documents never leave"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "成本高、扩容慢，但抽检标准会沉淀成质量体系，也让跨境流转与第三方托管这一整套严格要求与你无关。",
-            "en": "Costs are higher and scaling slower, but the spot-check rubric turns into a quality system and keeps the entire strict regime of cross-border transfer and third-party hosting away from you."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外云处理 + 海外团队校正，又快又便宜",
-            "en": "Process on offshore cloud with an overseas correction team: fast and cheap"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把大量真实贸易单据送往境外识别与校正，会触发数据库出海与第三方处理的严格要求；单据里往往有交易对手与国家信息，敏感程度高于一般商业文件。成本优势真实存在。",
-            "en": "Sending real trade documents offshore for recognition and correction triggers strict outbound transfer and third-party processing duties; shipping manifests usually reveal counterparties and destinations, making them more sensitive than ordinary commercial files. The cost advantage is real."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "收费方式来了。销售同事说有一种做法，客户会觉得我们「帮他们赚到了钱」。",
-        "en": "Time to price it. Sales has one idea where clients feel you 'made them money'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "按单据数量订阅，明确不参与任何归类取舍",
-            "en": "Charge per document, taking no position on classification choices"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但「不替客户挑归类」会让报关员放心使用；在这个行业里，可信中立就是最难被替代的优势（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but staying neutral on classification is what lets brokers use you comfortably; in this industry credible neutrality is the hardest advantage to displace (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "按「省下的关税」抽成，归类建议往宽松一侧走",
-            "en": "Take a share of duties saved and lean towards permissive classifications"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "抽成模式的说服力最强，客户也能立刻看到收益。但把收入与少缴税绑定，等于用商业模式奖励低报——这在绝大多数法域都是可被认定为申报不实甚至走私的行为。",
-            "en": "Revenue share persuades best and clients see the gain immediately. But tying income to lower duty means the business model rewards under-declaration, which most jurisdictions treat as false declaration or smuggling."
-          }
-        },
-        {
-          "text": {
-            "zh": "卖聚合洞察：品类通关时长与退单原因报告（不少于二十家企业）",
-            "en": "Sell aggregated insight: clearance times and rejection-cause reports (minimum twenty firms)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "聚合报告能把洞察变现而不触碰具体客户的取舍，是务实的中间路线；但若不说明数据来源与口径，透明度仍然不足，信任会慢慢流失。",
-            "en": "Aggregated reports monetise insight without touching any client's specific choices — a pragmatic middle path; but without stating sources and methodology, transparency stays thin and trust erodes."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么铺客户？一位外贸服务商说手上有两千家企业联系方式；也有前辈建议先在一个商会里做深。",
-        "en": "How do you reach clients? A trade-services reseller offers two thousand contacts; a mentor suggests going deep inside one chamber of commerce."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "在一个商会做深，靠同业口碑慢慢扩散",
-            "en": "Go deep in one chamber of commerce and let peer word of mouth spread"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但商会内部的横向传播让每一批次的新客户都带着同类需求而来（契合度上升），而同业推荐是外贸行业最可靠的渠道（Canvas 5）。",
-            "en": "It is slow, but lateral spread inside a chamber brings each new cohort with comparable needs (higher fit), and peer referral is the most reliable channel in trade (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "大量投放并承诺「百分百通关、少退一步」",
-            "en": "Spend on ads promising 'clears every time, one less step'"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "夸张承诺的转化率最高、客户增长最快。但通关结果由海关决定，任何「百分百」的承诺都难以兑现，还会吸引最想走捷径的那批客户。",
-            "en": "Exaggerated promises convert best and grow fastest. But clearance is decided by customs, so any 'guaranteed' claim is unfulfillable — and it attracts exactly the clients most eager to cut corners."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "要不要保留完整的校验痕迹？工程师说留了就是给自己找麻烦，不留则「客户更放心」。",
-        "en": "Keep a full validation trail? Engineering says keeping it invites trouble; not keeping it makes clients 'more comfortable'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "保留归类建议与修改痕迹，让每一次判断都可复核",
-            "en": "Retain suggested classifications and every edit so decisions are reviewable"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "留痕会增加存储与合规工作量，短期没有任何收益。但当某一份报关单被追查时，痕迹是唯一能证明你履行了注意义务的东西，也是专业服务的定价依据。",
-            "en": "Keeping logs adds storage and compliance work with no short-term return. But when one declaration is investigated, that trail is your only proof of due care — and the basis for charging professional rates."
-          }
-        },
-        {
-          "text": {
-            "zh": "不保留任何校验痕迹，主打轻量化",
-            "en": "Keep no validation trail; market the tool as lightweight"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "无痕让产品看起来更省事、客户也更敢用。但报关环节的留痕与账簿凭证通常是有法定保存期限的，不做留存既违反账簿要求，也让你无法解释任何一次判断。",
-            "en": "No logs make the tool feel frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches bookkeeping rules and leaves you unable to explain any judgement."
           }
         }
       ]
@@ -6111,7 +6629,7 @@
             "zh": "把拦截规则与复核记录写进服务协议，接受抽查",
             "en": "Write the blocking rules and review logs into the service agreement and accept spot checks"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -6125,7 +6643,7 @@
             "zh": "为保住时效，把拦截改成提示，由客户自行确认",
             "en": "To protect turnaround, downgrade blocking to a warning the client confirms"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -6149,7 +6667,7 @@
             "zh": "补做硬规则拦截与人工复核，主动复查历史归类",
             "en": "Add hard-rule blocking and human review; re-check past classifications"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -6166,7 +6684,7 @@
             "zh": "维持现状，把告知书再写清楚一点",
             "en": "Leave it and sharpen the notification letter"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_paper_funding",
           "effects": {
             "ethics": 2,
             "business": 2,
@@ -6304,6 +6822,354 @@
         "en": "A year has passed. The founder who grew up exporting hardware still fears rejection most — except now someone signs alongside him."
       },
       "choices": []
+    },
+    "trade-doc-ai_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售同事说有一种收法，客户会觉得你们「帮他们省下了关税」。可你们的卖点恰恰是可信中立——不参与任何归类取舍。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales pitches a model where clients feel you 'saved them duties'. But your edge is exactly credible neutrality: you take no position on any classification choice."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按单据数量订阅，并书面承诺不参与任何归类取舍",
+            "en": "Charge per document, with a written promise never to take any position on classification choices"
+          },
+          "next": "trade-doc-ai_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但「不替客户挑归类」会让报关员放心使用；在这个行业，可信中立就是最难被替代的优势（Canvas 9）。收入路径干净，尽调与跨境扩张都不受牵连。",
+            "en": "Subscriptions bill slowly, but staying neutral on classification is what lets brokers use you comfortably; in this industry credible neutrality is the hardest advantage to displace (Canvas 9). The revenue path stays clean."
+          }
+        },
+        {
+          "text": {
+            "zh": "按「替客户省下的关税」抽成，归类建议往宽松一侧走",
+            "en": "Take a share of the duty you save clients, and lean classifications towards the permissive side"
+          },
+          "next": "trade-doc-ai_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式的说服力最强，客户也能立刻看到收益。但把收入与少缴税绑定，等于用商业模式奖励低报——在绝大多数法域都可能被认定为申报不实甚至走私。",
+            "en": "Revenue share persuades best and clients see the gain immediately. But tying income to lower duty means the business model rewards under-declaration, which most jurisdictions treat as false declaration or worse."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么把客户做起来？一位外贸服务商说手上有两千家出口企业联系方式；也有前辈建议先在一个商会里做深。你手上是有授权的口碑资产。",
+        "en": "How do you grow the client base? A trade-services reseller offers two thousand exporter contacts; a mentor suggests going deep inside one chamber of commerce. You hold a reputation built on clean authorisation."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "在一个商会里做深，靠同业口碑慢慢扩散",
+            "en": "Go deep in one chamber of commerce and let peer word of mouth spread"
+          },
+          "next": "trade-doc-ai_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但商会内部的横向传播让每一批新客户都带着同类报关需求而来（契合度上升），而同业推荐是外贸行业最可靠的渠道（Canvas 5）。",
+            "en": "It is slow, but lateral spread inside a chamber brings each new cohort with similar filing needs (higher fit), and peer referral is the most reliable channel in trade (Canvas 5)."
+          }
+        },
+        {
+          "text": {
+            "zh": "大量投放广告，并承诺「百分百通关、少退一步」",
+            "en": "Spend heavily on ads promising 'clears every time, one step fewer'"
+          },
+          "next": "trade-doc-ai_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "夸张承诺转化率最高、客户增长最快。但通关结果由海关决定，任何「百分百」的承诺都难以兑现，还会吸引最想走捷径的那批客户。",
+            "en": "Exaggerated promises convert best and grow fastest. But clearance is decided by customs, so any 'guaranteed' claim is unfulfillable — and it attracts exactly the clients most eager to cut corners."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "要不要保留完整的归类校验痕迹？工程师说留了就是给自己找麻烦，不留则「客户更敢用」。你们这条线的底气恰恰是来源可查。",
+        "en": "Keep a full classification audit trail? Engineering says keeping it invites trouble; not keeping it makes clients 'more comfortable'. Your line's real strength is exactly that everything is traceable."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "保留每次归类建议与修改痕迹，让判断都可复核",
+            "en": "Retain suggested classifications and every edit so decisions are reviewable"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "留痕增加存储与合规工作量，短期无收益。但当某一份报关单被追查时，痕迹是唯一能证明你们履行了注意义务的东西，也是专业服务的定价依据。",
+            "en": "Keeping logs adds storage and compliance work with no short-term return. But when a declaration is investigated, that trail is your only proof of due care — and the basis for charging professional rates."
+          }
+        },
+        {
+          "text": {
+            "zh": "不保留任何校验痕迹，主打轻量化",
+            "en": "Keep no validation trail; market the tool as lightweight"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "无痕让产品更省事、客户更敢用。但报关环节的留痕与账簿凭证通常有法定保存期限，不留存既违反账簿要求，也让你无法解释任何一次判断。",
+            "en": "No logs make the tool frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches bookkeeping rules and leaves you unable to explain any judgement."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但单据来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可客户问起某些单据的授权，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your document sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model, yet when a client asks about the authorisation behind some invoices, you have no answer."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，并书面承诺不以来源存疑的单据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, with a written promise never to train new models on questionable-source documents — even if slow"
+          },
+          "next": "trade-doc-ai_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费+把「脱敏」后的单据记录卖给贸易咨询方（含来源不明样本）",
+            "en": "Free tool; sell 'de-identified' document records to trade consultants, questionable samples included"
+          },
+          "next": "trade-doc-ai_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的商业资料当成库存再卖一次。法律风险最高。",
+            "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's records as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺客户？地推团队说一个月签三百家最来劲；可你手上的单据来源本来就不干净，铺得越快，被追责的客户越多。",
+        "en": "How do you reach clients? Field sales promise three hundred firms a month; but your document sourcing is already tainted, so the faster you spread, the more clients drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆客户，不冲客户数量",
+            "en": "Only do flagship clients you can serve; do not chase client count"
+          },
+          "next": "trade-doc-ai_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在单据存疑时控制扩散范围，能限制后续被追责的客户数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "大量投放广告，并承诺「百分百通关」冲客户榜单",
+            "en": "Paid acquisition plus a 'clears every time' promise to climb the client leaderboard"
+          },
+          "next": "trade-doc-ai_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "承诺通关会诱导客户替他人代持申报，授权链条在第一米就断了；客户数很好看，责任链条却没人能还原。",
+            "en": "A clearance promise pushes clients to file on others' behalf — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "要不要保留完整的归类校验痕迹？工程师说留了就是给自己找麻烦。你们这条线恰恰缺的就是可追溯——当初那批来源不明的单据还躺在训练集里。",
+        "en": "Keep a full classification audit trail? Engineering says keeping it invites trouble. Your line is exactly the one missing traceability — those unclear-source documents are still in the training set."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做完整留痕，并保留人工复核通道",
+            "en": "Add full logging, and keep a human-review channel"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的留痕能帮你在出事时自证「至少记了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late logging helps show 'at least we kept records' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "不保留任何校验痕迹，主打轻量化",
+            "en": "Keep no validation trail; market the tool as lightweight"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "无痕让产品更省事、客户更敢用。但报关留痕有法定保存期限，不做留存既违规，也让你无法解释任何一次判断——在来源本就存疑的这条线上，后果更重。",
+            "en": "No logs make the tool frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches the rules and leaves you unable to explain any judgement — and on a line whose provenance is already doubtful, the consequences are heavier."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家头部报关行把你们写进推荐名单，三家投资机构也来了：一家境外贸易基金条件最阔绰，但要求开放单据数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们靠服务费慢慢长。",
+        "en": "Two leading brokers add you to their recommended list, and three investors arrive: an offshore trade fund, generous but asking for document-data access; a local industry fund, smaller and stricter, data and compliance local; and voices urging service fees alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但凭证留存、尽调材料与数据边界都完整可控，面对海关核查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and conservative, but records, due-diligence files and data boundaries stay auditable, so customs checks rarely leave you stuck. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外贸易基金，把单据数据向其全球风控团队开放",
+            "en": "Take an offshore trade fund and open your document data to its global risk team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但单据里的交易对手、流向与数量关系，长期看是一幅完整的区域贸易图谱——将其对外开放，性质远超资源共享，也触发跨境提供义务。",
+            "en": "Capital and distribution arrive overnight. But counterparties, destinations and quantities in those documents add up to a complete regional trade map — opening it up goes far beyond sharing resources and triggers outbound-transfer duties."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长放松管制筛查。在这个行业，这种克制本身就是信誉。",
+            "en": "Cash is tight and growth slows, but you never loosen screening for growth. In this industry restraint is reputation."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "海关的问询还在发酵，三家投资机构却来了：一家境外贸易基金条件最阔绰，但要求开放单据数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本土；也有人劝你们靠服务费慢慢长。",
+        "en": "The customs query is still running, and three investors arrive: an offshore trade fund, generous but asking for document-data access; a local industry fund, smaller and stricter, data and compliance local; and voices urging service fees alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但凭证留存、尽调材料与数据边界都完整可控，面对海关核查时几乎不会被问倒——在信任已受损时，这种克制至少不再新增外部依赖。",
+            "en": "Local money is smaller and conservative, but records, due-diligence files and data boundaries stay auditable, so customs checks rarely leave you stuck. With trust already damaged, restraint adds no new dependency."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外贸易基金，把单据数据向其全球风控团队开放",
+            "en": "Take an offshore trade fund and open your document data to its global risk team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但单据里的交易对手、流向与数量关系，长期看是一幅完整的区域贸易图谱——将其对外开放，性质远超资源共享，也触发跨境提供义务。",
+            "en": "Capital and distribution arrive overnight. But counterparties, destinations and quantities in those documents add up to a complete regional trade map — opening it up goes far beyond sharing resources and triggers outbound-transfer duties."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长放松管制筛查。在信任已经受损时，这种克制更是护城河。",
+            "en": "Cash is tight and growth slows, but you never loosen screening for growth. With trust already damaged, this restraint is itself a moat."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {

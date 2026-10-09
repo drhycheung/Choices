@@ -349,8 +349,8 @@
     "drone-inspection_b1_clean": {
       "act": "act2",
       "text": {
-        "zh": "只用自有飞行与客户授权影像训出来的模型，缺陷样本偏少，某些材质上的表现不稳定。但每一帧影像的拍摄时间、空域审批与授权范围都对得上。",
-        "en": "Trained only on your own flights and client-authorised imagery, the model has few defect samples and wobbles on some materials. But every frame matches a flight time, an airspace approval and an authorised scope."
+        "zh": "只用自有飞行与客户授权影像训出来的模型，缺陷样本偏少，某些材质上的表现不稳定。但每一帧影像的拍摄时间、空域审批与授权范围都对得上。现在的问题是——怎么把这套「来源可查」变成运营本身的一部分，而不是应付审核的摆设？",
+        "en": "Trained only on your own flights and client-authorised imagery, the model has few defect samples and wobbles on some materials. But every frame matches a flight time, an airspace approval and an authorised scope. The question now: how do you make 'traceable' part of the operation itself, not just a review ritual?"
       },
       "choices": [
         {
@@ -358,14 +358,14 @@
             "zh": "把空域审批与影像授权做成每份报告的固定附件",
             "en": "Attach airspace approvals and image authorisations to every report"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
           },
           "why": {
-            "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西。",
-            "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor."
+            "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西，也是别人抄不走的信任。",
+            "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor, and the trust rivals cannot copy."
           }
         },
         {
@@ -373,7 +373,7 @@
             "zh": "对外称合规，审批文件只在被质疑时补",
             "en": "Claim compliance; produce approvals only when challenged"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -388,8 +388,8 @@
     "drone-inspection_b1_dirty": {
       "act": "act2",
       "text": {
-        "zh": "外部影像包把缺陷样本补齐了，识别率明显上升。只是那批图里有一部分，明显不像商业航拍能取得的视角——其中几处还带着明显的围栏与岗哨。",
-        "en": "The external pack fills the defect samples and detection clearly improves. But part of that imagery uses angles commercial flights do not get — several frames show fences and guard posts."
+        "zh": "外部影像包把缺陷样本补齐了，识别率明显上升。只是那批图里有一部分，明显不像商业航拍能取得的视角——其中几处还带着明显的围栏与岗哨。工程说先拖着，合规说必须现在处理。这段来源不明的素材已经进了训练集。",
+        "en": "The external pack fills the defect samples and detection clearly improves. But part of that imagery uses angles commercial flights do not get — several frames show fences and guard posts. Engineering says delay; compliance says handle it now. The untraceable clip is already in your training set."
       },
       "choices": [
         {
@@ -397,16 +397,15 @@
             "zh": "停用外部影像包、重新训练，并向客户书面说明",
             "en": "Stop using the pack, retrain, and tell clients in writing"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
-            "pmf": -1,
-            "national_security": -1
+            "pmf": -1
           },
           "why": {
-            "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。",
-            "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation."
+            "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。（这一步无法把已累积的风险归零。）",
+            "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation. (This cannot zero out the risk already accumulated.)"
           }
         },
         {
@@ -414,190 +413,15 @@
             "zh": "继续用，先把这几单交付出去",
             "en": "Keep using it and get these jobs delivered first"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1,
-            "national_security": 1
+            "ethics": 1
           },
           "why": {
             "zh": "换来的是交付速度与识别率，代价是：这些影像的取得方式是否合规，举证责任已经落在你们身上。",
             "en": "You buy delivery speed and detection rate, and inherit the burden of proving how that imagery was obtained."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "判读环节怎么处理？自己标注量大；境外团队的报价只有三分之一。",
-        "en": "How do you handle the review step? Labelling in-house is heavy; an overseas team quotes a third of the price."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "境内判读 + 校内助教参与质检，影像不出境",
-            "en": "Review domestically with campus assistants checking work; imagery never leaves"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "成本高、产能低，但判读标准会沉淀成内部质检流程，每飞一次就更准；同时规避了影像跨境这一整套难以补齐的要求。",
-            "en": "It costs more and produces less, but the review rubric turns into internal QA and every flight improves it; you also avoid the whole set of cross-border imagery requirements that are so hard to retrofit."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外团队判读与标注，便宜又快",
-            "en": "Overseas team reviews and labels: cheap and fast"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把全线航拍影像交给境外团队处理，通常同时触发测绘成果与重要数据的跨境提供规则；而影像不像文本，一旦出去就无法追回。成本优势非常明显。",
-            "en": "Handing full-line footage to an overseas team usually triggers both survey-output and important-data transfer rules; unlike text, imagery cannot be recalled once it leaves. The cost advantage is stark."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "客户开始付费了。有人提醒：你们手上的影像库，也许本身就是一种可以卖的东西。",
-        "en": "Clients are paying. Someone points out that the imagery library itself might be a sellable asset."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "按巡检里程订阅，明确承诺影像不对外提供",
-            "en": "Charge per inspection distance, promising never to release imagery"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但「不看客户的图」在这个行业里比任何功能都值钱：它是你拿下政府与关键基础设施订单的钥匙，也是最难复制的信任（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but 'we never release your imagery' is worth more than any feature here: it is the key to winning government and critical-infrastructure contracts, and the hardest trust to copy (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "低价甚至免费巡检，把航线影像成果卖给第三方数据商",
-            "en": "Inspect cheap or free, then sell the route imagery library to data brokers"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "影像转售的利润远高于服务费，客户也更愿意签低价合同。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高。",
-            "en": "Imagery resale is far more profitable than service fees and clients happily sign cheap contracts. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin."
-          }
-        },
-        {
-          "text": {
-            "zh": "只出售聚合洞察：缺陷趋势与资产健康报告（不少于二十个单位）",
-            "en": "Sell only aggregated insight: defect trends and asset-health reports (minimum twenty operators)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "聚合报告能让洞察变现而不再交付原始影像，是务实的中间路线；但报告若没有说明数据来源与覆盖范围，透明度仍然不足。",
-            "en": "Aggregated reports monetise insight without shipping raw footage — a pragmatic middle path; but unless sources and coverage are stated, transparency still falls short."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么拿更多单？本地投标平台上有几十个政府项目；也有人说某某单位的关键人很关键。",
-        "en": "How do you win more work? The local tender portal lists dozens of government projects; someone also mentions a key contact at a certain bureau."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "靠完工质量与行业口碑慢慢铺，做出口碑案例",
-            "en": "Grow on delivery quality and industry referrals; build reference cases"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但每个案例都会把判读标准与报告格式磨得更准（契合度上升）；在这个行业，口头推荐比反复投标更可靠（Canvas 5）。",
-            "en": "It is slow, but every reference case sharpens both the reading standard and the report format (higher fit); in this industry a verbal recommendation beats tender effort (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "低价中标 + 关键人维系，先把项目数量冲上去",
-            "en": "Win with low bids and relationship management; prioritise project count"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节（这些最容易被省掉），也可能踩到不正当竞争的边界。",
-            "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review — precisely the steps easiest to drop — and can brush against unfair-competition rules."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "为了减少扯皮，工程师提议：把飞行日志和电子围栏记录关掉，这样没有人会因为偶发偏航被追责。",
-        "en": "To avoid arguments, your engineer suggests switching off flight logs and geofence records so nobody gets blamed for the occasional deviation."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "保留完整飞行日志与电子围栏留痕，接受偶发偏航被追问",
-            "en": "Keep full flight logs and geofence records, and accept being questioned about deviations"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "留痕意味着自己把把柄存下来，短期确实更麻烦。但在航空与关键基础设施场景，可追溯的记录是区分「专业」与「草台班子」的唯一证据，也是定价能力的来源。",
-            "en": "Keeping records means storing evidence against yourself and is genuinely more trouble short term. But in aviation and critical infrastructure, traceable records are the only proof separating professionals from cowboys — and the source of your pricing power."
-          }
-        },
-        {
-          "text": {
-            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
-            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管；偶发的偏航也不会因为没人记录就不存在。",
-            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight, and unrecorded deviations still happened."
           }
         }
       ]
@@ -643,7 +467,7 @@
       ]
     },
     "drone-inspection_b2_fixed": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "公开适用条件并对低置信度结果强制人工复核后，报告出得慢了，一线抱怨「不如以前快」。同时，两家能源客户续签时点名要这一版：他们要的是能作为举证材料的报告。",
         "en": "After publishing operating limits and requiring human review of low-confidence results, reports take longer and field crews say it is slower. Two energy clients renew and ask for this version by name: they need reports that hold up as evidence."
@@ -654,7 +478,7 @@
             "zh": "把复核记录与适用条件写进合同附件",
             "en": "Write review records and operating limits into the contract annex"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -668,7 +492,7 @@
             "zh": "为赶交付进度，把复核改成抽查",
             "en": "To keep the schedule, downgrade review to spot checks"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -681,7 +505,7 @@
       ]
     },
     "drone-inspection_b2_paper": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "雨季巡检过后，一段管渠在阴天拍摄的影像里被判为「无异常」，两周后发生渗漏。客户翻出报告：适用条件那几行写在免责条款的最后。",
         "en": "After the wet-season inspection, a pipe section shot under overcast sky was cleared as 'no anomaly' and leaked two weeks later. The client pulls the report: the operating limits sit at the end of the liability clause."
@@ -692,7 +516,7 @@
             "zh": "补做低置信度强制复核，主动复查雨季全部影像",
             "en": "Add mandatory review of low-confidence results and re-check the whole wet-season set"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -700,8 +524,8 @@
             "pmf": 1
           },
           "why": {
-            "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。",
-            "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first."
+            "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
+            "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
           }
         },
         {
@@ -709,11 +533,10 @@
             "zh": "按免责条款处理，等客户走完索赔流程",
             "en": "Rely on the liability clause and let the claim process run"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2,
-            "national_security": 1
+            "business": 2
           },
           "why": {
             "zh": "条款可能帮你赢下这一单索赔，也会帮客户记住：下次招标时，他们要找的是不会把限制藏在最后的供应商。",
@@ -847,6 +670,354 @@
         "en": "A year has passed. A route map hangs in the hangar, with some areas since painted permanently grey."
       },
       "choices": []
+    },
+    "drone-inspection_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售说有一种收法商家「几乎等于白拿」，但你们的卖点恰恰是可信。",
+        "en": "You have a clean, authorised foundation — how do you turn 'traceable' into revenue? Sales pitches a model where clients get the service 'almost for free', but your edge is exactly trust."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按巡检里程订阅，明确承诺影像不对外提供",
+            "en": "Charge per inspection distance, promising never to release imagery"
+          },
+          "next": "drone-inspection_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但「不看客户的图」在这个行业里比任何功能都值钱：它是拿下政府与关键基础设施订单的钥匙，也是最难复制的信任（Canvas 9）。",
+            "en": "Subscriptions bill slowly, but 'we never release your imagery' is worth more than any feature here: it is the key to winning government and critical-infrastructure contracts, and the hardest trust to copy (Canvas 9)."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价甚至免费巡检，把航线影像成果卖给第三方数据商",
+            "en": "Inspect cheap or free, then sell the route imagery library to data brokers"
+          },
+          "next": "drone-inspection_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "影像转售利润远高于服务费。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高，风险也最高。",
+            "en": "Imagery resale is far more profitable than service fees. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin, highest risk."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么拿更多单？本地投标平台上有几十个政府项目；也有人说某某单位的关键人很关键。你手上是「来源可查」的口碑资产。",
+        "en": "How do you win more work? The local tender portal lists dozens of government projects; someone also mentions a key contact at a certain bureau. You hold a 'traceable' reputation asset."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "靠完工质量与行业口碑慢慢铺，做出口碑案例",
+            "en": "Grow on delivery quality and industry referrals; build reference cases"
+          },
+          "next": "drone-inspection_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但每个案例都会把判读标准与报告格式磨得更准（契合度上升）；在这个行业，口头推荐比反复投标更可靠（Canvas 5）。",
+            "en": "It is slow, but every reference case sharpens the reading standard and report format (higher fit); in this industry a verbal recommendation beats tender effort (Canvas 5)."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价中标 + 关键人维系，先把项目数量冲上去",
+            "en": "Win with low bids and relationship management; prioritise project count"
+          },
+          "next": "drone-inspection_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节，也可能踩到不正当竞争边界。",
+            "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review, and can brush against unfair-competition rules."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "为了减少扯皮，工程师提议：把飞行日志和电子围栏记录关掉，这样没有人会因为偶发偏航被追责。你这条线本来就是靠「留痕」吃饭的，是保留记录，还是为了省事关掉？",
+        "en": "To avoid arguments, your engineer suggests switching off flight logs and geofence records so nobody gets blamed for the occasional deviation. Your line lives on 'leaving a trail' — keep the records, or turn them off for convenience?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "保留完整飞行日志与电子围栏留痕，接受偶发偏航被追问",
+            "en": "Keep full flight logs and geofence records, and accept being questioned about deviations"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "留痕意味着自己把把柄存下来，短期确实更麻烦。但在航空与关键基础设施场景，可追溯的记录是区分「专业」与「草台班子」的唯一证据，也是定价能力的来源。",
+            "en": "Keeping records means storing evidence against yourself and is more trouble short term. But in aviation and critical infrastructure, traceable records are the only proof separating professionals from cowboys — and the source of your pricing power."
+          }
+        },
+        {
+          "text": {
+            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
+            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管。",
+            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但素材来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可客户问起影像授权，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model, yet when a client asks about image licences, you have no answer. How do you bill without collapsing at the first licence query?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不以来源存疑数据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, promising never to train new models on questionable-source data — even if slow"
+          },
+          "next": "drone-inspection_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价巡检 + 把航线影像成果卖给第三方数据商（含来源不明样本）",
+            "en": "Cheap inspection plus selling the route imagery library to data brokers, questionable samples included"
+          },
+          "next": "drone-inspection_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "影像转售最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
+            "en": "Imagery resale is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么拿更多单？地推团队说一个月签三百家最来劲；可你手上的影像库本身就不干净，铺得越快，被追责的客户越多。",
+        "en": "How do you win more work? Field sales promise three hundred sites a month; but your imagery library is already tainted, so the faster you spread, the more clients drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆，不冲客户数",
+            "en": "Only do flagships you can serve; do not chase client count"
+          },
+          "next": "drone-inspection_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的客户数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "低价中标 + 关键人维系，冲项目数量",
+            "en": "Low bids plus relationship management to drive project count"
+          },
+          "next": "drone-inspection_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "返现与关系结构会诱导一线替客户代注册、代签，授权链条在第一米就断了；项目数很好看，责任链条却没人能还原。",
+            "en": "Rebates and relationships push field crews to register and sign for clients — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "工程师又提关日志的事：你们这条线恰恰缺的就是可追溯。是现在补飞行日志与电子围栏留痕，还是为了交付速度继续不记？",
+        "en": "Engineering raises turning off the logs again: your line is exactly the one missing traceability. Add flight logs and geofence records now, or keep skipping them for delivery speed?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做完整飞行日志与电子围栏留痕",
+            "en": "Add full flight logs and geofence records"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的留痕能帮你在出事时自证「至少记了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late records help show 'at least we logged it' when things break, but they cannot restore provenance; they stanch bleeding, not launder it."
+          }
+        },
+        {
+          "text": {
+            "zh": "关闭日志与围栏记录，覆盖率好看、麻烦少",
+            "en": "Turn logging and geofence records off: better coverage, fewer headaches"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管；这条线本就经不起查。",
+            "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing them can count as obstructing oversight — and your line never survived a check anyway."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家能源客户的合作条款还在谈，三家投资机构也来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "Two energy clients are still negotiating, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，把影像成果向其全球客户开放检索",
+            "en": "Take offshore funding and make your imagery searchable for its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
+            "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。稳定且干净，在这个行业本身就是稀缺品。",
+            "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth, nor justify trade-offs to shareholders. Steady and clean is itself scarce in this industry."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "风波还在发酵，三家投资机构却来了：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们靠订阅慢慢长。",
+        "en": "The row is still running, and three investors arrive: an offshore strategic backer, generous but asking for data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
+            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外战略投资，把影像成果向其全球客户开放检索",
+            "en": "Take offshore funding and make your imagery searchable for its global clients"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
+            "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠服务费自然增长",
+            "en": "Take no funding; grow on service fees alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth. With trust already damaged, restraint adds no new dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {

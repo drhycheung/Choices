@@ -358,7 +358,7 @@
             "zh": "把数据来源与保存期限做成给家长和教师的一页说明",
             "en": "Publish provenance and retention on one page for parents and teachers"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_clean_money",
           "effects": {
             "pmf": 1,
             "moat": 1
@@ -373,7 +373,7 @@
             "zh": "对外称合规，具体清单等家长问了再给",
             "en": "Claim compliance; release the detail when parents ask"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_clean_money",
           "effects": {
             "business": 2,
             "ethics": 1
@@ -397,7 +397,7 @@
             "zh": "删除这批数据、重新训练，并书面告知学校与家长",
             "en": "Delete the batch, retrain, and notify the school and parents in writing"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_dirty_money",
           "effects": {
             "legal": -1,
             "ethics": -1,
@@ -413,7 +413,7 @@
             "zh": "继续用，先把试点学校的续签拿下",
             "en": "Keep using it and secure the pilot school's renewal first"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_dirty_money",
           "effects": {
             "pmf": 1,
             "legal": 1,
@@ -422,180 +422,6 @@
           "why": {
             "zh": "换来的是效果与续签机会，代价是：这些未成年人数据从哪来、凭什么用，举证责任已经落在你们身上。",
             "en": "You buy performance and the renewal, and inherit the burden of proving where that children's data came from and why you may use it."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "部署方式怎么选？本地服务器要学校自己买；境外云厂商愿意免费提供六个月。",
-        "en": "Which deployment? A local server means the school buys hardware; an offshore cloud provider offers six months free."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "校内私有化部署 + 校内助教参与质检，数据不离开校园",
-            "en": "On-premise deployment with teaching assistants doing QA; data never leaves the campus"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "部署成本高、复制慢，但每所学校都在替你校对准错因标准；同时规避未成年人信息跨境与第三方托管的一整套严格要求。",
-            "en": "Deployment is costly and replication slow, but every school helps calibrate your taxonomy; it also sidesteps the whole strict regime on cross-border and third-party hosting of minors' data."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外云托管 + 远程团队维护，省下服务器开销",
-            "en": "Host on offshore cloud with a remote ops team and save the hardware bill"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把一整所学校的教学数据、学生姓名与学习表现托管到境外，会同时触发重要数据识别、跨境提供与学生个人信息保护的严格要求；这些几乎不可能事后补齐。成本优势真实存在。",
-            "en": "Hosting an entire school's teaching data, student names and performance offshore triggers important-data identification, cross-border transfer and student-privacy requirements at once — almost impossible to retrofit. The cost saving is real."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "第一所学校愿意付费了。销售同事提出三种收法，其中一种「教育局一定会喜欢」。",
-        "en": "The first school is willing to pay. Sales proposes three models, one of which 'the district will definitely like'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "学校按年级订阅，明确承诺不向外输出学生数据",
-            "en": "Per-grade subscription with a written promise never to export student data"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费进校 + 向教培机构输出「待提升名单」",
-            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
-            "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
-          }
-        },
-        {
-          "text": {
-            "zh": "只出售聚合洞察：区域错因分布报告（不少于二十所学校）",
-            "en": "Sell only aggregated insight: district-level misconception reports (minimum twenty schools)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "提高聚合门槛后仍有商业价值，是可行中间路线。但如果学校的年级学生太少，聚合门槛实际形同虚设，透明度不足的问题依然存在。",
-            "en": "Aggregated insight still sells, making this a workable middle route. Where a school's cohort is small, though, the threshold is close to meaningless and the transparency gap remains."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么铺更多学校？一位代理商说他能把旗下的教育软件打包给教育局；也有前辈建议：先在一所学校做到无可替代。",
-        "en": "How do you reach more schools? One reseller offers to bundle you into a district software deal; a mentor suggests making yourself indispensable in one school first."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散",
-            "en": "Become indispensable in one school and let research-group reputation spread it"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低（Canvas 5）。",
-            "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
-            "en": "Bundle with the reseller into district deals and advertise average score gains"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
-            "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？",
-        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and even placement decisions?"
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效",
-            "en": "AI drafts only, clearly labelled, never effective until a teacher confirms"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
-            "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
-          }
-        },
-        {
-          "text": {
-            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
-            "en": "AI marks become final and system logs keep no record of the correction trail"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
-            "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
           }
         }
       ]
@@ -641,7 +467,7 @@
       ]
     },
     "edu-analytics_b2_fixed": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "公开局限、按校际差异重新加权并加入教师复核之后，系统给的建议变保守了，试点学校觉得「没以前敢说」。同时，区里另一所学校主动来问：他们要的正是教师能推翻系统的那一版。",
         "en": "After publishing limitations, reweighting for school differences and adding teacher review, the advice gets cautious and the pilot school says it is 'less decisive'. Another school in the district asks instead: they want the version a teacher can override."
@@ -652,7 +478,7 @@
             "zh": "把复核权与适用边界写进产品说明和采购合同",
             "en": "Write override rights and scope limits into both the product notes and the contract"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_fixed_funding",
           "effects": {
             "moat": 2
           },
@@ -666,7 +492,7 @@
             "zh": "为让系统「敢说」，把复核改成默认通过",
             "en": "To make the system 'decisive', default the review to pass"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_fixed_funding",
           "effects": {
             "business": 2,
             "ethics": 2
@@ -679,7 +505,7 @@
       ]
     },
     "edu-analytics_b2_paper": {
-      "act": "act3",
+      "act": "act4",
       "text": {
         "zh": "期末，一位家长拿着系统评语来学校质问：为什么孩子这一栏长期写着「粗心」。她问的其实不是分数，而是这句话会不会跟着孩子走。",
         "en": "At term end a parent comes to the school with the system's comments: why has her child's row said 'careless' for months. She is not asking about the score — she is asking whether that word follows the child."
@@ -690,7 +516,7 @@
             "zh": "补做校际差异修正与教师复核，复查已生成的评语",
             "en": "Fix school-difference weighting, add teacher review, re-check generated comments"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_paper_funding",
           "effects": {
             "ethics": -1,
             "legal": -1,
@@ -707,7 +533,7 @@
             "zh": "维持原样，把适用说明补得更详细",
             "en": "Leave it and expand the scope notes"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_paper_funding",
           "effects": {
             "ethics": 2,
             "business": 2
@@ -844,6 +670,354 @@
         "en": "A year has passed. The pilot school still uses your tool, but the staff meeting no longer discusses how much time it saves — it discusses what entitles it to say that about a child."
       },
       "choices": []
+    },
+    "edu-analytics_b1_clean_money": {
+      "act": "act3",
+      "text": {
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售同事提出几种收法，其中一种「教育局一定会喜欢」，但你们的卖点恰恰是可信。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales proposes several models, one of which 'the district will definitely like', but your edge is exactly trust."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "学校按年级订阅，明确承诺不向外输出学生数据",
+            "en": "Per-grade subscription with a written promise never to export student data"
+          },
+          "next": "edu-analytics_b1_clean_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势。",
+            "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费进校 + 向教培机构输出「待提升名单」",
+            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies"
+          },
+          "next": "edu-analytics_b1_clean_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
+            "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_clean_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺更多学校？一位代理商说他能把旗下的教育软件打包给教育局；也有前辈建议：先在一所学校做到无可替代。",
+        "en": "How do you reach more schools? One reseller offers to bundle you into a district software deal; a mentor suggests making yourself indispensable in one school first."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散",
+            "en": "Become indispensable in one school and let research-group reputation spread it"
+          },
+          "next": "edu-analytics_b1_clean_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低。",
+            "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
+            "en": "Bundle with the reseller into district deals and advertise average score gains"
+          },
+          "next": "edu-analytics_b1_clean_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
+            "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_clean_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？",
+        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and even placement decisions?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效",
+            "en": "AI drafts only, clearly labelled, never effective until a teacher confirms"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
+            "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
+          }
+        },
+        {
+          "text": {
+            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
+            "en": "AI marks become final and system logs keep no record of the correction trail"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
+            "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但素材来源经不起细看。销售想推「几乎白拿」的收法冲增长，可客户问起那些带着署名与班级的作业数据，你们答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' model to chase growth, yet when a client asks about the homework data that still carries names and classes, you have no answer."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明不以来源存疑数据训练新模型（哪怕增长慢）",
+            "en": "Monthly subscription, promising never to train new models on questionable-source data — even if slow"
+          },
+          "next": "edu-analytics_b1_dirty_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费进校 + 向教培机构输出「待提升名单」（含来源不明样本）",
+            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies, questionable samples included"
+          },
+          "next": "edu-analytics_b1_dirty_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律与伦理风险最高。",
+            "en": "Indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal and ethical exposure."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？代理商说一个月签几十所学校最来劲；可你手上的数据包本身就不干净，铺得越快，被追责的学生越多。",
+        "en": "How do you scale? Resellers promise dozens of schools a month; but your data pack is already tainted, so the faster you spread, the more students drawn into liability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆，不冲学生数",
+            "en": "Only do flagships you can serve; do not chase student count"
+          },
+          "next": "edu-analytics_b1_dirty_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的学生数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
+            "en": "Bundle with the reseller into district deals and advertise average score gains"
+          },
+          "next": "edu-analytics_b1_dirty_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "代理商不会替你维护数据边界；用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传。",
+            "en": "The reseller will not guard your data boundaries; advertising score improvements without causal evidence usually amounts to misleading claims in education marketing."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "批改范围要不要延伸到主观题？如果延，AI 的意见会不会影响学生的分数与升学判断？你这条线恰恰缺的就是可追溯。",
+        "en": "Should marking extend to open-ended answers? If it does, will the model's view shape grades and placement? Your line is exactly the one missing traceability."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做显著标识，并提供教师复核通道",
+            "en": "Add conspicuous labels plus a teacher review path"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late labelling helps show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
+            "en": "AI marks become final and system logs keep no record of the correction trail"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不留痕迹能避免日后被追责；但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
+            "en": "Keeping no trail avoids later challenges; but where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_fixed_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "两家机构的合作条款还在谈，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地教育公益/产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。",
+        "en": "Two partnership terms are still being negotiated, and three funders arrive with money: an offshore strategic investor, generous but asking for data access; a local education or industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
+            "en": "Take local education or industry funding: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
+            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。",
+            "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth. In education that restraint is your reputation."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_paper_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "家长质疑还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地教育公益/产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。",
+        "en": "The parental challenge is still simmering, and three funders arrive with money: an offshore strategic investor, generous but asking for data access; a local education or industry fund, smaller and stricter, data local; and voices urging subscriptions alone."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
+            "en": "Take local education or industry funding: slower expansion, data stays local"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
+            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但数据边界由你说了算。在信任已经受损时，这种克制至少不再新增外部依赖。",
+            "en": "Cash gets tight and growth slows, but data boundaries stay yours. With trust already damaged, restraint adds no new dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
