@@ -18,6 +18,7 @@
   var state = null;
   var lang = 'en';
   var busy = false;           // 防止连点：移动端按下反馈期间不接受第二次点击
+  var pendingId = null;       // 已抽中但尚未加载完的题材（用于首屏先渲染题材卡）
 
   var UI = {
     zh: {
@@ -58,6 +59,12 @@
       ledgerUntouched: '整局没有任何一步改变这一项',
       ledgerStart: '开局',
       ledgerFinal: '终局',
+      exportBtn: '导出学习报告',
+      exportTitle: '导出这一局的复盘报告',
+      exportMd: '下载 Markdown 报告',
+      exportJson: '下载 JSON 数据',
+      exportNote: '报告含本局全部决策、每步的分数增减与理由、分数总账与结局复盘，可直接提交或打印。',
+      exported: '已开始下载',
       perfectBadge: '完美通关',
       perfectNote: '三条风险线全部为零，创业三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
       footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
@@ -106,6 +113,12 @@
       ledgerStart: 'start',
       ledgerFinal: 'final',
       perfectBadge: 'PERFECT RUN',
+      exportBtn: 'Export study report',
+      exportTitle: 'Export this run for review',
+      exportMd: 'Download Markdown report',
+      exportJson: 'Download JSON data',
+      exportNote: 'The report contains every decision, the score change and the reason behind each step, the score ledger and the ending debrief — ready to submit or print.',
+      exported: 'Download started',
       perfectNote: 'All three risk lines at zero and all three venture boxes at 7 or above — the only path in this venture that does it.',
       footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
       actionError: 'Error: ',
@@ -167,23 +180,46 @@
       .catch(function (e) { cb(e); });
   }
 
-  // file:// 下读取内嵌副本：<script type="application/json" data-scenario-id="xxx">
-  function readEmbeddedScenario(id) {
-    var blocks = document.querySelectorAll('script[type="application/json"][data-scenario-id]');
-    for (var i = 0; i < blocks.length; i++) {
-      if (blocks[i].getAttribute('data-scenario-id') === id) {
-        try { return JSON.parse(blocks[i].textContent); } catch (e) { return null; }
-      }
-    }
-    return null;
+  /* ---- 离线副本读取 ----
+     index.html 只内嵌 manifest（~2KB），其余数据放在 embed/*.js，
+     因为浏览器要解析完整个 HTML 才触发 DOMContentLoaded：把 284KB JSON 塞进
+     index.html 会把首屏可交互时间拖到 1.5s 以上（实测 domInteractive 1493ms）。
+     file:// 下不能 fetch 本地 JSON，但可以动态注入 <script src>（已实测），
+     所以用普通 <script> 而非 ES module（module 在 file:// 下会被 CORS 拦掉）。 */
+
+  // 动态注入 embed/<name>.js；注入后数据挂在 window.CHOICES_EMBEDDED 上。
+  // 每个数据文件自带幂等初始化（见 tools/embed-scenarios.py），所以任何一个
+  // 都可以是第一个被注入的，不依赖单独的引导文件。
+  var embedCache = {};
+  function injectScript(name, cb) {
+    if (embedCache[name]) { cb(true); return; }
+    var s = document.createElement('script');
+    s.src = 'embed/' + name + '.js';
+    s.async = false;
+    s.onload = function () { embedCache[name] = true; cb(true); };
+    s.onerror = function () { cb(false); };
+    document.head.appendChild(s);
   }
-  function readEmbeddedEndings() {
-    var b = document.getElementById('embedded-endings');
-    if (!b || !b.textContent.trim()) return null;
-    try { return JSON.parse(b.textContent).endings; } catch (e) { return null; }
+  // 串行化：并发调用时，第二个请求会在第一个的数据真正写入 window 之前就读它
+  // （embedCache[name] 已置位但脚本尚未执行完），于是 beginPlay 拿到空结局去校验，
+  // 报「endings 缺少 condition」。排队执行可彻底避免这个竞态。
+  var embedQueue = Promise.resolve();
+  function loadEmbedScript(name, cb) {
+    embedQueue = embedQueue.then(function () {
+      return new Promise(function (resolve) {
+        injectScript(name, function (ok) {
+          if (!ok) { cb(null); resolve(); return; }
+          var bucket = window.CHOICES_EMBEDDED;
+          if (!bucket) { cb(null); resolve(); return; }
+          cb(name === 'endings' ? bucket.endings : (bucket.scenarios || {})[name]);
+          resolve();
+        });
+      });
+    });
   }
+
   function readEmbeddedManifest() {
-    var b = document.getElementById('embedded-manifest');
+    var b = $('embedded-manifest');
     if (!b || !b.textContent.trim()) return null;
     try { return JSON.parse(b.textContent); } catch (e) { return null; }
   }
@@ -582,6 +618,247 @@
     return true;
   }
 
+  /* ============ 导出学习报告（issue #4） ============
+     纯静态站，没有后端：全部在浏览器里生成文件，用 Blob + <a download> 触发下载。
+     两种格式：
+       .md   给学生看/打印/提交作业——人可读的完整复盘叙事
+       .json 给老师批改/做二次分析——机器可读的全量决策轨迹
+     两者都必须只依赖玩家真实走过的 history，不掺任何重新计算的结论。 */
+
+  function exportStamp() {
+    var d = new Date();
+    var p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes());
+  }
+
+  function exportBaseName() {
+    return 'choices-' + (scenario ? scenario.id : 'run') + '-' + exportStamp();
+  }
+
+  // 每一步的完整明细，Markdown 与 JSON 共用同一份事实来源
+  function exportSteps() {
+    if (!state || !state.history) return [];
+    return state.history.map(function (h, idx) {
+      var node = scenario.nodes[h.nodeId];
+      var choice = (node && node.choices) ? node.choices[h.choiceIndex] : null;
+      var effects = [];
+      Object.keys(h.effects || {}).forEach(function (k) {
+        var d = scenario.dimensions[k];
+        if (!d) return;
+        var delta = h.effects[k];
+        var dl = dimDeltaLabel(k, delta);
+        effects.push({
+          key: k,
+          label: pick(d.label, lang),
+          delta: delta,
+          bad: dl.bad,
+          word: dl.word.trim()
+        });
+      });
+      return {
+        step: idx + 1,
+        act: actTitle(node) || '',
+        nodeId: h.nodeId,
+        nodeText: pick(node && node.text, lang),
+        choiceText: pick(h.choiceText, lang),
+        why: (choice && choice.why) ? pick(choice.why, lang) : '',
+        effects: effects
+      };
+    });
+  }
+
+  // 分数总账：逐维度的开局/终局/净变化/改动来源
+  function exportLedger() {
+    if (!state) return [];
+    return Object.keys(scenario.dimensions).map(function (k) {
+      var d = scenario.dimensions[k];
+      var init = (typeof d.initial === 'number') ? d.initial : (d.min || 0);
+      var finalVal = state.dims[k] || 0;
+      var net = finalVal - init;
+      var dl = dimDeltaLabel(k, net);
+      return {
+        key: k,
+        label: pick(d.label, lang),
+        group: d.group || 'risk',
+        higherIsRisk: d.higherIsRisk !== false,
+        start: init,
+        final: finalVal,
+        net: net,
+        netWord: dl.word.trim(),
+        bad: dl.bad,
+        movedBy: dimMoves(k, 99).map(function (m) {
+          var mdl = dimDeltaLabel(k, m.delta);
+          return { step: m.step, choiceText: m.text, delta: m.delta, word: mdl.word.trim(), bad: mdl.bad };
+        })
+      };
+    });
+  }
+
+  function buildMarkdown() {
+    var ending = ChoicesEngine.getEnding(scenario, state.endingId);
+    var an = (ending && ending.analysis) || {};
+    var steps = exportSteps();
+    var ledger = exportLedger();
+    var L = [];
+
+    L.push('# ' + (lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report'));
+    L.push('');
+    L.push('**' + pick(scenario.title, lang) + '**  ');
+    if (scenario.theme) L.push('*' + pick(scenario.theme, lang) + '*  ');
+    L.push(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
+                        : 'Exported ' + new Date().toLocaleString('en-GB'));
+    if (ending) {
+      L.push('');
+      L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**  ');
+      L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
+    }
+    L.push('');
+    L.push('---');
+    L.push('');
+
+    // 分数总账
+    L.push('## ' + (lang === 'zh' ? '一、分数总账' : '1. Score ledger'));
+    L.push('');
+    L.push('| ' + (lang === 'zh' ? '维度' : 'Dimension') + ' | ' +
+           (lang === 'zh' ? '开局 → 终局' : 'Start → Final') + ' | ' +
+           (lang === 'zh' ? '净变化' : 'Net') + ' | ' +
+           (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
+    L.push('| --- | --- | --- | --- |');
+    ledger.forEach(function (r) {
+      var verdict = r.net === 0
+        ? (lang === 'zh' ? '持平' : 'unchanged')
+        : (r.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better'));
+      L.push('| ' + r.label + ' | ' + r.start + ' → ' + r.final + ' | ' +
+             (r.net > 0 ? '+' : '') + r.net + ' | ' + verdict + ' |');
+    });
+    L.push('');
+
+    // 决策链
+    L.push('## ' + (lang === 'zh' ? '二、决策链（共 ' + steps.length + ' 步）' : '2. Decision trail (' + steps.length + ' steps)'));
+    L.push('');
+    steps.forEach(function (s) {
+      L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
+      L.push('');
+      if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
+      if (s.nodeText) L.push('');
+      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice: ') + '**' + s.choiceText);
+      L.push('');
+      if (s.effects.length) {
+        L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
+               (lang === 'zh' ? '增减' : 'Change') + ' | ' +
+               (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
+        L.push('| --- | --- | --- |');
+        s.effects.forEach(function (e) {
+          L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
+                 (e.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better')) + ' |');
+        });
+        L.push('');
+      }
+      if (s.why) {
+        L.push('**' + (lang === 'zh' ? '为什么：' : 'Why: ') + '**' + s.why);
+        L.push('');
+      }
+    });
+
+    // 结局复盘
+    if (ending) {
+      L.push('---');
+      L.push('');
+      L.push('## ' + (lang === 'zh' ? '三、结局复盘' : '3. Ending debrief'));
+      L.push('');
+      if (ending.text) { L.push(pick(ending.text, lang)); L.push(''); }
+      var fl = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
+      if (fl) { L.push('*' + pick(fl, lang) + '*'); L.push(''); }
+      var secs = [
+        [lang === 'zh' ? '为什么会触发这个结局' : 'Why this ending fired', an.trigger],
+        [lang === 'zh' ? '你做了什么取舍' : 'The trade-off you made', an.tradeoff],
+        [lang === 'zh' ? '用 Lean Canvas 复盘' : 'Through the Lean Canvas', an.canvas],
+        [lang === 'zh' ? '法例与规范线索' : 'Legal and regulatory hooks', an.legal]
+      ];
+      secs.forEach(function (pair) {
+        if (!pair[1]) return;
+        L.push('### ' + pair[0]);
+        L.push('');
+        L.push(pick(pair[1], lang));
+        L.push('');
+      });
+      if (an.stakeholders && an.stakeholders.length) {
+        L.push('### ' + (lang === 'zh' ? '谁受到了影响' : 'Who was affected'));
+        L.push('');
+        an.stakeholders.forEach(function (sh) {
+          L.push('- **' + pick(sh.who, lang) + '** — ' + pick(sh.impact, lang));
+        });
+        L.push('');
+      }
+      if (an.mitigation && an.mitigation.length) {
+        L.push('### ' + (lang === 'zh' ? '本来可以怎么做' : 'What you could have done'));
+        L.push('');
+        an.mitigation.forEach(function (it, i) { L.push((i + 1) + '. ' + pick(it, lang)); });
+        L.push('');
+      }
+      if (ending.reflection) {
+        L.push('### ' + (lang === 'zh' ? '反思' : 'Reflection'));
+        L.push('');
+        L.push(pick(ending.reflection, lang));
+        L.push('');
+      }
+    }
+
+    L.push('---');
+    L.push('');
+    L.push('*' + (lang === 'zh'
+      ? '本局无任何随机数：结局完全由上面这 ' + steps.length + ' 个选择决定。'
+      : 'No randomness in this run: the ending is fully determined by the ' + steps.length + ' choices above.') + '*');
+    return L.join('\n');
+  }
+
+  function buildJSON() {
+    var ending = ChoicesEngine.getEnding(scenario, state.endingId);
+    return JSON.stringify({
+      game: 'Choices',
+      scenarioId: scenario.id,
+      scenarioTitle: scenario.title,
+      theme: scenario.theme || null,
+      exportedAt: new Date().toISOString(),
+      language: lang,
+      endingId: state.endingId,
+      endingTitle: ending ? ending.title : null,
+      endingType: ending ? ending.type : null,
+      perfect: isPerfectRun(),
+      finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
+      scoreLedger: exportLedger(),
+      steps: exportSteps(),
+      debrief: ending ? ending.analysis : null
+    }, null, 2);
+  }
+
+  function download(filename, mime, text) {
+    var blob = new Blob([text], { type: mime + ';charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function exportBox() {
+    var box = textEl('div', '', 'export-box');
+    box.appendChild(textEl('div', UI[lang].exportTitle, 'export-title'));
+    box.appendChild(textEl('p', UI[lang].exportNote, 'export-note'));
+    var row = textEl('div', '', 'export-actions');
+    var md = textEl('button', UI[lang].exportMd, 'btn-export');
+    md.onclick = function () { download(exportBaseName() + '.md', 'text/markdown', buildMarkdown()); };
+    var js = textEl('button', UI[lang].exportJson, 'btn-export alt');
+    js.onclick = function () { download(exportBaseName() + '.json', 'application/json', buildJSON()); };
+    row.appendChild(md);
+    row.appendChild(js);
+    box.appendChild(row);
+    return box;
+  }
+
   function renderEnding() {
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
     var box = $('ending');
@@ -650,10 +927,13 @@
     var restart = textEl('button', UI[lang].restart, 'btn-restart');
     restart.onclick = restartGame;
     var shuffle = textEl('button', UI[lang].shuffle, 'btn-shuffle');
-    shuffle.onclick = function () { loadAndStart(pickScenarioId(true)); };
+    shuffle.onclick = function () { pendingId = pickScenarioId(true); loadAndStart(pendingId); };
     row.appendChild(restart);
     row.appendChild(shuffle);
     box.appendChild(row);
+
+    // 导出学习报告：结局页最下方，与上面复盘一起构成可提交的材料
+    if (state.finished) box.appendChild(exportBox());
 
     box.classList.remove('hidden');
     $('stage').classList.add('hidden');
@@ -739,6 +1019,7 @@
 
   // 随机抽取一个创业题材（这是全局唯一的随机点，且可用 ?scenario= 指定）
   function pickScenarioId(reroll) {
+    if (!manifest || !manifest.scenarios || !manifest.scenarios.length) return null;
     var params = new URLSearchParams(location.search);
     var forced = params.get('scenario');
     if (forced && manifest.scenarios.some(function (s) { return s.id === forced; })) return forced;
@@ -752,30 +1033,41 @@
   }
 
   function metaOf(id) {
+    if (!manifest || !manifest.scenarios) return null;   // manifest 尚未加载完（首屏 applyChrome 会先跑一次）
     for (var i = 0; i < manifest.scenarios.length; i++) if (manifest.scenarios[i].id === id) return manifest.scenarios[i];
     return null;
   }
 
   function updateStartCard() {
     var card = $('scenario-card');
-    if (!card || !scenario) return;
-    card.innerHTML = '';
+    if (!card) return;
     // 封面只给「中英对照的题材名 + 一句钩子」，企划简报留给进游戏后的开篇，
     // 否则开始画面被大段文字占满，反而盖住了 PRESS START。
-    card.appendChild(biEl('div', scenario.title, 'scenario-card-title'));
-    var m = metaOf(scenario.id);
-    if (m && m.hook) card.appendChild(biEl('div', m.hook, 'scenario-card-hook'));
+    var title = (scenario && scenario.title) ? scenario.title : (metaOf(pendingId) || {}).title;
+    var hook = (scenario && metaOf(scenario.id) && metaOf(scenario.id).hook)
+      ? metaOf(scenario.id).hook : (metaOf(pendingId) || {}).hook;
+    if (!title) return;
+    var sig = pick(title, 'zh') + '|' + pick(title, 'en') + '|' + pick(hook, 'zh');
+    if (card.getAttribute('data-sig') === sig) return;   // 已渲染过，别反复清空重画
+    card.setAttribute('data-sig', sig);
+    card.innerHTML = '';
+    card.appendChild(biEl('div', title, 'scenario-card-title'));
+    if (hook) card.appendChild(biEl('div', hook, 'scenario-card-hook'));
   }
 
-  // 加载指定题材（http 下 fetch，file:// 下读内嵌副本）
+  // 加载指定题材（http 下 fetch，file:// 下按需注入 embed/<id>.js）
   function loadAndStart(id) {
     var isFile = location.protocol === 'file:';
     if (isFile) {
-      coreEndings = coreEndings || readEmbeddedEndings();
-      var emb = readEmbeddedScenario(id);
-      if (!emb) { showBanner(UI[lang].fileError + UI[lang].loadHint, 'error'); return; }
-      scenario = emb;
-      beginPlay();
+      loadEmbedScript(id, function (json) {
+        if (!json) { showBanner(UI[lang].fileError + UI[lang].loadHint, 'error'); return; }
+        scenario = json;
+        if (coreEndings) { beginPlay(); return; }
+        loadEmbedScript('endings', function (ends) {
+          coreEndings = ends || {};
+          beginPlay();
+        });
+      });
       return;
     }
     var m = metaOf(id);
@@ -912,28 +1204,37 @@
       ensureAudio();
       playStart();
       var s = $('start-screen'); if (s) s.classList.add('hidden');
+      // 场景数据到这一刻才加载：首屏不必为它多等两次往返（issue #7）。
+      if (!scenario && pendingId) loadAndStart(pendingId);
     });
 
     var shuffleBtn = $('shuffle-btn');
     if (shuffleBtn) shuffleBtn.addEventListener('click', function () {
       if (!manifest) return;
-      loadAndStart(pickScenarioId(true));
+      scenario = null;            // 换题材要丢掉上一份
+      pendingId = pickScenarioId(true);
+      updateStartCard();
+      if (!$('start-screen').classList.contains('hidden')) return;  // 还在封面就先不加载
+      loadAndStart(pendingId);
     });
 
     if (location.protocol === 'file:') {
+      // 首屏只读内嵌 manifest（~2KB）——题材卡的内容全在里面（title + hook），
+      // 不需要任何场景数据就能画出来。场景与结局等玩家真的按下 START 再加载。
       manifest = readEmbeddedManifest();
       if (!manifest) { showBanner(UI[lang].loadError + 'manifest' + UI[lang].loadHint, 'error'); return; }
-      loadAndStart(pickScenarioId(false));
+      pendingId = pickScenarioId(false);
+      if (!pendingId) { showBanner(UI[lang].loadError + 'manifest' + UI[lang].loadHint, 'error'); return; }
+      updateStartCard();
       return;
     }
 
     fetchJSON('scenarios/manifest.json', function (err, json) {
       if (err) { showBanner(UI[lang].loadError + err.message + UI[lang].loadHint, 'error'); return; }
       manifest = json;
-      fetchJSON('scenarios/' + json.endings, function (e2, js2) {
-        coreEndings = e2 ? {} : (js2.endings || {});
-        loadAndStart(pickScenarioId(false));
-      });
+      pendingId = pickScenarioId(false);
+      if (!pendingId) { showBanner(UI[lang].loadError + 'manifest' + UI[lang].loadHint, 'error'); return; }
+      updateStartCard();      // 封面立刻可读；场景同样等到 START 再取
     });
   }
 

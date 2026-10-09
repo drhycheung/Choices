@@ -16,7 +16,7 @@ A retro arcade–style interactive branching-narrative simulator for classroom t
 
 Students read a story, make choices, and trigger different branches and endings. Six scenario packs ship with the game — an AI fitness app, an AI hiring screener, AI avatar commerce, campus learning analytics, drone inspection, and AI trade documentation — and each play **randomly draws one of them**, so replaying never repeats the same story. Within a story there is zero randomness: the same choice sequence always produces the same ending. Built as a front-end-only, no-build, no-backend teaching tool to spark classroom discussion on entrepreneurship, decision-making, responsibility, and the rule of law.
 
-Files: `index.html`, `engine.js`, `player.js`, `validate.js`, `scenarios/*.json` — no build step, no backend, no API key. Open it in a browser or deploy to GitHub Pages. The pixel/retro fonts load from a CDN; everything else runs locally (copies of all scenarios and the shared endings file are embedded in `index.html`, so the file works even when double-clicked).
+Files: `index.html`, `engine.js`, `player.js`, `validate.js`, `scenarios/*.json` — no build step, no backend, no API key. Open it in a browser or deploy to GitHub Pages. The pixel/retro fonts load from a CDN; everything else runs locally (generated copies of all scenarios and the shared endings live in `embed/`, so the file still works when double-clicked).
 
 ---
 
@@ -105,7 +105,8 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
 | Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
 | Full ending debrief | Trigger · trade-off · stakeholders · mitigations · Lean Canvas reading · legal hooks, in both languages |
-| Debrief traces back to decisions | The ending attributes every score to the exact steps that moved it (risk raised by step *n*; each Canvas box changed by step *n*) |
+| Debrief traces back to decisions | The ending opens with a per-dimension **score ledger** (start → final, signed net change, and a worse/better verdict per dimension) and attributes every score to the exact steps that moved it |
+| Export a study report | The ending page exports the whole run as **Markdown** (score ledger, all 15 decisions with their deltas and reasons, full debrief) for printing or submission, or as **JSON** for marking and further analysis. Generated entirely in the browser — no backend |
 | Replayable without repetition | Six ventures, random draw on every start, plus a shuffle button on the start screen and the ending screen |
 | Multiple endings | 9 shared endings per scenario; the validator proves every one is reachable |
 | Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |
@@ -149,7 +150,7 @@ The engine never changes — you only write story data:
 
 1. **Copy a packet:** `cp scenarios/ai-fitness.json scenarios/your-topic.json` and rewrite the narrative, keeping the dimension keys and the two-track effect balance.
 2. **Register it:** add an entry to `scenarios/manifest.json` (id, file, title, hook).
-3. **Embed for offline use:** run `python3 tools/embed-scenarios.py` — it regenerates the embedded copies inside `index.html`.
+3. **Generate the offline copies:** run `python3 tools/embed-scenarios.py`. It writes `embed/<scenario>.js` plus `embed/endings.js` and refreshes the small manifest block inside `index.html`. Commit the regenerated files. The scenarios stay out of `index.html` on purpose: browsers only fire `DOMContentLoaded` after the whole document is parsed, so inlining ~284 KB of JSON delayed the first paint by over a second.
 4. **Validate:** `node validate.js scenarios/your-topic.json` proves no dead-ends, that every ending is reachable, and that each story runs at least ten rounds.
 5. **Test:** `node test.js` searches a triggering path for every ending and replays it twice to confirm determinism.
 
@@ -166,7 +167,7 @@ Tip: you can author scenes with an AI assistant — feed it the schema and the s
 | Shared endings across scenarios | One outcome system (with full debriefs) keeps six stories comparable and the data maintainable |
 | Deterministic `effects` (no RNG in play) | Educational causality must be reproducible and explainable — no dice, no luck |
 | Pure static site | Meets the hard requirement: deploy anywhere, zero ops, works in China (no Google services) |
-| Embedded scenario copies | `file://` double-click works despite browsers blocking `fetch` of local files; `tools/embed-scenarios.py` keeps them in sync |
+| Offline scenario copies | `file://` double-click works despite browsers blocking `fetch` of local files; `tools/embed-scenarios.py` writes them to `embed/` and keeps them in sync. Keeping them out of `index.html` cuts `DOMContentLoaded` from ~228 ms to ~12 ms |
 | Path / causal validator | `validate.js` proves no dead-ends, that every ending is reachable, and that stories run ≥ 10 rounds |
 | Pixel / neon arcade skin | Familiar retro-game feel lowers the participation barrier (Press Start 2P + CRT scanlines) |
 
