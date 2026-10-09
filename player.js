@@ -272,15 +272,12 @@
     if (en) el.appendChild(textEl('span', en, 'en'));
     return el;
   }
-  function biUI(key) { return { zh: UI.zh[key], en: UI.en[key] }; }
 
-  function renderBrief(compact, bilingual) {
+  function renderBrief() {
     if (!scenario || !scenario.brief) return null;
     var b = scenario.brief;
-    var box = textEl('div', '', compact ? 'brief brief-compact' : 'brief');
-    box.appendChild(bilingual
-      ? biEl('div', biUI('briefTitle'), 'brief-title')
-      : textEl('div', UI[lang].briefTitle, 'brief-title'));
+    var box = textEl('div', '', 'brief');
+    box.appendChild(textEl('div', UI[lang].briefTitle, 'brief-title'));
 
     if (typeof b === 'string') {
       box.appendChild(textEl('div', b, 'brief-para'));
@@ -290,13 +287,8 @@
       var v = b[pair[0]];
       if (!v) return;
       var row = textEl('div', '', 'brief-row');
-      if (bilingual) {
-        row.appendChild(biEl('span', biUI(pair[1]), 'brief-key'));
-        row.appendChild(biEl('span', v, 'brief-val'));
-      } else {
-        row.appendChild(textEl('span', UI[lang][pair[1]], 'brief-key'));
-        row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
-      }
+      row.appendChild(textEl('span', UI[lang][pair[1]], 'brief-key'));
+      row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
       box.appendChild(row);
     });
     return box.children.length > 1 ? box : null;
@@ -305,7 +297,7 @@
   function renderStage(node, withBrief) {
     var frag = document.createDocumentFragment();
     if (withBrief) {
-      var brief = renderBrief(false);
+      var brief = renderBrief();
       if (brief) frag.appendChild(brief);
     }
     frag.appendChild(textEl('div', pick(node.text, lang), 'node-text'));
@@ -639,12 +631,11 @@
     var card = $('scenario-card');
     if (!card || !scenario) return;
     card.innerHTML = '';
+    // 封面只给「中英对照的题材名 + 一句钩子」，企划简报留给进游戏后的开篇，
+    // 否则开始画面被大段文字占满，反而盖住了 PRESS START。
     card.appendChild(biEl('div', scenario.title, 'scenario-card-title'));
     var m = metaOf(scenario.id);
     if (m && m.hook) card.appendChild(biEl('div', m.hook, 'scenario-card-hook'));
-    // 开始之前先把 business idea 讲清楚，否则开局那一句「第一个客户是……」没有着落。
-    var brief = renderBrief(true, true);
-    if (brief) card.appendChild(brief);
   }
 
   // 加载指定题材（http 下 fetch，file:// 下读内嵌副本）
