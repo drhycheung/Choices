@@ -220,7 +220,14 @@
       }
       list.appendChild(li);
     });
-    list.appendChild(textEl('li', UI[lang].finalRisk + '：' + dimSummary(), 'trace-final'));
+
+    // 最终风险独立成块（不再是列表项），避免与上方条目挤在一起导致文字重叠
+    var fbox = $('trace-final');
+    if (fbox) {
+      fbox.classList.remove('hidden');
+      $('trace-final-label').textContent = UI[lang].finalRisk;
+      $('trace-final-value').textContent = dimSummary();
+    }
   }
 
   function dimSummary() {

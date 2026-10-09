@@ -1,6 +1,9 @@
 /* ============================================================
    一念之差 · Choices — Arcade theme
-   像素/复古字体 · 霓虹配色 · CRT 扫描线 · 方块硬阴影
+   霓虹配色 · CRT 扫描线 · 方块硬阴影
+   字体说明：Arcade 观感主要来自霓虹配色 / CRT / 硬阴影 / HUD 血条；
+   --font-display 像素字体仅用于开场大字与 PRESS START（尺寸够大、清晰），
+   其余全部使用高可读性的 --font-body（Chakra Petch + 系统中文字体回退）。
    ============================================================ */
 :root {
   --bg: #07060f;
@@ -8,7 +11,7 @@
   --panel: #14122a;
   --panel-2: #1b1736;
   --ink: #e8f0ff;
-  --muted: #8b93b8;
+  --muted: #a4acd2;
   --line: #2a2750;
   --cyan: #00f0ff;
   --magenta: #ff2e88;
@@ -17,8 +20,10 @@
   --purple: #b14aff;
   --red: #ff3b5c;
   --radius: 4px;
-  --font-pixel: 'Press Start 2P', 'ZCOOL QingKe HuangYou', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-body: 'VT323', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace;
+  /* 仅用于开场 LOGO 与 PRESS START 按钮（尺寸大，像素感清晰） */
+  --font-display: 'Press Start 2P', 'ZCOOL QingKe HuangYou', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  /* 正文 / UI：科技感但高可读性，中文回退到系统黑体，避免像素字糊成一团 */
+  --font-body: 'Chakra Petch', 'Rajdhani', system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -88,21 +93,21 @@ body::before {
 }
 .brand-wrap { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
 .brand {
-  font-family: var(--font-pixel);
-  font-weight: 800;
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 22px;
   color: var(--yellow);
   letter-spacing: 1px;
-  text-shadow: 0 0 6px var(--yellow), 3px 3px 0 #6a4b00;
+  text-shadow: 0 0 8px rgba(255, 230, 0, .55), 2px 2px 0 #6a4b00;
   animation: flicker 4.5s infinite;
 }
 .brand-en {
-  font-family: var(--font-pixel);
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--cyan);
-  letter-spacing: 1px;
-  text-shadow: 0 0 6px var(--cyan);
+  letter-spacing: 2px;
+  text-shadow: 0 0 6px rgba(0, 240, 255, .5);
 }
 .brand-sub { color: var(--muted); font-size: 15px; letter-spacing: 1px; }
 
@@ -120,8 +125,9 @@ body::before {
   border: none;
   background: transparent;
   padding: 8px 16px;
-  font-family: var(--font-pixel);
-  font-size: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
   color: #b9a7ff;
   cursor: pointer;
   transition: background .12s ease, color .12s ease;
@@ -142,7 +148,6 @@ body::before {
   box-shadow: 0 0 10px rgba(0, 240, 255, .35);
   transition: background .12s ease, color .12s ease;
 }
-.icon-btn:hover { background: var(--cyan); color: #06121a; }
 .icon-btn:focus-visible { outline: 2px solid var(--magenta); outline-offset: 2px; }
 
 .banner {
@@ -169,14 +174,16 @@ body::before {
 
 #scenario-title {
   margin: 0 0 4px;
-  font-family: var(--font-pixel);
-  font-size: 16px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.4;
   color: var(--cyan);
   text-shadow: 0 0 8px rgba(0, 240, 255, .6);
   line-height: 1.5;
 }
-.muted { color: var(--muted); font-size: 14px; letter-spacing: .5px; }
-.trace-effect { color: var(--muted); font-size: 14px; margin-top: 2px; letter-spacing: .5px; }
+.muted { color: var(--muted); font-size: 15px; line-height: 1.6; letter-spacing: .5px; }
+.trace-effect { color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 2px; letter-spacing: .5px; }
 
 /* ============ 主游戏面板（街机屏框） ============ */
 #stage {
@@ -200,7 +207,7 @@ body::before {
 }
 .hud-title {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--magenta);
@@ -217,8 +224,9 @@ body::before {
 .dim-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; gap: 8px; }
 .dim-label { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
 .dim-val {
-  font-family: var(--font-pixel);
-  font-size: 10px; color: var(--cyan);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px; color: var(--cyan);
   background: #06040f;
   padding: 4px 8px; border-radius: var(--radius);
   border: 1px solid var(--cyan);
@@ -254,14 +262,15 @@ body::before {
 
 /* ============ 选项（街机菜单硬阴影按钮） ============ */
 .choices-head {
-  font-family: var(--font-pixel);
-  font-size: 12px; letter-spacing: 1px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px; letter-spacing: 1px;
   color: var(--yellow);
-  text-shadow: 0 0 6px var(--yellow);
+  text-shadow: 0 0 6px rgba(255, 230, 0, .5);
   margin: 4px 0 12px;
   display: flex; align-items: center; gap: 6px;
 }
-.choices-head::before { content: "◆"; font-size: 10px; }
+.choices-head::before { content: "◆"; font-size: 12px; }
 .choices { display: flex; flex-direction: column; gap: 12px; }
 .choice {
   text-align: left;
@@ -279,14 +288,9 @@ body::before {
   transition: transform .08s ease, box-shadow .08s ease, background .15s ease, color .15s ease;
 }
 .choice::before { content: "▶"; color: var(--magenta); margin-right: 8px; font-size: 12px; text-shadow: 0 0 6px var(--magenta); }
-.choice:hover:not(:disabled) {
-  background: var(--magenta);
-  color: #fff;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 #5a0f33;
-  text-shadow: 0 0 6px #fff;
-}
-.choice:hover:not(:disabled)::before { color: #fff; }
+/* 移动端不启用 :hover —— 触屏点按后 hover 会“粘住”，
+   导致下一个节点里相同位置的选择项看起来像被预先选中（误导）。
+   悬停高亮仅在真正支持悬停的设备上生效，见下方 @media (hover: hover)。 */
 .choice:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #5a0f33; }
 .choice:disabled {
   opacity: 0.35; cursor: not-allowed;
@@ -305,19 +309,38 @@ body::before {
 }
 .trace-panel h2 {
   margin: 0 0 4px;
-  font-family: var(--font-pixel);
-  font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
   color: var(--purple);
-  text-shadow: 0 0 6px var(--purple);
+  text-shadow: 0 0 6px rgba(177, 74, 255, .5);
   display: flex; align-items: center; gap: 6px;
 }
-#trace-list { margin: 10px 0 0; padding-left: 18px; }
-#trace-list li { font-size: 16px; margin-bottom: 10px; color: #d9d2ff; }
+#trace-list { margin: 10px 0 0; padding-left: 22px; }
+#trace-list li { font-size: 17px; line-height: 1.6; margin-bottom: 10px; color: #d9d2ff; }
+
+/* 最终风险：独立成块，避免与上方轨迹条目挤在一起 / 文字重叠 */
 .trace-final {
-  font-family: var(--font-pixel);
-  font-size: 10px;
-  color: var(--yellow) !important;
-  text-shadow: 0 0 6px var(--yellow);
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  background: rgba(255, 230, 0, .07);
+}
+.trace-final-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: var(--yellow);
+  text-shadow: 0 0 6px rgba(255, 230, 0, .45);
+  margin-bottom: 6px;
+}
+.trace-final-value {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ffe97a;
 }
 
 /* ============ 结局（街机结算屏） ============ */
@@ -341,18 +364,20 @@ body::before {
 .ending.type-compromise { border-color: var(--yellow); box-shadow: 0 0 30px rgba(255, 230, 0, .30); }
 .ending.type-compromise::before { background: var(--yellow); }
 .ending h2 {
-  margin: 8px 0 10px;
-  font-family: var(--font-pixel);
-  font-size: 15px; line-height: 1.6;
+  margin: 8px 0 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 26px; line-height: 1.4;
   color: var(--ink);
   text-shadow: 0 0 8px rgba(255,255,255,.3);
 }
-.ending p { font-size: 18px; color: #d6e0ff; }
+.ending p { font-size: 18px; line-height: 1.7; color: #d6e0ff; }
 .ending-tag {
   display: inline-block;
-  font-family: var(--font-pixel);
-  font-size: 9px; letter-spacing: 1px;
-  padding: 5px 10px; border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px; letter-spacing: 1px;
+  padding: 6px 12px; border-radius: var(--radius);
   background: #0c0922; color: var(--muted);
   border: 1px solid var(--line);
 }
@@ -370,8 +395,9 @@ body::before {
 }
 .btn-restart {
   margin-top: 22px;
-  font-family: var(--font-pixel);
-  font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
   background: var(--yellow);
   color: #1a1400;
   border: 2px solid #fff;
@@ -381,13 +407,12 @@ body::before {
   box-shadow: 4px 4px 0 #6a4b00;
   transition: transform .08s ease, box-shadow .08s ease;
 }
-.btn-restart:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 #6a4b00; }
 .btn-restart:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #6a4b00; }
 
 #app-footer {
   position: relative; z-index: 10;
   text-align: center; padding: 16px;
-  font-size: 13px; color: var(--muted);
+  font-size: 14px; color: var(--muted); line-height: 1.6;
   letter-spacing: 1px;
 }
 
@@ -403,7 +428,7 @@ body::before {
 .start-inner { max-width: 680px; }
 .start-toggle { display: inline-flex; margin: 0 auto 22px; }
 .start-logo {
-  font-family: var(--font-pixel);
+  font-family: var(--font-display);
   font-size: 46px;
   line-height: 1.4;
   color: var(--yellow);
@@ -431,7 +456,7 @@ body::before {
   letter-spacing: 1px;
 }
 .start-btn {
-  font-family: var(--font-pixel);
+  font-family: var(--font-display);
   font-size: 18px;
   color: #1a1400;
   background: var(--yellow);
@@ -445,11 +470,35 @@ body::before {
 }
 .start-btn span { display: block; }
 .start-btn .zh { font-family: var(--font-body); font-size: 17px; margin-top: 6px; }
-.start-btn:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 #6a4b00; }
 .start-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 #6a4b00; }
 .start-hint { margin-top: 30px; }
 .start-hint .en { font-size: 15px; color: var(--ink); letter-spacing: 1px; }
 .start-hint .zh { margin-top: 5px; font-size: 14px; color: var(--muted); letter-spacing: 1px; }
+
+/* ============ 悬停高亮：仅在真正支持悬停的设备上生效 ============
+   触屏设备点按后 :hover 会“粘住”，使新渲染出来的选项看起来像被预先
+   选中，容易误导玩家。用 (hover: hover) and (pointer: fine) 限定后，
+   移动端只会保留 :active 的瞬时反馈，不会再出现预设高亮。 */
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover { background: var(--cyan); color: #06121a; }
+
+  .choice:hover:not(:disabled) {
+    background: var(--magenta);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #5a0f33;
+    text-shadow: 0 0 6px #fff;
+  }
+  .choice:hover:not(:disabled)::before { color: #fff; }
+
+  .btn-restart:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 #6a4b00; }
+  .start-btn:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 #6a4b00; }
+}
+
+/* 触屏点按时不要出现默认的半透明灰色闪烁块（也会被误认为“已选中”） */
+button, .choice, .icon-btn, .lang-toggle button {
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* ============ 动画 ============ */
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: .25; } }
@@ -469,17 +518,22 @@ body::before {
 /* ============ 响应式：桌面与移动端适配 ============ */
 @media (max-width: 720px) {
   #app-header { padding: 12px 16px; }
-  .brand { font-size: 14px; }
-  .brand-en { font-size: 9px; }
+  .brand { font-size: 18px; }
+  .brand-en { font-size: 12px; }
   #app { padding: 16px; }
-  #scenario-title { font-size: 13px; }
-  .node-text { font-size: 16px; padding: 12px 14px; }
-  .choice { font-size: 16px; padding: 11px 14px; }
-  .dim-label { font-size: 13px; }
+  #scenario-title { font-size: 18px; }
+  .node-text { font-size: 17px; padding: 12px 14px; }
+  .choices-head { font-size: 15px; }
+  .choice { font-size: 17px; padding: 12px 14px; }
+  .dim-label { font-size: 14px; }
+  .dim-val { font-size: 13px; }
   .dim-seg { height: 11px; }
+  #trace-list li { font-size: 16px; }
+  .trace-final-label { font-size: 14px; }
+  .trace-final-value { font-size: 15px; }
   .ending { padding: 22px 18px; }
-  .ending h2 { font-size: 12px; }
-  .start-logo { font-size: 22px; }
-  .start-logo span { font-size: 13px; }
+  .ending h2 { font-size: 21px; }
+  .start-logo { font-size: 30px; }
+  .start-logo span { font-size: 14px; }
   .start-btn { font-size: 14px; padding: 14px 22px; }
 }

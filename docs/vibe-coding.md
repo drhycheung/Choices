@@ -54,7 +54,7 @@ The topic (national security / law / ethics) is "serious". A retro neon arcade f
 5. **Static player** (`player.js` + `index.html` + `styles.css`) — fetch loads the scenario, renders narrative/choices/risk bars/ending/trail.
 6. **Bilingual + header toggle** — every string becomes `{zh,en}`; one global language state; clicking either language advances the *same* engine state.
 7. **`file://` support** — embedded a copy of the scenario in `index.html` so double-clicking works despite browser CORS rules on local `fetch`.
-8. **Arcade reskin** — pixel font (Press Start 2P), CRT scanlines, neon HUD with segmented "health-bar" risk meters, blocky drop-shadow choice buttons, a **PRESS START** intro screen.
+8. **Arcade reskin** — neon HUD with segmented "health-bar" risk meters, CRT scanlines, blocky drop-shadow choice buttons, a **PRESS START** intro screen. The pixel display font (Press Start 2P) is kept only for the large start-screen logo and PRESS START button; all other text uses a legible tech font (Chakra Petch + system CJK fallbacks) after playtesting showed small pixel text was unreadable.
 9. **This README + vibe-coding guide** — restructured to the EdTech "house format" (motivation → features → design → run → limits → docs → licence).
 
 Every step was checked with `node test.js` and `node validate.js` before committing.
@@ -81,7 +81,8 @@ The goal is to help students *feel* how a small, ordinary decision can escalate 
 
 ## Visual / style
 - Retro ARCADE theme to lower the barrier on a "serious" topic and make "one thought away" (一念之差) viscerally game-like.
-- Pixel font (Press Start 2P), CRT scanlines, neon palette (cyan/magenta/yellow), blocky drop-shadow buttons, a "PRESS START" intro overlay.
+- Arcade display font (Press Start 2P) for the start-screen logo and PRESS START button only; a legible tech font (Chakra Petch + system CJK fallbacks) everywhere else, CRT scanlines, neon palette (cyan/magenta/yellow), blocky drop-shadow buttons, a "PRESS START" intro overlay.
+- Hover highlights are gated behind `@media (hover: hover) and (pointer: fine)` so touch devices never show a stuck "pre-selected" choice.
 - Risk Monitor = segmented neon "health-bar" meters per dimension with a danger pulse past the threshold.
 - Responsive: desktop and mobile; centre the play area in a single column on desktop.
 

@@ -12,7 +12,7 @@ A retro arcade–style interactive branching-narrative simulator for classroom t
 
 **Built for:** [The Education University of Hong Kong (EdUHK)](https://www.eduhk.hk) — **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and also usable in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
 
-![一念之差 promo poster](docs/cover.png)
+![一念之差 — start screen](docs/screenshot.png)
 
 A retro arcade–style educational game where students read a story, make choices, and trigger different branches and endings. The first scenario puts a student entrepreneur in situations involving **national-security, legal, and ethical** risk — every choice deterministically changes risk scores and leads to a corresponding ending. It was created as a front-end-only, no-build, no-backend teaching tool for **EdUHK (The Education University of Hong Kong) GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security** (and is likewise suited to **GEL1032 Technology Entrepreneurship in AI-enhanced Business**) to spark classroom discussion on decision-making, responsibility, and the rule of law.
 
