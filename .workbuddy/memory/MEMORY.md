@@ -30,6 +30,14 @@
 ## 文档约定
 - README.md 与 docs/vibe-coding.md 一律用英文撰写（除项目中文名「一念之差」保留外，不出现任何中文解释性文字）。中文简释段落已删除；示例 JSON 中的 zh 字段值用 "…" 占位，不写真实中文。应用本身仍是中英双语（player.js 的 UI 文案与场景数据不受影响）。
 
+## 玩法设计：双轨计分（2026-10-09 落地）
+- **为什么改**：单轨风险分会导致"永远选最保守的就赢"，与课程要教的创业取舍背道而驰。
+- **双轨**：风险轨（国家安全 / 法律 / 伦理，愈低愈好，`higherIsRisk:true`）+ 创业轨（对应 Lean Canvas 的问题–方案契合 / 商业模式 / 护城河，愈高愈好）。结局由两轨联合门控 → 2×2 结局空间，"干净但停摆"与"增长但爆雷"都算输。
+- **三条设计规则**（写进 README Design philosophy）：①局内零随机（随机只用于开局抽题材）；②好选项也会"买不起"（`requirements` 门控，未达标记显示 lockedHint）；③每个数字都要有解释（选项带 `why`，结局带 `analysis` 复盘）。
+- **题材**：6 个创业载体（AI 运动 App / AI 招聘 / AI 虚拟主播 / 学习分析 / 无人机巡检 / AI 跨境单据），开局随机抽一个，`?scenario=<id>` 可锁定用于课堂演示。结局文案集中在 `scenarios/endings-core.json` 共享，题材只加 `endingFlavor`。
+- **改 JSON 后必跑**：`node validate.js <scenario>`（含 ≥10 轮检查）、`node test.js`（DFS 找路径 + 回放验证确定性）、`python3 tools/embed-scenarios.py`（重生成 index.html 内嵌 JSON，保证 file:// 可用）。
+- **生成双语 JSON 的坑**：LLM 批量产出会在 zh 字段混入韩/俄/波兰语等残片，甚至非法 JS 字面量。必须扫非白名单拉丁词与非 CJK 脚本后再入库。
+
 ## 关键决策记录
 - 2026-10-08 调研同类开源项目：Ink(4963★,MIT) / Twine2(2904★,GPL-3.0) / ChoiceScript(461★) 为成熟创作工具；教育向数据驱动引擎（Liberty Park / NetStrider 等）均 0★，市场空白。结论：NetStrider 与 Liberty Park 互补，不二选一。
 - 2026-10-08 确认"静态站必须" → 排除 Streamlit 服务端方案。
