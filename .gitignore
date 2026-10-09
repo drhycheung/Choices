@@ -1,3 +1,6 @@
 .DS_Store
 node_modules/
 *.log
+
+# 课程材料（科目大纲 / 进度表 / 课件）：仅本地参考，不推送到 GitHub
+GEL2026/
