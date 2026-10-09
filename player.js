@@ -260,11 +260,27 @@
     ['data', 'briefData']
   ];
 
-  function renderBrief(compact) {
+  /* 开始画面没有语言切换按钮（语言在进入后才有），所以那一屏的题材卡必须中英双行。
+   * biEl：把 { zh, en } 字段渲染成上下两行，中文在上、英文在下。 */
+  function biEl(tag, value, cls) {
+    var el = document.createElement(tag);
+    if (cls) el.className = cls;
+    if (typeof value === 'string') { el.appendChild(textEl('span', value, 'zh')); return el; }
+    var zh = pick(value, 'zh');
+    var en = pick(value, 'en');
+    if (zh) el.appendChild(textEl('span', zh, 'zh'));
+    if (en) el.appendChild(textEl('span', en, 'en'));
+    return el;
+  }
+  function biUI(key) { return { zh: UI.zh[key], en: UI.en[key] }; }
+
+  function renderBrief(compact, bilingual) {
     if (!scenario || !scenario.brief) return null;
     var b = scenario.brief;
     var box = textEl('div', '', compact ? 'brief brief-compact' : 'brief');
-    box.appendChild(textEl('div', UI[lang].briefTitle, 'brief-title'));
+    box.appendChild(bilingual
+      ? biEl('div', biUI('briefTitle'), 'brief-title')
+      : textEl('div', UI[lang].briefTitle, 'brief-title'));
 
     if (typeof b === 'string') {
       box.appendChild(textEl('div', b, 'brief-para'));
@@ -274,8 +290,13 @@
       var v = b[pair[0]];
       if (!v) return;
       var row = textEl('div', '', 'brief-row');
-      row.appendChild(textEl('span', UI[lang][pair[1]], 'brief-key'));
-      row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
+      if (bilingual) {
+        row.appendChild(biEl('span', biUI(pair[1]), 'brief-key'));
+        row.appendChild(biEl('span', v, 'brief-val'));
+      } else {
+        row.appendChild(textEl('span', UI[lang][pair[1]], 'brief-key'));
+        row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
+      }
       box.appendChild(row);
     });
     return box.children.length > 1 ? box : null;
@@ -618,11 +639,11 @@
     var card = $('scenario-card');
     if (!card || !scenario) return;
     card.innerHTML = '';
-    card.appendChild(textEl('div', pick(scenario.title, lang), 'scenario-card-title'));
+    card.appendChild(biEl('div', scenario.title, 'scenario-card-title'));
     var m = metaOf(scenario.id);
-    if (m && m.hook) card.appendChild(textEl('div', pick(m.hook, lang), 'scenario-card-hook'));
+    if (m && m.hook) card.appendChild(biEl('div', m.hook, 'scenario-card-hook'));
     // 开始之前先把 business idea 讲清楚，否则开局那一句「第一个客户是……」没有着落。
-    var brief = renderBrief(true);
+    var brief = renderBrief(true, true);
     if (brief) card.appendChild(brief);
   }
 
@@ -748,6 +769,9 @@
     var params = new URLSearchParams(location.search);
     var langParam = params.get('lang');
     if (langParam === 'en' || langParam === 'zh') lang = langParam;
+    // 未显式指定 ?lang= 时，跟随浏览器语言：中文环境开局直接进中文，
+    // 否则仍是英文（课堂演示可用 ?lang=zh / ?lang=en 锁定）。
+    else if (navigator.language && navigator.language.toLowerCase().indexOf('zh') === 0) lang = 'zh';
 
     document.querySelectorAll('#lang-toggle button').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });

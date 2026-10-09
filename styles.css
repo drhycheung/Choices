@@ -310,6 +310,12 @@ body::before {
 .brief-val { flex: 1 1 auto; color: #cfe4ff; }
 .brief-row:last-child .brief-val { color: #ffd9e4; }
 .brief-para { font-size: 17px; line-height: 1.7; color: #cfe4ff; }
+/* 简报双行（仅开始画面）：键名中英并列，英文值用小一号的弱化色 */
+.brief-key .zh, .brief-key .en, .brief-val .zh, .brief-val .en { display: block; }
+.brief-title .zh, .brief-title .en { display: block; }
+.brief-title .en { margin-top: 2px; }
+.brief-key .en { font-size: .72em; font-weight: 500; opacity: .8; letter-spacing: .5px; }
+.brief-val .en { margin-top: 2px; font-size: .86em; color: var(--muted); }
 
 /* 首页开始卡里的紧凑版 */
 .brief-compact {
@@ -322,8 +328,24 @@ body::before {
   box-shadow: inset 0 0 20px rgba(255, 46, 136, .07);
 }
 .brief-compact .brief-title { color: var(--magenta); text-shadow: 0 0 6px rgba(255, 46, 136, .45); }
-.brief-compact .brief-row { font-size: 14px; margin-bottom: 6px; }
+.brief-compact .brief-row { font-size: 14px; margin-bottom: 5px; }
 .brief-compact .brief-key { color: var(--yellow); }
+/* 首页简报是「预览」：中英都给，但各自限行，否则会把 PRESS START 挤出首屏。
+   完整四行（不限行）进游戏后开篇仍然显示。 */
+.brief-compact .brief-val .zh {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+.brief-compact .brief-val .en {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;
+}
+/* 屏幕不够高时（多数笔记本），首页简报只留「做什么」与「会碰到什么数据」两行：
+   宁可少两行，也不能把 PRESS START 挤出首屏。完整四行进游戏后开篇照常显示。 */
+.brief-compact .brief-row:nth-child(3),
+.brief-compact .brief-row:nth-child(4) { display: none; }
+@media (min-height: 940px) {
+  .brief-compact .brief-row:nth-child(3),
+  .brief-compact .brief-row:nth-child(4) { display: flex; }
+}
 
 /* ============ 选项（街机菜单硬阴影按钮） ============ */
 .choices-head {
@@ -622,11 +644,11 @@ body::before {
   text-shadow: 0 0 10px var(--cyan);
   margin-top: 10px;
 }
-.start-sub { margin: 18px 0 20px; }
+.start-sub { margin: 12px 0 15px; }
 
 /* 开场画面的「本局题材」卡片（开局随机抽，可换） */
 .scenario-card {
-  margin: 0 auto 26px;
+  margin: 0 auto 18px;
   max-width: 560px;
   padding: 14px 16px;
   border: 2px solid var(--magenta);
@@ -645,6 +667,18 @@ body::before {
 .scenario-card-body { min-height: 44px; }
 .scenario-card-title { font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.5; }
 .scenario-card-hook { margin-top: 6px; font-size: 15px; color: var(--muted); line-height: 1.6; }
+/* 题材卡内容中英双行：中文在上，英文小字在下（开始画面无语言切换按钮） */
+.scenario-card-title .zh, .scenario-card-title .en,
+.scenario-card-hook .zh, .scenario-card-hook .en { display: block; }
+.scenario-card-title .en {
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .5px;
+}
+.scenario-card-hook .zh { color: #cfe4ff; }
+.scenario-card-hook .en { margin-top: 4px; font-size: 13px; color: var(--muted); }
 .btn-shuffle-start {
   margin-top: 14px;
   font-family: var(--font-body);
@@ -689,7 +723,7 @@ body::before {
 .start-btn span { display: block; }
 .start-btn .zh { font-family: var(--font-body); font-size: 17px; margin-top: 6px; }
 .start-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 #6a4b00; }
-.start-hint { margin-top: 30px; }
+.start-hint { margin-top: 20px; }
 .start-hint .en { font-size: 15px; color: var(--ink); letter-spacing: 1px; }
 .start-hint .zh { margin-top: 5px; font-size: 14px; color: var(--muted); letter-spacing: 1px; }
 
@@ -848,12 +882,11 @@ button, .choice, .icon-btn, .lang-toggle button {
   .scenario-card { padding: 12px 12px; margin-bottom: 18px; }
   .scenario-card-title { font-size: 16px; }
   .scenario-card-label .en, .scenario-card-label .zh { font-size: 11px; }
-  /* 首页空间有限：简报只保留「做什么」与「会碰到什么数据」，
-     完整四行进游戏后开篇仍会显示。 */
-  .brief-compact .brief-row:nth-child(3),
-  .brief-compact .brief-row:nth-child(4) { display: none; }
+  /* 窄屏同理：简报只留两行，完整四行进游戏后开篇仍会显示 */
   .brief-compact { padding: 10px 11px; margin-top: 10px; }
   .brief-compact .brief-row { font-size: 13px; line-height: 1.5; }
+  .brief-compact .brief-val .zh { -webkit-line-clamp: 2; }
+  .brief-compact .brief-val .en { -webkit-line-clamp: 1; }
   .start-logo { font-size: 30px; }
   .start-logo span { font-size: 14px; }
   .start-btn { font-size: 14px; padding: 14px 22px; }
