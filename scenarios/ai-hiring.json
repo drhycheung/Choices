@@ -1,0 +1,334 @@
+{
+  "id": "ai-hiring",
+  "title": { "zh": "明眼 HireSight：AI 招聘筛选平台", "en": "HireSight: An AI Hiring Platform" },
+  "theme": { "zh": "算法评分、劳动者权益与人才数据", "en": "Algorithmic scoring, worker rights and talent data" },
+  "brief": {
+    "zh": "你们做的是给企业筛简历的 AI：读职位要求、给候选人打分、排出面试顺序。它确实帮 HR 省下了一半时间，直到有人开始问：这个分数是怎么算出来的？",
+    "en": "You build an AI that screens CVs: read the job spec, score each candidate, rank the interview order. It genuinely halves the HR workload — until someone asks how the score was calculated."
+  },
+  "endingsShared": "endings-core.json",
+  "dimensions": {
+    "national_security": { "label": { "zh": "国家安全风险", "en": "National security risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83D\uDEE1\uFE0F" },
+    "legal": { "label": { "zh": "法律合规风险", "en": "Legal compliance risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "⚖️" },
+    "ethics": { "label": { "zh": "伦理与信任风险", "en": "Ethics and trust risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83E\uDDD0" },
+    "pmf": { "label": { "zh": "问题–方案契合", "en": "Problem–solution fit" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFAF" },
+    "business": { "label": { "zh": "商业模式", "en": "Business model" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83D\uDCB0" },
+    "moat": { "label": { "zh": "护城河与不公平优势", "en": "Moat and unfair advantage" }, "initial": 1, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFF0" }
+  },
+  "start": "intro",
+  "acts": {
+    "act1": { "zh": "第一章 · 客群与问题（Canvas 1–2）", "en": "Act I · Customers and Problem (Canvas 1–2)" },
+    "act2": { "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）", "en": "Act II · Solution, Data and Training (Canvas 3–4)" },
+    "act3": { "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）", "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)" },
+    "act4": { "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）", "en": "Act IV · Scale and Spillover (Canvas 7, 9)" }
+  },
+  "nodes": {
+    "intro": {
+      "act": "act1",
+      "text": {
+        "zh": "你们三个人窝在创业中心写完了第一版，本地一家制造企业的 HR 试用后说：这是我用过最快的筛简历工具。然后她问：为什么这几个人的分数这么低？你们答不上来。",
+        "en": "Three of you finished version one in the incubator. An HR lead at a local manufacturer tried it and said it was the fastest screening tool she had ever used. Then she asked why certain candidates scored so low. Nobody could answer."
+      },
+      "choices": [
+        { "text": { "zh": "接下这笔试点合同，正式成立团队", "en": "Sign the pilot contract and form the team" }, "next": "c1_segment" }
+      ]
+    },
+    "c1_segment": {
+      "act": "act1",
+      "text": {
+        "zh": "第一件事：先服务谁？校招邮件里，就业中心说今年毕业生简历量又涨了三成。",
+        "en": "First question: who do you serve first? The career centre says graduate CV volume is up another thirty per cent this year."
+      },
+      "choices": [
+        {
+          "text": { "zh": "深耕中小科技企业的技术岗，把一个岗位类型做透", "en": "Go deep on technical roles at small and mid-sized tech firms" },
+          "next": "c1_problem",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "单一岗位类型的评价标准相对客观，容易与 HR 对齐并形成校验集；这类细分口碑一旦建立，就是后来者最难复制的部分（Canvas 9）。缺点是市场容量有限。", "en": "One role type has comparatively objective criteria, easy to align on with HR and turn into a validation set; once that reputation forms it is the hardest part for a competitor to copy (Canvas 9). The market is limited, though." }
+        },
+        {
+          "text": { "zh": "面向所有行业、所有岗位，先把简历量做起来", "en": "Serve every industry and every role; scale CV volume first" },
+          "next": "c1_problem",
+          "effects": { "business": 2, "ethics": 1 },
+          "why": { "zh": "全岗位意味着模型必须用同一套标准判断完全不同的人群，偏见更容易被放大且难以解释；涉猎越广，对候选人的告知义务也越难履行。好处是数据量与合同额增长快。", "en": "Covering all roles means one yardstick judges very different populations, so bias amplifies and resists explanation; the wider the scope, the harder it is to discharge your duty to inform candidates. Volume and contract value grow fast, though." }
+        }
+      ]
+    },
+    "c1_problem": {
+      "act": "act1",
+      "text": {
+        "zh": "第二件事：HR 的真痛点是什么？有人说是「简历太多看不完」，也有 HR 私下说「我不敢承担漏掉好人的责任」。",
+        "en": "Second question: what is the real pain? Some say too many CVs; privately, one HR says she is afraid of being blamed for missing a good candidate."
+      },
+      "choices": [
+        {
+          "text": { "zh": "跟二十位 HR 深聊，确认痛点是「证据不足」而不是「速度慢」", "en": "Interview twenty HR leads; confirm the pain is weak evidence, not slowness" },
+          "next": "c2_product",
+          "effects": { "pmf": 2 },
+          "why": { "zh": "真正的因果在这句话里：HR 需要的是可解释的依据，而不是更快的排序。把产品定位在「给出可被质疑的证据」上，Canvas 2 的假设才成立。", "en": "The causal insight sits right there: HR needs defensible evidence, not faster ranking. Positioning the product as 'evidence you can challenge' is what makes Canvas 2 hold." }
+        },
+        {
+          "text": { "zh": "做 AI 综合评分与人才榜单，让决策一键完成", "en": "Ship an AI score and talent leaderboard so decisions take one click" },
+          "next": "c2_product",
+          "effects": { "business": 2, "ethics": 1 },
+          "why": { "zh": "一键决策最符合「省时间」的采购理由，合同容易签。但把人的前途压缩成一个数字，会让候选人与面试官都失去追问的能力，自动化决策的问责开始缺位。", "en": "One-click decisions match the 'save time' purchasing rationale and are easy to sign. But collapsing someone's future into one number removes the ability to question it, and accountability for automated decisions starts to vanish." }
+        },
+        {
+          "text": { "zh": "按最大采购方要求做：教育局高校就业版", "en": "Build what the biggest buyer wants: a university careers-edition" },
+          "next": "c2_product",
+          "effects": { "business": 3, "pmf": -1 },
+          "why": { "zh": "一个大单直接跑通 Canvas 6，现金流确定。但买方要的是汇报口径而非真实筛选效果，产品会往「看起来有AI」的方向偏，真切合度反而下降。", "en": "One large deal makes Canvas 6 work immediately and removes cash-flow doubt. But the buyer wants reporting optics rather than real screening quality, so the product drifts towards looking AI-driven while genuine fit drops." }
+        }
+      ]
+    },
+    "c2_product": {
+      "act": "act2",
+      "text": {
+        "zh": "MVP 二选一：是替 HR 找理由，还是替 HR 得出结论？",
+        "en": "Two MVP candidates: give HR the reasoning, or give HR the verdict?"
+      },
+      "choices": [
+        {
+          "text": { "zh": "AI 面试辅训 + 岗位技能测评：给出可核查的证据链", "en": "Interview coaching plus skills assessment: produce a checkable evidence chain" },
+          "next": "c2_keyresource",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "测评与证据链会沉淀成题库、评分标准与效度数据，这是最难复制的部分（Canvas 9）。它增长慢，但每服务一家客户就多一层壁垒。", "en": "Assessments and evidence chains accumulate into question banks, rubrics and validity data — the pieces hardest to replicate (Canvas 9). Growth is slower, but every client adds another layer to the moat." }
+        },
+        {
+          "text": { "zh": "候选人搜索与评分榜单：企业可以直接「搜人」", "en": "Candidate search with a scoring leaderboard so companies can 'shop' people" },
+          "next": "c2_keyresource",
+          "effects": { "business": 2, "national_security": 1 },
+          "why": { "zh": "人才库与人才画像库传播性强、付费意愿高；但把大量本地劳动力（含关键行业、关键岗位人员）的结构化画像集中沉淀在一个可被检索的数据库里，本身就是敏感性极高的资产。", "en": "A searchable talent pool monetises well and spreads fast, but concentrating structured profiles of a local workforce — including people in critical roles and industries — creates an asset of very high sensitivity." }
+        }
+      ]
+    },
+    "c2_keyresource": {
+      "act": "act2",
+      "text": {
+        "zh": "要让模型读懂岗位，需要一套完整的技能词库与职位映射。自建要好几个月；市面上有一套境外数据商的产品，接口现成。",
+        "en": "To read job specs the model needs a full skill taxonomy and job mapping. Building it takes months; an overseas vendor sells a ready-made API."
+      },
+      "choices": [
+        {
+          "text": { "zh": "自建本地化词库，用公开的行业分类标准起步", "en": "Build a local taxonomy on published industry classification standards" },
+          "next": "c2_training",
+          "effects": { "pmf": 1 },
+          "why": { "zh": "自建慢却在可控范围内：词库来源清晰、可解释、可维护，后续面对质询时能说清每个权重来自哪里。本地化还会顺带改善匹配质量。", "en": "Building it in-house is slower but stays explainable: clear provenance, maintainable, and you can account for every weight when challenged. Localisation also improves matching quality." }
+        },
+        {
+          "text": { "zh": "直接接境外数据商接口，先用起来", "en": "Plug in the overseas vendor API and get moving" },
+          "next": "c2_training",
+          "effects": { "national_security": 2, "legal": 1, "pmf": 1 },
+          "why": { "zh": "把本地职位与人才结构持续发送给境外数据服务，可能构成重要数据或个人信息出境的连续流转，且依赖不可控的第三方。换来的是上线速度和现成的语义能力。", "en": "Streaming local job and workforce structure to an overseas service may amount to continuous cross-border transfer of important data or personal information, on infrastructure you do not control. The upside is speed and ready-made semantics." }
+        }
+      ]
+    },
+    "c2_training": {
+      "act": "act2",
+      "text": {
+        "zh": "效度验证需要的历史录用数据，试点企业只给了一小部分。团队担心模型不够聪明。",
+        "en": "Validating the model needs historical hiring outcomes, and the pilot firm released only a slice. The team worries the model will look dumb."
+      },
+      "choices": [
+        {
+          "text": { "zh": "用试点企业书面授权的数据，接受样本量小的现实", "en": "Use only data the pilot covered in writing and accept a small sample" },
+          "next": "c2_ops",
+          "effects": { "pmf": 1 },
+          "why": { "zh": "样本小会让短期内指标不好看，但授权链条完整意味着日后经得起尽调、追问与客户法务提问。这是把节奏让给了正确性。", "en": "A small sample makes the metrics look worse for now, but a complete authorisation chain survives due diligence, scrutiny and client counsel questions later. You trade pace for correctness." }
+        },
+        {
+          "text": { "zh": "再抓一批公开招聘平台的简历与社交资料补齐样本", "en": "Scrape public job boards and social profiles to fill the sample" },
+          "next": "c2_ops",
+          "effects": { "pmf": 2, "legal": 2, "ethics": 2 },
+          "why": { "zh": "「公开可见」不等于「可用于训练」：多数情况下仍缺少合法性基础与告知义务；用未授权的简历训练就业评分模型，是当前正在被起诉的一类做法。模型效果确实变好。", "en": "'Publicly visible' does not mean 'available for training': in most cases there is still no lawful basis and no notice. Training an employment-scoring model on unauthorised CVs is exactly the practice now being litigated. The model does get better." }
+        }
+      ]
+    },
+    "c2_ops": {
+      "act": "act2",
+      "text": {
+        "zh": "推理与数据处理放在哪？本地机器贵，境外云服务便宜且带 GPU 券。",
+        "en": "Where do inference and processing run? Local hardware is expensive; offshore cloud is cheap and comes with GPU credits."
+      },
+      "choices": [
+        {
+          "text": { "zh": "境内算力 + 校内助理工审核重要岗位评分，数据不出境", "en": "Domestic compute plus campus assistants reviewing critical role scores; no data leaves" },
+          "next": "c3_money",
+          "effects": { "moat": 1, "pmf": 1 },
+          "why": { "zh": "成本高、扩展慢，但人工复核会把判断标准固化成产品内的知识，而每一家客户都在替你验证模型；同时规避跨境与第三方处理义务。", "en": "It costs more and scales slower, but human review turns judgement into in-product knowledge, so every customer validates the model for you; it also sidesteps cross-border and third-party processing duties." }
+        },
+        {
+          "text": { "zh": "用境外云服务跑模型和数据标注，便宜又快", "en": "Run the model and labelling on offshore cloud: cheap and fast" },
+          "next": "c3_money",
+          "effects": { "business": 2, "national_security": 2, "legal": 2 },
+          "why": { "zh": "把候选人的完整履历（含任职单位与技能结构）送到境外云端处理与标注，通常会触发跨境提供规则与安全评估；而这些正是日后被问时最难补的手续。成本优势非常明显。", "en": "Shipping candidates' full histories — employer and skills structure included — offshore for processing and labelling usually triggers transfer rules and security assessment: paperwork that is hardest to retrofit later. The cost advantage is real, though." }
+        }
+      ]
+    },
+    "c3_money": {
+      "act": "act3",
+      "text": {
+        "zh": "客户愿意付钱了。销售同事提了三种收费法，其中一种「HR 一定会喜欢」。",
+        "en": "Customers are willing to pay. Sales proposes three models, one of which 'HR will definitely love'."
+      },
+      "choices": [
+        {
+          "text": { "zh": "企业按席位订阅，明确承诺不转售候选人数据", "en": "Per-seat subscription with a written promise never to resell candidate data" },
+          "next": "c3_channel",
+          "effects": { "business": 2, "moat": 1 },
+          "why": { "zh": "订阅是最慢的收钱方式，但「不转售」写在合同里会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。", "en": "Subscriptions collect money slowest, but 'we never resell' written into the contract becomes a two-sided promise to candidates and HR alike — and in this industry trust is the hardest advantage to copy (Canvas 9)." }
+        },
+        {
+          "text": { "zh": "免费试用 + 转售「人才库」与候选人偏好画像", "en": "Free trial, then resell the talent pool and candidate preference profiles" },
+          "next": "c3_channel",
+          "effects": { "business": 4, "legal": 2, "ethics": 3 },
+          "why": { "zh": "把求职者数据当成商品转售，通常远超收集时的目的与合理预期，几乎必然违反告知同意义务。财务回报最快，法律与伦理负债也最大。", "en": "Treating jobseekers' data as inventory to resell goes far beyond the original purpose and reasonable expectation, which almost always breaches notice-and-consent duties. Fastest financial return, largest legal and ethical debt." }
+        },
+        {
+          "text": { "zh": "只出售聚合洞察：区域人才流动与技能缺口报告（不少于二十家企业）", "en": "Sell only aggregated insight: regional talent-flow and skills-gap reports (minimum twenty firms)" },
+          "next": "c3_channel",
+          "effects": { "business": 3, "ethics": 1 },
+          "why": { "zh": "提高聚合门槛并剥离个体标识后，商业价值仍在而再识别风险大幅下降，是可行中间路线。但若报告没告知数据来自哪些候选人，透明度仍不足。", "en": "Raising the aggregation threshold and stripping identifiers keeps commercial value while sharply cutting re-identification risk — a genuine middle path. Transparency still falls short if the report never says whose data produced it." }
+        }
+      ]
+    },
+    "c3_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么让更多企业用上？一家招聘代理说，他手上有三百家企业愿意试用。",
+        "en": "How do you reach more employers? One recruitment agent says he can put you in front of three hundred firms."
+      },
+      "choices": [
+        {
+          "text": { "zh": "靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户", "en": "Grow through HR communities and referrals, taking only clients you can serve" },
+          "next": "c3_deploy",
+          "effects": { "business": 1, "pmf": 1 },
+          "why": { "zh": "慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。", "en": "It is slow, but every client forces you to explain your scoring, which raises fit; referrals are the cheapest channel per win and renew best (Canvas 5)." }
+        },
+        {
+          "text": { "zh": "交给招聘代理分销，按人头返佣冲合同量", "en": "Distribute through recruiters with per-head commission to drive contract volume" },
+          "next": "c3_deploy",
+          "effects": { "business": 3, "legal": 1, "ethics": 1 },
+          "why": { "zh": "代理能快速放大合同数，但按人头分成的结构会诱导代理夸大效果甚至代为填写岗位要求，把产品的可信度押在别人的销售话术上。", "en": "Agents multiply contract count quickly, but per-head incentives push them to overstate results or even write job specs themselves, resting your credibility on someone else's sales pitch." }
+        }
+      ]
+    },
+    "c3_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道，并有权要求人工复核。",
+        "en": "A friend in law school warns: if an AI helps decide who gets an interview, candidates usually have the right to know and to request human review."
+      },
+      "choices": [
+        {
+          "text": { "zh": "向候选人披露自动化评分事实，并提供申诉与人工复核通道", "en": "Disclose automated scoring to candidates and offer appeal plus human review" },
+          "next": "c3_harm",
+          "effects": { "moat": 1 },
+          "why": { "zh": "披露与申诉通道是纯成本：不增加签约数也不提升短期指标。但在就业场景下，可问责的流程本身就是差异化优势，也是应对投诉与审查的第一道防线。", "en": "Disclosure and appeals are pure cost: no extra deals, no short-term metric lift. But in employment contexts an accountable process is itself the differentiator, and your first line of defence against complaints and audits." }
+        },
+        {
+          "text": { "zh": "不在候选人侧披露，企业对外的说法是「系统综合评估」", "en": "No candidate-facing disclosure; externally it is a 'system assessment'" },
+          "next": "c3_harm",
+          "effects": { "business": 2, "legal": 3, "ethics": 2 },
+          "why": { "zh": "不披露可以避免大量解释成本，客户也更省事。但涉及就业、信贷等关键决定的自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。", "en": "Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment or credit increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness." }
+        }
+      ]
+    },
+    "c3_harm": {
+      "act": "act3",
+      "text": {
+        "zh": "内部测试发现：模型对职业空档期较长的人、四十岁以上的候选人以及无明显「名企」标签的人评分系统性偏低。有人辩解说，这是因为数据本来就是这样。",
+        "en": "Internal testing shows systematically lower scores for people with long career gaps, candidates over forty, and anyone without a famous employer on their CV. Someone argues the data simply looks like that."
+      },
+      "choices": [
+        {
+          "text": { "zh": "公开已知局限、加入人工复核、重采样修正训练集", "en": "Publish the limitations, add human review, resample to fix the training set" },
+          "next": "c4_incident",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "「数据本来如此」是描述问题，不是解决问题。修正代表性会让评分对更广泛人群可靠，也让「可辩护的筛选」成为定位；代价是上线延期。", "en": "'The data is like that' describes the problem rather than solving it. Fixing representativeness makes scoring reliable across more people and makes 'defensible screening' your position; the cost is a delayed launch." }
+        },
+        {
+          "text": { "zh": "先上线，把适用人群写成「毕业于重点院校的技术岗」", "en": "Ship now and declare the intended population as 'graduates of leading institutions'" },
+          "next": "c4_incident",
+          "effects": { "ethics": 3, "legal": 1, "business": 1 },
+          "why": { "zh": "限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。", "en": "Fine print will not contain the systemic effect, and once someone loses an opportunity the burden of proof stays with you. This turns known disparate impact into a shipped feature. Launch stays on schedule." }
+        }
+      ]
+    },
+    "c4_incident": {
+      "act": "act4",
+      "text": {
+        "zh": "劳动权益团体拿到一份对比测试：同样的简历，只改性别与年龄，评分差了两档。他们准备向监管部门投诉，并要求公开算法说明。",
+        "en": "A labour-rights group ran a matched-pair test: identical CVs differing only in gender and age scored two bands apart. They are preparing a regulatory complaint and demanding the algorithm be explained."
+      },
+      "choices": [
+        {
+          "text": { "zh": "拒绝公开：算法是商业秘密，评分仅供参考", "en": "Refuse to disclose: the algorithm is a trade secret and scores are advisory only" },
+          "next": "c4_funding",
+          "effects": { "national_security": 3, "legal": 2, "business": 1 },
+          "why": { "zh": "「商业秘密」不能覆盖涉及劳动权利的差别影响举证义务；把评分称作「参考」也不改变它在实务中的决定作用。短期省下的是公开成本，付出的是信任与法律责任。", "en": "'Trade secret' does not override the duty to account for disparate impact in employment, and calling scores advisory does not change their decisive role in practice. You save disclosure cost and pay in trust and liability." }
+        },
+        {
+          "text": { "zh": "委托第三方算法审计并公开摘要，建立评分可解释机制", "en": "Commission an independent algorithm audit, publish a summary, build explainability" },
+          "next": "c4_funding",
+          "requirements": { "business": ">=7" },
+          "lockedHint": { "zh": "一次正式算法审计费用不低：商业模式分达到 7 才能负担（目前账单撑不住）。", "en": "A proper algorithm audit is expensive: it needs a business-model score of 7 (the budget cannot take it yet)." },
+          "effects": { "moat": 2, "business": -1 },
+          "why": { "zh": "审计要花钱、公开要承担被挑错的风险（商业模式分下降），但一份可引用的独立结论，会让大企业客户、政府采购与学校就业部门把你当成唯一敢公开的那个选项。", "en": "Auditing costs money and publishing invites criticism (business score drops), but a citable independent conclusion makes you the one vendor that large employers, public procurement and career offices can safely pick." }
+        },
+        {
+          "text": { "zh": "被动处理：只在收到投诉后人工复核该候选人", "en": "Handle it reactively: manually review only the candidates who complain" },
+          "next": "c4_funding",
+          "effects": { "national_security": 1, "ethics": 1, "business": 1 },
+          "why": { "zh": "逐个复核看似节省，实则把发现成本转嫁给最弱势的当事人——只有懂得投诉的人才拿得到救济，系统性偏差原封不动。", "en": "Case-by-case review looks cheap but shifts detection costs onto the most vulnerable: only people who know how to complain get relief, while systemic bias stays untouched." }
+        }
+      ]
+    },
+    "c4_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
+        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+      },
+      "choices": [
+        {
+          "text": { "zh": "接受境外 HR SaaS 巨头的战略投资，人才库对其全球客户开放", "en": "Take strategic investment from an offshore HR SaaS giant and open the talent pool to its global customers" },
+          "next": "epilogue",
+          "effects": { "business": 3, "national_security": 2, "legal": 1 },
+          "why": { "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。", "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce — including who works in critical industries — is open to overseas customers, you have continuous outbound transfer and third-party sharing you no longer control." }
+        },
+        {
+          "text": { "zh": "接受本地产业基金，扩张慢一些但数据留在本地", "en": "Take a local industry fund: slower expansion, data stays local" },
+          "next": "epilogue",
+          "effects": { "business": 1, "moat": 2 },
+          "why": { "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒——这就是护城河。", "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers. That is the moat." }
+        },
+        {
+          "text": { "zh": "不融资，靠订阅收入自然增长", "en": "Take no funding; grow on subscriptions alone" },
+          "next": "epilogue",
+          "effects": { "business": -1, "moat": 1 },
+          "why": { "zh": "现金流会紧、扩张会慢，但不必为增长牺牲数据边界，也不必向股东解释每一次取舍。这种独立性在这个行业本身就是一种稀缺优势。", "en": "Cash gets tight and growth slows, but you never trade away data boundaries for growth nor justify every trade-off to shareholders. In this industry that independence is itself scarce." }
+        }
+      ]
+    },
+    "epilogue": {
+      "act": "act4",
+      "text": {
+        "zh": "十二个月过去了。当初那位 HR 还在用你们的工具，只是她的问题现在已经有人替她回答了——或者没有人能回答。",
+        "en": "Twelve months on, that HR lead still uses your tool. Her question now has an answer — or nobody has one."
+      },
+      "choices": []
+    }
+  },
+  "endingFlavor": {
+    "boom_ns": { "zh": "通报发布会上的那张图，是你们卖给全球客户的本地技能分布图。", "en": "The chart on the press-conference screen was the local skills map you sold worldwide." },
+    "bust_ns": { "zh": "公司没做起来，那批被送往境外训练的简历却还在别人的服务器里。", "en": "The company failed, but those CVs sent offshore for training are still sitting on someone else's server." },
+    "boom_legal": { "zh": "集体诉讼的原告名单里，第一位是你们的试用期员工。", "en": "The first name on the class-action list was one of your own probationary staff." },
+    "bust_legal": { "zh": "产品在市场上从没被真正验证，却在律师函里被反复引用。", "en": "The product was never validated by the market, but it was quoted endlessly in legal letters." },
+    "boom_ethics": { "zh": "那份只改了性别与年龄的对照测试，成了社交平台上的爆款。", "en": "The matched-pair test with only gender and age changed went viral." },
+    "bust_ethics": { "zh": "早期用户不多，但其中一位把评分差异图发到了校友群。", "en": "There were few early users, but one posted the scoring gap into an alumni group." },
+    "win_clean": { "zh": "劳动团体最终把你们的复核流程写进了他们的参考范例。", "en": "The labour group ended up citing your review process as a reference example." },
+    "win_resilient": { "zh": "你们第一次被投诉时改了三行代码，第二次改了三条流程。", "en": "The first complaint cost three lines of code; the second cost three processes." },
+    "stalled": { "zh": "一年后，只有两家客户续约，岗位反馈数据几乎没有增长。", "en": "A year later only two clients renewed, and the feedback dataset barely grew." }
+  }
+}

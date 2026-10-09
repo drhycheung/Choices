@@ -20,7 +20,9 @@
 })(typeof self !== 'undefined' ? self : this, function (Engine) {
   'use strict';
 
-  function validate(scenario) {
+  // validate(scenario) 或 validate(scenario, { endings: <共享结局表> })
+  // opts.endings 用于「多个场景共用一套结局」的情形（见 scenarios/endings-core.json）。
+  function validate(scenario, opts) {
     const errors = [];
     const warnings = [];
 
@@ -30,7 +32,7 @@
 
     const dims = scenario.dimensions || {};
     const nodes = scenario.nodes || {};
-    const endings = scenario.endings || {};
+    const endings = (opts && opts.endings) || scenario.endings || {};
 
     /* ---- A. 结构合法 ---- */
 
@@ -42,6 +44,12 @@
       if (typeof dims[k].initial !== 'number') errors.push('维度缺少 initial: ' + k);
       if (typeof dims[k].min !== 'number' || typeof dims[k].max !== 'number') {
         errors.push('维度未定义 min/max（校验器需要有限范围做可达性搜索）: ' + k);
+      }
+      if (typeof dims[k].higherIsRisk !== 'boolean') {
+        warnings.push('维度 ' + k + ' 未声明 higherIsRisk(true/false)，HUD 无法判断方向');
+      }
+      if (dims[k].group !== 'risk' && dims[k].group !== 'venture') {
+        warnings.push('维度 ' + k + ' 未声明 group(risk/venture)，HUD 无法分组显示');
       }
     }
 
@@ -64,7 +72,17 @@
             catch (e) { errors.push('节点 ' + nid + ' 选项[' + i + '] requirements 表达式错误: ' + e.message); }
           }
         }
+        // 教学完整性：带影响的选项必须解释「为什么」；被锁定的选项必须提示解锁条件
+        if (c.effects && !c.why) {
+          warnings.push('节点 ' + nid + ' 选项[' + i + '] 有影响但缺少 why 解释（总结页需要说明因果）');
+        }
+        if (c.requirements && !c.lockedHint) {
+          warnings.push('节点 ' + nid + ' 选项[' + i + '] 有解锁条件但缺少 lockedHint（玩家看不懂为何不可选）');
+        }
       });
+      if ((node.choices || []).length > 0 && !node.act) {
+        warnings.push('节点 ' + nid + ' 未声明 act（章节标签）');
+      }
     }
 
     for (const eid in endings) {
@@ -78,6 +96,10 @@
         }
       }
       if (!e.type) warnings.push('结局 ' + eid + ' 未声明 type(success/fail/compromise)');
+      const an = e.analysis || {};
+      ['trigger', 'tradeoff', 'stakeholders', 'mitigation', 'canvas'].forEach(function (f) {
+        if (!an[f]) warnings.push('结局 ' + eid + ' 的复盘缺少 ' + f + '（总结页需要详细复盘）');
+      });
     }
 
     if (errors.length > 0) {
@@ -88,15 +110,18 @@
     // 状态 = (节点, 维度向量)。维度被钳制在 [min,max]，范围有限 -> 状态数有限。
     const startState = Engine.createState(scenario);
     const visited = {};
-    const queue = [startState];
+    const queue = [{ state: startState, depth: 0 }];
     const keyOf = function (st) { return st.current + '|' + JSON.stringify(st.dims); };
     visited[keyOf(startState)] = true;
+    let maxDepth = 0;   // 最长决策链路：用于检查「每局至少十轮抉择」
 
     const reachableEndings = {};
     let deadEndPaths = 0;
 
     while (queue.length > 0) {
-      const st = queue.shift();
+      const item = queue.shift();
+      const st = item.state;
+      maxDepth = Math.max(maxDepth, item.depth);
       const node = nodes[st.current];
       const choices = (node && node.choices) || [];
       const enabled = choices.filter(function (c, i) {
@@ -105,7 +130,7 @@
 
       if (enabled.length === 0) {
         // 到达终局：必须能选出一个合法结局，否则即为“死路/无结局”
-        const eid = Engine.selectEnding(scenario, st.dims);
+        const eid = Engine.selectEnding(scenario, st.dims, endings);
         if (!eid) {
           deadEndPaths++;
           errors.push('存在无合法结局的终局状态 @节点 ' + st.current + ' 维度=' + JSON.stringify(st.dims));
@@ -128,7 +153,7 @@
         const k = keyOf(ns);
         if (!visited[k]) {
           visited[k] = true;
-          queue.push(ns);
+          queue.push({ state: ns, depth: item.depth + 1 });
         }
       });
     }
@@ -138,22 +163,34 @@
       if (!reachableEndings[eid]) warnings.push('结局不可达（没有任何选择序列能触发）: ' + eid);
     }
     if (deadEndPaths > 0) errors.push(deadEndPaths + ' 条路径落在无合法结局的状态（死路）');
+    if (maxDepth < 10) warnings.push('最长决策链路只有 ' + maxDepth + ' 步，建议至少 10 轮抉择');
 
-    return { ok: errors.length === 0, errors: errors, warnings: warnings };
+    return { ok: errors.length === 0, errors: errors, warnings: warnings, maxDepth: maxDepth };
   }
 
   return { validate: validate };
 });
 
-/* 命令行入口：node validate.js <scenario.json> */
+/* 命令行入口：
+ *   node validate.js <scenario.json> [endings.json]
+ * 场景声明了 endingsShared 时，请传入共享结局文件（多个题材共用一套结局）。 */
 if (typeof require !== 'undefined' && require.main === module) {
   const fs = require('fs');
+  const path = require('path');
   const p = process.argv[2];
-  if (!p) { console.error('用法: node validate.js <scenario.json>'); process.exit(2); }
+  if (!p) { console.error('用法: node validate.js <scenario.json> [endings.json]'); process.exit(2); }
   try {
     const sc = JSON.parse(fs.readFileSync(p, 'utf8'));
-    const r = module.exports.validate(sc);
+    let opts = null;
+    // 未显式传入 endings 时，自动沿用场景里 endingsShared 指向的共享结局文件
+    const shared = process.argv[3] || sc.endingsShared;
+    if (shared) {
+      const sharedPath = path.isAbsolute(shared) ? shared : path.join(path.dirname(p), shared);
+      opts = { endings: JSON.parse(fs.readFileSync(sharedPath, 'utf8')).endings };
+    }
+    const r = module.exports.validate(sc, opts);
     console.log(r.ok ? '校验通过 ✓' : '校验未通过 ✗');
+    if (typeof r.maxDepth === 'number') console.log('最长决策链路: ' + r.maxDepth + ' 步');
     if (r.errors.length) console.log('错误:\n - ' + r.errors.join('\n - '));
     if (r.warnings.length) console.log('警告:\n - ' + r.warnings.join('\n - '));
     process.exit(r.ok ? 0 : 1);

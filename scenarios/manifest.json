@@ -1,0 +1,11 @@
+{
+  "endings": "endings-core.json",
+  "scenarios": [
+    { "id": "ai-fitness", "file": "ai-fitness.json", "title": { "zh": "步频 Pace：AI 运动 App", "en": "Pace: AI Fitness App" }, "hook": { "zh": "位置轨迹聚合出的热力图，何时越过了国安红线？", "en": "When does an aggregated heat map cross the national-security line?" } },
+    { "id": "ai-hiring", "file": "ai-hiring.json", "title": { "zh": "明眼 HireSight：AI 招聘筛选", "en": "HireSight: AI Hiring" }, "hook": { "zh": "一个候选人被打了低分，谁来解释为什么？", "en": "A candidate scored low — who explains why?" } },
+    { "id": "ai-avatar", "file": "ai-avatar.json", "title": { "zh": "像素主播 MirrorStudio：数字人带货", "en": "MirrorStudio: AI Avatars" }, "hook": { "zh": "24 小时不休息的主播，代价是谁承担？", "en": "A host who never sleeps — who pays for it?" } },
+    { "id": "edu-analytics", "file": "edu-analytics.json", "title": { "zh": "学镜 StudyScope：校园学习分析", "en": "StudyScope: Learning Analytics" }, "hook": { "zh": "模型说这个孩子不行，凭什么？", "en": "On what basis may a model say a child is weak?" } },
+    { "id": "drone-inspection", "file": "drone-inspection.json", "title": { "zh": "瞰巡 SkyPatrol：无人机巡检", "en": "SkyPatrol: Drone Inspection" }, "hook": { "zh": "航线两侧的远景，也算你们的资产吗？", "en": "Who owns the view beside your flight line?" } },
+    { "id": "trade-doc-ai", "file": "trade-doc-ai.json", "title": { "zh": "单流 TradeFlow：AI 跨境单据", "en": "TradeFlow: AI Trade Documents" }, "hook": { "zh": "少缴的税与失控的管制物项，只隔一行归类。", "en": "One tariff line separates saved duty from leaked controlled goods." } }
+  ]
+}

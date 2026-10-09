@@ -22,6 +22,11 @@
 - dev 期可用 Python 做校验器/编译器（仅开发时，不进运行时）。
 - 参考项目：引擎架构取 NetStrider/text-adventure-engine；场景 Schema 与教育层（反思题/多结局/变量评分）取 Liberty Park Scenario Engine 的 config.json 模式（但 Liberty Park 的 Streamlit 绑定不适合，仅作模板参考）。
 
+## 课程材料保密约定（重要）
+- 仓库根目录下的 **`GEL2026/` 文件夹（科目大纲、上课进度表、课件 pptx/docx，约 70MB）属于本地教学材料，一律不得推送到 GitHub**。
+- 已在 `.gitignore` 中加入 `GEL2026/`；任何 `git add -A` 都不会带上它。改动后可用 `git check-ignore -v GEL2026/...` 复核。
+- 同理，不要把这些材料的内容（未公开的成绩、学生信息、内部评语等）写进 README / 公开文档。课件中的案例（Strava、Didi、TikTok、DeepSeek、deepfake 等）本身是公开新闻，可作为场景素材，但**不要照抄课件原文**。
+
 ## 文档约定
 - README.md 与 docs/vibe-coding.md 一律用英文撰写（除项目中文名「一念之差」保留外，不出现任何中文解释性文字）。中文简释段落已删除；示例 JSON 中的 zh 字段值用 "…" 占位，不写真实中文。应用本身仍是中英双语（player.js 的 UI 文案与场景数据不受影响）。
 

@@ -1,0 +1,334 @@
+{
+  "id": "ai-avatar",
+  "title": { "zh": "像素主播 MirrorStudio：AI 数字人带货", "en": "MirrorStudio: AI Avatar Commerce" },
+  "theme": { "zh": "生成内容标识、肖像授权与深度伪造", "en": "Generated-content labelling, likeness rights and deepfakes" },
+  "brief": {
+    "zh": "你们做的工具可以让一家早餐店老板录三分钟视频，之后每晚有一位「数字人」替他直播带货。成本极低，效果极好，也极难分辨真假。",
+    "en": "Your tool lets a breakfast-shop owner record three minutes and then have a 'digital host' sell for him every night. It is cheap, it converts, and it is almost impossible to tell apart from a real person."
+  },
+  "endingsShared": "endings-core.json",
+  "dimensions": {
+    "national_security": { "label": { "zh": "国家安全风险", "en": "National security risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83D\uDEE1\uFE0F" },
+    "legal": { "label": { "zh": "法律合规风险", "en": "Legal compliance risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "⚖️" },
+    "ethics": { "label": { "zh": "伦理与信任风险", "en": "Ethics and trust risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83E\uDDD0" },
+    "pmf": { "label": { "zh": "问题–方案契合", "en": "Problem–solution fit" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFAF" },
+    "business": { "label": { "zh": "商业模式", "en": "Business model" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83D\uDCB0" },
+    "moat": { "label": { "zh": "护城河与不公平优势", "en": "Moat and unfair advantage" }, "initial": 1, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFF0" }
+  },
+  "start": "intro",
+  "acts": {
+    "act1": { "zh": "第一章 · 客群与问题（Canvas 1–2）", "en": "Act I · Customers and Problem (Canvas 1–2)" },
+    "act2": { "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）", "en": "Act II · Solution, Data and Training (Canvas 3–4)" },
+    "act3": { "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）", "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)" },
+    "act4": { "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）", "en": "Act IV · Scale and Spillover (Canvas 7, 9)" }
+  },
+  "nodes": {
+    "intro": {
+      "act": "act1",
+      "text": {
+        "zh": "你们的第一个客户是一家连锁早餐店。上线两周，夜间直播间的成交额比老板真人播的时候还高。评论区有人问：主播是请来的小姑娘吗？老板回了一个笑脸。",
+        "en": "Your first customer is a breakfast-shop chain. Two weeks after launch, the late-night stream outsells the owner's own sessions. Someone asks in the comments whether the host is a hired presenter. The owner replies with a smiley."
+      },
+      "choices": [
+        { "text": { "zh": "接下第二批客户，把工具产品化", "en": "Sign the second batch of customers and productise the tool" }, "next": "c1_segment" }
+      ]
+    },
+    "c1_segment": {
+      "act": "act1",
+      "text": {
+        "zh": "第一件事：先把工具卖给谁？本地生活商家铺满了整条街，而品牌方的预算在一个完全不同的量级。",
+        "en": "First question: who do you sell to first? Local merchants line the whole street, while brand budgets live in a completely different league."
+      },
+      "choices": [
+        {
+          "text": { "zh": "深耕本地生活商家：餐饮、零售、服务门店", "en": "Go deep on local merchants: food, retail and service shops" },
+          "next": "c1_problem",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "同一类商家的带货话术与货品结构相似，容易形成可复用的模板与效果基准；这类口碑一旦铺开就是最难被抄走的资产（Canvas 9），只是单价很低。", "en": "One merchant category shares scripts and product structures, so templates and benchmarks become reusable; that reputation, once localised, is the hardest asset to copy (Canvas 9) — though unit prices stay low." }
+        },
+        {
+          "text": { "zh": "面向所有带货场景，先把播主数量做起来", "en": "Serve every live-commerce scenario and scale the number of avatars" },
+          "next": "c1_problem",
+          "effects": { "business": 2, "ethics": 1 },
+          "why": { "zh": "海量用户意味着海量面孔与声音样本，而你既没有时间逐一核实授权，也很难监督每个数字人最终出现在什么场景。规模来得最快，失控也最快。", "en": "Mass adoption means mass volumes of faces and voices, with neither time to verify each licence nor visibility into where every avatar eventually appears. Scale arrives fastest, and so does loss of control." }
+        }
+      ]
+    },
+    "c1_problem": {
+      "act": "act1",
+      "text": {
+        "zh": "第二件事：商家的真痛点是什么？有人说请不起主播，也有运营说真正缺的是「有人盯屏」。",
+        "en": "Second question: what is the merchant's real pain? Some say they cannot afford a host; one operator says what they really lack is 'someone watching the stream'."
+      },
+      "choices": [
+        {
+          "text": { "zh": "跟十五家门店聊，确认痛点是夜间时段无人值守", "en": "Interview fifteen stores; confirm the pain is unstaffed night hours" },
+          "next": "c2_product",
+          "effects": { "pmf": 2 },
+          "why": { "zh": "把问题定义为「夜间空档」而不是「主播太贵」，产品的边界就清楚了：补齐时段而非替代人。Canvas 2 的证据越扎实，后续的功能与定价越容易说服人。", "en": "Framing the problem as 'dead night hours' rather than 'hosts are expensive' clarifies scope: fill the slot, do not replace the person. Stronger Canvas 2 evidence makes features and pricing far easier to defend." }
+        },
+        {
+          "text": { "zh": "做一键「明星脸」主播，用酷炫效果拉新", "en": "Ship one-click celebrity-look hosts and acquire users with spectacle" },
+          "next": "c2_product",
+          "effects": { "business": 2, "ethics": 1 },
+          "why": { "zh": "皮肤与形象的噱头确实能带来疯传式增长。但允许生成与现实公众人物高度相似的形象，通常落在肖像权、声音权益与反不正当竞争的交叉区，也最容易被用于误导。", "en": "Spectacle around looks and voices really does spread fast. But letting users generate likenesses close to real public figures lands squarely on the overlap of portrait rights, voice rights and unfair competition — and is easiest to misuse." }
+        },
+        {
+          "text": { "zh": "按最大客户要求做：给一家 MCN 做专属定制版", "en": "Build what the biggest client wants: a bespoke version for one MCN" },
+          "next": "c2_product",
+          "effects": { "business": 3, "pmf": -1 },
+          "why": { "zh": "一个定制大单让 Canvas 6 立刻成立，现金流确定。但产品会朝单一机构的直播间诉求偏移，中小商家的真实痛点被排在后面，契合度下降。", "en": "One bespoke deal makes Canvas 6 work immediately and removes cash doubt. But the roadmap bends towards one studio's studio-stage needs, pushing real merchant pain further down — fit drops." }
+        }
+      ]
+    },
+    "c2_product": {
+      "act": "act2",
+      "text": {
+        "zh": "MVP 二选一：每位商家拥有自己的数字人，还是所有人共用一套更好看的模板？",
+        "en": "Two MVP candidates: every merchant gets their own digital host, or everyone shares one better-looking template?"
+      },
+      "choices": [
+        {
+          "text": { "zh": "品牌专属数字人：需本人出镜授权、录满三分钟", "en": "Brand-exclusive avatars requiring the person to appear and authorise a three-minute recording" },
+          "next": "c2_keyresource",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "要求本人出镜并签署授权，会让上手流程变重、转化变慢；但这套授权凭证与唯一的音色−形象配对，恰是日后抵御盗用指控、拿下品牌客户的资产（Canvas 9）。", "en": "Requiring appearance and written authorisation makes onboarding heavy and conversion slow; but those consent records and unique voice-likeness pairings are exactly what defends you against impersonation claims and wins brand clients (Canvas 9)." }
+        },
+        {
+          "text": { "zh": "共享模板 + 一键生成：不要求实名，先款先得", "en": "Shared templates with one-click generation: no identity checks, first come first served" },
+          "next": "c2_keyresource",
+          "effects": { "business": 2, "national_security": 1 },
+          "why": { "zh": "零门槛带来最快的用户增长。但当任何人都能生成以假乱真的面孔与声音，这些素材进入公共信息环境的速度与规模，本身就是一类难以回收的公共风险。", "en": "Zero friction brings the fastest user growth. But once anyone can generate indistinguishable faces and voices, the speed and scale at which such clips enter the public information space is itself a hard-to-recall public risk." }
+        }
+      ]
+    },
+    "c2_keyresource": {
+      "act": "act2",
+      "text": {
+        "zh": "要让数字人自然，需要大量真人的形象与声音素材。签约模特要钱；网上有大量网红视频可以「取」。",
+        "en": "To make avatars look natural you need lots of real faces and voices. Signing models costs money; the internet is full of influencer footage you could 'borrow'."
+      },
+      "choices": [
+        {
+          "text": { "zh": "签约本地模特与学生，签署明确的肖像与声音授权", "en": "Sign local models and students with explicit likeness and voice licences" },
+          "next": "c2_training",
+          "effects": { "pmf": 1 },
+          "why": { "zh": "授权素材数量有限会限制初期效果，但每一份明示授权都能追溯到人，后续商用、转授权、出海都不会埋雷。这是一种慢但干净的底料。", "en": "Licensed material is limited, which caps early quality, but every explicit consent traces back to a person, so later commercial use, sublicensing and expansion carry no buried liabilities. Slow, but clean feedstock." }
+        },
+        {
+          "text": { "zh": "抓取网红直播片段做训练集，先做出效果", "en": "Scrape influencer streams for the training set and get results first" },
+          "next": "c2_training",
+          "effects": { "national_security": 2, "legal": 1, "pmf": 1 },
+          "why": { "zh": "未经许可的形象与声音属于受保护的人格权益，用它训练会直接种下侵权与非法生物特征处理的隐患；若素材中夹杂公职人员或敏感场景，后果更重。效果确实提升。", "en": "Unauthorised likeness and voice are protected personality interests; training on them plants the seed for infringement and unlawful biometric processing claims. It is worse still if the footage includes public officials or sensitive settings. It does improve output quality." }
+        }
+      ]
+    },
+    "c2_training": {
+      "act": "act2",
+      "text": {
+        "zh": "口型与微表情总要更多数据才够自然。合规同学建议只用授权数据，工程同学说数据量不够。",
+        "en": "Lip sync and micro-expressions ease when you have more data. Compliance wants authorised data only; engineering says there is not enough."
+      },
+      "choices": [
+        {
+          "text": { "zh": "只用授权数据，接受口型略逊的版本", "en": "Use authorised data only and accept slightly worse lip sync" },
+          "next": "c2_ops",
+          "effects": { "pmf": 1 },
+          "why": { "zh": "效果略差会让演示没那么惊艳，但每一项数据的来源都能被写进技术文档；这在投标、尽调与平台审核时是最省时间的通行证。", "en": "Slightly weaker output makes demos less impressive, but every datum's provenance can go into the technical documentation — the most time-saving pass there is in bidding, diligence and platform review." }
+        },
+        {
+          "text": { "zh": "混入第三方素材库与网络抓到的样本", "en": "Blend in third-party libraries and scraped samples" },
+          "next": "c2_ops",
+          "effects": { "pmf": 2, "legal": 2, "ethics": 2 },
+          "why": { "zh": "混合数据集通常交付出最好的效果指标，但你无法证明每一条的合法性基础；一旦有人主张权利，举证责任与追溯成本都在你们这边。", "en": "Mixed datasets usually produce the best quality metrics, but you cannot prove a lawful basis for each item; when someone asserts their rights, both the burden of proof and the tracing cost fall on you." }
+        }
+      ]
+    },
+    "c2_ops": {
+      "act": "act2",
+      "text": {
+        "zh": "渲染要 GPU。本地机房排队两小时一步；境外云在低峰期便宜得接近免费。",
+        "en": "Rendering needs GPUs. The local cluster queues two hours per step; offshore cloud at off-peak is nearly free."
+      },
+      "choices": [
+        {
+          "text": { "zh": "境内渲染 + 校内 TAs 做质量把关，素材不出境", "en": "Render domestically with quality checks by teaching assistants; assets stay local" },
+          "next": "c3_money",
+          "effects": { "moat": 1, "pmf": 1 },
+          "why": { "zh": "排队与人工把关拖慢交付，但把关标准会固化成产品的质量检测流程，同时避免把人脸与声纹这类生物特征素材送出境内所带来的一切义务。", "en": "Queues and manual checks slow delivery, but the review rubric hardens into product QA, while keeping biometric material — faces and voiceprints — out of every cross-border obligation." }
+        },
+        {
+          "text": { "zh": "境外云渲染 + 海外团队微调，又快又便宜", "en": "Render on offshore cloud with overseas fine-tuning: fast and cheap" },
+          "next": "c3_money",
+          "effects": { "business": 2, "national_security": 2, "legal": 2 },
+          "why": { "zh": "把人脸与声音这类生物特征数据交给境外处理链条，通常会同时触发敏感个人信息处理与跨境提供的严格要求，而这恰恰是最难事后补手续的一类。速度与成本优势明显。", "en": "Handing biometric material to an overseas processing chain usually triggers both sensitive-personal-information rules and strict cross-border requirements at once — precisely the paperwork hardest to retrofit. The speed and cost advantage is obvious." }
+        }
+      ]
+    },
+    "c3_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了。销售说有一种收法，商家「几乎等于白拿我们的服务」。",
+        "en": "Money starts coming in. Sales says there is one pricing model where merchants get the service 'almost for free'."
+      },
+      "choices": [
+        {
+          "text": { "zh": "按月订阅，并明确写明形象与声音不转授权", "en": "Monthly subscription stating that likeness and voice are never sublicensed" },
+          "next": "c3_channel",
+          "effects": { "business": 2, "moat": 1 },
+          "why": { "zh": "订阅收钱慢，但把「不转授权」写进条款，会让模特和商家都放心把最宝贵的素材交给你——这份信任积累到一定程度就没人能替（Canvas 9）。", "en": "Subscriptions bill slowly, but promising never to sublicense reassures both models and merchants about handing over their most valuable assets — that trust, once banked, cannot be replaced (Canvas 9)." }
+        },
+        {
+          "text": { "zh": "免费生成 + 按带货成交额抽成，素材可二次授权给第三方", "en": "Free generation plus revenue share, with assets sublicensable to third parties" },
+          "next": "c3_channel",
+          "effects": { "business": 4, "legal": 2, "ethics": 3 },
+          "why": { "zh": "抽成模式最受欢迎、合同最好签；但对他人形象与声音的二次商业授权，通常远超原始授权范围，属于把创作者的权利当成可以再卖一次的库存。法律风险最高。", "en": "Revenue share is the most popular and easiest contract to sign; but sublicensing someone's likeness and voice usually exceeds the original licence, treating a creator's rights as inventory you can sell twice. Highest legal exposure." }
+        },
+        {
+          "text": { "zh": "卖聚合效果洞察：品类话术与时段转化报告（不少于二十家）", "en": "Sell aggregated insight: category scripts and time-slot conversion reports (minimum twenty stores)" },
+          "next": "c3_channel",
+          "effects": { "business": 3, "ethics": 1 },
+          "why": { "zh": "在剥离个体标识后仍可出售有价值的洞察，是务实的中间路线；但如果并不告知数据来源与用途，透明度仍然不足，信任会慢慢流失。", "en": "Selling useful insight after stripping identifiers is a pragmatic middle route; transparency still falls short if you never disclose where the data came from, and trust erodes quietly." }
+        }
+      ]
+    },
+    "c3_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？隔壁写字楼有支地推团队，说一个月能签三百家；也有同行推荐的做法：找商圈里的头部商户示范。",
+        "en": "How do you scale? A field-sales team downstairs promises three hundred stores a month; another founder swears by flagship merchants as reference points."
+      },
+      "choices": [
+        {
+          "text": { "zh": "做标杆店示范 + 商圈口碑，每月只接能服务的数目", "en": "Build flagship references and district referrals; take only what you can serve" },
+          "next": "c3_deploy",
+          "effects": { "business": 1, "pmf": 1 },
+          "why": { "zh": "慢，但每家标杆店都会把话术模板磨得更准（契合度上升），而同商圈商户之间的口碑扩散是单位成本最低的渠道（Canvas 5）。", "en": "It is slow, but each flagship sharpens the script templates (higher fit), and peer contagion within a district is the cheapest channel per win (Canvas 5)." }
+        },
+        {
+          "text": { "zh": "地推团队分销，签约返现冲门店数", "en": "Distribute through field sales with signing bonuses to drive store count" },
+          "next": "c3_deploy",
+          "effects": { "business": 3, "legal": 1, "ethics": 1 },
+          "why": { "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没有人能还原。", "en": "Bonusing on signature count pushes sales to sign for merchants and even register accounts on their behalf — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed." }
+        }
+      ]
+    },
+    "c3_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "合规同学第三次提醒：这类内容通常必须做显著标识并保留可追溯元数据，否则平台有义务下架。",
+        "en": "Someone in compliance reminds you, not for the first time: this kind of content usually must carry a conspicuous label and retain traceable metadata, or platforms are obliged to pull it."
+      },
+      "choices": [
+        {
+          "text": { "zh": "显著标识 + 嵌入不可见水印与生成元数据", "en": "Conspicuous label plus invisible watermark and generation metadata" },
+          "next": "c3_harm",
+          "effects": { "moat": 1 },
+          "why": { "zh": "标识与水印不带来任何额外转化，纯粹是成本；但当诈骗视频出现时，可追溯的元数据是你唯一能自证清白的东西，也是最硬的品牌资产。", "en": "Labelling and watermarking add zero conversion and are pure cost; but when a scam clip surfaces, traceable metadata is the only thing that can exonerate you — and your hardest brand asset." }
+        },
+        {
+          "text": { "zh": "不标识：用户要的就是「像真人」", "en": "No label: users are paying for something that looks real" },
+          "next": "c3_harm",
+          "effects": { "business": 2, "legal": 3, "ethics": 2 },
+          "why": { "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。", "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling of AI-generated content, and omitting it can look like facilitating deception." }
+        }
+      ]
+    },
+    "c3_harm": {
+      "act": "act3",
+      "text": {
+        "zh": "客服转来一条投诉：有人用你们的模板做了某位财经评论员的形象，在群聊里推荐所谓「稳赚」的投资群。",
+        "en": "Support forwards a complaint: someone used your templates to build the likeness of a financial commentator and recommend a 'guaranteed' investment group in chats."
+      },
+      "choices": [
+        {
+          "text": { "zh": "公开已知滥用情形、加公众人物检测与人工复核、建立举报通道", "en": "Publish known misuse patterns, add public-figure detection and human review, open a reporting channel" },
+          "next": "c4_incident",
+          "effects": { "pmf": 2, "moat": 1 },
+          "why": { "zh": "防护与复核会让一部分正常用户觉得麻烦（短期指标受压），但「不容易被用来骗人」会变成品牌客户的采购理由，也是最难复制的产品能力。", "en": "Safeguards annoy some legitimate users (pressuring short-term metrics), but 'hard to use for fraud' becomes the reason brand clients buy you — and the hardest capability to copy." }
+        },
+        {
+          "text": { "zh": "先不管，把「禁止用于虚假信息」写进用户协议", "en": "Do nothing for now; write 'prohibited for disinformation' into the terms of service" },
+          "next": "c4_incident",
+          "effects": { "ethics": 3, "legal": 1, "business": 1 },
+          "why": { "zh": "条款只能约束愿意遵守条款的人。对已经发生的诈骗而言，「我们禁止过」通常不足以免责；实质是先上线、后果由受害者承担。指标好看。", "en": "Terms only bind people willing to read them. For fraud already happening, 'we prohibited it' rarely discharges liability; in substance you ship first and let victims absorb consequences. The metrics look good." }
+        }
+      ]
+    },
+    "c4_incident": {
+      "act": "act4",
+      "text": {
+        "zh": "警方来电：一个月内出现二十余起使用你们工具生成的诈骗视频，涉案金额不小。媒体标题已经在写了。",
+        "en": "The police call: more than twenty scam clips made with your tool in one month, with significant losses attached. The headlines are already being written."
+      },
+      "choices": [
+        {
+          "text": { "zh": "回应称生成器是中性的，使用者自负责任", "en": "Respond that the generator is neutral and users bear responsibility" },
+          "next": "c4_funding",
+          "effects": { "national_security": 3, "legal": 2, "business": 1 },
+          "why": { "zh": "「技术中立」在已经知道滥用路径的情况下很难成立：知情而不设防，会从免责变成放任，并对社会造成持续性的信息环境污染。短期省下的只是整改预算。", "en": "'Technology is neutral' rarely survives once misuse paths are known: aware and undefended turns exemption into wilful blindness, and pollutes the information environment continuously. What you save is just the remediation budget." }
+        },
+        {
+          "text": { "zh": "委托第三方做安全与滥用审计，公开发行版滥用审计摘要并建立下架机制", "en": "Commission an independent misuse audit, publish the findings and build takedown capability" },
+          "next": "c4_funding",
+          "requirements": { "business": ">=7" },
+          "lockedHint": { "zh": "一次完整的滥用审计与追溯改造要价不菲：商业模式分达到 7 才负担得起（眼下付不出来）。", "en": "A full misuse audit and tracing retrofit are costly: it needs a business-model score of 7 (you cannot fund it yet)." },
+          "effects": { "moat": 2, "business": -1 },
+          "why": { "zh": "花钱做审计、公开的代价是被仔细阅读（商业模式分下降）；但一份可被监管与平台引用的结论，会把你从「风险源头」重新定义为「行业标准参与者」。", "en": "Paying for an audit and publishing invites careful reading (business score drops), but a conclusion both regulators and platforms can cite reframes you from 'source of risk' to 'participant in industry standards'." }
+        },
+        {
+          "text": { "zh": "被动处理：收到报案才删除该形象、封禁该账号", "en": "Handle reactively: delete specific avatars and ban accounts only after reports" },
+          "next": "c4_funding",
+          "effects": { "national_security": 1, "ethics": 1, "business": 1 },
+          "why": { "zh": "逐个封禁看似不影响其他用户，实则是用受害者的报案做免费的滥用情报；在这期间，下一个受害者已经出现。成本最低，代价由他人承担。", "en": "Banning case by case looks harmless to everyone else, but in effect you use victims' reports as free abuse intelligence — and in the meantime the next victim appears. Cheapest for you, paid for by someone else." }
+        }
+      ]
+    },
+    "c4_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
+        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+      },
+      "choices": [
+        {
+          "text": { "zh": "接受境外短视频平台的战略投资，形象库对其全球创作者开放", "en": "Take strategic investment from an overseas short-video platform and open the likeness library to its global creators" },
+          "next": "epilogue",
+          "effects": { "business": 3, "national_security": 2, "legal": 1 },
+          "why": { "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。", "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly." }
+        },
+        {
+          "text": { "zh": "接受本地产业基金，扩张慢一些但素材与授权留在本地", "en": "Take a local industry fund: slower expansion, assets and licences stay local" },
+          "next": "epilogue",
+          "effects": { "business": 1, "moat": 2 },
+          "why": { "zh": "本地资金额度有限、条款保守，但授权链条与素材库完整可控，面对平台审核、品牌合规与监管问询时几乎不会被问倒——这是护城河。", "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so platform reviews, brand compliance and regulatory questions rarely knock you over. That is the moat." }
+        },
+        {
+          "text": { "zh": "不融资，靠订阅收入自然增长", "en": "Take no funding; grow on subscriptions alone" },
+          "next": "epilogue",
+          "effects": { "business": -1, "moat": 1 },
+          "why": { "zh": "现金流紧张、扩张变慢，但产品边界不被外部流量目标拉扯，也不必为了数字向的资金承诺放松把关。这种克制本身就是一种稀缺优势。", "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around by someone else's traffic targets, and you never loosen safeguards for a funding number. That restraint is itself scarce." }
+        }
+      ]
+    },
+    "epilogue": {
+      "act": "act4",
+      "text": {
+        "zh": "十二个月后回到那条街。有的店还在用数字人卖早餐，有的店门口贴着「本店直播均为真人」的手写纸条。",
+        "en": "Twelve months later, back on that street. Some shops still sell breakfast through an avatar; others have a handwritten note saying tonight's stream is a real person."
+      },
+      "choices": []
+    }
+  },
+  "endingFlavor": {
+    "boom_ns": { "zh": "警方展示的作案链路图上，第一步就是你们的生成工具。", "en": "The police flowchart showed your generator as step one of the fraud chain." },
+    "bust_ns": { "zh": "平台还没来得及推荐你们，违规下架通知就先到了。", "en": "Before the platform could feature you, the takedown notice arrived." },
+    "boom_legal": { "zh": "那张被索赔的截图里，模特的脸来自你们三年前的一段测试素材。", "en": "The screenshot in the claim shows a model whose face came from one of your old test clips." },
+    "bust_legal": { "zh": "产品在市场上从没站稳，却在肖像权纠纷里站稳了被告席。", "en": "The product never found its market, but it did find the defendant's seat in a portrait-rights case." },
+    "boom_ethics": { "zh": "评论区最后一条高赞是：原来我们一直是在跟一个假的她说晚安。", "en": "The top comment in the end read: we were saying goodnight to a fake her all along." },
+    "bust_ethics": { "zh": "早期用户不多，但其中一位是被仿冒的那位评论员本人。", "en": "There were few early users, and one of them was the commentator being impersonated." },
+    "win_clean": { "zh": "平台把你们的水印方案写进了它的推荐细则。", "en": "The platform wrote your watermarking scheme into its featured-creator rules." },
+    "win_resilient": { "zh": "第一版被人滥用过，第二版上线时你们已经知道该怎么拦。", "en": "Version one was misused; version two shipped knowing exactly how to block it." },
+    "stalled": { "zh": "一年后，工具还在，但愿意签约出让肖像的模特只剩两个。", "en": "A year later the tool still works, but only two models will license their likeness." }
+  }
+}

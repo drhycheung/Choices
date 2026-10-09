@@ -162,9 +162,11 @@
     const applied = applyEffects(scenario, state.dims, choice.effects);
 
     // 记录因果轨迹：哪一步、选了什么、维度如何变化
+    // choiceIndex 保留原始索引，播放器可据此取回该选项的 why / 复盘等扩展字段
     state.history.push({
       nodeId: state.current,
       choiceText: choice.text,
+      choiceIndex: index,
       effects: applied,
       dimsAfter: Object.assign({}, state.dims)
     });
