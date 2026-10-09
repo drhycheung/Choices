@@ -424,6 +424,24 @@ body::before {
   border-radius: 4px;
 }
 
+/* 每次选择后立即展示「改了什么 + 为什么」，让因果在学习的当下就可见 */
+.feedback {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(0, 240, 255, .35);
+  background: rgba(0, 240, 255, .06);
+}
+.fb-choice { font-size: 16px; font-weight: 700; color: #efeaff; margin-bottom: 8px; }
+.fb-effects { display: flex; flex-wrap: wrap; gap: 6px; }
+.fb-why {
+  margin-top: 10px;
+  font-size: 15px; line-height: 1.65;
+  color: #c9d4f5;
+  border-left: 2px solid rgba(0, 240, 255, .45);
+  padding-left: 10px;
+}
+
 /* 最终风险：独立成块，避免与上方轨迹条目挤在一起 / 文字重叠 */
 .trace-final {
   margin-top: 14px;
@@ -766,10 +784,66 @@ body::before {
   font-size: 14px; line-height: 1.6; color: var(--muted);
 }
 .attr-step { color: var(--cyan); font-size: 12px; letter-spacing: 1px; }
+.attr-act {
+  flex: 1 1 100%;
+  font-size: 11px; letter-spacing: .5px;
+  color: var(--purple);
+  opacity: .9;
+}
 .attr-choice { color: var(--ink); }
 .attr-delta { font-weight: 700; }
-.attr-delta.up { color: var(--green); }
-.attr-delta.down { color: var(--red); }
+/* 归因里的增减：颜色按「对你好不好」，不是按数字正负（避免风险+4 被涂成绿色） */
+.attr-delta.good { color: var(--green); }
+.attr-delta.bad { color: var(--red); }
+
+/* ============ 分数总账（结局页）：逐维度对账 ============ */
+.ledger { border-color: rgba(0, 240, 255, .35); }
+.ledger-note {
+  margin: 0 0 14px;
+  font-size: 13px; line-height: 1.7;
+  color: var(--muted);
+}
+.ledger-group { margin-bottom: 16px; }
+.ledger-group:last-child { margin-bottom: 0; }
+.ledger-rows { list-style: none; margin: 0; padding: 0; }
+.ledger-row {
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+}
+.ledger-row:first-child { border-top: none; padding-top: 2px; }
+.ledger-head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 8px;
+}
+.ledger-label {
+  flex: 1 1 auto;
+  font-size: 15px; font-weight: 700; color: var(--ink);
+}
+.ledger-journey {
+  font-size: 12px; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.ledger-net {
+  font-size: 14px; font-weight: 700;
+  padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ledger-net.good { color: var(--green); border-color: rgba(57, 255, 20, .6); }
+.ledger-net.bad { color: var(--red); border-color: rgba(255, 59, 92, .6); }
+.ledger-net.flat { color: var(--muted); }
+.ledger-moves { margin-top: 6px; }
+.ledger-moves-label {
+  display: block;
+  font-size: 11px; letter-spacing: .5px;
+  color: var(--cyan);
+  opacity: .85;
+}
+.ledger-none {
+  margin-top: 4px;
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
 
 /* ============ 悬停高亮：仅在真正支持悬停的设备上生效 ============
    触屏设备点按后 :hover 会“粘住”，使新渲染出来的选项看起来像被预先

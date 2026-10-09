@@ -674,8 +674,8 @@
     "ai-fitness_b1_clean_money": {
       "act": "act3",
       "text": {
-        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售说有一种收法商家「几乎等于白拿」，但你们的卖点恰恰是可信。",
-        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales pitches a model where merchants get the service almost for free, but your edge is exactly trust."
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售想推一种让商家几乎白拿的收费方式——可公司得靠把托付给你们的位置数据拿去变现才能赚到钱，这恰恰踩在你们「可信」的卖点上。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales wants a model where merchants get the service almost for free — yet you would have to monetise the location data entrusted to you to make money, which is exactly what betrays your 'trustworthy' edge."
       },
       "choices": [
         {

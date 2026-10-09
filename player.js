@@ -52,6 +52,12 @@
       footnote: '以上法律线索仅用于课堂讨论，请以最新条文为准。',
       canvasAttrNote: '这些格子是被下面这几步改动的',
       riskAttrNote: '风险是被这几步抬起来的',
+      ledgerTitle: '分数总账 · 哪一项升了、哪一项降了',
+      ledgerNote: '每一项从开局到终局的净变化，以及是哪几步把它推动的。正负号是分数的加减，颜色是这件事的好坏。',
+      ledgerMovedBy: '改动来源（按幅度排序）',
+      ledgerUntouched: '整局没有任何一步改变这一项',
+      ledgerStart: '开局',
+      ledgerFinal: '终局',
       perfectBadge: '完美通关',
       perfectNote: '三条风险线全部为零，创业三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
       footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
@@ -93,6 +99,12 @@
       footnote: 'Legal pointers are for classroom discussion only; always check the current texts.',
       canvasAttrNote: 'These boxes were moved by these decisions',
       riskAttrNote: 'The risk was raised by these decisions',
+      ledgerTitle: 'Score ledger — what went up, what went down',
+      ledgerNote: 'Every dimension from its starting value to its final value, and which steps moved it. The sign is the arithmetic (+ / −); the colour is whether that change was good or bad for you.',
+      ledgerMovedBy: 'Moved by (largest first)',
+      ledgerUntouched: 'No step in this run changed it',
+      ledgerStart: 'start',
+      ledgerFinal: 'final',
       perfectBadge: 'PERFECT RUN',
       perfectNote: 'All three risk lines at zero and all three venture boxes at 7 or above — the only path in this venture that does it.',
       footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
@@ -345,10 +357,45 @@
     bc.appendChild(renderStage(node, state.history.length === 0));
   }
 
+  // 每次做出选择后，立即把"改了什么、为什么"显示出来，让因果在学习的当下就可见
+  function dimDeltaLabel(key, delta) {
+    var d = scenario.dimensions[key];
+    if (!d) return { bad: false, word: '' };
+    var higherIsRisk = d.higherIsRisk !== false;
+    var bad = higherIsRisk ? delta > 0 : delta < 0;   // 风险维上升或创业维下降都算变坏
+    var w;
+    if (higherIsRisk) w = delta > 0 ? (lang === 'zh' ? '（更糟）' : ' (worse)') : (delta < 0 ? (lang === 'zh' ? '（更稳）' : ' (safer)') : '');
+    else w = delta > 0 ? (lang === 'zh' ? '（更好）' : ' (better)') : (delta < 0 ? (lang === 'zh' ? '（更弱）' : ' (weaker)') : '');
+    return { bad: bad, word: w };
+  }
+
+  function renderFeedback() {
+    var box = $('feedback');
+    if (!box) return;
+    if (!state.history.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+    var h = state.history[state.history.length - 1];
+    var node = scenario.nodes[h.nodeId];
+    var choice = (node && node.choices) ? node.choices[h.choiceIndex] : null;
+    box.innerHTML = '';
+    box.appendChild(textEl('div', (lang === 'zh' ? '刚刚的选择 · ' : 'Just chose · ') + stepLabel(state.history.length) + ' · ' + pick(h.choiceText, lang), 'fb-choice'));
+    var keys = Object.keys(h.effects || {});
+    if (keys.length) {
+      var chips = textEl('div', '', 'fb-effects');
+      keys.forEach(function (k) {
+        var dl = dimDeltaLabel(k, h.effects[k]);
+        chips.appendChild(textEl('span', pick(scenario.dimensions[k].label, lang) + ' ' + (h.effects[k] >= 0 ? '+' : '') + h.effects[k] + dl.word, 'chip' + (dl.bad ? ' bad' : ' good')));
+      });
+      box.appendChild(chips);
+    }
+    if (choice && choice.why) box.appendChild(textEl('div', UI[lang].whyPrefix + pick(choice.why, lang), 'fb-why'));
+    box.classList.remove('hidden');
+  }
+
   function onChoose(i) {
     try { ChoicesEngine.choose(scenario, state, i); }
     catch (e) { showBanner(UI[lang].actionError + e.message, 'error'); return; }
     renderDims();
+    renderFeedback();
     renderNode();
   }
 
@@ -368,37 +415,97 @@
 
   /* ---- 归因：把复盘的结论对回玩家真实走过的第几步（数据全部来自 history，不猜测） ---- */
 
-  // sign: 1 只看把维度推高的步骤；-1 只看拉低的；0 两个方向都看（按绝对值排序）
-  function topMoves(dimKeys, sign, limit) {
+  // 单个维度上按 |delta| 排序的改动来源。返回 [{ step, text, delta, act }]，只含该维度的实际增减。
+  function dimMoves(dimKey, limit) {
     if (!state || !state.history) return [];
     var out = [];
     state.history.forEach(function (h, idx) {
-      var sum = 0, parts = [];
-      dimKeys.forEach(function (k) {
-        var d = h.effects && h.effects[k];
-        if (!d) return;
-        sum += d;
-        parts.push({ k: k, d: d });
-      });
-      if (!parts.length) return;
-      if (sign > 0 && sum <= 0) return;
-      if (sign < 0 && sum >= 0) return;
-      out.push({ step: idx + 1, text: pick(h.choiceText, lang), sum: sum, parts: parts });
+      var d = h.effects && h.effects[dimKey];
+      if (!d) return;                       // 这一步没碰这个维度
+      var node = scenario.nodes[h.nodeId];
+      out.push({ step: idx + 1, text: pick(h.choiceText, lang), delta: d, act: actTitle(node) });
     });
-    out.sort(function (a, b) { return Math.abs(b.sum) - Math.abs(a.sum); });
-    return out.slice(0, limit || 2);
+    out.sort(function (a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
+    return out.slice(0, limit || 3);
   }
 
-  function movesList(moves) {
-    var ul = textEl('ul', '', 'attr-moves');
-    moves.forEach(function (m) {
-      var li = textEl('li', '', 'attr-move');
-      li.appendChild(textEl('span', stepLabel(m.step), 'attr-step'));
-      li.appendChild(textEl('span', m.text, 'attr-choice'));
-      li.appendChild(textEl('span', (m.sum >= 0 ? '+' : '') + m.sum, 'attr-delta ' + (m.sum >= 0 ? 'up' : 'down')));
-      ul.appendChild(li);
+  /* 改动来源的一行：章节标签（若有）+ 步骤 + 选项文字 + 该维度的增减。
+     章节标签是必要的——不同章节可能有字面完全相同的选项（如两次「不融资，靠订阅收入自然增长」），
+     没有章节就无法分辨是哪一步。 */
+  function moveRow(dimKey, m) {
+    var dl = dimDeltaLabel(dimKey, m.delta);
+    var li = textEl('li', '', 'attr-move');
+    if (m.act) li.appendChild(textEl('span', m.act, 'attr-act'));
+    li.appendChild(textEl('span', stepLabel(m.step), 'attr-step'));
+    li.appendChild(textEl('span', m.text, 'attr-choice'));
+    li.appendChild(textEl('span',
+      (m.delta > 0 ? '+' : '') + m.delta + dl.word,
+      'attr-delta ' + (dl.bad ? 'bad' : 'good')));
+    return li;
+  }
+
+  // 该维度在本局的净变化 = 终局值 − 开局值（开局值取 schema 的 initial）
+  function netChange(dimKey) {
+    var d = scenario.dimensions[dimKey];
+    if (!d) return 0;
+    var init = (typeof d.initial === 'number') ? d.initial : (d.min || 0);
+    return (state.dims[dimKey] || 0) - init;
+  }
+
+  /* 分数总账：六个维度逐行列出「开局 → 终局、净加减、好坏配色、是哪几步推动的」。
+     这是结局页对「分数怎么变的」给出的完整答案，不再把风险三维加总成一个数字。 */
+  function scoreLedger() {
+    var box = textEl('section', '', 'debrief ledger');
+    box.appendChild(textEl('h3', UI[lang].ledgerTitle, 'debrief-title'));
+    box.appendChild(textEl('p', UI[lang].ledgerNote, 'ledger-note'));
+
+    [['risk', UI[lang].groupRisk], ['venture', UI[lang].groupVenture]].forEach(function (g) {
+      var keys = Object.keys(scenario.dimensions).filter(function (k) {
+        return (scenario.dimensions[k].group || 'risk') === g[0];
+      });
+      if (!keys.length) return;
+
+      var grp = textEl('div', '', 'ledger-group');
+      grp.appendChild(textEl('div', g[1], 'dim-group-title'));
+      var ul = textEl('ul', '', 'ledger-rows');
+
+      keys.forEach(function (k) {
+        var d = scenario.dimensions[k];
+        var init = (typeof d.initial === 'number') ? d.initial : (d.min || 0);
+        var finalVal = state.dims[k] || 0;
+        var net = netChange(k);
+        var dl = dimDeltaLabel(k, net);        // 方向好坏按 higherIsRisk 判定，与仪表盘一致
+        var li = textEl('li', '', 'ledger-row');
+
+        var head = textEl('div', '', 'ledger-head');
+        head.appendChild(textEl('span', (d.icon ? d.icon + ' ' : '') + pick(d.label, lang), 'ledger-label'));
+        head.appendChild(textEl('span',
+          UI[lang].ledgerStart + ' ' + init + '  →  ' + UI[lang].ledgerFinal + ' ' + finalVal,
+          'ledger-journey'));
+        // 净变化：正负号 + 绝对值 + 好坏词 + 好坏配色（不再只用一个裸数字）
+        head.appendChild(textEl('span',
+          (net > 0 ? '+' : '') + net + dl.word,
+          'ledger-net ' + (net === 0 ? 'flat' : (dl.bad ? 'bad' : 'good'))));
+        li.appendChild(head);
+
+        var moves = dimMoves(k, 3);
+        if (!moves.length) {
+          li.appendChild(textEl('div', UI[lang].ledgerUntouched, 'ledger-none'));
+        } else {
+          var mv = textEl('div', '', 'ledger-moves');
+          mv.appendChild(textEl('span', UI[lang].ledgerMovedBy, 'ledger-moves-label'));
+          var ml = textEl('ul', '', 'attr-moves');
+          moves.forEach(function (m) { ml.appendChild(moveRow(k, m)); });
+          mv.appendChild(ml);
+          li.appendChild(mv);
+        }
+        ul.appendChild(li);
+      });
+
+      grp.appendChild(ul);
+      box.appendChild(grp);
     });
-    return ul;
+    return box;
   }
 
   // Lean Canvas 复盘：逐格列出「是哪几步把它改成了现在的样子」
@@ -418,29 +525,49 @@
     var ul = textEl('ul', '', 'attr-boxes');
     var any = false;
     keys.forEach(function (k) {
-      var moves = topMoves([k], 0, 2);
+      // 逐维度取：这一格里被改动最多的那几步（ Venture 轨分数越高越好，配色按好坏）
+      var moves = dimMoves(k, 2);
       if (!moves.length) return;
       any = true;
       var li = textEl('li', '', 'attr-box');
       var label = CANVAS_BOX[k] ? CANVAS_BOX[k][lang] : pick(scenario.dimensions[k].label, lang);
       li.appendChild(textEl('strong', label, 'attr-box-name'));
-      li.appendChild(movesList(moves));
+      li.appendChild(dimMovesList(k, moves));
       ul.appendChild(li);
     });
     return any ? (box.appendChild(ul), box) : null;
   }
 
-  // 触发原因：风险是被哪几步抬起来的
+  // 风险归因：三条风险线各自列出「是哪几步把它推高的」，不再三条加总成一个数字
   function riskAttribution() {
     var keys = Object.keys(scenario.dimensions).filter(function (k) {
       return scenario.dimensions[k].group === 'risk';
     });
-    var moves = topMoves(keys, 1, 2);
-    if (!moves.length) return null;
     var box = textEl('div', '', 'attribution');
     box.appendChild(textEl('p', UI[lang].riskAttrNote, 'attribution-note'));
-    box.appendChild(movesList(moves));
+    var ul = textEl('ul', '', 'attr-boxes');
+    var any = false;
+    keys.forEach(function (k) {
+      // 只看把这条风险线推高的步骤（delta > 0）
+      var moves = dimMoves(k, 8).filter(function (m) { return m.delta > 0; }).slice(0, 2);
+      if (!moves.length) return;                // 这一条风险线整局都是 0
+      any = true;
+      var li = textEl('li', '', 'attr-box');
+      var d = scenario.dimensions[k];
+      li.appendChild(textEl('strong', (d.icon ? d.icon + ' ' : '') + pick(d.label, lang), 'attr-box-name'));
+      li.appendChild(dimMovesList(k, moves));
+      ul.appendChild(li);
+    });
+    if (!any) return null;
+    box.appendChild(ul);
     return box;
+  }
+
+  // 单个维度的改动列表：章节 + 步骤 + 选项 + 该维度的增减（符号与好坏词/好坏色同时给出）
+  function dimMovesList(dimKey, moves) {
+    var ul = textEl('ul', '', 'attr-moves');
+    moves.forEach(function (m) { ul.appendChild(moveRow(dimKey, m)); });
+    return ul;
   }
 
   // 完美通关徽章：三条风险线全为零 + 创业三格全在 7 分以上（每个题材只有唯一一条路径）
@@ -481,6 +608,7 @@
 
       var an = ending.analysis || {};
       var secs = [
+        scoreLedger(),   // 分数总账放最前：先看清六项分数各自怎么变的，再读复盘
         debriefSection(UI[lang].whyHeading, an.trigger, riskAttribution()),
         debriefSection(UI[lang].tradeoffHeading, an.tradeoff),
         debriefSection(UI[lang].canvasHeading, an.canvas, canvasAttribution())
@@ -561,10 +689,9 @@
         keys.forEach(function (k) {
           var d = scenario.dimensions[k];
           if (!d) return;
-          var higherIsRisk = d.higherIsRisk !== false;
           var delta = h.effects[k];
-          var bad = higherIsRisk ? delta > 0 : delta < 0;   // 风险维上升或创业维下降都算变坏
-          chips.appendChild(textEl('span', pick(d.label, lang) + ' ' + (delta >= 0 ? '+' : '') + delta, 'chip' + (bad ? ' bad' : ' good')));
+          var dl = dimDeltaLabel(k, delta);
+          chips.appendChild(textEl('span', pick(d.label, lang) + ' ' + (delta >= 0 ? '+' : '') + delta + dl.word, 'chip' + (dl.bad ? ' bad' : ' good')));
         });
         li.appendChild(chips);
       }
@@ -592,6 +719,7 @@
     $('trace-panel').classList.add('hidden');
     renderDims();
     renderNode();
+    renderFeedback();
   }
 
   function beginPlay() {
@@ -605,6 +733,7 @@
     $('trace-panel').classList.add('hidden');
     renderDims();
     renderNode();
+    renderFeedback();
     updateStartCard();
   }
 

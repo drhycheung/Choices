@@ -674,8 +674,8 @@
     "edu-analytics_b1_clean_money": {
       "act": "act3",
       "text": {
-        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售同事提出几种收法，其中一种「教育局一定会喜欢」，但你们的卖点恰恰是可信。",
-        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales proposes several models, one of which 'the district will definitely like', but your edge is exactly trust."
+        "zh": "你们有干净的授权基础，怎么把「来源可查」变成收入？销售想推一种让学校几乎零成本用起来的收费方式——可公司得靠把托付给你们的学生数据拿去变现才能赚到钱，这恰恰踩在你们「可信」的卖点上。",
+        "en": "You have a clean, consented foundation — how do you turn 'traceable' into revenue? Sales wants a model where schools pay almost nothing — yet you would have to monetise the student data entrusted to you to make money, which is exactly what betrays your 'trustworthy' edge."
       },
       "choices": [
         {

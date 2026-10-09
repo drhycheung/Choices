@@ -674,8 +674,8 @@
     "ai-hiring_b1_clean_money": {
       "act": "act3",
       "text": {
-        "zh": "你们的授权链条清清楚楚，怎么把「可解释的评分依据」变成收入？销售说有一种收法 HR 一定会喜欢，但你们的卖点恰恰是可信，而不是最便宜。",
-        "en": "Your authorisation chain is spotless — now how do you turn 'explainable scoring basis' into revenue? Sales pitches a model HR will love, but your edge is trust, not the lowest price."
+        "zh": "你们有清白的授权链条，怎么把「可解释的评分依据」变成收入？销售想推一种让 HR 几乎零成本用起来的收费方式——可公司得靠把托付给你们的候选人数据拿去变现才能赚到钱，这恰恰踩在你们「可信」的卖点上。",
+        "en": "You have a clean authorisation chain — how do you turn 'explainable scoring' into revenue? Sales wants a model where HR pays almost nothing — yet you would have to monetise the candidate data entrusted to you to make money, which is exactly what betrays your 'trustworthy' edge."
       },
       "choices": [
         {
