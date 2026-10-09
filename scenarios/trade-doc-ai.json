@@ -319,7 +319,7 @@
             "zh": "只用客户书面授权的单据，接受样本量有限",
             "en": "Use only documents clients authorised in writing and accept a limited sample"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "混入外部渠道取得的单据样本补齐数据",
             "en": "Blend in sample documents obtained from external channels"
           },
-          "next": "c2_ops",
+          "next": "trade-doc-ai_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,88 @@
           "why": {
             "zh": "效果提升明显。但这些单据属于他人商业资料，既无法证明取得合法，也可能包含受管制交易的痕迹；用它训练，等于把别人的合规风险装进了自己的模型。",
             "en": "Quality improves clearly. But those documents are other parties' commercial material: you cannot evidence lawful acquisition and they may contain traces of controlled transactions. Training on them loads someone else's compliance risk into your own model."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "只用客户书面授权单据训出来的模型，样本有限，遇到特殊贸易方式就容易含糊。但每一份训练样本的提供方、授权范围与删除时间都写进了协议。",
+        "en": "Trained only on documents clients authorised in writing, the sample is limited and the model gets vague on unusual trade terms. But every training document has a named provider, an authorised scope and a deletion date."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把单据授权范围与删除时间做成客户的对账单",
+            "en": "Give clients a statement of what was authorised and when it is deleted"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "报关行与出口企业最怕的是说不清数据从哪来；这一页对账单既是他们的内审材料，也是你最难被替代的地方。",
+            "en": "Customs brokers and exporters fear most being unable to explain where data came from; that statement is their audit material and your hardest-to-replace asset."
+          }
+        },
+        {
+          "text": {
+            "zh": "对外称合规，授权清单等被查验时再整理",
+            "en": "Claim compliance; assemble the authorisation list when inspected"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下逐单归档的工作量，交付更快；但查验是有时限的，你要解释为什么平时拿不出来。",
+            "en": "You save per-shipment archiving and deliver faster — but inspections run to a deadline, and you must explain why it was not ready."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "外部渠道补来的单据把准确率顶上去了，冷门品类也不再含糊。只是那批单据抬头陌生，还带着完整的交易对手、价格与最终目的地信息。",
+        "en": "Documents from external channels lift accuracy and even obscure categories resolve. But the letterheads are unfamiliar and they carry full counterparty, price and final-destination details."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "停用这批单据、重新训练，并书面向客户说明",
+            "en": "Stop using the batch, retrain, and tell clients in writing"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1,
+            "national_security": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉单据已经进入训练集这一事实，效果也会回退；自己发现永远比被查验后整改便宜。",
+            "en": "Stopping limits further liability but does not undo that the documents entered training, and quality regresses. Finding it yourself beats remediating after an inspection."
+          }
+        },
+        {
+          "text": {
+            "zh": "继续用，先把旺季的单子做完",
+            "en": "Keep using it and clear the peak-season backlog first"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "换来的是旺季吞吐与准确率，代价是：这些单据从哪来、有没有传递管制的敏感信息，举证责任已经落在你们身上。",
+            "en": "You buy peak-season throughput and accuracy, and inherit the burden of proving where those documents came from and whether controlled details moved."
           }
         }
       ]
@@ -532,7 +614,7 @@
             "zh": "对管制物项相关商品加硬规则拦截与人工复核，公开不确定场景清单",
             "en": "Add hard-rule blocking and human review for controlled-item matches, publish uncertain cases"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +629,7 @@
             "zh": "保留现状，把「最终由客户负责」写进告知书",
             "en": "Keep it as is and state 'the client bears final responsibility'"
           },
-          "next": "c4_incident",
+          "next": "trade-doc-ai_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +638,86 @@
           "why": {
             "zh": "免责告知无法推翻你是建议提供者的事实。把已知的宽松倾向包装成「建议」，实质是把出口管制的判断成本转嫁给客户，而后果可能不只是罚款。",
             "en": "A disclaimer does not undo the fact that you supplied the advice. Wrapping a known permissive bias as 'suggestion' shifts export-control judgement onto clients, where consequences go beyond fines."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "对管制物项相关商品加硬规则拦截与人工复核后，一部分单子被卡住，客户抱怨「没以前快」。同时两家头部报关行把你们写进推荐名单——他们要的是不会害他们吃罚单的那一版。",
+        "en": "After hard-rule blocking and human review for controlled-item matches, some shipments stall and clients say it is slower. Two leading brokers add you to their recommended list — they want the version that will not cost them a penalty."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把拦截规则与复核记录写进服务协议，接受抽查",
+            "en": "Write the blocking rules and review logs into the service agreement and accept spot checks"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "愿意被抽查本身就是门槛：它筛掉做不到的同行，也让你不必只靠低价抢单。",
+            "en": "Accepting spot checks is itself a moat — it filters rivals who cannot and gets you off competing on price alone."
+          }
+        },
+        {
+          "text": {
+            "zh": "为保住时效，把拦截改成提示，由客户自行确认",
+            "en": "To protect turnaround, downgrade blocking to a warning the client confirms"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "时效保住了，单量也上去了；但归类建议一旦涉及管制物项，「我们提示过」通常不足以切断责任。",
+            "en": "You keep turnaround and volume — but once a classification touches controlled goods, 'we warned them' rarely severs liability."
+          }
+        }
+      ]
+    },
+    "trade-doc-ai_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "海关在一次抽查里问到一批货：系统给出的归类比实际应适用的宽松，而申报材料上写着「最终由客户负责」。对方问的是：你们的系统为什么倾向给宽松答案。",
+        "en": "During a spot check, customs asks about a shipment: the system's classification was looser than the one that applies, and the filing says 'the client bears final responsibility'. The question is why your system leans permissive."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做硬规则拦截与人工复核，主动复查历史归类",
+            "en": "Add hard-rule blocking and human review; re-check past classifications"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续错报，也向客户与海关证明你会修正；但它改不掉已经申报的记录，收入也会先掉一块。",
+            "en": "Fixing it stops further misdeclaration and shows clients and customs you correct course — but it cannot rewrite filed entries, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "维持现状，把告知书再写清楚一点",
+            "en": "Leave it and sharpen the notification letter"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": 2,
+            "business": 2,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "告知书保护的是你们与客户的内部关系，不是申报义务；归类错误的责任不会因为它写得更清楚而转移。",
+            "en": "The letter protects your relationship with the client, not the filing obligation; clearer wording does not move liability for a wrong classification."
           }
         }
       ]

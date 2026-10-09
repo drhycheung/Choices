@@ -319,7 +319,7 @@
             "zh": "用公开赛事数据，加上用户明确授权的自采数据",
             "en": "Use public event data plus user data collected with explicit consent"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "再买一批第三方数据包补齐样本",
             "en": "Buy a third-party data pack to fill the gaps"
           },
-          "next": "c2_annotate",
+          "next": "ai-fitness_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,86 @@
           "why": {
             "zh": "来源不明的数据包让你无法证明合法性基础，也无法向用户披露用途；一旦被追问，举证责任在你们这边。换来的是模型效果立刻变好、演示更好看。",
             "en": "With a package of unclear provenance you cannot demonstrate a lawful basis nor disclose the purpose to users; when challenged, the burden of proof sits with you. What you get is a model that performs better and demos well."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "用公开赛事与授权数据训出来的模型不算漂亮：伤病预警的准确率比竞品低几个点，冷启动人群覆盖也窄。但每一条数据的来源都写得出处，用户问「凭什么说我可能受伤」时，你们答得上来。",
+        "en": "The model trained on public event data and consented samples is not pretty: accuracy sits a few points below rivals and cold-start coverage is narrow. But every record has a provenance, and when a user asks 'why do you say I might get injured', you can answer."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把数据来源与能力边界做成 App 里的一页说明",
+            "en": "Put data provenance and the model's limits on one page inside the app"
+          },
+          "next": "c2_annotate",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "用户能自查的透明度会变成留存理由；对采购福利的企业雇主来说，这一页也是他们法务最想看到的东西。",
+            "en": "Transparency users can check for themselves becomes a retention reason; for employers buying the benefit, that page is exactly what their legal team wants to see."
+          }
+        },
+        {
+          "text": {
+            "zh": "对外宣称数据合规，具体来源等被问再解释",
+            "en": "Claim compliance publicly; explain provenance only when asked"
+          },
+          "next": "c2_annotate",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下整理的时间，让包装更好看；但运动健康数据一旦被质疑来源，解释成本会一次性集中爆发。",
+            "en": "You save the sorting work and the packaging looks better — but when health data provenance is questioned, the explaining lands all at once."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "第三方数据包把指标顶上去了，预警看起来灵敏得多。问题是：里面夹着某连锁健身房会员的体测记录，而你们没有任何一份授权文件。",
+        "en": "The third-party pack lifts the metrics and the warnings look far sharper. The problem: it contains fitness assessments from a chain gym's members, and you hold no authorisation for any of it."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "停用这批数据、重新训练，并通知已受影响的用户",
+            "en": "Stop using the batch, retrain, and notify affected users"
+          },
+          "next": "c2_annotate",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，指标也会回退；自己发现永远比被举报后整改便宜。",
+            "en": "Stopping limits further liability but does not undo processing already done, and metrics regress. Finding it yourself is always cheaper than remediating after a report."
+          }
+        },
+        {
+          "text": {
+            "zh": "继续用，先把版本跑起来，等有人问再说",
+            "en": "Keep using it, ship the build, deal with questions later"
+          },
+          "next": "c2_annotate",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "换来的是上线时间与漂亮指标，代价是把「合法性基础」这个举证责任整个留给了未来的自己。",
+            "en": "You buy shipping time and good metrics, and leave the entire burden of proving a lawful basis to your future self."
           }
         }
       ]
@@ -532,7 +612,7 @@
             "zh": "公开能力边界、加人工复核通道、补齐数据代表性",
             "en": "Publish the limits, add human review, fix data representativeness"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +627,7 @@
             "zh": "先上线，规定默认适用人群是健康成年人",
             "en": "Ship now; declare the default user to be a healthy adult"
           },
-          "next": "c4_heatmap",
+          "next": "ai-fitness_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +636,85 @@
           "why": {
             "zh": "用小字限定人群，在实务上很难真的拦住高风险用户；一旦有人因此受伤，「已告知」通常不足以免责。好处是发布会如期举行。",
             "en": "Fine print rarely stops high-risk users in practice, and once someone is harmed, 'we told you' is usually not enough to discharge liability. The upside is that launch happens on schedule."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "公开能力边界并加人工复核后，一部分用户觉得预警变啰嗦，日活掉了一截。同时，两家体检机构主动来谈合作：他们要的正是「说清自己不擅长什么」的那一版。",
+        "en": "After publishing the limits and adding human review, some users find the warnings naggy and daily active use dips. Meanwhile two health-check providers approach: they want precisely the version that states what it is not good at."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把适用人群与复核流程写进产品说明和合作协议",
+            "en": "Write the intended population and review flow into both the product notes and the contracts"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "把「知道自己不擅长什么」写成条款，它就从自我检讨变成采购条件；这类信任最难被后来者复制。",
+            "en": "Written into contracts, 'knowing what it is not good at' stops being an apology and becomes a purchase condition — the hardest kind of trust to copy."
+          }
+        },
+        {
+          "text": {
+            "zh": "为保住日活，把复核提示折叠起来，预警照常推送",
+            "en": "To protect engagement, collapse the review notice and keep pushing warnings"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "曲线立刻好看，但预警一旦漏掉一次真实的心悸，你要解释的不只是模型，还有为什么把提示藏起来。",
+            "en": "The curve looks better at once — but the first missed palpitation means explaining not just the model, but why you hid the caveat."
+          }
+        }
+      ]
+    },
+    "ai-fitness_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "上线后第三周，一位中年女性用户在慢跑中晕倒，事后投诉说 App 从未提示过风险。她的运动记录显示，模型给出的评估一直是「状态良好」。",
+        "en": "Three weeks after launch a middle-aged user collapses on a run and complains the app never flagged a risk. Her logs show the model rated her 'fine' every time."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做人群限制与人工复核通道，主动联系高风险用户",
+            "en": "Add population limits and a human review channel, contact high-risk users proactively"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续误导，也向合作方证明你会修正；但它不能让这次晕倒不发生，收入也会先掉一块。",
+            "en": "Fixing it stops further misguidance and shows partners you correct course — but it cannot un-happen the collapse, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "不回应，把「不适用于慢病人群」补进免责条款",
+            "en": "Stay silent and add 'not for people with chronic conditions' to the liability clause"
+          },
+          "next": "c4_heatmap",
+          "effects": {
+            "ethics": 2,
+            "business": 2
+          },
+          "why": {
+            "zh": "条款是写给愿意读条款的人的；对已经发生的损害，「我们写过」通常不足以免责，反而留下知情的证据。",
+            "en": "Clauses bind people who read them. For harm already done, 'we wrote it' rarely discharges liability — it documents that you knew."
           }
         }
       ]

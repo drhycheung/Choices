@@ -98,7 +98,8 @@ The goal is to help students *feel* how a small, ordinary decision can escalate 
 - Hover highlights are gated behind `@media (hover: hover) and (pointer: fine)` so touch devices never show a stuck "pre-selected" choice; on touch, a tap shows a brief pressed state (class added on pointerdown) BEFORE the story advances, so the tap feels acknowledged.
 - Dual-track dashboard = segmented neon "health-bar" meters in two labelled groups (risk / venture); danger pulse only on the risk track.
 - The start screen shows which venture was drawn ("this round") with a one-line hook and a shuffle button; that label is bilingual (ZH and EN stacked), like the rest of the start screen.
-- **Open with the business, not the plot.** Every pack carries a structured `brief` (what it does / who buys it / where it stands / data it touches) shown on the start card and again above the first node. A line like "your first customer is a breakfast chain" means nothing if the player does not yet know what the product is — a playtest caught exactly that.
+- **Open with the business, not the plot.** Every pack carries a structured `brief` (what it does / who buys it / where it stands / data it touches) shown above the first node. A line like "your first customer is a breakfast chain" means nothing if the player does not yet know what the product is — a playtest caught exactly that. Keep it OFF the start card: a four-row brief there made the cover busy and pushed PRESS START below the fold.
+- **Branching has to be real, not just a score accumulator.** An audit found every choice in every pack pointed at the same next node — 20,700 answer combinations but exactly one question sequence, which is not a branching narrative. Fix: two decisions per venture (how training data was sourced, how the first harm was answered) each open their own consequence scene — a scene written for *that* decision, which then rejoins the shared track. Keep the other thirteen steps shared so a class can still compare answers question by question, and keep enough shared structure that the "one perfect path" property survives (verify by brute force: still exactly 1 of 82,872 playthroughs).
 - Add one easter egg: on the start screen, the Konami sequence (up up down down left right left right B A) or seven taps on the logo opens a short bilingual note about how the game works. It must not change any dimension, state or ending.
 - Responsive: desktop and mobile; centre the play area in a single column on desktop.
 
@@ -119,7 +120,7 @@ The goal is to help students *feel* how a small, ordinary decision can escalate 
 - styles.css — retro ARCADE theme (as above). Responsive (desktop + mobile).
 - scenarios/manifest.json — the pack list: id, file, bilingual title and one-line hook per venture.
 - scenarios/endings-core.json — the SHARED endings: 9 endings gated by joint conditions on risk and business scores, each with trigger / trade-off / stakeholders / mitigation / canvas / legal debrief fields, all bilingual.
-- scenarios/*.json — one file per venture (e.g. ai-fitness.json, ai-hiring.json, ai-avatar.json, edu-analytics.json, drone-inspection.json, trade-doc-ai.json): a structured `brief`, dimensions (two groups), acts, 12+ decision nodes, per-choice why notes, endingFlavor for scenario-specific colour.
+- scenarios/*.json — one file per venture (e.g. ai-fitness.json, ai-hiring.json, ai-avatar.json, edu-analytics.json, drone-inspection.json, trade-doc-ai.json): a structured `brief`, dimensions (two groups), acts, 13 shared decision nodes + 4 branch consequence scenes (2 branch points × 2 scenes), per-choice why notes, endingFlavor for scenario-specific colour.
 
 ## Scenario JSON shape
 {

@@ -319,7 +319,7 @@
             "zh": "只用学校书面授权的数据，接受样本量小的现实",
             "en": "Use only data the school authorised in writing and accept a small sample"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "混入公开论坛的答案与第三方作业数据包",
             "en": "Blend in forum answers and third-party homework packs"
           },
-          "next": "c2_ops",
+          "next": "edu-analytics_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,86 @@
           "why": {
             "zh": "混入的数据能让准确率立刻好看，但你既无法说明来源，也无法履行对学生与家长的告知义务；这些学生的答题内容还会随模型权重长期留存。",
             "en": "Blending makes accuracy look good at once, but you can neither account for provenance nor discharge the duty to inform students and parents; their answers also persist in the model weights."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "只用学校书面授权数据训出来的模型，样本小、跨学科覆盖不足，诊断在理科之外明显变弱。但每一条错题数据的来源、用途与保存期限都写进了协议。",
+        "en": "Trained only on data the school authorised in writing, the sample is small, cross-subject coverage is thin and diagnosis weakens outside science. But every error record has an agreed source, purpose and retention period."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把数据来源与保存期限做成给家长和教师的一页说明",
+            "en": "Publish provenance and retention on one page for parents and teachers"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "涉及未成年人的数据处理，能被家长读懂的那一页往往决定学校敢不敢续签；它也是最难被同行复制的信任。",
+            "en": "With minors' data, the page a parent can understand decides whether the school renews — and that trust is the hardest thing to copy."
+          }
+        },
+        {
+          "text": {
+            "zh": "对外称合规，具体清单等家长问了再给",
+            "en": "Claim compliance; release the detail when parents ask"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下逐项维护说明的工作量；但未成年人数据一旦被质疑，家长与主管单位的追问会同时到来。",
+            "en": "You save the upkeep — but when minors' data is questioned, parents and the authority arrive at the same time."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "论坛答案与第三方作业包把样本补满了，诊断看起来准确得多。问题是：那些帖子里有一部分是学生自己写上去的作业，其中还带着署名与班级。",
+        "en": "Forum answers and homework packs fill the sample and diagnosis looks far sharper. The problem: some of those posts are homework students uploaded themselves, complete with names and classes."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "删除这批数据、重新训练，并书面告知学校与家长",
+            "en": "Delete the batch, retrain, and notify the school and parents in writing"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，效果也会回退；自己发现永远比被通报后整改便宜。",
+            "en": "Stopping limits further liability but does not undo processing already done, and quality regresses. Finding it yourself beats remediating after a notification."
+          }
+        },
+        {
+          "text": {
+            "zh": "继续用，先把试点学校的续签拿下",
+            "en": "Keep using it and secure the pilot school's renewal first"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "换来的是效果与续签机会，代价是：这些未成年人数据从哪来、凭什么用，举证责任已经落在你们身上。",
+            "en": "You buy performance and the renewal, and inherit the burden of proving where that children's data came from and why you may use it."
           }
         }
       ]
@@ -532,7 +612,7 @@
             "zh": "公开已知局限、按校际差异重新加权、加入教师复核",
             "en": "Publish the limitations, reweight for school differences, add teacher review"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +627,7 @@
             "zh": "先上线，把适用范围写成「适用于资源充足学校」",
             "en": "Ship now and declare it suitable for 'well-resourced schools'"
           },
-          "next": "c4_incident",
+          "next": "edu-analytics_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +636,85 @@
           "why": {
             "zh": "限定适用范围的小字挡不住实际使用，弱势学校的学生仍会被系统性地低评；这等于把已知的复制性偏差当作产品常态发布。上线如期。",
             "en": "Scope language never stops real usage, and students in under-resourced schools still get systematically marked down; you ship known reproduced bias as normal behaviour. Launch stays on schedule."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "公开局限、按校际差异重新加权并加入教师复核之后，系统给的建议变保守了，试点学校觉得「没以前敢说」。同时，区里另一所学校主动来问：他们要的正是教师能推翻系统的那一版。",
+        "en": "After publishing limitations, reweighting for school differences and adding teacher review, the advice gets cautious and the pilot school says it is 'less decisive'. Another school in the district asks instead: they want the version a teacher can override."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把复核权与适用边界写进产品说明和采购合同",
+            "en": "Write override rights and scope limits into both the product notes and the contract"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "把「教师能否决」写成条款，你就从「替老师下判断」变成「给老师证据」，采购时最难被替代的正是这一点。",
+            "en": "Contracts that guarantee teacher override turn you from 'judging for teachers' into 'giving teachers evidence' — the hardest position to displace."
+          }
+        },
+        {
+          "text": {
+            "zh": "为让系统「敢说」，把复核改成默认通过",
+            "en": "To make the system 'decisive', default the review to pass"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "建议变果断、演示更好看；但评语会落进学生的档案，而你的复核已经不再真实发生。",
+            "en": "Advice sounds decisive and demos look better — but those comments land in a child's record while your review no longer really happens."
+          }
+        }
+      ]
+    },
+    "edu-analytics_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "期末，一位家长拿着系统评语来学校质问：为什么孩子这一栏长期写着「粗心」。她问的其实不是分数，而是这句话会不会跟着孩子走。",
+        "en": "At term end a parent comes to the school with the system's comments: why has her child's row said 'careless' for months. She is not asking about the score — she is asking whether that word follows the child."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做校际差异修正与教师复核，复查已生成的评语",
+            "en": "Fix school-difference weighting, add teacher review, re-check generated comments"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续贴标签，也向学校证明你会修正；但它擦不掉已经写进档案的评语，收入也会先掉一块。",
+            "en": "Fixing it stops further labelling and shows the school you correct course — but it cannot erase comments already filed, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "维持原样，把适用说明补得更详细",
+            "en": "Leave it and expand the scope notes"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": 2,
+            "business": 2
+          },
+          "why": {
+            "zh": "更长的说明保护的是你们，不是那个孩子；当评语已经影响分班与评价，说明写得多细都不算免责。",
+            "en": "Longer notes protect you, not the child. Once comments shape placement and assessment, no amount of detail discharges that."
           }
         }
       ]

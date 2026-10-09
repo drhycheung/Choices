@@ -79,7 +79,9 @@ Three further design rules keep the tension honest:
 2. **Good options can be unaffordable.** Some of the best choices (an independent compliance audit, for example) carry a `requirements` gate on the business score: if you never built commercial strength, you cannot pay for the responsible path. The button stays visible but locked, with a hint explaining why — which is itself the lesson.
 3. **Every number is explained, and traced back to a step.** Each choice carries a `why` note (shown in the Decision Trail) stating why it raises or lowers each dimension. Every ending carries a full debrief: why it fired, the trade-off made, stakeholders affected, concrete mitigations, and a Lean Canvas reading. The debrief then closes the loop by attributing each number to the decisions that actually moved it — the risk section names the steps that pushed the risk lines up, and the Canvas section lists, box by box, which steps changed it and by how much. Students finish a run holding a draft outline for their reflective essay — issue identification with legal hooks, stakeholder analysis, and mitigation strategies.
 
-Each story runs **at least ten decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings.
+Each story runs **at least fifteen decision rounds** (thirteen shared steps plus two branch scenes), paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings.
+
+The story is **not a straight ladder**. Thirteen steps are the same for everyone — so a class can still compare answers question by question — but two of them (how you sourced your training data, and how you answered the first harm your product caused) send you into one of two consequence scenes: the scene you get is the one *your* decision earned, and it asks questions the other players never see. Both branches then rejoin the shared track, so endings stay comparable.
 
 ---
 
@@ -87,8 +89,8 @@ Each story runs **at least ten decision rounds**, paced so that consequences can
 
 | Feature | Implementation |
 |---|---|
-| Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices |
-| Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) on the start card and again at the first node, so plot events like "your first customer is…" always have context |
+| Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices; every choice carries its own `next`, and two decisions per venture open a consequence scene that other players never see |
+| Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) above the first node, so plot events like "your first customer is…" always have context. The cover shows only the venture name and hook |
 | Six venture scenarios | `scenarios/manifest.json` lists the packs; each play randomly draws one (or force one with `?scenario=<id>`) |
 | Dual-track dashboard | Six segmented neon bars in two groups — risk (red alarm past threshold) and venture (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |

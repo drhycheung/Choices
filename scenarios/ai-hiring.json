@@ -319,7 +319,7 @@
             "zh": "用试点企业书面授权的数据，接受样本量小的现实",
             "en": "Use only data the pilot covered in writing and accept a small sample"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "再抓一批公开招聘平台的简历与社交资料补齐样本",
             "en": "Scrape public job boards and social profiles to fill the sample"
           },
-          "next": "c2_ops",
+          "next": "ai-hiring_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,86 @@
           "why": {
             "zh": "「公开可见」不等于「可用于训练」：多数情况下仍缺少合法性基础与告知义务；用未授权的简历训练就业评分模型，是当前正在被起诉的一类做法。模型效果确实变好。",
             "en": "'Publicly visible' does not mean 'available for training': in most cases there is still no lawful basis and no notice. Training an employment-scoring model on unauthorised CVs is exactly the practice now being litigated. The model does get better."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "只用书面授权数据训出来的模型，样本小、覆盖面窄，在试点企业之外的岗位族上表现明显下降。但每一次评分，你们都能说清它依据了哪些字段。",
+        "en": "Trained only on authorised data, the model has a small, narrow sample and degrades outside the pilot firm's job families. But for every score you can say which fields it relied on."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把「可解释的评分依据」做成对 HR 的标准交付物",
+            "en": "Make 'explainable scoring basis' a standard deliverable for HR"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "候选人申诉与企业内审都要这一份依据；能提供它的供应商，在采购名单里会留在更靠上的位置。",
+            "en": "Both candidate appeals and internal audits need that basis. Vendors who can produce it sit higher on the shortlist."
+          }
+        },
+        {
+          "text": {
+            "zh": "对外宣称算法合规，评分依据只在被投诉时给",
+            "en": "Claim algorithmic compliance; release the basis only after a complaint"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下逐条维护说明的工作量，也避免被反复追问；但一旦进入劳动仲裁，你要解释为什么平时不给。",
+            "en": "You save the upkeep and the repeated questions — but once a labour dispute starts you must explain why you withheld it."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "抓来的简历与社交资料把样本补满了，模型看起来更准。直到一位候选人拿着自己从未公开的页面来问：你们是从哪里拿到这一份的？",
+        "en": "Scraped CVs and profiles filled the sample and the model looks sharper — until a candidate arrives with a page she never published and asks where you got it."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "删除抓取来的数据、重新训练，并书面告知相关候选人",
+            "en": "Delete the scraped data, retrain, and notify affected candidates in writing"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉已经发生的收集行为，效果也会回退；自己发现永远比被举报后整改便宜。",
+            "en": "Stopping limits further liability but does not undo the collection, and quality regresses. Finding it yourself beats remediating after a report."
+          }
+        },
+        {
+          "text": {
+            "zh": "继续用，等有人正式投诉再说",
+            "en": "Keep using it until someone complains formally"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "换来的是模型表现与交付时间，代价是把「我们凭什么持有这些数据」的举证责任整个留给了以后的自己。",
+            "en": "You buy model performance and delivery time, and leave the burden of proving why you hold the data to your future self."
           }
         }
       ]
@@ -532,7 +612,7 @@
             "zh": "公开已知局限、加入人工复核、重采样修正训练集",
             "en": "Publish the limitations, add human review, resample to fix the training set"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +627,7 @@
             "zh": "先上线，把适用人群写成「毕业于重点院校的技术岗」",
             "en": "Ship now and declare the intended population as 'graduates of leading institutions'"
           },
-          "next": "c4_incident",
+          "next": "ai-hiring_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +636,85 @@
           "why": {
             "zh": "限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。",
             "en": "Fine print will not contain the systemic effect, and once someone loses an opportunity the burden of proof stays with you. This turns known disparate impact into a shipped feature. Launch stays on schedule."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "公开局限、加人工复核并重采样之后，筛出来的人变少了，试点企业的 HR 抱怨「不如以前好用」。同时，两家跨国企业把你们加进合规供应商名单——他们要的是能经得起审计的那一版。",
+        "en": "After publishing limitations, adding human review and resampling, the shortlist shrinks and the pilot firm's HR says it is 'less useful than before'. Two multinationals meanwhile add you to their compliant-vendor list — they want the auditable version."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把复核记录与偏差修正写进交付标准，接受审计",
+            "en": "Write review logs and bias fixes into the delivery standard and accept audits"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "愿意被审计本身就是门槛：它筛掉做不到的同行，也让你在招标里不必只拼价格。",
+            "en": "Being auditable is itself a moat — it filters out rivals who cannot do it and gets you out of competing on price alone."
+          }
+        },
+        {
+          "text": {
+            "zh": "为保住「好用」，把复核改成走过场",
+            "en": "To stay 'easy to use', reduce review to a rubber stamp"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "筛得多、交付快，指标立刻好看；但你在客户面前说的「我们有人复核」已经开始失真。",
+            "en": "More candidates, faster delivery, better metrics at once — but 'a human reviews this' has started to drift from the truth."
+          }
+        }
+      ]
+    },
+    "ai-hiring_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "一位四十岁以上的候选人向劳动部门咨询：他被同一套系统连拒七次，从未得到任何理由。媒体开始问，这套评分到底依据什么。",
+        "en": "A candidate over forty consults the labour authority: rejected seven times by the same system, never given a reason. Reporters start asking what the score actually rests on."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做评分依据说明与人工复核通道，公开已知局限",
+            "en": "Add score explanations and a human review channel; publish the known limitations"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续误判，也向客户证明你会修正；但它不能退回那七次拒绝，收入也会先掉一块。",
+            "en": "Fixing it stops further misjudgement and shows clients you correct course — but it cannot return the seven rejections, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "不回应，把「最终由企业决定」写得更清楚",
+            "en": "Stay silent and sharpen the line 'the employer decides in the end'"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": 2,
+            "business": 2
+          },
+          "why": {
+            "zh": "把责任推给客户能换来短期平安，但监管看的是谁设计了规则；这句话也会成为你知情的证据。",
+            "en": "Pushing responsibility to the client buys short-term quiet, but regulators ask who designed the rule — and that line becomes evidence you knew."
           }
         }
       ]

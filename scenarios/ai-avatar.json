@@ -319,7 +319,7 @@
             "zh": "只用授权数据，接受口型略逊的版本",
             "en": "Use authorised data only and accept slightly worse lip sync"
           },
-          "next": "c2_ops",
+          "next": "ai-avatar_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "混入第三方素材库与网络抓到的样本",
             "en": "Blend in third-party libraries and scraped samples"
           },
-          "next": "c2_ops",
+          "next": "ai-avatar_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,86 @@
           "why": {
             "zh": "混合数据集通常交付出最好的效果指标，但你无法证明每一条的合法性基础；一旦有人主张权利，举证责任与追溯成本都在你们这边。",
             "en": "Mixed datasets usually produce the best quality metrics, but you cannot prove a lawful basis for each item; when someone asserts their rights, both the burden of proof and the tracing cost fall on you."
+          }
+        }
+      ]
+    },
+    "ai-avatar_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "两个月后，一家平台做上架审核，要你们逐条说明素材来源。能拿出授权文件的那部分只占训练集的一小部分——但每一条都对得上，演示效果也确实不如竞品惊艳。",
+        "en": "Two months on, a platform review asks you to account for every clip. The share backed by signed releases is small — but every item checks out, and your demo is frankly less flashy than rivals'."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把来源说明做成标准附件，任何客户都能索取",
+            "en": "Turn provenance into a standard annex any client can request"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "把合规做成可交付的文档，等于把审核成本从每次投标里拿掉；它同时是别人短期内复制不了的东西。",
+            "en": "Packaging compliance as a deliverable removes review cost from every bid — and becomes the thing rivals cannot copy quickly."
+          }
+        },
+        {
+          "text": {
+            "zh": "口头保证来源合法，文档只在被追问时才给",
+            "en": "Give verbal assurances; hand over documents only when pressed"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
+            "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
+          }
+        }
+      ]
+    },
+    "ai-avatar_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "效果确实上去了，演示场场惊艳。直到一位舞蹈老师发来私信：被反复调用的那段动作，来自她从未授权的公开课录像。",
+        "en": "Quality genuinely rose and every demo landed — until a dance teacher messaged: the move used over and over came from a class recording she never licensed."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "下架相关模型、删除来源不明的样本，回头补授权",
+            "en": "Pull the affected model, delete untraceable samples, go back for licences"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉已经发生的侵害，质量也会回退。自己发现永远比被起诉后整改便宜。",
+            "en": "Stopping limits further liability but does not undo the harm already done, and quality regresses. Finding it yourself is always cheaper than remediating after a suit."
+          }
+        },
+        {
+          "text": {
+            "zh": "先拖着，等真正有人正式主张权利再说",
+            "en": "Delay until someone formally asserts their rights"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "拖延换来上线时间，代价是把举证与赔偿谈判一起推到对方起诉之后——那时议价权已经不在你手上。",
+            "en": "Delay buys shipping time and defers the burden of proof and the settlement talk until after the suit — when you no longer set the price."
           }
         }
       ]
@@ -532,7 +612,7 @@
             "zh": "公开已知滥用情形、加公众人物检测与人工复核、建立举报通道",
             "en": "Publish known misuse patterns, add public-figure detection and human review, open a reporting channel"
           },
-          "next": "c4_incident",
+          "next": "ai-avatar_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +627,7 @@
             "zh": "先不管，把「禁止用于虚假信息」写进用户协议",
             "en": "Do nothing for now; write 'prohibited for disinformation' into the terms of service"
           },
-          "next": "c4_incident",
+          "next": "ai-avatar_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +636,85 @@
           "why": {
             "zh": "条款只能约束愿意遵守条款的人。对已经发生的诈骗而言，「我们禁止过」通常不足以免责；实质是先上线、后果由受害者承担。指标好看。",
             "en": "Terms only bind people willing to read them. For fraud already happening, 'we prohibited it' rarely discharges liability; in substance you ship first and let victims absorb consequences. The metrics look good."
+          }
+        }
+      ]
+    },
+    "ai-avatar_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "防护上线后，一部分商家抱怨流程变麻烦，转化率掉了一截。同时两个品牌客户说：正是因为你们做了检测，我们才敢用。",
+        "en": "After safeguards ship, merchants complain the flow got slower and conversion dips. Two brand clients say the opposite: we dared use you precisely because of the detection."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把检测与复核写进交付标准，并公开处理时限",
+            "en": "Write detection and review into the delivery standard and publish turnaround times"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "把「不容易被用来骗人」写成可验收的条款，它就从成本变成了采购理由，也是最难被复制的一类能力。",
+            "en": "Making 'hard to use for fraud' an acceptance criterion turns cost into a reason to buy — and the hardest capability to copy."
+          }
+        },
+        {
+          "text": {
+            "zh": "为冲增长把复核改成抽查，人力省下来做投放",
+            "en": "Chase growth: downgrade review to spot checks, move the headcount to ads"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "省下的人力立刻变增长数字，但你在客户面前说的「我们有复核」已经开始失真；失真被揭穿的代价远高于省下的钱。",
+            "en": "Freed headcount turns into growth immediately, but 'we review everything' is already drifting from the truth — and being caught costs far more than you saved."
+          }
+        }
+      ]
+    },
+    "ai-avatar_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "诈骗群还在扩散，那位评论员的团队发了公开声明，点名说「某数字人工具」造成了损害。你们的条款里写着禁止，只是没人读。",
+        "en": "The scam groups keep spreading and the commentator's team posts a statement naming 'a certain avatar tool' as the cause. Your terms prohibit it — nobody read them."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做公众人物检测与人工复核，公开致歉并召回",
+            "en": "Add public-figure detection and human review; apologise publicly and recall"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续扩散，也向平台与品牌客户证明你会修正；但它不能让已经受骗的人回到原点，收入也会先掉一块。",
+            "en": "Fixing it stops the spread and shows platforms and brands that you correct course — but it cannot restore those already cheated, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "不回应，等热度过去，继续冲新增",
+            "en": "Stay silent, wait for the news cycle to pass, keep chasing sign-ups"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": 2,
+            "business": 2
+          },
+          "why": {
+            "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
+            "en": "Silence protects the short-term curve, and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
           }
         }
       ]

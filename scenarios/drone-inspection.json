@@ -319,7 +319,7 @@
             "zh": "只用自有飞行与客户授权的数据",
             "en": "Use only your own flights and data clients authorised"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_clean",
           "effects": {
             "pmf": 1
           },
@@ -333,7 +333,7 @@
             "zh": "混入外部影像包补齐缺陷样本",
             "en": "Blend in the external pack to fill the defect samples"
           },
-          "next": "c2_ops",
+          "next": "drone-inspection_b1_dirty",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -342,6 +342,88 @@
           "why": {
             "zh": "效果提升明显。但影像包里是否夹杂禁拍区域的画面、是否包含未授权拍摄的素材，都无法核实；这类瑕疵一旦被发现，追溯极其困难。",
             "en": "Quality improves noticeably. But you cannot verify whether the pack includes imagery of restricted zones or footage shot without permission, and once discovered such defects are almost impossible to trace back."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_clean": {
+      "act": "act2",
+      "text": {
+        "zh": "只用自有飞行与客户授权影像训出来的模型，缺陷样本偏少，某些材质上的表现不稳定。但每一帧影像的拍摄时间、空域审批与授权范围都对得上。",
+        "en": "Trained only on your own flights and client-authorised imagery, the model has few defect samples and wobbles on some materials. But every frame matches a flight time, an airspace approval and an authorised scope."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把空域审批与影像授权做成每份报告的固定附件",
+            "en": "Attach airspace approvals and image authorisations to every report"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西。",
+            "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor."
+          }
+        },
+        {
+          "text": {
+            "zh": "对外称合规，审批文件只在被质疑时补",
+            "en": "Claim compliance; produce approvals only when challenged"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "省下逐单归档的工作量，交付也更快；但一旦有人质疑某一帧的来源，你要解释为什么当时拿不出来。",
+            "en": "You save per-job archiving and deliver faster — but the first challenge to a frame means explaining why it was not available then."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b1_dirty": {
+      "act": "act2",
+      "text": {
+        "zh": "外部影像包把缺陷样本补齐了，识别率明显上升。只是那批图里有一部分，明显不像商业航拍能取得的视角——其中几处还带着明显的围栏与岗哨。",
+        "en": "The external pack fills the defect samples and detection clearly improves. But part of that imagery uses angles commercial flights do not get — several frames show fences and guard posts."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "停用外部影像包、重新训练，并向客户书面说明",
+            "en": "Stop using the pack, retrain, and tell clients in writing"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1,
+            "national_security": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。",
+            "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation."
+          }
+        },
+        {
+          "text": {
+            "zh": "继续用，先把这几单交付出去",
+            "en": "Keep using it and get these jobs delivered first"
+          },
+          "next": "c2_ops",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "换来的是交付速度与识别率，代价是：这些影像的取得方式是否合规，举证责任已经落在你们身上。",
+            "en": "You buy delivery speed and detection rate, and inherit the burden of proving how that imagery was obtained."
           }
         }
       ]
@@ -532,7 +614,7 @@
             "zh": "公开适用条件限制、对低置信度结果强制人工复核",
             "en": "Publish operating limits and require human review of low-confidence results"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_fixed",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -547,7 +629,7 @@
             "zh": "上线为默认可靠，把环境条件限制写进免责条款",
             "en": "Ship it as reliable by default and put the limits into the liability clause"
           },
-          "next": "c4_incident",
+          "next": "drone-inspection_b2_paper",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -556,6 +638,86 @@
           "why": {
             "zh": "免责条款不能替结构做体检。漏判的裂缝会在下一次检查之前继续扩展，而客户以为有人看过——这是把已知缺陷转嫁给用户承担。交付如期。",
             "en": "A liability clause will not inspect a bridge. Missed cracks keep growing until the next survey while clients believe someone looked — passing known defects to the user. Delivery stays on schedule."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_fixed": {
+      "act": "act3",
+      "text": {
+        "zh": "公开适用条件并对低置信度结果强制人工复核后，报告出得慢了，一线抱怨「不如以前快」。同时，两家能源客户续签时点名要这一版：他们要的是能作为举证材料的报告。",
+        "en": "After publishing operating limits and requiring human review of low-confidence results, reports take longer and field crews say it is slower. Two energy clients renew and ask for this version by name: they need reports that hold up as evidence."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "把复核记录与适用条件写进合同附件",
+            "en": "Write review records and operating limits into the contract annex"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "moat": 2
+          },
+          "why": {
+            "zh": "当报告可能被用作举证或理赔材料，「可追溯」就从成本变成客户指定要的东西，也是最难抄的能力。",
+            "en": "When a report may become evidence, traceability stops being overhead and becomes something clients specify — and the hardest thing to copy."
+          }
+        },
+        {
+          "text": {
+            "zh": "为赶交付进度，把复核改成抽查",
+            "en": "To keep the schedule, downgrade review to spot checks"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "business": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "进度保住了，成本也下来了；但你在报告上写的「已复核」已经开始失真，而报告一旦被当证据用，失真就是责任。",
+            "en": "You keep the schedule and cut cost — but 'reviewed' on the report has started to drift, and once a report is used as evidence, that drift is liability."
+          }
+        }
+      ]
+    },
+    "drone-inspection_b2_paper": {
+      "act": "act3",
+      "text": {
+        "zh": "雨季巡检过后，一段管渠在阴天拍摄的影像里被判为「无异常」，两周后发生渗漏。客户翻出报告：适用条件那几行写在免责条款的最后。",
+        "en": "After the wet-season inspection, a pipe section shot under overcast sky was cleared as 'no anomaly' and leaked two weeks later. The client pulls the report: the operating limits sit at the end of the liability clause."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做低置信度强制复核，主动复查雨季全部影像",
+            "en": "Add mandatory review of low-confidence results and re-check the whole wet-season set"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。",
+            "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first."
+          }
+        },
+        {
+          "text": {
+            "zh": "按免责条款处理，等客户走完索赔流程",
+            "en": "Rely on the liability clause and let the claim process run"
+          },
+          "next": "c4_incident",
+          "effects": {
+            "ethics": 2,
+            "business": 2,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "条款可能帮你赢下这一单索赔，也会帮客户记住：下次招标时，他们要找的是不会把限制藏在最后的供应商。",
+            "en": "The clause may win this claim — and reminds the client that next tender they want a vendor who does not bury limits at the end."
           }
         }
       ]
