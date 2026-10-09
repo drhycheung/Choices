@@ -24,7 +24,12 @@
       finalRisk: '最终风险',
       brandSub: '文字交互式分支叙事模拟器',
       hudTitle: '⚠ 风险监测 · RISK MONITOR',
-      footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开'
+      footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
+      actionError: '错误: ',
+      loadError: '无法加载场景：',
+      loadHint: '（请用静态服务器打开，例如 python -m http.server）',
+      validateError: '场景校验未通过：',
+      fileError: '无法通过 file:// 加载场景：未找到内嵌场景'
     },
     en: {
       traceTitle: 'Decision Trail',
@@ -36,7 +41,12 @@
       finalRisk: 'Final risk',
       brandSub: 'Interactive Branching Narrative Simulator',
       hudTitle: '⚠ RISK MONITOR',
-      footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly'
+      footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
+      actionError: 'Error: ',
+      loadError: 'Could not load the scenario: ',
+      loadHint: ' (open it through a static server, e.g. python -m http.server)',
+      validateError: 'Scenario validation failed: ',
+      fileError: 'Cannot load the scenario over file://: no embedded scenario found'
     }
   };
 
@@ -167,7 +177,7 @@
 
   function onChoose(i) {
     try { ChoicesEngine.choose(scenario, state, i); }
-    catch (e) { showBanner('错误: ' + e.message, 'error'); return; }
+    catch (e) { showBanner(UI[lang].actionError + e.message, 'error'); return; }
     renderDims();
     renderNode();
   }
@@ -185,7 +195,7 @@
       box.appendChild(textEl('h2', UI[lang].undefined));
       box.appendChild(textEl('p', UI[lang].undefinedDesc));
     } else {
-      box.appendChild(textEl('div', '结局 · ' + typeLabel(ending.type), 'ending-tag'));
+      box.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
       box.appendChild(textEl('h2', pick(ending.title, lang)));
       box.appendChild(textEl('p', pick(ending.text, lang)));
       if (ending.reflection) {
@@ -250,27 +260,32 @@
   function start(err, json) {
     if (err) {
       var ss = $('start-screen'); if (ss) ss.classList.add('hidden');
-      showBanner('无法加载场景：' + err.message + '（请用静态服务器打开，例如 python -m http.server）', 'error');
+      showBanner(UI[lang].loadError + err.message + UI[lang].loadHint, 'error');
       return;
     }
     scenario = json;
     var res = ChoicesValidate.validate(scenario);
-    if (res.errors.length) showBanner('场景校验未通过：' + res.errors.join('；'), 'error');
+    if (res.errors.length) showBanner(UI[lang].validateError + res.errors.join(lang === 'zh' ? '；' : '; '), 'error');
     // 校验通过时不显示横幅，避免打扰玩家；仅在校验出错时才提示。
 
-    $('scenario-title').textContent = pick(scenario.title, lang);
-    $('scenario-theme').textContent = pick(scenario.theme, lang);
     applyChrome();
     state = ChoicesEngine.createState(scenario);
     renderDims();
     renderNode();
   }
 
-  // 同步页眉副标题与页脚文案（随语言；英文模式下页脚为英文）
+  // 同步页眉副标题、页脚、HUD 标题，以及场景标题/主题（随语言切换即时更新）
   function applyChrome() {
     var bs = $('brand-sub'); if (bs) bs.textContent = UI[lang].brandSub;
     var ft = $('app-footer'); if (ft) ft.textContent = UI[lang].footer;
     var ht = $('hud-title'); if (ht) ht.textContent = UI[lang].hudTitle;
+    // 场景标题与主题（如 "Student Startup" / "National Security / Law / Ethics"）
+    // 必须在这里更新：切换语言时只有 applyChrome() 会被调用，
+    // 若只在首次加载时写入，切到中文后标题仍会停留在英文。
+    if (scenario) {
+      var st = $('scenario-title'); if (st) st.textContent = pick(scenario.title, lang);
+      var sth = $('scenario-theme'); if (sth) sth.textContent = pick(scenario.theme, lang);
+    }
   }
 
   // 切换语言：更新开关高亮并即时重渲染当前可见视图
@@ -342,7 +357,7 @@
       // 直接双击打开 HTML（file:// 协议）：浏览器禁止 fetch 本地文件，使用内嵌场景
       var emb = readEmbedded();
       if (emb) return start(null, emb);
-      showBanner('无法通过 file:// 加载场景：未找到内嵌场景（请用静态服务器打开，例如 python -m http.server）', 'error');
+      showBanner(UI[lang].fileError + UI[lang].loadHint, 'error');
       return;
     }
 
