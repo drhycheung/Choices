@@ -1,36 +1,140 @@
 {
   "id": "edu-analytics",
-  "title": { "zh": "学镜 StudyScope：校园 AI 学习分析", "en": "StudyScope: AI Learning Analytics for Schools" },
-  "theme": { "zh": "未成年人数据、学术诚信与教育画像", "en": "Minors' data, academic integrity and student profiling" },
+  "title": {
+    "zh": "学镜 StudyScope：校园 AI 学习分析",
+    "en": "StudyScope: AI Learning Analytics for Schools"
+  },
+  "theme": {
+    "zh": "未成年人数据、学术诚信与教育画像",
+    "en": "Minors' data, academic integrity and student profiling"
+  },
   "brief": {
-    "zh": "你们的工具能读完一个班的作业，指出每个学生卡在哪一步，还能自动生成评语。试点学校的教学主任很喜欢——直到有家长问：这个孩子为什么总被模型标红？",
-    "en": "Your tool reads a whole class's homework, pinpoints where each student got stuck and drafts feedback. The pilot school's director loves it — until a parent asks why her child is always flagged red."
+    "product": {
+      "zh": "给中学教师用的学习分析工具：扫描作业与测验，指出每个学生卡在哪个知识点，并生成讲评要点、练习建议与评语草稿。",
+      "en": "A learning-analytics tool for secondary teachers: it scans homework and tests, pinpoints where each student is stuck, and drafts review points, practice sets and comments."
+    },
+    "customer": {
+      "zh": "试点中学的教师与教研组长；区教育局是更大的采购方。",
+      "en": "Teachers and subject-panel heads at pilot schools; the district education bureau is the bigger buyer."
+    },
+    "standing": {
+      "zh": "经大学里的导师介绍，一所试点中学正在试用；团队三人，收费模式尚未定型。",
+      "en": "A supervisor at the university introduced a pilot secondary school that is now trialling it. Three people, pricing undecided."
+    },
+    "data": {
+      "zh": "未成年人的答题记录、成绩与评语。属敏感个人信息，通常需要监护人同意并遵守最小必要原则；自动生成评语还涉及学术诚信。",
+      "en": "Minors' answer records, grades and comments — sensitive personal data that normally needs guardian consent and data minimisation; auto-generated comments also touch academic integrity."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
-    "national_security": { "label": { "zh": "国家安全风险", "en": "National security risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83D\uDEE1\uFE0F" },
-    "legal": { "label": { "zh": "法律合规风险", "en": "Legal compliance risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "⚖️" },
-    "ethics": { "label": { "zh": "伦理与信任风险", "en": "Ethics and trust risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83E\uDDD0" },
-    "pmf": { "label": { "zh": "问题–方案契合", "en": "Problem–solution fit" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFAF" },
-    "business": { "label": { "zh": "商业模式", "en": "Business model" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83D\uDCB0" },
-    "moat": { "label": { "zh": "护城河与不公平优势", "en": "Moat and unfair advantage" }, "initial": 1, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFF0" }
+    "national_security": {
+      "label": {
+        "zh": "国家安全风险",
+        "en": "National security risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "🛡️"
+    },
+    "legal": {
+      "label": {
+        "zh": "法律合规风险",
+        "en": "Legal compliance risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "⚖️"
+    },
+    "ethics": {
+      "label": {
+        "zh": "伦理与信任风险",
+        "en": "Ethics and trust risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "🧐"
+    },
+    "pmf": {
+      "label": {
+        "zh": "问题–方案契合",
+        "en": "Problem–solution fit"
+      },
+      "initial": 2,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "🎯"
+    },
+    "business": {
+      "label": {
+        "zh": "商业模式",
+        "en": "Business model"
+      },
+      "initial": 2,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "💰"
+    },
+    "moat": {
+      "label": {
+        "zh": "护城河与不公平优势",
+        "en": "Moat and unfair advantage"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "🏰"
+    }
   },
   "start": "intro",
   "acts": {
-    "act1": { "zh": "第一章 · 客群与问题（Canvas 1–2）", "en": "Act I · Customers and Problem (Canvas 1–2)" },
-    "act2": { "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）", "en": "Act II · Solution, Data and Training (Canvas 3–4)" },
-    "act3": { "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）", "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)" },
-    "act4": { "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）", "en": "Act IV · Scale and Spillover (Canvas 7, 9)" }
+    "act1": {
+      "zh": "第一章 · 客群与问题（Canvas 1–2）",
+      "en": "Act I · Customers and Problem (Canvas 1–2)"
+    },
+    "act2": {
+      "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "en": "Act II · Solution, Data and Training (Canvas 3–4)"
+    },
+    "act3": {
+      "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)"
+    },
+    "act4": {
+      "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）",
+      "en": "Act IV · Scale and Spillover (Canvas 7, 9)"
+    }
   },
   "nodes": {
     "intro": {
       "act": "act1",
       "text": {
-        "zh": "教育学院的导师把你们介绍给一所试点中学。试用两周，老师说批改时间少了一半。教研会上有人问：这些学生的答题数据放哪儿？没有人能回答。",
-        "en": "A supervisor from the education faculty introduced you to a pilot secondary school. Two weeks in, teachers report halving their marking time. At a staff meeting someone asks where the students' answer data is stored. Nobody answers."
+        "zh": "大学里的导师把你们介绍给一所试点中学。试用两周，老师说批改时间少了一半。教研会上有人问：这些学生的答题数据放哪儿？没有人能回答。",
+        "en": "A supervisor at the university introduced you to a pilot secondary school. Two weeks in, teachers report halving their marking time. At a staff meeting someone asks where the students' answer data is stored. Nobody answers."
       },
       "choices": [
-        { "text": { "zh": "接下这所试点学校，正式启动", "en": "Take the pilot school and begin" }, "next": "c1_segment" }
+        {
+          "text": {
+            "zh": "接下这所试点学校，正式启动",
+            "en": "Take the pilot school and begin"
+          },
+          "next": "c1_segment"
+        }
       ]
     },
     "c1_segment": {
@@ -41,43 +145,87 @@
       },
       "choices": [
         {
-          "text": { "zh": "深耕一所中学：先把校内批改与错题归因做透", "en": "Go deep on secondary schools: master marking and error attribution in-class" },
+          "text": {
+            "zh": "深耕一所中学：先把校内批改与错题归因做透",
+            "en": "Go deep on secondary schools: master marking and error attribution in-class"
+          },
           "next": "c1_problem",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "校内场景的反馈闭环短，老师每天都能指出产品哪里不对，迭代质量高；一旦在一所学校形成口碑，区域内其他学校会自己找上门（Canvas 9）。缺点是决策慢、预算低。", "en": "Schools offer a short feedback loop: teachers tell you daily what is wrong, which lifts iteration quality; once one school vouches for you, others in the district call you (Canvas 9). Decision cycles are slow and budgets are low." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "校内场景的反馈闭环短，老师每天都能指出产品哪里不对，迭代质量高；一旦在一所学校形成口碑，区域内其他学校会自己找上门（Canvas 9）。缺点是决策慢、预算低。",
+            "en": "Schools offer a short feedback loop: teachers tell you daily what is wrong, which lifts iteration quality; once one school vouches for you, others in the district call you (Canvas 9). Decision cycles are slow and budgets are low."
+          }
         },
         {
-          "text": { "zh": "面向所有学习场景，加入家长端，先把用户数做起来", "en": "Cover all learning scenarios, add a parent app, and scale users fast" },
+          "text": {
+            "zh": "面向所有学习场景，加入家长端，先把用户数做起来",
+            "en": "Cover all learning scenarios, add a parent app, and scale users fast"
+          },
           "next": "c1_problem",
-          "effects": { "business": 2, "ethics": 1 },
-          "why": { "zh": "把未成年人最细密的行为数据直接暴露在家长端，会让「被持续观察」的感受进入家庭关系；涉及未成年人，通常需要监护人同意且遵循最有利原则。用户数增长很快。", "en": "Surfacing the finest-grained behavioural data of minors straight into parents' hands makes constant observation part of family life; where minors are involved, guardian consent and the best-interests principle usually apply. User counts grow fast." }
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "把未成年人最细密的行为数据直接暴露在家长端，会让「被持续观察」的感受进入家庭关系；涉及未成年人，通常需要监护人同意且遵循最有利原则。用户数增长很快。",
+            "en": "Surfacing the finest-grained behavioural data of minors straight into parents' hands makes constant observation part of family life; where minors are involved, guardian consent and the best-interests principle usually apply. User counts grow fast."
+          }
         }
       ]
     },
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：老师的真痛点是什么？有人说批改太累，也有老师说真正难的是「不知道这个学生卡在哪里」。",
-        "en": "Second question: what is the teacher's real pain? Some say marking is exhausting; another says the hard part is not knowing where a student is stuck."
+        "zh": "第二件事：老师的真痛点是什么？有人说批改太累，也有老师说真正难的是「不知道这个学生卡在哪里」。就在这时候，区教育局放出了统测分析的采购意向：谁愿意按他们的口径做，就有机会进全区。",
+        "en": "Second question: what is the teacher's real pain? Some say marking is exhausting; another says the hard part is not knowing where a student is stuck. Right then the district education bureau floats a tender for exam analytics: whoever builds to their reporting format reaches every school in the district."
       },
       "choices": [
         {
-          "text": { "zh": "跟十二位老师深聊，确认痛点是「归因困难」而非「批改耗时」", "en": "Interview twelve teachers; confirm the pain is diagnosis, not marking time" },
+          "text": {
+            "zh": "跟十二位老师深聊，确认痛点是「归因困难」而非「批改耗时」",
+            "en": "Interview twelve teachers; confirm the pain is diagnosis, not marking time"
+          },
           "next": "c2_product",
-          "effects": { "pmf": 2 },
-          "why": { "zh": "把问题定义为归因，产品就要做到可解释：每一条评语都要能指出对应的错因。Canvas 2 的证据越扎实，教研主任越容易替你在校内说话。", "en": "Defining the problem as diagnosis forces explainability: every comment must trace to a specific misconception. The stronger the Canvas 2 evidence, the easier it is for the department head to advocate for you." }
+          "effects": {
+            "pmf": 2
+          },
+          "why": {
+            "zh": "把问题定义为归因，产品就要做到可解释：每一条评语都要能指出对应的错因。Canvas 2 的证据越扎实，教研主任越容易替你在校内说话。",
+            "en": "Defining the problem as diagnosis forces explainability: every comment must trace to a specific misconception. The stronger the Canvas 2 evidence, the easier it is for the department head to advocate for you."
+          }
         },
         {
-          "text": { "zh": "做自动评语与错题本的「一键生成」版", "en": "Ship one-click automatic comments and mistake books" },
+          "text": {
+            "zh": "做自动评语与错题本的「一键生成」版",
+            "en": "Ship one-click automatic comments and mistake books"
+          },
           "next": "c2_product",
-          "effects": { "business": 2, "ethics": 1 },
-          "why": { "zh": "一键生成确实最省老师时间，采购理由也最好讲。但当评语由模型代笔而老师照单发出时，学生与家长以为读到的是老师的判断，学术评价的诚实性开始失真。", "en": "One-click output genuinely saves teacher time and is easy to sell. But when the model drafts comments that go out under the teacher's name, students and parents believe they are reading a human judgement, and the honesty of assessment erodes." }
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "一键生成确实最省老师时间，采购理由也最好讲。但当评语由模型代笔而老师照单发出时，学生与家长以为读到的是老师的判断，学术评价的诚实性开始失真。",
+            "en": "One-click output genuinely saves teacher time and is easy to sell. But when the model drafts comments that go out under the teacher's name, students and parents believe they are reading a human judgement, and the honesty of assessment erodes."
+          }
         },
         {
-          "text": { "zh": "按最大采购方要求做：区教育局的统测分析版", "en": "Build what the biggest buyer wants: a district-level exam analytics version" },
+          "text": {
+            "zh": "按最大采购方要求做：区教育局的统测分析版",
+            "en": "Build what the biggest buyer wants: a district-level exam analytics version"
+          },
           "next": "c2_product",
-          "effects": { "business": 3, "pmf": -1 },
-          "why": { "zh": "一个区域大单让 Canvas 6 立刻成立。但买方要的是排名与汇报口径，而不是课堂里的真实归因，产品会往「看板」偏移，与老师的真实需求拉开距离。", "en": "One district deal makes Canvas 6 work instantly. But the buyer wants rankings and reporting optics rather than diagnosis inside lessons, so the product drifts towards dashboards and away from real teacher needs." }
+          "effects": {
+            "business": 3,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "一个区域大单让 Canvas 6 立刻成立。但买方要的是排名与汇报口径，而不是课堂里的真实归因，产品会往「看板」偏移，与老师的真实需求拉开距离。",
+            "en": "One district deal makes Canvas 6 work instantly. But the buyer wants rankings and reporting optics rather than diagnosis inside lessons, so the product drifts towards dashboards and away from real teacher needs."
+          }
         }
       ]
     },
@@ -89,16 +237,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "错题归因 + 备课助手：每个结论都要给出对应证据", "en": "Misconception diagnosis plus lesson planning, with evidence behind every conclusion" },
+          "text": {
+            "zh": "错题归因 + 备课助手：每个结论都要给出对应证据",
+            "en": "Misconception diagnosis plus lesson planning, with evidence behind every conclusion"
+          },
           "next": "c2_keyresource",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "归因体系会沉淀成学科错因库与教研语料，这是别人抄不走的资产（Canvas 9）。它不如看板好演示，但每用一年都在加宽壁垒。", "en": "A diagnosis taxonomy accumulates into a misconception library and teaching corpus nobody else owns (Canvas 9). It demos less dramatically than dashboards, but every year of use widens the moat." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "归因体系会沉淀成学科错因库与教研语料，这是别人抄不走的资产（Canvas 9）。它不如看板好演示，但每用一年都在加宽壁垒。",
+            "en": "A diagnosis taxonomy accumulates into a misconception library and teaching corpus nobody else owns (Canvas 9). It demos less dramatically than dashboards, but every year of use widens the moat."
+          }
         },
         {
-          "text": { "zh": "学生画像与排名看板：校长一眼看完整个年级", "en": "Student profiles and ranking dashboards: a principal sees the whole year group at a glance" },
+          "text": {
+            "zh": "学生画像与排名看板：校长一眼看完整个年级",
+            "en": "Student profiles and ranking dashboards: a principal sees the whole year group at a glance"
+          },
           "next": "c2_keyresource",
-          "effects": { "business": 2, "national_security": 1 },
-          "why": { "zh": "全年级的结构化画像便于汇报、容易被采购。但未成年人长期的学习行为画像，是敏感程度极高且影响持久的数据集合；一旦跨境或外泄，几乎无法补救。", "en": "Year-group profiles are easy to present and easy to buy. But a long-running behavioural profile of minors is extremely sensitive and long-lasting; once transferred or leaked it can barely be remedied." }
+          "effects": {
+            "business": 2,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "全年级的结构化画像便于汇报、容易被采购。但未成年人长期的学习行为画像，是敏感程度极高且影响持久的数据集合；一旦跨境或外泄，几乎无法补救。",
+            "en": "Year-group profiles are easy to present and easy to buy. But a long-running behavioural profile of minors is extremely sensitive and long-lasting; once transferred or leaked it can barely be remedied."
+          }
         }
       ]
     },
@@ -110,16 +276,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "向出版社购买授权，先用公开课程标准起步", "en": "License from the publisher; start on public curriculum standards" },
+          "text": {
+            "zh": "向出版社购买授权，先用公开课程标准起步",
+            "en": "License from the publisher; start on public curriculum standards"
+          },
           "next": "c2_training",
-          "effects": { "pmf": 1 },
-          "why": { "zh": "授权慢、内容少，但每一道题的来源清楚；面向学校、教育局与出版社本身做销售时，这是唯一讲得出口的版本。", "en": "Licensing is slow and thin, but every item's provenance is clean — the only version you can defend when selling to schools, districts and the publishers themselves." }
+          "effects": {
+            "pmf": 1
+          },
+          "why": {
+            "zh": "授权慢、内容少，但每一道题的来源清楚；面向学校、教育局与出版社本身做销售时，这是唯一讲得出口的版本。",
+            "en": "Licensing is slow and thin, but every item's provenance is clean — the only version you can defend when selling to schools, districts and the publishers themselves."
+          }
         },
         {
-          "text": { "zh": "先用扫描版教辅做知识库，把效果做出来", "en": "Use scanned workbooks to build the knowledge base and get results first" },
+          "text": {
+            "zh": "先用扫描版教辅做知识库，把效果做出来",
+            "en": "Use scanned workbooks to build the knowledge base and get results first"
+          },
           "next": "c2_training",
-          "effects": { "national_security": 2, "legal": 1, "pmf": 1 },
-          "why": { "zh": "未经授权的教材与教辅通常构成著作权侵权；把纸质内容数字化并入库还会放大侵权范围。效果提升立竿见影，法律风险也随之固化在产品的地基里。", "en": "Unauthorised textbooks and workbooks usually infringe copyright; digitising them into a corpus widens the infringement. Quality improves immediately while legal risk is poured into your foundations." }
+          "effects": {
+            "national_security": 2,
+            "legal": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "未经授权的教材与教辅通常构成著作权侵权；把纸质内容数字化并入库还会放大侵权范围。效果提升立竿见影，法律风险也随之固化在产品的地基里。",
+            "en": "Unauthorised textbooks and workbooks usually infringe copyright; digitising them into a corpus widens the infringement. Quality improves immediately while legal risk is poured into your foundations."
+          }
         }
       ]
     },
@@ -131,16 +315,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "只用学校书面授权的数据，接受样本量小的现实", "en": "Use only data the school authorised in writing and accept a small sample" },
+          "text": {
+            "zh": "只用学校书面授权的数据，接受样本量小的现实",
+            "en": "Use only data the school authorised in writing and accept a small sample"
+          },
           "next": "c2_ops",
-          "effects": { "pmf": 1 },
-          "why": { "zh": "样本小会让准确率不高，但涉及未成年人信息处理，合法性基础与最小化原则是被优先审查的项；授权清晰，后面才有资格谈扩容。", "en": "A small sample means lower accuracy, but for minors' data the lawful basis and data minimisation are the first things examined; clean authorisation is what earns you permission to expand later." }
+          "effects": {
+            "pmf": 1
+          },
+          "why": {
+            "zh": "样本小会让准确率不高，但涉及未成年人信息处理，合法性基础与最小化原则是被优先审查的项；授权清晰，后面才有资格谈扩容。",
+            "en": "A small sample means lower accuracy, but for minors' data the lawful basis and data minimisation are the first things examined; clean authorisation is what earns you permission to expand later."
+          }
         },
         {
-          "text": { "zh": "混入公开论坛的答案与第三方作业数据包", "en": "Blend in forum answers and third-party homework packs" },
+          "text": {
+            "zh": "混入公开论坛的答案与第三方作业数据包",
+            "en": "Blend in forum answers and third-party homework packs"
+          },
           "next": "c2_ops",
-          "effects": { "pmf": 2, "legal": 2, "ethics": 2 },
-          "why": { "zh": "混入的数据能让准确率立刻好看，但你既无法说明来源，也无法履行对学生与家长的告知义务；这些学生的答题内容还会随模型权重长期留存。", "en": "Blending makes accuracy look good at once, but you can neither account for provenance nor discharge the duty to inform students and parents; their answers also persist in the model weights." }
+          "effects": {
+            "pmf": 2,
+            "legal": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "混入的数据能让准确率立刻好看，但你既无法说明来源，也无法履行对学生与家长的告知义务；这些学生的答题内容还会随模型权重长期留存。",
+            "en": "Blending makes accuracy look good at once, but you can neither account for provenance nor discharge the duty to inform students and parents; their answers also persist in the model weights."
+          }
         }
       ]
     },
@@ -152,16 +354,35 @@
       },
       "choices": [
         {
-          "text": { "zh": "校内私有化部署 + 校内助教参与质检，数据不离开校园", "en": "On-premise deployment with teaching assistants doing QA; data never leaves the campus" },
+          "text": {
+            "zh": "校内私有化部署 + 校内助教参与质检，数据不离开校园",
+            "en": "On-premise deployment with teaching assistants doing QA; data never leaves the campus"
+          },
           "next": "c3_money",
-          "effects": { "moat": 1, "pmf": 1 },
-          "why": { "zh": "部署成本高、复制慢，但每所学校都在替你校对准错因标准；同时规避未成年人信息跨境与第三方托管的一整套严格要求。", "en": "Deployment is costly and replication slow, but every school helps calibrate your taxonomy; it also sidesteps the whole strict regime on cross-border and third-party hosting of minors' data." }
+          "effects": {
+            "moat": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "部署成本高、复制慢，但每所学校都在替你校对准错因标准；同时规避未成年人信息跨境与第三方托管的一整套严格要求。",
+            "en": "Deployment is costly and replication slow, but every school helps calibrate your taxonomy; it also sidesteps the whole strict regime on cross-border and third-party hosting of minors' data."
+          }
         },
         {
-          "text": { "zh": "境外云托管 + 远程团队维护，省下服务器开销", "en": "Host on offshore cloud with a remote ops team and save the hardware bill" },
+          "text": {
+            "zh": "境外云托管 + 远程团队维护，省下服务器开销",
+            "en": "Host on offshore cloud with a remote ops team and save the hardware bill"
+          },
           "next": "c3_money",
-          "effects": { "business": 2, "national_security": 2, "legal": 2 },
-          "why": { "zh": "把一整所学校的教学数据、学生姓名与学习表现托管到境外，会同时触发重要数据识别、跨境提供与学生个人信息保护的严格要求；这些几乎不可能事后补齐。成本优势真实存在。", "en": "Hosting an entire school's teaching data, student names and performance offshore triggers important-data identification, cross-border transfer and student-privacy requirements at once — almost impossible to retrofit. The cost saving is real." }
+          "effects": {
+            "business": 2,
+            "national_security": 2,
+            "legal": 2
+          },
+          "why": {
+            "zh": "把一整所学校的教学数据、学生姓名与学习表现托管到境外，会同时触发重要数据识别、跨境提供与学生个人信息保护的严格要求；这些几乎不可能事后补齐。成本优势真实存在。",
+            "en": "Hosting an entire school's teaching data, student names and performance offshore triggers important-data identification, cross-border transfer and student-privacy requirements at once — almost impossible to retrofit. The cost saving is real."
+          }
         }
       ]
     },
@@ -173,22 +394,50 @@
       },
       "choices": [
         {
-          "text": { "zh": "学校按年级订阅，明确承诺不向外输出学生数据", "en": "Per-grade subscription with a written promise never to export student data" },
+          "text": {
+            "zh": "学校按年级订阅，明确承诺不向外输出学生数据",
+            "en": "Per-grade subscription with a written promise never to export student data"
+          },
           "next": "c3_channel",
-          "effects": { "business": 2, "moat": 1 },
-          "why": { "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势（Canvas 9）。", "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace (Canvas 9)." }
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势（Canvas 9）。",
+            "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace (Canvas 9)."
+          }
         },
         {
-          "text": { "zh": "免费进校 + 向教培机构输出「待提升名单」", "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies" },
+          "text": {
+            "zh": "免费进校 + 向教培机构输出「待提升名单」",
+            "en": "Free to schools; sell 'needs-improvement lists' to tutoring companies"
+          },
           "next": "c3_channel",
-          "effects": { "business": 4, "legal": 2, "ethics": 3 },
-          "why": { "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。", "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return." }
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
+            "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
+          }
         },
         {
-          "text": { "zh": "只出售聚合洞察：区域错因分布报告（不少于二十所学校）", "en": "Sell only aggregated insight: district-level misconception reports (minimum twenty schools)" },
+          "text": {
+            "zh": "只出售聚合洞察：区域错因分布报告（不少于二十所学校）",
+            "en": "Sell only aggregated insight: district-level misconception reports (minimum twenty schools)"
+          },
           "next": "c3_channel",
-          "effects": { "business": 3, "ethics": 1 },
-          "why": { "zh": "提高聚合门槛后仍有商业价值，是可行中间路线。但如果学校的年级学生太少，聚合门槛实际形同虚设，透明度不足的问题依然存在。", "en": "Aggregated insight still sells, making this a workable middle route. Where a school's cohort is small, though, the threshold is close to meaningless and the transparency gap remains." }
+          "effects": {
+            "business": 3,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "提高聚合门槛后仍有商业价值，是可行中间路线。但如果学校的年级学生太少，聚合门槛实际形同虚设，透明度不足的问题依然存在。",
+            "en": "Aggregated insight still sells, making this a workable middle route. Where a school's cohort is small, though, the threshold is close to meaningless and the transparency gap remains."
+          }
         }
       ]
     },
@@ -200,16 +449,35 @@
       },
       "choices": [
         {
-          "text": { "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散", "en": "Become indispensable in one school and let research-group reputation spread it" },
+          "text": {
+            "zh": "在一所学校打磨到无可替代，靠教研口碑自然扩散",
+            "en": "Become indispensable in one school and let research-group reputation spread it"
+          },
           "next": "c3_deploy",
-          "effects": { "business": 1, "pmf": 1 },
-          "why": { "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低（Canvas 5）。", "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win (Canvas 5)." }
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低（Canvas 5）。",
+            "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win (Canvas 5)."
+          }
         },
         {
-          "text": { "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅", "en": "Bundle with the reseller into district deals and advertise average score gains" },
+          "text": {
+            "zh": "交给代理商打包进区域项目，并在宣传中标平均分涨幅",
+            "en": "Bundle with the reseller into district deals and advertise average score gains"
+          },
           "next": "c3_deploy",
-          "effects": { "business": 3, "legal": 1, "ethics": 1 },
-          "why": { "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。", "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you." }
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
+            "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
+          }
         }
       ]
     },
@@ -221,16 +489,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效", "en": "AI drafts only, clearly labelled, never effective until a teacher confirms" },
+          "text": {
+            "zh": "AI 只做草稿并明确标注，教师必须复核后才能生效",
+            "en": "AI drafts only, clearly labelled, never effective until a teacher confirms"
+          },
           "next": "c3_harm",
-          "effects": { "moat": 1 },
-          "why": { "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。", "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically." }
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
+            "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
+          }
         },
         {
-          "text": { "zh": "AI 评分直接生效，系统日志不保留批改痕迹", "en": "AI marks become final and system logs keep no record of the correction trail" },
+          "text": {
+            "zh": "AI 评分直接生效，系统日志不保留批改痕迹",
+            "en": "AI marks become final and system logs keep no record of the correction trail"
+          },
           "next": "c3_harm",
-          "effects": { "business": 2, "legal": 3, "ethics": 2 },
-          "why": { "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。", "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability." }
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
+            "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
         }
       ]
     },
@@ -242,16 +528,35 @@
       },
       "choices": [
         {
-          "text": { "zh": "公开已知局限、按校际差异重新加权、加入教师复核", "en": "Publish the limitations, reweight for school differences, add teacher review" },
+          "text": {
+            "zh": "公开已知局限、按校际差异重新加权、加入教师复核",
+            "en": "Publish the limitations, reweight for school differences, add teacher review"
+          },
           "next": "c4_incident",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "承认偏差并补课数据会让产品真正对每所学校成立（契合度上升）；「不放大教育不平等」也会成为教育局与公益资金采购时的核心理由。代价是延期。", "en": "Acknowledging bias and correcting for it makes the product genuinely work in every school (higher fit); 'does not amplify educational inequality' becomes the core procurement argument for districts and philanthropic funding. It costs delay." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "承认偏差并补课数据会让产品真正对每所学校成立（契合度上升）；「不放大教育不平等」也会成为教育局与公益资金采购时的核心理由。代价是延期。",
+            "en": "Acknowledging bias and correcting for it makes the product genuinely work in every school (higher fit); 'does not amplify educational inequality' becomes the core procurement argument for districts and philanthropic funding. It costs delay."
+          }
         },
         {
-          "text": { "zh": "先上线，把适用范围写成「适用于资源充足学校」", "en": "Ship now and declare it suitable for 'well-resourced schools'" },
+          "text": {
+            "zh": "先上线，把适用范围写成「适用于资源充足学校」",
+            "en": "Ship now and declare it suitable for 'well-resourced schools'"
+          },
           "next": "c4_incident",
-          "effects": { "ethics": 3, "legal": 1, "business": 1 },
-          "why": { "zh": "限定适用范围的小字挡不住实际使用，弱势学校的学生仍会被系统性地低评；这等于把已知的复制性偏差当作产品常态发布。上线如期。", "en": "Scope language never stops real usage, and students in under-resourced schools still get systematically marked down; you ship known reproduced bias as normal behaviour. Launch stays on schedule." }
+          "effects": {
+            "ethics": 3,
+            "legal": 1,
+            "business": 1
+          },
+          "why": {
+            "zh": "限定适用范围的小字挡不住实际使用，弱势学校的学生仍会被系统性地低评；这等于把已知的复制性偏差当作产品常态发布。上线如期。",
+            "en": "Scope language never stops real usage, and students in under-resourced schools still get systematically marked down; you ship known reproduced bias as normal behaviour. Launch stays on schedule."
+          }
         }
       ]
     },
@@ -263,51 +568,113 @@
       },
       "choices": [
         {
-          "text": { "zh": "否认并要求家长出示证据：学校也要负连带责任", "en": "Deny it and demand parents produce proof: the school is responsible too" },
+          "text": {
+            "zh": "否认并要求家长出示证据：学校也要负连带责任",
+            "en": "Deny it and demand parents produce proof: the school is responsible too"
+          },
           "next": "c4_funding",
-          "effects": { "national_security": 3, "legal": 2, "business": 1 },
-          "why": { "zh": "把举证责任推回给家长，在教育场景几乎总是错招：学校与教育局会要求你先自证；而拒绝回应本身就会被解读为心虚。短期省下的只是沟通成本。", "en": "Pushing the burden of proof back onto parents is almost always the wrong move in education: the school and the bureau will ask you to account for yourself first, and silence reads as guilt. All you save is some conversation." }
+          "effects": {
+            "national_security": 3,
+            "legal": 2,
+            "business": 1
+          },
+          "why": {
+            "zh": "把举证责任推回给家长，在教育场景几乎总是错招：学校与教育局会要求你先自证；而拒绝回应本身就会被解读为心虚。短期省下的只是沟通成本。",
+            "en": "Pushing the burden of proof back onto parents is almost always the wrong move in education: the school and the bureau will ask you to account for yourself first, and silence reads as guilt. All you save is some conversation."
+          }
         },
         {
-          "text": { "zh": "委托第三方做数据合规审计并公开摘要，建立家长知情与查询通道", "en": "Commission an independent data-compliance audit, publish a summary, and open a parent inquiry channel" },
+          "text": {
+            "zh": "委托第三方做数据合规审计并公开摘要，建立家长知情与查询通道",
+            "en": "Commission an independent data-compliance audit, publish a summary, and open a parent inquiry channel"
+          },
           "next": "c4_funding",
-          "requirements": { "business": ">=7" },
-          "lockedHint": { "zh": "一次像样的数据合规审计价格不低：商业模式分达到 7 才负担得起（现在账上不够）。", "en": "A credible compliance audit is expensive: it needs a business-model score of 7 (you cannot cover it yet)." },
-          "effects": { "moat": 2, "business": -1 },
-          "why": { "zh": "审计与公开要花钱、也会被仔细挑错（商业模式分下降）；但一份可被引用的第三方结论，会让你在教育局采购名单上是唯一经得起查的一家。", "en": "Auditing costs money and invites scrutiny (business score drops), but a citable conclusion makes you the only vendor on the district's list that survives inspection." }
+          "requirements": {
+            "business": ">=7"
+          },
+          "lockedHint": {
+            "zh": "一次像样的数据合规审计价格不低：商业模式分达到 7 才负担得起（现在账上不够）。",
+            "en": "A credible compliance audit is expensive: it needs a business-model score of 7 (you cannot cover it yet)."
+          },
+          "effects": {
+            "moat": 2,
+            "business": -1
+          },
+          "why": {
+            "zh": "审计与公开要花钱、也会被仔细挑错（商业模式分下降）；但一份可被引用的第三方结论，会让你在教育局采购名单上是唯一经得起查的一家。",
+            "en": "Auditing costs money and invites scrutiny (business score drops), but a citable conclusion makes you the only vendor on the district's list that survives inspection."
+          }
         },
         {
-          "text": { "zh": "被动处理：收到询问才解释一次，随后恢复原状", "en": "Handle reactively: explain once when asked, then carry on as before" },
+          "text": {
+            "zh": "被动处理：收到询问才解释一次，随后恢复原状",
+            "en": "Handle reactively: explain once when asked, then carry on as before"
+          },
           "next": "c4_funding",
-          "effects": { "national_security": 1, "ethics": 1, "business": 1 },
-          "why": { "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。", "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more." }
+          "effects": {
+            "national_security": 1,
+            "ethics": 1,
+            "business": 1
+          },
+          "why": {
+            "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。",
+            "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more."
+          }
         }
       ]
     },
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "家长的询问还压在教育局案头，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The parents' questions are still sitting with the education bureau, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
-          "text": { "zh": "接受境外教育科技基金，向其全球教研团队开放数据接口", "en": "Take an offshore edtech fund and open data interfaces to its global research team" },
+          "text": {
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
+          },
           "next": "epilogue",
-          "effects": { "business": 3, "national_security": 2, "legal": 1 },
-          "why": { "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。", "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data." }
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
+            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
+          }
         },
         {
-          "text": { "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地", "en": "Take local education or industry funding: slower expansion, data stays local" },
+          "text": {
+            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
+            "en": "Take local education or industry funding: slower expansion, data stays local"
+          },
           "next": "epilogue",
-          "effects": { "business": 1, "moat": 2 },
-          "why": { "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。", "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat." }
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
+            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
+          }
         },
         {
-          "text": { "zh": "不融资，靠订阅收入自然增长", "en": "Take no funding; grow on subscriptions alone" },
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
           "next": "epilogue",
-          "effects": { "business": -1, "moat": 1 },
-          "why": { "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。", "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth, nor justify trade-offs to shareholders. In education that restraint is your reputation." }
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。",
+            "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth, nor justify trade-offs to shareholders. In education that restraint is your reputation."
+          }
         }
       ]
     },
@@ -321,14 +688,41 @@
     }
   },
   "endingFlavor": {
-    "boom_ns": { "zh": "通报材料里的那张区域学情图，原本挂在你们融资路演的第二页。", "en": "The regional learning map in the briefing pack used to be slide two of your pitch deck." },
-    "bust_ns": { "zh": "产品没有跑起来，那批被托管到境外的答题记录却还在按年付费。", "en": "The product never took off, but those offshore-hosted answer records are still being billed annually." },
-    "boom_legal": { "zh": "出版社的律师函寄到时，你们的错题库已经有六万道题。", "en": "The publisher's letter arrived when your question bank already held sixty thousand items." },
-    "bust_legal": { "zh": "产品在教研上没有站住，却在校方的整改清单上排了第一位。", "en": "The product failed to prove itself pedagogically but topped the school's remediation list." },
-    "boom_ethics": { "zh": "家长群里转发最多的那张图，标注着某个孩子的薄弱项。", "en": "The most forwarded image in the parent group was someone's child's weakness profile." },
-    "bust_ethics": { "zh": "早期用户不多，但其中一位是被标注为粗心的小女孩的母亲。", "en": "There were few early users, and one was the mother of the girl always labelled careless." },
-    "win_clean": { "zh": "教育局最终把你们的知情与复核流程写进了采购范本。", "en": "The bureau wrote your notification and review process into its procurement template." },
-    "win_resilient": { "zh": "第一次被家长质询后，你们把每位 AI 草案都加上了教师的署名确认步骤。", "en": "After the first parental challenge you added a teacher sign-off step to every AI draft." },
-    "stalled": { "zh": "一年后，只有那所试点学校还在用，且只用来改选择题。", "en": "A year later only the pilot school still uses it, and only for multiple-choice marking." }
+    "boom_ns": {
+      "zh": "通报材料里的那张区域学情图，原本挂在你们融资路演的第二页。",
+      "en": "The regional learning map in the briefing pack used to be slide two of your pitch deck."
+    },
+    "bust_ns": {
+      "zh": "产品没有跑起来，那批被托管到境外的答题记录却还在按年付费。",
+      "en": "The product never took off, but those offshore-hosted answer records are still being billed annually."
+    },
+    "boom_legal": {
+      "zh": "出版社的律师函寄到时，你们的错题库已经有六万道题。",
+      "en": "The publisher's letter arrived when your question bank already held sixty thousand items."
+    },
+    "bust_legal": {
+      "zh": "产品在教研上没有站住，却在校方的整改清单上排了第一位。",
+      "en": "The product failed to prove itself pedagogically but topped the school's remediation list."
+    },
+    "boom_ethics": {
+      "zh": "家长群里转发最多的那张图，标注着某个孩子的薄弱项。",
+      "en": "The most forwarded image in the parent group was someone's child's weakness profile."
+    },
+    "bust_ethics": {
+      "zh": "早期用户不多，但其中一位是被标注为粗心的小女孩的母亲。",
+      "en": "There were few early users, and one was the mother of the girl always labelled careless."
+    },
+    "win_clean": {
+      "zh": "教育局最终把你们的知情与复核流程写进了采购范本。",
+      "en": "The bureau wrote your notification and review process into its procurement template."
+    },
+    "win_resilient": {
+      "zh": "第一次被家长质询后，你们把每位 AI 草案都加上了教师的署名确认步骤。",
+      "en": "After the first parental challenge you added a teacher sign-off step to every AI draft."
+    },
+    "stalled": {
+      "zh": "一年后，只有那所试点学校还在用，且只用来改选择题。",
+      "en": "A year later only the pilot school still uses it, and only for multiple-choice marking."
+    }
   }
 }

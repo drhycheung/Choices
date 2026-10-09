@@ -32,7 +32,28 @@ Many students struggle to feel how an everyday decision can cross a legal, ethic
 
 ---
 
-## 2. Design philosophy: the dual-track scoreboard
+## 2. The course it was built for: GEL2026
+
+This game was written for **GEL2026 · Technology Entrepreneurship in AI-enhanced Business and National Security** at [The Education University of Hong Kong](https://www.eduhk.hk). It also works unchanged in **GEL1032 · Technology Entrepreneurship in AI-enhanced Business**, which covers the same entrepreneurial ground without the national-security strand.
+
+**What the course asks students to hold at once.** GEL2026 is a two-strand course. One strand is technology entrepreneurship: how AI and digital technologies create value, how a venture is planned and validated (customer segments, problems, solution, channels, revenue, unfair advantage), how a proposal is pitched. The other is national security education: how data, models and platforms can touch national-security, legal and ethical red lines, and what the law expects of the people who build them. Students are assessed on a business proposal, a pitch, and a reflective essay on a real AI business and its national-security implications.
+
+**The gap this game fills.** Taught separately, the two strands produce two familiar failure modes. Students write a business plan and bolt compliance on at the end as a slide nobody reads. Or they learn that security means "do not do it", which teaches nothing about running a company. Neither failure mode can survive a scoreboard where both tracks move on every single click.
+
+| Course concern | What the game makes the student do |
+|---|---|
+| Digital / AI value creation | The venture track scores problem–solution fit, business model and moat — the Lean Canvas blocks from class — so pressing a button *is* practising the canvas |
+| Customer and problem validation | Act I forces a choice between interviewing users and chasing vanity metrics, and the scoreboard remembers which one paid |
+| AI data and model decisions | Acts II–III put training data, offshore processing and deployment on the scoreboard with explicit national-security and legal consequences |
+| National security, legal and ethical implications | Three separate risk dimensions, so "it is legal but creepy" and "it is safe but unlawful" are different scores, not one blurred warning |
+| Accountability and mitigation | Act IV offers a passive fix, a denial, or a real audit — and the audit is gated behind commercial strength, because responsibility has to be affordable |
+| Reflective essay | Every ending ends in a debrief: why it fired, the trade-off, who was affected, what could have been done, and the Lean Canvas reading — a draft skeleton for the essay |
+
+**Suggested classroom use.** Play one run individually or in pairs (15–20 minutes), pin a venture with `?scenario=ai-fitness` so the whole room compares like with like, then put the four quadrants of the outcome space on the board and ask who landed where and at which step it became unavoidable. Because the run is deterministic, "which step did it?" always has a true answer.
+
+---
+
+## 3. Design philosophy: the dual-track scoreboard
 
 The design question this game answers is: **what happens when a student is never allowed to "just pick the safe option"?**
 
@@ -56,23 +77,26 @@ Three further design rules keep the tension honest:
 
 1. **No randomised outcomes, ever.** Randomness exists only at the very start, to draw which venture you run. Inside a story, every effect is an explicit number and every ending is a defined consequence of your choices — so a teacher can ask "at which exact step did this become unavoidable?" and there is a true answer.
 2. **Good options can be unaffordable.** Some of the best choices (an independent compliance audit, for example) carry a `requirements` gate on the business score: if you never built commercial strength, you cannot pay for the responsible path. The button stays visible but locked, with a hint explaining why — which is itself the lesson.
-3. **Every number is explained.** Each choice carries a `why` note (shown in the Decision Trail) stating why it raises or lowers each dimension, and every ending carries a full debrief: why it fired, the trade-off made, stakeholders affected, concrete mitigations, and a Lean Canvas reading. Students finish a run holding a draft outline for their reflective essay — issue identification with legal hooks, stakeholder analysis, and mitigation strategies.
+3. **Every number is explained, and traced back to a step.** Each choice carries a `why` note (shown in the Decision Trail) stating why it raises or lowers each dimension. Every ending carries a full debrief: why it fired, the trade-off made, stakeholders affected, concrete mitigations, and a Lean Canvas reading. The debrief then closes the loop by attributing each number to the decisions that actually moved it — the risk section names the steps that pushed the risk lines up, and the Canvas section lists, box by box, which steps changed it and by how much. Students finish a run holding a draft outline for their reflective essay — issue identification with legal hooks, stakeholder analysis, and mitigation strategies.
 
 Each story runs **at least ten decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings.
 
 ---
 
-## 3. What the game does
+## 4. What the game does
 
 | Feature | Implementation |
 |---|---|
 | Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices |
+| Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) on the start card and again at the first node, so plot events like "your first customer is…" always have context |
 | Six venture scenarios | `scenarios/manifest.json` lists the packs; each play randomly draws one (or force one with `?scenario=<id>`) |
 | Dual-track dashboard | Six segmented neon bars in two groups — risk (red alarm past threshold) and venture (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
 | Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
 | Full ending debrief | Trigger · trade-off · stakeholders · mitigations · Lean Canvas reading · legal hooks, in both languages |
+| Debrief traces back to decisions | The ending attributes every score to the exact steps that moved it (risk raised by step *n*; each Canvas box changed by step *n*) |
+| Replayable without repetition | Six ventures, random draw on every start, plus a shuffle button on the start screen and the ending screen |
 | Multiple endings | 9 shared endings per scenario; the validator proves every one is reachable |
 | Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |
 | Static & portable | No server required; deploy to GitHub Pages or double-click the HTML |
@@ -80,10 +104,16 @@ Each story runs **at least ten decision rounds**, paced so that consequences can
 
 ### Scenario format (the data packet)
 
-A scenario is a JSON file with `dimensions` (grouped into `risk` / `venture`), a `start` node id, `nodes` (text + `choices` each with `effects`, an optional `why`, and optional `requirements`/`lockedHint`), an `acts` chapter map, and a per-scenario `endingFlavor`. Endings themselves live in a **shared file** (`scenarios/endings-core.json`) so every venture uses the same outcome system. Minimal shape:
+A scenario is a JSON file with a `brief` (the venture briefing — what the business does, who buys it, where it stands, what data it touches — shown before the story starts), `dimensions` (grouped into `risk` / `venture`), a `start` node id, `nodes` (text + `choices` each with `effects`, an optional `why`, and optional `requirements`/`lockedHint`), an `acts` chapter map, and a per-scenario `endingFlavor`. Endings themselves live in a **shared file** (`scenarios/endings-core.json`) so every venture uses the same outcome system. Minimal shape:
 
 ```json
 {
+  "brief": {
+    "product":  { "zh": "…", "en": "What the product does" },
+    "customer": { "zh": "…", "en": "Who buys it" },
+    "standing": { "zh": "…", "en": "Where the venture stands today" },
+    "data":     { "zh": "…", "en": "What data it handles — the seed of the risk track" }
+  },
   "dimensions": {
     "national_security": { "label": { "zh": "…", "en": "National security risk" },
                             "initial": 0, "min": 0, "max": 10,
@@ -117,7 +147,7 @@ Tip: you can author scenes with an AI assistant — feed it the schema and the s
 
 ---
 
-## 4. Technology choices
+## 5. Technology choices
 
 | Decision | Rationale |
 |---|---|
@@ -132,7 +162,7 @@ Tip: you can author scenes with an AI assistant — feed it the schema and the s
 
 ---
 
-## 5. How to run
+## 6. How to run
 
 - **Locally (no server needed):** double-click `index.html` in any modern browser.
 - **Locally with server:** `python3 -m http.server 8000` then open `http://localhost:8000/`.
@@ -141,9 +171,11 @@ Tip: you can author scenes with an AI assistant — feed it the schema and the s
 
 Desktop and mobile are supported (responsive layout). Choices give pressed-state feedback on touch screens, and options that are locked by a requirement explain themselves instead of looking broken.
 
+**There is an easter egg.** On the start screen, press ↑ ↑ ↓ ↓ ← → ← → B A (or tap the logo seven times on a phone). It changes nothing about scoring or endings — it is a note to the curious student about how the game works.
+
 ---
 
-## 6. Known limitations
+## 7. Known limitations
 
 | Limitation | Consequence |
 |---|---|
@@ -156,7 +188,7 @@ Desktop and mobile are supported (responsive layout). Choices give pressed-state
 
 ---
 
-## 7. Documentation
+## 8. Documentation
 
 | Document | What it covers |
 |---|---|
@@ -164,7 +196,7 @@ Desktop and mobile are supported (responsive layout). Choices give pressed-state
 
 ---
 
-## 8. Licences and attribution
+## 9. Licences and attribution
 
 - **Code:** MIT — see [LICENSE](LICENSE), © 2026 一念之差 / Choices contributors.
 - **Press Start 2P:** CodeMan38, SIL Open Font License 1.1.

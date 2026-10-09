@@ -15,6 +15,7 @@
     <div class="brand-wrap">
       <span class="brand">一念之差 <span class="brand-en">Choices</span></span>
       <span class="brand-sub" id="brand-sub">文字交互式分支叙事模拟器</span>
+      <span id="egg-star" class="egg-star hidden" title="EASTER EGG">★</span>
     </div>
     <div class="header-right">
       <div id="lang-toggle" class="lang-toggle" role="group" aria-label="语言切换">
@@ -67,7 +68,10 @@
         <div class="zh">文字交互式分支叙事模拟器</div>
       </div>
       <div class="scenario-card">
-        <div id="scenario-card-label" class="scenario-card-label">本局题材</div>
+        <div id="scenario-card-label" class="scenario-card-label">
+          <span class="zh">本局题材</span>
+          <span class="en">This round</span>
+        </div>
         <div id="scenario-card" class="scenario-card-body"></div>
       </div>
       <button id="start-btn" type="button" class="start-btn">
@@ -82,6 +86,24 @@
         <div class="en">Click to Start · Toggle Language Anytime After</div>
         <div class="zh">点击开始 · 进入后随时切换语言</div>
       </div>
+    </div>
+  </div>
+
+  <!-- 彩蛋面板：开始画面按下 ↑↑↓↓←→←→BA，或连点 LOGO 七次 -->
+  <div id="egg-panel" class="egg-panel hidden">
+    <div class="egg-inner">
+      <div class="egg-title">
+        <span class="en">EASTER EGG</span>
+        <span class="zh">彩蛋 · 一念之差</span>
+      </div>
+      <p class="egg-body">
+        <span class="en">You found this. Two things worth remembering. One: there is no randomness inside a run — your ending is not luck, it is the twelve choices you made, one after another. Two: each of the six ventures hides exactly one path that finishes with all three risk lines at zero and all three venture boxes at 7 or above. Find it and a gold badge appears on the ending screen.</span>
+        <span class="zh">你找到了这里。记住两件事。一、一局之内没有任何随机数——你走到这个结局不是运气，是那十二个选择一步步推出来的。二、六个题材里，各藏着唯一一条「三条风险线全为零、创业三格都在 7 分以上」的路。走到的人，结局页会出现一枚金色徽章。</span>
+      </p>
+      <button id="egg-close" type="button" class="btn-shuffle-start">
+        <span class="en">GOT IT</span>
+        <span class="zh">知道了</span>
+      </button>
     </div>
   </div>
 
@@ -931,8 +953,22 @@
     "en": "Startup on location tracks and health data"
   },
   "brief": {
-    "zh": "你和两位同学开发了 AI 运动 App「步频 Pace」：它记录路线、读懂身体状态，还能自动生成训练周报。故事从校内创业基金开始，一路走到可能被叫停或可以放大的那一刻。",
-    "en": "With two classmates you built Pace, an AI fitness app that records routes, reads your body's signals and writes your training summary. It starts with a campus seed fund and ends either with a shutdown order or with a business that can actually scale."
+    "product": {
+      "zh": "一款给跑步与健走用户的手机 App：记录路线、配速与心率，用 AI 生成训练计划、伤病预警与每周小结；也可以把用户轨迹汇总成一张公开的「热门路线」图层。",
+      "en": "A phone app for runners and walkers: it logs route, pace and heart rate, and uses AI to produce training plans, injury warnings and weekly summaries; it can also aggregate user traces into a public \"popular routes\" layer."
+    },
+    "customer": {
+      "zh": "城市跑者与健走人群（自用付费）；以及想把员工健康福利外包的企业雇主。",
+      "en": "Urban runners and walkers, who pay for themselves; and employers who want to outsource staff wellness."
+    },
+    "standing": {
+      "zh": "刚拿到校内创业基金，三位创始人，众创空间里三个固定工位；只有一个原型，收费模式尚未定型。",
+      "en": "A campus seed fund, three founders, three desks in the incubator, one prototype — and no decided business model yet."
+    },
+    "data": {
+      "zh": "连续的 GPS 轨迹、心率与运动习惯。轨迹可持续追踪一个人的行踪，属敏感个人信息；一旦汇总公开，还可能复原敏感场所周边的作息规律。",
+      "en": "Continuous GPS traces, heart rate and exercise habits. Traces can track a person's movements over time and count as sensitive personal data; aggregated and published, they can also reconstruct routines around sensitive sites."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -1087,8 +1123,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：你要解决的到底是不是真问题？跑者群里有人说最怕的不是没动力，是受伤和不安全的路线。",
-        "en": "Second question: is this even a real problem? In the runners' chat someone says the worst thing is not laziness — it is injury and unsafe routes."
+        "zh": "第二件事：你要解决的到底是不是真问题？跑者群里有人说最怕的不是没动力，是受伤和不安全的路线。就在这时候，一家做员工健康福利的企业平台找上门：他们愿意包下第一年的版本，条件是照他们的需求改。",
+        "en": "Second question: is this even a real problem? In the runners' chat someone says the worst thing is not laziness — it is injury and unsafe routes. Right then a corporate wellness platform comes knocking: they will underwrite year one, provided you build to their spec."
       },
       "choices": [
         {
@@ -1471,8 +1507,8 @@
     "c4_heatmap": {
       "act": "act4",
       "text": {
-        "zh": "一位研究者指出：你们的路线热力图可以还原某军营周边与几处变电站的作息规律，媒体开始追问。这是产品第一次真正站在聚光灯下。",
-        "en": "A researcher points out that your heat map reconstructs the routines around an army camp and several substations. The press starts asking questions. For the first time the product is genuinely in the spotlight."
+        "zh": "一位研究者指出：你们 App 里公开的位置聚合结果——不管它叫热力图、路线推荐还是训练摘要——可以还原某军营周边与几处变电站的作息规律，媒体开始追问。这是产品第一次真正站在聚光灯下。",
+        "en": "A researcher points out that the location aggregates you publish — call it a heat map, route suggestions or training summaries — reconstruct the routines around an army camp and several substations. The press starts asking questions. For the first time the product is genuinely in the spotlight."
       },
       "choices": [
         {
@@ -1534,8 +1570,8 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一道题：要不要拿这笔钱？三家机构给的条款完全不同——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The last question: take the money? Three institutions offer very different terms — and the unfair advantage in Canvas 9 is usually written into those terms."
+        "zh": "位置数据的风波还没散，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The row over location data has not died down, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
@@ -1647,8 +1683,22 @@
     "en": "Algorithmic scoring, worker rights and talent data"
   },
   "brief": {
-    "zh": "你们做的是给企业筛简历的 AI：读职位要求、给候选人打分、排出面试顺序。它确实帮 HR 省下了一半时间，直到有人开始问：这个分数是怎么算出来的？",
-    "en": "You build an AI that screens CVs: read the job spec, score each candidate, rank the interview order. It genuinely halves the HR workload — until someone asks how the score was calculated."
+    "product": {
+      "zh": "给企业 HR 用的简历筛选工具：批量上传简历后，模型按岗位要求给出匹配评分与排序；后续可扩展为面试辅训与技能测评。",
+      "en": "A CV-screening tool for HR: upload a batch of CVs and the model scores and ranks each candidate against the job spec; it can later extend into interview coaching and skills assessment."
+    },
+    "customer": {
+      "zh": "中小企业的人力资源部门与招聘外包方；高校就业中心也是潜在采购方。",
+      "en": "HR teams and recruitment outsourcers at small and mid-sized firms; university careers services are also potential buyers."
+    },
+    "standing": {
+      "zh": "第一版已在创业中心写完，本地一家制造企业给了付费试点；团队三人，收费模式尚未定型。",
+      "en": "Version one is finished in the incubator and a local manufacturer is paying for a pilot. Three people, pricing not settled."
+    },
+    "data": {
+      "zh": "简历中的身份、学历、工作经历与测评结果。若评分参与是否进入面试的决定，即属自动化决策——候选人通常有权知情并要求人工复核。",
+      "en": "Identities, education, work history and assessment results from CVs. If scoring feeds who gets an interview, that is automated decision-making — candidates normally have the right to know and to ask for human review."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -1803,8 +1853,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：HR 的真痛点是什么？有人说是「简历太多看不完」，也有 HR 私下说「我不敢承担漏掉好人的责任」。",
-        "en": "Second question: what is the real pain? Some say too many CVs; privately, one HR says she is afraid of being blamed for missing a good candidate."
+        "zh": "第二件事：HR 的真痛点是什么？有人说是「简历太多看不完」，也有 HR 私下说「我不敢承担漏掉好人的责任」。就在这时候，大学就业中心又发来一封邮件：他们想采购一套就业版，条件是按他们的汇报口径来改。",
+        "en": "Second question: what is the real pain? Some say too many CVs; privately, one HR says she is afraid of being blamed for missing a good candidate. Right then the university careers service emails again: they want to buy a careers edition, provided it reports the way they need."
       },
       "choices": [
         {
@@ -1838,7 +1888,7 @@
         },
         {
           "text": {
-            "zh": "按最大采购方要求做：教育局高校就业版",
+            "zh": "按最大采购方要求做：大学就业中心的定制版",
             "en": "Build what the biggest buyer wants: a university careers-edition"
           },
           "next": "c2_product",
@@ -1979,7 +2029,7 @@
       "choices": [
         {
           "text": {
-            "zh": "境内算力 + 校内助理工审核重要岗位评分，数据不出境",
+            "zh": "境内算力 + 校内助教审核重要岗位评分，数据不出境",
             "en": "Domestic compute plus campus assistants reviewing critical role scores; no data leaves"
           },
           "next": "c3_money",
@@ -2034,7 +2084,7 @@
         },
         {
           "text": {
-            "zh": "免费试用 + 转售「人才库」与候选人偏好画像",
+            "zh": "免费试用 + 把候选人画像打包转售给第三方",
             "en": "Free trial, then resell the talent pool and candidate preference profiles"
           },
           "next": "c3_channel",
@@ -2250,14 +2300,14 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "投诉还没处理完，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The complaint is not resolved yet, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
           "text": {
-            "zh": "接受境外 HR SaaS 巨头的战略投资，人才库对其全球客户开放",
-            "en": "Take strategic investment from an offshore HR SaaS giant and open the talent pool to its global customers"
+            "zh": "接受境外 HR SaaS 巨头的战略投资，候选人数据对其全球客户开放",
+            "en": "Take strategic investment from an offshore HR SaaS giant and open candidate data to its global customers"
           },
           "next": "epilogue",
           "effects": {
@@ -2363,8 +2413,22 @@
     "en": "Generated-content labelling, likeness rights and deepfakes"
   },
   "brief": {
-    "zh": "你们做的工具可以让一家早餐店老板录三分钟视频，之后每晚有一位「数字人」替他直播带货。成本极低，效果极好，也极难分辨真假。",
-    "en": "Your tool lets a breakfast-shop owner record three minutes and then have a 'digital host' sell for him every night. It is cheap, it converts, and it is almost impossible to tell apart from a real person."
+    "product": {
+      "zh": "一套数字人直播工具：商家录三分钟视频（或选用模板形象），系统就能生成一位可以整晚不停播的带货主播，自动讲解商品、回答常见问题。",
+      "en": "A digital-host livestream tool: a merchant records three minutes (or picks a template face) and the system produces a shopping host who can stream all night, presenting products and answering common questions."
+    },
+    "customer": {
+      "zh": "请不起真人主播、又想守住夜间时段的小微商家与连锁门店；MCN 机构要的是批量定制版。",
+      "en": "Small merchants and chain stores that cannot afford a human host but want to cover the night shift; MCN agencies want bespoke versions in bulk."
+    },
+    "standing": {
+      "zh": "第一位付费客户已经跑通，团队正准备把工具产品化；收费模式尚未定型。",
+      "en": "The first paying customer is live and the team is about to productise the tool; pricing is not settled."
+    },
+    "data": {
+      "zh": "真人的肖像与声音素材（属生物特征信息），以及由此生成的合成内容。合成内容通常须显著标识并保留可追溯元数据；否则极易被用于冒充与诈骗。",
+      "en": "Real people's faces and voices (biometric material), plus the synthetic content made from them. Synthetic content normally must be clearly labelled with traceable metadata; without it, impersonation and fraud follow easily."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -2519,8 +2583,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：商家的真痛点是什么？有人说请不起主播，也有运营说真正缺的是「有人盯屏」。",
-        "en": "Second question: what is the merchant's real pain? Some say they cannot afford a host; one operator says what they really lack is 'someone watching the stream'."
+        "zh": "第二件事：商家的真痛点是什么？有人说请不起主播，也有运营说真正缺的是「有人盯屏」。就在这时候，一家 MCN 机构找上门：他们要一整套定制版，愿意先付一年的钱。",
+        "en": "Second question: what is the merchant's real pain? Some say they cannot afford a host; one operator says what they really lack is 'someone watching the stream'. Right then an MCN agency comes knocking: they want a bespoke version and will pay a year up front."
       },
       "choices": [
         {
@@ -2695,7 +2759,7 @@
       "choices": [
         {
           "text": {
-            "zh": "境内渲染 + 校内 TAs 做质量把关，素材不出境",
+            "zh": "境内渲染 + 校内助教做质量把关，素材不出境",
             "en": "Render domestically with quality checks by teaching assistants; assets stay local"
           },
           "next": "c3_money",
@@ -2966,14 +3030,14 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "诈骗视频的报道还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The fraud-video coverage is still running, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
           "text": {
-            "zh": "接受境外短视频平台的战略投资，形象库对其全球创作者开放",
-            "en": "Take strategic investment from an overseas short-video platform and open the likeness library to its global creators"
+            "zh": "接受境外短视频平台的战略投资，把形象与声音素材库向其全球创作者开放",
+            "en": "Take strategic investment from an overseas short-video platform and open your library of faces and voices to its global creators"
           },
           "next": "epilogue",
           "effects": {
@@ -3079,8 +3143,22 @@
     "en": "Minors' data, academic integrity and student profiling"
   },
   "brief": {
-    "zh": "你们的工具能读完一个班的作业，指出每个学生卡在哪一步，还能自动生成评语。试点学校的教学主任很喜欢——直到有家长问：这个孩子为什么总被模型标红？",
-    "en": "Your tool reads a whole class's homework, pinpoints where each student got stuck and drafts feedback. The pilot school's director loves it — until a parent asks why her child is always flagged red."
+    "product": {
+      "zh": "给中学教师用的学习分析工具：扫描作业与测验，指出每个学生卡在哪个知识点，并生成讲评要点、练习建议与评语草稿。",
+      "en": "A learning-analytics tool for secondary teachers: it scans homework and tests, pinpoints where each student is stuck, and drafts review points, practice sets and comments."
+    },
+    "customer": {
+      "zh": "试点中学的教师与教研组长；区教育局是更大的采购方。",
+      "en": "Teachers and subject-panel heads at pilot schools; the district education bureau is the bigger buyer."
+    },
+    "standing": {
+      "zh": "经大学里的导师介绍，一所试点中学正在试用；团队三人，收费模式尚未定型。",
+      "en": "A supervisor at the university introduced a pilot secondary school that is now trialling it. Three people, pricing undecided."
+    },
+    "data": {
+      "zh": "未成年人的答题记录、成绩与评语。属敏感个人信息，通常需要监护人同意并遵守最小必要原则；自动生成评语还涉及学术诚信。",
+      "en": "Minors' answer records, grades and comments — sensitive personal data that normally needs guardian consent and data minimisation; auto-generated comments also touch academic integrity."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -3180,8 +3258,8 @@
     "intro": {
       "act": "act1",
       "text": {
-        "zh": "教育学院的导师把你们介绍给一所试点中学。试用两周，老师说批改时间少了一半。教研会上有人问：这些学生的答题数据放哪儿？没有人能回答。",
-        "en": "A supervisor from the education faculty introduced you to a pilot secondary school. Two weeks in, teachers report halving their marking time. At a staff meeting someone asks where the students' answer data is stored. Nobody answers."
+        "zh": "大学里的导师把你们介绍给一所试点中学。试用两周，老师说批改时间少了一半。教研会上有人问：这些学生的答题数据放哪儿？没有人能回答。",
+        "en": "A supervisor at the university introduced you to a pilot secondary school. Two weeks in, teachers report halving their marking time. At a staff meeting someone asks where the students' answer data is stored. Nobody answers."
       },
       "choices": [
         {
@@ -3235,8 +3313,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：老师的真痛点是什么？有人说批改太累，也有老师说真正难的是「不知道这个学生卡在哪里」。",
-        "en": "Second question: what is the teacher's real pain? Some say marking is exhausting; another says the hard part is not knowing where a student is stuck."
+        "zh": "第二件事：老师的真痛点是什么？有人说批改太累，也有老师说真正难的是「不知道这个学生卡在哪里」。就在这时候，区教育局放出了统测分析的采购意向：谁愿意按他们的口径做，就有机会进全区。",
+        "en": "Second question: what is the teacher's real pain? Some say marking is exhausting; another says the hard part is not knowing where a student is stuck. Right then the district education bureau floats a tender for exam analytics: whoever builds to their reporting format reaches every school in the district."
       },
       "choices": [
         {
@@ -3682,14 +3760,14 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "家长的询问还压在教育局案头，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The parents' questions are still sitting with the education bureau, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
           "text": {
-            "zh": "接受境外教育科技基金，向其全球教研团队开放数据接口",
-            "en": "Take an offshore edtech fund and open data interfaces to its global research team"
+            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
+            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
           },
           "next": "epilogue",
           "effects": {
@@ -3795,8 +3873,22 @@
     "en": "Aerial imagery, airspace compliance and critical infrastructure"
   },
   "brief": {
-    "zh": "你们用无人机给桥梁、水务与光伏电站做巡检，模型自动识别裂缝与热斑。第一单生意来自一位熟人介绍的水务所——而敏感区域往往就藏在航线的两侧。",
-    "en": "You inspect bridges, water works and solar farms with drones, and a model flags cracks and hot spots. The first contract comes from a water department someone knew — and sensitive sites tend to sit right beside the flight line."
+    "product": {
+      "zh": "无人机巡检服务：按规划航线自动飞行拍摄，模型识别裂缝、热斑等缺陷，产出带坐标、可留痕的巡检报告。",
+      "en": "A drone inspection service: the aircraft flies a planned route and films it, a model flags cracks and hot spots, and the output is a geotagged inspection report that leaves an audit trail."
+    },
+    "customer": {
+      "zh": "水务、园区、能源等需要定期巡检、也要能举证「我确实查过」的单位。",
+      "en": "Water utilities, industrial parks and energy operators that need periodic inspection — and evidence that they actually checked."
+    },
+    "standing": {
+      "zh": "一台二手无人机、一台笔记本、三个人，加上一位水务所熟人的介绍，拿到了第一单；收费模式尚未定型。",
+      "en": "One second-hand drone, one laptop, three people and an introduction at the water department landed the first job; pricing undecided."
+    },
+    "data": {
+      "zh": "航拍影像与航线坐标。若覆盖关键基础设施或敏感区域，可能触及测绘成果、空域管理与影像出境的规定。",
+      "en": "Aerial imagery and flight coordinates. Coverage of critical infrastructure or sensitive areas can engage survey-and-mapping rules, airspace administration and cross-border transfer restrictions."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -3942,7 +4034,7 @@
             "ethics": 1
           },
           "why": {
-            "zh": "什么都接能最快填满账单。但不同任务意味着不同空域、不同客户、不同用途，空域合规与影像流向都难以逐一核查，最后连自己飛过哪些地方都说不清。",
+            "zh": "什么都接能最快填满账单。但不同任务意味着不同空域、不同客户、不同用途，空域合规与影像流向都难以逐一核查，最后连自己飞过哪些地方都说不清。",
             "en": "Saying yes to everything fills the ledger fastest. But every job means different airspace, clients and purposes, so permits and footage flows resist checking, and in the end you cannot even list where you flew."
           }
         }
@@ -3951,8 +4043,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：客户的真痛点是什么？水务所的人说最难的是人手不够，也说最难的是「出了事没法举证」。",
-        "en": "Second question: what is the client's real pain? The water department says it is lack of staff — and also that when something goes wrong they cannot prove they checked."
+        "zh": "第二件事：客户的真痛点是什么？水务所的人说最难的是人手不够，也说最难的是「出了事没法举证」。就在这时候，一家大型园区企业来问巡逻版：他们要的是覆盖面与频次，愿意签长期合同。",
+        "en": "Second question: what is the client's real pain? The water department says it is lack of staff — and also that when something goes wrong they cannot prove they checked. Right then a large industrial park asks about a patrol version: they want coverage and frequency, and will sign a multi-year contract."
       },
       "choices": [
         {
@@ -4073,7 +4165,7 @@
             "pmf": 1
           },
           "why": {
-            "zh": "境外来源的空域数据既可能过时也可能失真，依赖它安排飞行等于把合规判断交给了不可控的数据源；一旦飛入未报批的空域，性质就从违规变成违法。效率明显更高。",
+            "zh": "境外来源的空域数据既可能过时也可能失真，依赖它安排飞行等于把合规判断交给了不可控的数据源；一旦飞入未报批的空域，性质就从违规变成违法。效率明显更高。",
             "en": "Overseas airspace data may be stale or inaccurate; flying to it means outsourcing your compliance judgement to an uncontrolled source. Enter unapproved airspace once and a violation becomes an offence. Efficiency is clearly better, though."
           }
         }
@@ -4182,7 +4274,7 @@
         },
         {
           "text": {
-            "zh": "低价甚至免费巡检，把航线影像库卖给第三方数据商",
+            "zh": "低价甚至免费巡检，把航线影像成果卖给第三方数据商",
             "en": "Inspect cheap or free, then sell the route imagery library to data brokers"
           },
           "next": "c3_channel",
@@ -4247,7 +4339,7 @@
             "ethics": 1
           },
           "why": {
-            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双操与人免责环节（这些最容易被省掉），也可能踩到不正当竞争的边界。",
+            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节（这些最容易被省掉），也可能踩到不正当竞争的边界。",
             "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review — precisely the steps easiest to drop — and can brush against unfair-competition rules."
           }
         }
@@ -4389,7 +4481,7 @@
             "business": 1
           },
           "why": {
-            "zh": "按指示删片看似成本低；但已经交付给第三方的副本不会因为你删窑AML 而消失，且没有系统性排查，下一次核查会来得更快。",
+            "zh": "按指示删片看似成本低；但已经交付给第三方的副本不会因为你删除本地文件而消失，且没有系统性排查，下一次核查会来得更快。",
             "en": "Deleting what you are told looks cheap; copies already delivered do not disappear when you delete your master, and without a systematic sweep the next inspection arrives sooner."
           }
         }
@@ -4398,14 +4490,14 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "核查还没结束，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The review is not finished, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
           "text": {
-            "zh": "接受境外基金，影像数据库向其全球客户开放检索",
-            "en": "Take offshore funding and make the imagery database searchable for its global clients"
+            "zh": "接受境外基金，把影像成果向其全球客户开放检索",
+            "en": "Take offshore funding and make your imagery searchable for its global clients"
           },
           "next": "epilogue",
           "effects": {
@@ -4511,8 +4603,22 @@
     "en": "Customs compliance, export control and client due diligence"
   },
   "brief": {
-    "zh": "中小外贸企业被报关单、发票与装箱单淹没。你们的模型能把这些单据自动整理归类——也包括那些「稍微调整一下归类就能少缴税」的部分。",
-    "en": "Small exporters drown in declarations, invoices and packing lists. Your model organises them automatically — including the part where a slightly different tariff code means noticeably less duty."
+    "product": {
+      "zh": "跨境贸易单据助手：读取发票与装箱单，自动整理字段、提示疑点，并可生成报关单草稿与商品编码建议。",
+      "en": "A cross-border trade document assistant: it reads invoices and packing lists, fills in fields, flags anomalies, and can draft declarations and suggest commodity codes."
+    },
+    "customer": {
+      "zh": "中小出口企业与报关行；大型货代更看重与自家系统的定制对接。",
+      "en": "Small and mid-sized exporters and customs brokers; large freight forwarders care most about bespoke integration."
+    },
+    "standing": {
+      "zh": "第一版两周做成，一位创始人家里做了二十年五金出口的公司成了第一个用户；收费模式尚未定型。",
+      "en": "Version one took two weeks; one founder's family hardware exporter, twenty years in the trade, is user number one. Pricing undecided."
+    },
+    "data": {
+      "zh": "交易对手、货物品名与编码、金额与流向。涉及出口管制清单与客户尽职调查；归类错误可能构成申报不实。",
+      "en": "Counterparties, product names and codes, values and flows. This engages export-control lists and customer due diligence; a misclassification can amount to a false declaration."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
@@ -4667,8 +4773,8 @@
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：客户的真痛点是什么？有人说录入太慢，也有报关员说真正难的是「归类错了没人敢签」。",
-        "en": "Second question: what is the client's real pain? Some say data entry is slow; a broker says the hard part is nobody daring to sign off a wrong classification."
+        "zh": "第二件事：客户的真痛点是什么？有人说录入太慢，也有报关员说真正难的是「归类错了没人敢签」。就在这时候，一家大型货代找过来：他们要一套对接自家系统的定制版，单量很大。",
+        "en": "Second question: what is the client's real pain? Some say data entry is slow; a broker says the hard part is nobody daring to sign off a wrong classification. Right then a large freight forwarder approaches: they want a bespoke build wired into their own systems, with large volumes."
       },
       "choices": [
         {
@@ -5114,14 +5220,14 @@
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一题：要不要拿钱？三家机构的条款完全不同，而不公平优势（Canvas 9）通常就写在这些条款里。",
-        "en": "Last question: take the money? Three institutions, three very different term sheets — and the Canvas 9 advantage is usually written into those terms."
+        "zh": "约谈之后，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "After the interview with customs, three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
           "text": {
-            "zh": "接受境外贸易基金，单据库对其全球风控团队开放",
-            "en": "Take an offshore trade fund and open the document corpus to its global risk team"
+            "zh": "接受境外贸易基金，把单据数据向其全球风控团队开放",
+            "en": "Take an offshore trade fund and open your document data to its global risk team"
           },
           "next": "epilogue",
           "effects": {

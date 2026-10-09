@@ -27,6 +27,11 @@
       restart: '再玩一次',
       shuffle: '换一个题材',
       thisRound: '本局题材',
+      briefTitle: '企划简报 · 先看清楚这门生意',
+      briefProduct: '做什么',
+      briefCustomer: '卖给谁',
+      briefStanding: '现在走到哪',
+      briefData: '会碰到什么数据',
       undefined: '未定义结局',
       undefinedDesc: '当前状态未匹配任何结局，场景需补全（见校验器）。',
       finalScore: '终局分数',
@@ -45,6 +50,10 @@
       canvasHeading: '用 Lean Canvas 复盘',
       legalHeading: '法例与规范线索',
       footnote: '以上法律线索仅用于课堂讨论，请以最新条文为准。',
+      canvasAttrNote: '这些格子是被下面这几步改动的',
+      riskAttrNote: '风险是被这几步抬起来的',
+      perfectBadge: '完美通关',
+      perfectNote: '三条风险线全部为零，创业三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
       footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
       actionError: '错误: ',
       loadError: '无法加载场景：',
@@ -59,6 +68,11 @@
       restart: 'Play again',
       shuffle: 'Another scenario',
       thisRound: 'This round',
+      briefTitle: 'THE VENTURE · READ THIS FIRST',
+      briefProduct: 'What it does',
+      briefCustomer: 'Who buys it',
+      briefStanding: 'Where it stands',
+      briefData: 'Data it touches',
       undefined: 'Undefined ending',
       undefinedDesc: 'No ending matched the current state; the scenario needs completion (see validator).',
       finalScore: 'Final scores',
@@ -77,6 +91,10 @@
       canvasHeading: 'Through the Lean Canvas',
       legalHeading: 'Legal and regulatory hooks',
       footnote: 'Legal pointers are for classroom discussion only; always check the current texts.',
+      canvasAttrNote: 'These boxes were moved by these decisions',
+      riskAttrNote: 'The risk was raised by these decisions',
+      perfectBadge: 'PERFECT RUN',
+      perfectNote: 'All three risk lines at zero and all three venture boxes at 7 or above — the only path in this venture that does it.',
       footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
       actionError: 'Error: ',
       loadError: 'Could not load the scenario: ',
@@ -229,8 +247,46 @@
     return pick(scenario.acts[node.act], lang);
   }
 
-  function renderStage(node) {
+  /* ---- 企划简报：开局先讲清楚「这门生意到底是什么」，再进情节 ----
+   * 简报是场景数据里的 brief 字段。支持两种形态：
+   *   结构化（推荐）：{ product, customer, standing, data } 四行，对应 Lean Canvas 的
+   *   方案 / 客群 / 关键资源与现状 / 数据（风险源头）。
+   *   纯字符串：老格式，直接整段渲染。
+   */
+  var BRIEF_ROWS = [
+    ['product', 'briefProduct'],
+    ['customer', 'briefCustomer'],
+    ['standing', 'briefStanding'],
+    ['data', 'briefData']
+  ];
+
+  function renderBrief(compact) {
+    if (!scenario || !scenario.brief) return null;
+    var b = scenario.brief;
+    var box = textEl('div', '', compact ? 'brief brief-compact' : 'brief');
+    box.appendChild(textEl('div', UI[lang].briefTitle, 'brief-title'));
+
+    if (typeof b === 'string') {
+      box.appendChild(textEl('div', b, 'brief-para'));
+      return box;
+    }
+    BRIEF_ROWS.forEach(function (pair) {
+      var v = b[pair[0]];
+      if (!v) return;
+      var row = textEl('div', '', 'brief-row');
+      row.appendChild(textEl('span', UI[lang][pair[1]], 'brief-key'));
+      row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
+      box.appendChild(row);
+    });
+    return box.children.length > 1 ? box : null;
+  }
+
+  function renderStage(node, withBrief) {
     var frag = document.createDocumentFragment();
+    if (withBrief) {
+      var brief = renderBrief(false);
+      if (brief) frag.appendChild(brief);
+    }
     frag.appendChild(textEl('div', pick(node.text, lang), 'node-text'));
     frag.appendChild(textEl('div', UI[lang].choicesHead, 'choices-head'));
     var cw = textEl('div', '', 'choices');
@@ -272,7 +328,8 @@
     if (state.finished) { renderEnding(); return; }
     var bc = $('bilingual');
     bc.innerHTML = '';
-    bc.appendChild(renderStage(node));
+    // 开局第一步：先把这门生意交代清楚，再讲情节。
+    bc.appendChild(renderStage(node, state.history.length === 0));
   }
 
   function onChoose(i) {
@@ -283,15 +340,106 @@
   }
 
   function typeLabel(t) { return (TYPE[lang] && TYPE[lang][t]) || t || ''; }
+  function stepLabel(n) { return lang === 'zh' ? '第 ' + n + ' 步' : 'Step ' + n; }
 
   /* ============ 结局 + 详细复盘 ============ */
 
-  function debriefSection(title, body) {
+  function debriefSection(title, body, extra) {
     if (!body) return null;
     var box = textEl('section', '', 'debrief');
     box.appendChild(textEl('h3', title, 'debrief-title'));
     box.appendChild(textEl('p', pick(body, lang), 'debrief-body'));
+    if (extra) box.appendChild(extra);
     return box;
+  }
+
+  /* ---- 归因：把复盘的结论对回玩家真实走过的第几步（数据全部来自 history，不猜测） ---- */
+
+  // sign: 1 只看把维度推高的步骤；-1 只看拉低的；0 两个方向都看（按绝对值排序）
+  function topMoves(dimKeys, sign, limit) {
+    if (!state || !state.history) return [];
+    var out = [];
+    state.history.forEach(function (h, idx) {
+      var sum = 0, parts = [];
+      dimKeys.forEach(function (k) {
+        var d = h.effects && h.effects[k];
+        if (!d) return;
+        sum += d;
+        parts.push({ k: k, d: d });
+      });
+      if (!parts.length) return;
+      if (sign > 0 && sum <= 0) return;
+      if (sign < 0 && sum >= 0) return;
+      out.push({ step: idx + 1, text: pick(h.choiceText, lang), sum: sum, parts: parts });
+    });
+    out.sort(function (a, b) { return Math.abs(b.sum) - Math.abs(a.sum); });
+    return out.slice(0, limit || 2);
+  }
+
+  function movesList(moves) {
+    var ul = textEl('ul', '', 'attr-moves');
+    moves.forEach(function (m) {
+      var li = textEl('li', '', 'attr-move');
+      li.appendChild(textEl('span', stepLabel(m.step), 'attr-step'));
+      li.appendChild(textEl('span', m.text, 'attr-choice'));
+      li.appendChild(textEl('span', (m.sum >= 0 ? '+' : '') + m.sum, 'attr-delta ' + (m.sum >= 0 ? 'up' : 'down')));
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  // Lean Canvas 复盘：逐格列出「是哪几步把它改成了现在的样子」
+  var CANVAS_BOX = {
+    pmf: { zh: 'Canvas 1–4 · 客群、问题与方案', en: 'Canvas 1–4 · Customers, problem, solution' },
+    business: { zh: 'Canvas 5–7 · 渠道、收入与成本', en: 'Canvas 5–7 · Channels, revenue, cost' },
+    moat: { zh: 'Canvas 8–9 · 关键指标与不公平优势', en: 'Canvas 8–9 · Key metrics, unfair advantage' }
+  };
+
+  function canvasAttribution() {
+    var keys = Object.keys(scenario.dimensions).filter(function (k) {
+      return scenario.dimensions[k].group === 'venture';
+    });
+    if (!keys.length) return null;
+    var box = textEl('div', '', 'attribution');
+    box.appendChild(textEl('p', UI[lang].canvasAttrNote, 'attribution-note'));
+    var ul = textEl('ul', '', 'attr-boxes');
+    var any = false;
+    keys.forEach(function (k) {
+      var moves = topMoves([k], 0, 2);
+      if (!moves.length) return;
+      any = true;
+      var li = textEl('li', '', 'attr-box');
+      var label = CANVAS_BOX[k] ? CANVAS_BOX[k][lang] : pick(scenario.dimensions[k].label, lang);
+      li.appendChild(textEl('strong', label, 'attr-box-name'));
+      li.appendChild(movesList(moves));
+      ul.appendChild(li);
+    });
+    return any ? (box.appendChild(ul), box) : null;
+  }
+
+  // 触发原因：风险是被哪几步抬起来的
+  function riskAttribution() {
+    var keys = Object.keys(scenario.dimensions).filter(function (k) {
+      return scenario.dimensions[k].group === 'risk';
+    });
+    var moves = topMoves(keys, 1, 2);
+    if (!moves.length) return null;
+    var box = textEl('div', '', 'attribution');
+    box.appendChild(textEl('p', UI[lang].riskAttrNote, 'attribution-note'));
+    box.appendChild(movesList(moves));
+    return box;
+  }
+
+  // 完美通关徽章：三条风险线全为零 + 创业三格全在 7 分以上（每个题材只有唯一一条路径）
+  function isPerfectRun() {
+    if (!state || !state.dims) return false;
+    var keys = Object.keys(scenario.dimensions);
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i], d = scenario.dimensions[k];
+      if (d.higherIsRisk) { if (state.dims[k] !== d.min) return false; }
+      else if (state.dims[k] < 7) return false;
+    }
+    return true;
   }
 
   function renderEnding() {
@@ -304,7 +452,15 @@
       box.appendChild(textEl('h2', UI[lang].undefined));
       box.appendChild(textEl('p', UI[lang].undefinedDesc));
     } else {
-      box.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
+      var tagRow = textEl('div', '', 'ending-tag-row');
+      tagRow.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
+      if (isPerfectRun()) {
+        var badge = textEl('div', '★ ' + UI[lang].perfectBadge, 'perfect-badge');
+        badge.title = UI[lang].perfectNote;
+        tagRow.appendChild(badge);
+      }
+      box.appendChild(tagRow);
+      if (isPerfectRun()) box.appendChild(textEl('p', UI[lang].perfectNote, 'perfect-note'));
       box.appendChild(textEl('h2', pick(ending.title, lang)));
       box.appendChild(textEl('p', pick(ending.text, lang)));
       var flavor = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
@@ -312,9 +468,9 @@
 
       var an = ending.analysis || {};
       var secs = [
-        debriefSection(UI[lang].whyHeading, an.trigger),
+        debriefSection(UI[lang].whyHeading, an.trigger, riskAttribution()),
         debriefSection(UI[lang].tradeoffHeading, an.tradeoff),
-        debriefSection(UI[lang].canvasHeading, an.canvas)
+        debriefSection(UI[lang].canvasHeading, an.canvas, canvasAttribution())
       ];
 
       if (an.stakeholders && an.stakeholders.length) {
@@ -462,11 +618,12 @@
     var card = $('scenario-card');
     if (!card || !scenario) return;
     card.innerHTML = '';
-    var label = $('scenario-card-label');
-    if (label) label.textContent = UI[lang].thisRound;
     card.appendChild(textEl('div', pick(scenario.title, lang), 'scenario-card-title'));
     var m = metaOf(scenario.id);
     if (m && m.hook) card.appendChild(textEl('div', pick(m.hook, lang), 'scenario-card-hook'));
+    // 开始之前先把 business idea 讲清楚，否则开局那一句「第一个客户是……」没有着落。
+    var brief = renderBrief(true);
+    if (brief) card.appendChild(brief);
   }
 
   // 加载指定题材（http 下 fetch，file:// 下读内嵌副本）
@@ -525,6 +682,68 @@
     }
   }
 
+  /* ============ 彩蛋（easter egg） ============
+   * 桌面：开始画面按下 ↑↑↓↓←→←→BA（Konami 指令）
+   * 手机：连点开场 LOGO 七次
+   * 找到之后会在页眉留一颗 ★，并用 localStorage 记住。
+   * 说明：彩蛋只做展示，不改动任何状态与结局，因此不影响确定性。
+   */
+  var KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+  function playEggJingle() {
+    ensureAudio();
+    beep(659, 0.08, 'square', 0);
+    beep(784, 0.08, 'square', 0.09);
+    beep(1046, 0.08, 'square', 0.18);
+    beep(1318, 0.10, 'square', 0.27);
+    beep(1568, 0.22, 'square', 0.36);
+  }
+
+  function markEggStar() {
+    var star = $('egg-star');
+    if (star) star.classList.remove('hidden');
+  }
+
+  function openEgg() {
+    var panel = $('egg-panel');
+    if (!panel || !panel.classList.contains('hidden')) return;
+    playEggJingle();
+    panel.classList.remove('hidden');
+    markEggStar();
+    try { localStorage.setItem('choices.eggFound', '1'); } catch (e) { /* 隐私模式下忽略 */ }
+  }
+
+  function initEgg() {
+    try { if (localStorage.getItem('choices.eggFound') === '1') markEggStar(); } catch (e) { /* noop */ }
+
+    var seq = [];
+    document.addEventListener('keydown', function (e) {
+      var key = e.key && e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      seq.push(key);
+      if (seq.length > KONAMI.length) seq.shift();
+      if (seq.length === KONAMI.length && seq.every(function (k, i) { return k === KONAMI[i]; })) {
+        seq = [];
+        openEgg();
+      }
+    });
+
+    var taps = 0, last = 0;
+    var logo = document.querySelector('.start-logo');
+    if (logo) {
+      logo.addEventListener('click', function () {
+        var now = Date.now();
+        taps = (now - last < 1200) ? taps + 1 : 1;
+        last = now;
+        if (taps >= 7) { taps = 0; openEgg(); }
+      });
+    }
+
+    var close = $('egg-close');
+    if (close) close.addEventListener('click', function () { $('egg-panel').classList.add('hidden'); });
+    var panel = $('egg-panel');
+    if (panel) panel.addEventListener('click', function (e) { if (e.target === panel) panel.classList.add('hidden'); });
+  }
+
   function init() {
     var params = new URLSearchParams(location.search);
     var langParam = params.get('lang');
@@ -535,6 +754,7 @@
     });
     markToggles();
     applyChrome();
+    initEgg();
 
     var soundBtn = $('sound-toggle');
     if (soundBtn) soundBtn.addEventListener('click', function () {

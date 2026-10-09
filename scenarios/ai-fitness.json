@@ -1,26 +1,124 @@
 {
   "id": "ai-fitness",
-  "title": { "zh": "步频 Pace：一款 AI 运动 App", "en": "Pace: An AI Fitness App" },
-  "theme": { "zh": "位置轨迹与健康数据上的双轨创业", "en": "Startup on location tracks and health data" },
+  "title": {
+    "zh": "步频 Pace：一款 AI 运动 App",
+    "en": "Pace: An AI Fitness App"
+  },
+  "theme": {
+    "zh": "位置轨迹与健康数据上的双轨创业",
+    "en": "Startup on location tracks and health data"
+  },
   "brief": {
-    "zh": "你和两位同学开发了 AI 运动 App「步频 Pace」：它记录路线、读懂身体状态，还能自动生成训练周报。故事从校内创业基金开始，一路走到可能被叫停或可以放大的那一刻。",
-    "en": "With two classmates you built Pace, an AI fitness app that records routes, reads your body's signals and writes your training summary. It starts with a campus seed fund and ends either with a shutdown order or with a business that can actually scale."
+    "product": {
+      "zh": "一款给跑步与健走用户的手机 App：记录路线、配速与心率，用 AI 生成训练计划、伤病预警与每周小结；也可以把用户轨迹汇总成一张公开的「热门路线」图层。",
+      "en": "A phone app for runners and walkers: it logs route, pace and heart rate, and uses AI to produce training plans, injury warnings and weekly summaries; it can also aggregate user traces into a public \"popular routes\" layer."
+    },
+    "customer": {
+      "zh": "城市跑者与健走人群（自用付费）；以及想把员工健康福利外包的企业雇主。",
+      "en": "Urban runners and walkers, who pay for themselves; and employers who want to outsource staff wellness."
+    },
+    "standing": {
+      "zh": "刚拿到校内创业基金，三位创始人，众创空间里三个固定工位；只有一个原型，收费模式尚未定型。",
+      "en": "A campus seed fund, three founders, three desks in the incubator, one prototype — and no decided business model yet."
+    },
+    "data": {
+      "zh": "连续的 GPS 轨迹、心率与运动习惯。轨迹可持续追踪一个人的行踪，属敏感个人信息；一旦汇总公开，还可能复原敏感场所周边的作息规律。",
+      "en": "Continuous GPS traces, heart rate and exercise habits. Traces can track a person's movements over time and count as sensitive personal data; aggregated and published, they can also reconstruct routines around sensitive sites."
+    }
   },
   "endingsShared": "endings-core.json",
   "dimensions": {
-    "national_security": { "label": { "zh": "国家安全风险", "en": "National security risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83D\uDEE1\uFE0F" },
-    "legal": { "label": { "zh": "法律合规风险", "en": "Legal compliance risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "⚖️" },
-    "ethics": { "label": { "zh": "伦理与信任风险", "en": "Ethics and trust risk" }, "initial": 0, "min": 0, "max": 10, "higherIsRisk": true, "group": "risk", "icon": "\uD83E\uDDD0" },
-    "pmf": { "label": { "zh": "问题–方案契合", "en": "Problem–solution fit" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFAF" },
-    "business": { "label": { "zh": "商业模式", "en": "Business model" }, "initial": 2, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83D\uDCB0" },
-    "moat": { "label": { "zh": "护城河与不公平优势", "en": "Moat and unfair advantage" }, "initial": 1, "min": 0, "max": 10, "higherIsRisk": false, "group": "venture", "icon": "\uD83C\uDFF0" }
+    "national_security": {
+      "label": {
+        "zh": "国家安全风险",
+        "en": "National security risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "🛡️"
+    },
+    "legal": {
+      "label": {
+        "zh": "法律合规风险",
+        "en": "Legal compliance risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "⚖️"
+    },
+    "ethics": {
+      "label": {
+        "zh": "伦理与信任风险",
+        "en": "Ethics and trust risk"
+      },
+      "initial": 0,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "risk",
+      "icon": "🧐"
+    },
+    "pmf": {
+      "label": {
+        "zh": "问题–方案契合",
+        "en": "Problem–solution fit"
+      },
+      "initial": 2,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "🎯"
+    },
+    "business": {
+      "label": {
+        "zh": "商业模式",
+        "en": "Business model"
+      },
+      "initial": 2,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "💰"
+    },
+    "moat": {
+      "label": {
+        "zh": "护城河与不公平优势",
+        "en": "Moat and unfair advantage"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": false,
+      "group": "venture",
+      "icon": "🏰"
+    }
   },
   "start": "intro",
   "acts": {
-    "act1": { "zh": "第一章 · 客群与问题（Canvas 1–2）", "en": "Act I · Customers and Problem (Canvas 1–2)" },
-    "act2": { "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）", "en": "Act II · Solution, Data and Training (Canvas 3–4)" },
-    "act3": { "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）", "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)" },
-    "act4": { "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）", "en": "Act IV · Scale and Spillover (Canvas 7, 9)" }
+    "act1": {
+      "zh": "第一章 · 客群与问题（Canvas 1–2）",
+      "en": "Act I · Customers and Problem (Canvas 1–2)"
+    },
+    "act2": {
+      "zh": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "en": "Act II · Solution, Data and Training (Canvas 3–4)"
+    },
+    "act3": {
+      "zh": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "en": "Act III · Channels, Revenue and Accountability (Canvas 5–8)"
+    },
+    "act4": {
+      "zh": "第四章 · 规模化与社会外溢（Canvas 7、9）",
+      "en": "Act IV · Scale and Spillover (Canvas 7, 9)"
+    }
   },
   "nodes": {
     "intro": {
@@ -30,7 +128,13 @@
         "en": "In July you took the campus seed fund, and for the first time three people sat at the same desk every day. Investors started adding you on WeChat, and some asked about your data. Twelve decisions now follow, and each one changes two things at once: the company's prospects, and the national-security, legal and ethical lines it may cross."
       },
       "choices": [
-        { "text": { "zh": "接受基金，正式启动", "en": "Take the fund and start" }, "next": "c1_segment" }
+        {
+          "text": {
+            "zh": "接受基金，正式启动",
+            "en": "Take the fund and start"
+          },
+          "next": "c1_segment"
+        }
       ]
     },
     "c1_segment": {
@@ -41,43 +145,87 @@
       },
       "choices": [
         {
-          "text": { "zh": "深耕越野跑与骑行社群，先做透一个细分痛点", "en": "Go deep on trail-running and cycling communities, master one narrow pain first" },
+          "text": {
+            "zh": "深耕越野跑与骑行社群，先做透一个细分痛点",
+            "en": "Go deep on trail-running and cycling communities, master one narrow pain first"
+          },
           "next": "c1_problem",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "细分社群的痛点最容易用访谈验证，高质量反馈会直接沉淀成产品口碑——口碑就是后来最难被抄走的护城河（Canvas 9）。代价是天花板低，短期看不到规模。", "en": "A narrow community's pain is the easiest to validate through interviews, and that feedback compounds into word of mouth — the moat competitors copy last (Canvas 9). The cost is a low ceiling and no visible scale early." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "细分社群的痛点最容易用访谈验证，高质量反馈会直接沉淀成产品口碑——口碑就是后来最难被抄走的护城河（Canvas 9）。代价是天花板低，短期看不到规模。",
+            "en": "A narrow community's pain is the easiest to validate through interviews, and that feedback compounds into word of mouth — the moat competitors copy last (Canvas 9). The cost is a low ceiling and no visible scale early."
+          }
         },
         {
-          "text": { "zh": "面向所有运动人群，先把用户量做起来", "en": "Target everyone who exercises and chase volume first" },
+          "text": {
+            "zh": "面向所有运动人群，先把用户量做起来",
+            "en": "Target everyone who exercises and chase volume first"
+          },
           "next": "c1_problem",
-          "effects": { "business": 2, "ethics": 1 },
-          "why": { "zh": "宽口径设群意味着你会采到远超当前用途的运动与位置信息，日后很难向用户交代目的（目的外使用 → 知情同意失效）。换来的是短期数字漂亮，变现故事好讲。", "en": "A wide definition of your user means collecting movement and location far beyond today's purpose, which is hard to justify later (secondary use undermines informed consent). In exchange the early numbers look good and the monetisation story is easy to tell." }
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "宽口径设群意味着你会采到远超当前用途的运动与位置信息，日后很难向用户交代目的（目的外使用 → 知情同意失效）。换来的是短期数字漂亮，变现故事好讲。",
+            "en": "A wide definition of your user means collecting movement and location far beyond today's purpose, which is hard to justify later (secondary use undermines informed consent). In exchange the early numbers look good and the monetisation story is easy to tell."
+          }
         }
       ]
     },
     "c1_problem": {
       "act": "act1",
       "text": {
-        "zh": "第二件事：你要解决的到底是不是真问题？跑者群里有人说最怕的不是没动力，是受伤和不安全的路线。",
-        "en": "Second question: is this even a real problem? In the runners' chat someone says the worst thing is not laziness — it is injury and unsafe routes."
+        "zh": "第二件事：你要解决的到底是不是真问题？跑者群里有人说最怕的不是没动力，是受伤和不安全的路线。就在这时候，一家做员工健康福利的企业平台找上门：他们愿意包下第一年的版本，条件是照他们的需求改。",
+        "en": "Second question: is this even a real problem? In the runners' chat someone says the worst thing is not laziness — it is injury and unsafe routes. Right then a corporate wellness platform comes knocking: they will underwrite year one, provided you build to their spec."
       },
       "choices": [
         {
-          "text": { "zh": "走访两百位跑者，确认痛点是路线安全与伤病预警", "en": "Interview two hundred runners; confirm the pain is route safety and injury warning" },
+          "text": {
+            "zh": "走访两百位跑者，确认痛点是路线安全与伤病预警",
+            "en": "Interview two hundred runners; confirm the pain is route safety and injury warning"
+          },
           "next": "c2_mvp",
-          "effects": { "pmf": 2 },
-          "why": { "zh": "花两周做用户访谈是最便宜的学习方式：它把 Canvas 2（问题）从假设变成证据，PMF 上升，后续每个功能决策都有参照点。代价只是时间。", "en": "Two weeks of interviews is the cheapest way to learn: it turns Canvas 2 (problem) from assumption into evidence, raises fit, and gives every later feature decision a reference point. It only costs time." }
+          "effects": {
+            "pmf": 2
+          },
+          "why": {
+            "zh": "花两周做用户访谈是最便宜的学习方式：它把 Canvas 2（问题）从假设变成证据，PMF 上升，后续每个功能决策都有参照点。代价只是时间。",
+            "en": "Two weeks of interviews is the cheapest way to learn: it turns Canvas 2 (problem) from assumption into evidence, raises fit, and gives every later feature decision a reference point. It only costs time."
+          }
         },
         {
-          "text": { "zh": "用排行榜与虚拟勋章刺激留存，先上线再说", "en": "Boost retention with leaderboards and badges; ship first, ask later" },
+          "text": {
+            "zh": "用排行榜与虚拟勋章刺激留存，先上线再说",
+            "en": "Boost retention with leaderboards and badges; ship first, ask later"
+          },
           "next": "c2_mvp",
-          "effects": { "business": 2, "ethics": 1 },
-          "why": { "zh": "游戏化确实能拉升短期留存（Canvas 8 指标变好看），但社交比较会诱导用户为排名暴露更多行踪与身体数据，知情同意开始失真。", "en": "Gamification does lift short-term retention (Canvas 8 looks better), but social comparison nudges users to expose more of their routes and bodies for status, and consent starts to degrade." }
+          "effects": {
+            "business": 2,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "游戏化确实能拉升短期留存（Canvas 8 指标变好看），但社交比较会诱导用户为排名暴露更多行踪与身体数据，知情同意开始失真。",
+            "en": "Gamification does lift short-term retention (Canvas 8 looks better), but social comparison nudges users to expose more of their routes and bodies for status, and consent starts to degrade."
+          }
         },
         {
-          "text": { "zh": "按最大的采购方要求做：企业健康福利版本", "en": "Build what the biggest buyer wants: a corporate wellness version" },
+          "text": {
+            "zh": "按最大的采购方要求做：企业健康福利版本",
+            "en": "Build what the biggest buyer wants: a corporate wellness version"
+          },
           "next": "c2_mvp",
-          "effects": { "business": 3, "pmf": -1 },
-          "why": { "zh": "单一大客户带来确定现金流（Canvas 6 直接跑通），但产品方向被买方牵着走，真实用户的痛点被排在后面，PMF 下降——这是一种常见的「用短期现金换长期匹配度」的取舍。", "en": "One big customer brings certain cash (Canvas 6 fires immediately), but the roadmap follows the buyer and real users queue behind them, lowering fit — the classic trade of near-term cash for long-term fit." }
+          "effects": {
+            "business": 3,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "单一大客户带来确定现金流（Canvas 6 直接跑通），但产品方向被买方牵着走，真实用户的痛点被排在后面，PMF 下降——这是一种常见的「用短期现金换长期匹配度」的取舍。",
+            "en": "One big customer brings certain cash (Canvas 6 fires immediately), but the roadmap follows the buyer and real users queue behind them, lowering fit — the classic trade of near-term cash for long-term fit."
+          }
         }
       ]
     },
@@ -89,16 +237,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "做 AI 教练：个性化训练与伤病预警", "en": "Build the AI coach: personalised training and injury warnings" },
+          "text": {
+            "zh": "做 AI 教练：个性化训练与伤病预警",
+            "en": "Build the AI coach: personalised training and injury warnings"
+          },
           "next": "c2_mapdata",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "个性化建议需要真实生理数据才能做准，反过来又会沉淀成别人拿不走的训练集与算法诀窍（Canvas 9）。它慢，但每一步都在加宽护城河。", "en": "Personalised advice needs real physiological data to be accurate, which in turn accumulates into training data and know-how nobody else has (Canvas 9). It is slower, but every step widens the moat." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "个性化建议需要真实生理数据才能做准，反过来又会沉淀成别人拿不走的训练集与算法诀窍（Canvas 9）。它慢，但每一步都在加宽护城河。",
+            "en": "Personalised advice needs real physiological data to be accurate, which in turn accumulates into training data and know-how nobody else has (Canvas 9). It is slower, but every step widens the moat."
+          }
         },
         {
-          "text": { "zh": "做热门路线热力图：好看、好传播、容易拉新", "en": "Build the route heat map: visual, viral, easy acquisition" },
+          "text": {
+            "zh": "做热门路线热力图：好看、好传播、容易拉新",
+            "en": "Build the route heat map: visual, viral, easy acquisition"
+          },
           "next": "c2_mapdata",
-          "effects": { "business": 2, "national_security": 1 },
-          "why": { "zh": "热力图传播性强，短期获客成本低。但「匿名」的轨迹聚合起来会长期记录特定地点的活动规律——2018 年就有运动 App 的热力图还原出军事基地的巡逻与作息。这是看不见的国家安全风险。", "en": "A heat map spreads well and acquires users cheaply. But aggregated 'anonymous' tracks record the rhythm of specific locations over time — back in 2018 one fitness app's heat map reconstructed patrol patterns at military bases. That is invisible national-security risk." }
+          "effects": {
+            "business": 2,
+            "national_security": 1
+          },
+          "why": {
+            "zh": "热力图传播性强，短期获客成本低。但「匿名」的轨迹聚合起来会长期记录特定地点的活动规律——2018 年就有运动 App 的热力图还原出军事基地的巡逻与作息。这是看不见的国家安全风险。",
+            "en": "A heat map spreads well and acquires users cheaply. But aggregated 'anonymous' tracks record the rhythm of specific locations over time — back in 2018 one fitness app's heat map reconstructed patrol patterns at military bases. That is invisible national-security risk."
+          }
         }
       ]
     },
@@ -110,16 +276,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "只用本地具备合法资质的地图与开放数据", "en": "Use only locally licensed maps and open data" },
+          "text": {
+            "zh": "只用本地具备合法资质的地图与开放数据",
+            "en": "Use only locally licensed maps and open data"
+          },
           "next": "c2_training",
-          "effects": { "pmf": 1 },
-          "why": { "zh": "测绘地理信息在很多法域属于受管制数据，使用有资质的来源是唯一稳妥做法。数据精度略差反而迫使你把产品做在「有用」而不是「精确」上，PMF 小幅提升。", "en": "Surveying and mapping data is regulated in many jurisdictions; licensed sources are the only safe option. Slightly worse precision forces you to optimise for usefulness rather than exactness, nudging fit upward." }
+          "effects": {
+            "pmf": 1
+          },
+          "why": {
+            "zh": "测绘地理信息在很多法域属于受管制数据，使用有资质的来源是唯一稳妥做法。数据精度略差反而迫使你把产品做在「有用」而不是「精确」上，PMF 小幅提升。",
+            "en": "Surveying and mapping data is regulated in many jurisdictions; licensed sources are the only safe option. Slightly worse precision forces you to optimise for usefulness rather than exactness, nudging fit upward."
+          }
         },
         {
-          "text": { "zh": "直接用境外高精度数据包，先上线", "en": "Use the overseas high-precision dataset and ship" },
+          "text": {
+            "zh": "直接用境外高精度数据包，先上线",
+            "en": "Use the overseas high-precision dataset and ship"
+          },
           "next": "c2_training",
-          "effects": { "national_security": 2, "legal": 1, "pmf": 1 },
-          "why": { "zh": "高精度地理信息常与地方测绘监管、重要数据识别与跨境提供规则直接相关；未核实的境外来源还可能夹带敏感区域的坐标体系。产品体验上去了，国家安全与合规风险同时抬升。", "en": "High-precision geographic data often touches local surveying rules, important-data identification and cross-border transfer requirements; an unverified overseas source may also embed coordinate systems for sensitive sites. Experience improves while security and compliance risk rise together." }
+          "effects": {
+            "national_security": 2,
+            "legal": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "高精度地理信息常与地方测绘监管、重要数据识别与跨境提供规则直接相关；未核实的境外来源还可能夹带敏感区域的坐标体系。产品体验上去了，国家安全与合规风险同时抬升。",
+            "en": "High-precision geographic data often touches local surveying rules, important-data identification and cross-border transfer requirements; an unverified overseas source may also embed coordinate systems for sensitive sites. Experience improves while security and compliance risk rise together."
+          }
         }
       ]
     },
@@ -131,16 +315,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "用公开赛事数据，加上用户明确授权的自采数据", "en": "Use public event data plus user data collected with explicit consent" },
+          "text": {
+            "zh": "用公开赛事数据，加上用户明确授权的自采数据",
+            "en": "Use public event data plus user data collected with explicit consent"
+          },
           "next": "c2_annotate",
-          "effects": { "pmf": 1 },
-          "why": { "zh": "样本量小，但每一条都有清晰的法律基础与用途边界，后续扩容、融资尽调、上架审核都不会被拦。这是把合规成本前置的做法。", "en": "The sample is small, but every record has a clear legal basis and purpose boundary, so scaling, due diligence and app-store review never stall later. It front-loads compliance cost." }
+          "effects": {
+            "pmf": 1
+          },
+          "why": {
+            "zh": "样本量小，但每一条都有清晰的法律基础与用途边界，后续扩容、融资尽调、上架审核都不会被拦。这是把合规成本前置的做法。",
+            "en": "The sample is small, but every record has a clear legal basis and purpose boundary, so scaling, due diligence and app-store review never stall later. It front-loads compliance cost."
+          }
         },
         {
-          "text": { "zh": "再买一批第三方数据包补齐样本", "en": "Buy a third-party data pack to fill the gaps" },
+          "text": {
+            "zh": "再买一批第三方数据包补齐样本",
+            "en": "Buy a third-party data pack to fill the gaps"
+          },
           "next": "c2_annotate",
-          "effects": { "pmf": 2, "legal": 2, "ethics": 2 },
-          "why": { "zh": "来源不明的数据包让你无法证明合法性基础，也无法向用户披露用途；一旦被追问，举证责任在你们这边。换来的是模型效果立刻变好、演示更好看。", "en": "With a package of unclear provenance you cannot demonstrate a lawful basis nor disclose the purpose to users; when challenged, the burden of proof sits with you. What you get is a model that performs better and demos well." }
+          "effects": {
+            "pmf": 2,
+            "legal": 2,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "来源不明的数据包让你无法证明合法性基础，也无法向用户披露用途；一旦被追问，举证责任在你们这边。换来的是模型效果立刻变好、演示更好看。",
+            "en": "With a package of unclear provenance you cannot demonstrate a lawful basis nor disclose the purpose to users; when challenged, the burden of proof sits with you. What you get is a model that performs better and demos well."
+          }
         }
       ]
     },
@@ -152,16 +354,35 @@
       },
       "choices": [
         {
-          "text": { "zh": "校内勤工俭学团队手工标注，全程数据不出境", "en": "Use a campus work-study team; data never leaves the jurisdiction" },
+          "text": {
+            "zh": "校内勤工俭学团队手工标注，全程数据不出境",
+            "en": "Use a campus work-study team; data never leaves the jurisdiction"
+          },
           "next": "c3_money",
-          "effects": { "moat": 1, "pmf": 1 },
-          "why": { "zh": "内部标注虽然贵，但标注准则与质量控制成为团队自己的隐性知识，反向提升数据一致性；同时避免跨境传输评估、标准合同与安全审查这一整套合规负担。", "en": "Internal labelling costs more, but the guidelines and quality control become in-house tacit knowledge, raising consistency; it also avoids the whole package of transfer assessments, standard contracts and security review." }
+          "effects": {
+            "moat": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "内部标注虽然贵，但标注准则与质量控制成为团队自己的隐性知识，反向提升数据一致性；同时避免跨境传输评估、标准合同与安全审查这一整套合规负担。",
+            "en": "Internal labelling costs more, but the guidelines and quality control become in-house tacit knowledge, raising consistency; it also avoids the whole package of transfer assessments, standard contracts and security review."
+          }
         },
         {
-          "text": { "zh": "外包给境外标注团队，先把版本发出去", "en": "Outsource to an overseas labelling team and ship now" },
+          "text": {
+            "zh": "外包给境外标注团队，先把版本发出去",
+            "en": "Outsource to an overseas labelling team and ship now"
+          },
           "next": "c3_money",
-          "effects": { "business": 2, "national_security": 2, "legal": 2 },
-          "why": { "zh": "把含位置与生理特征的数据发给境外处理方，通常触发跨境提供规则、第三方数据处理协议与安全评估义务；未做这些就直接流转，等于把合规缺口外包给了看不见的地方。速度确实最快。", "en": "Sending location and physiological data to an overseas processor usually triggers cross-border transfer rules, third-party processing agreements and security assessments. Skipping them simply outsources your compliance gap somewhere invisible. It is the fastest route, though." }
+          "effects": {
+            "business": 2,
+            "national_security": 2,
+            "legal": 2
+          },
+          "why": {
+            "zh": "把含位置与生理特征的数据发给境外处理方，通常触发跨境提供规则、第三方数据处理协议与安全评估义务；未做这些就直接流转，等于把合规缺口外包给了看不见的地方。速度确实最快。",
+            "en": "Sending location and physiological data to an overseas processor usually triggers cross-border transfer rules, third-party processing agreements and security assessments. Skipping them simply outsources your compliance gap somewhere invisible. It is the fastest route, though."
+          }
         }
       ]
     },
@@ -173,22 +394,50 @@
       },
       "choices": [
         {
-          "text": { "zh": "会员订阅，并公开承诺不以位置数据变现", "en": "Subscriptions, with a public promise never to monetise location data" },
+          "text": {
+            "zh": "会员订阅，并公开承诺不以位置数据变现",
+            "en": "Subscriptions, with a public promise never to monetise location data"
+          },
           "next": "c3_channel",
-          "effects": { "business": 2, "moat": 1 },
-          "why": { "zh": "订阅收入慢，但把「我们不会拿你的数据做什么」写进公开条款，会沉淀成最难复制的信任壁垒（Canvas 9）；同时收入路径干净，尽调、上市、跨境扩张都不受牵连。", "en": "Subscription revenue is slow, but publishing 'we will never do X with your data' compounds into the hardest trust moat to copy (Canvas 9). The revenue path stays clean, so due diligence and expansion never get entangled." }
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收入慢，但把「我们不会拿你的数据做什么」写进公开条款，会沉淀成最难复制的信任壁垒（Canvas 9）；同时收入路径干净，尽调、上市、跨境扩张都不受牵连。",
+            "en": "Subscription revenue is slow, but publishing 'we will never do X with your data' compounds into the hardest trust moat to copy (Canvas 9). The revenue path stays clean, so due diligence and expansion never get entangled."
+          }
         },
         {
-          "text": { "zh": "免费，把「去标识」的运动轨迹卖给保险公司", "en": "Free app; sell 'de-identified' movement tracks to insurers" },
+          "text": {
+            "zh": "免费，把「去标识」的运动轨迹卖给保险公司",
+            "en": "Free app; sell 'de-identified' movement tracks to insurers"
+          },
           "next": "c3_channel",
-          "effects": { "business": 4, "legal": 2, "ethics": 3 },
-          "why": { "zh": "去标识不等于匿名：轨迹具有高度唯一性，通常仍属个人信息；卖给保险意味着用户的日常行踪进入核保决策，明显超出收集时的合理预期。收入最高，法律与伦理风险也最高。", "en": "De-identified is not anonymous: movement traces are highly unique and usually still personal information. Selling them to insurers puts daily routines into underwriting decisions, far beyond what users reasonably expected. Highest revenue, highest legal and ethical risk." }
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "去标识不等于匿名：轨迹具有高度唯一性，通常仍属个人信息；卖给保险意味着用户的日常行踪进入核保决策，明显超出收集时的合理预期。收入最高，法律与伦理风险也最高。",
+            "en": "De-identified is not anonymous: movement traces are highly unique and usually still personal information. Selling them to insurers puts daily routines into underwriting decisions, far beyond what users reasonably expected. Highest revenue, highest legal and ethical risk."
+          }
         },
         {
-          "text": { "zh": "免费，只向运动品牌出售聚合洞察（不少于二十人的群体）", "en": "Free app; sell only aggregated insights (minimum twenty people) to sports brands" },
+          "text": {
+            "zh": "免费，只向运动品牌出售聚合洞察（不少于二十人的群体）",
+            "en": "Free app; sell only aggregated insights (minimum twenty people) to sports brands"
+          },
           "next": "c3_channel",
-          "effects": { "business": 3, "ethics": 1 },
-          "why": { "zh": "提高聚合门槛能显著降低再识别风险，商业上仍可卖洞察。但「群体偏好」依旧来自个体行为，透明度与退出机制不到位时，仍会积累信任风险。", "en": "Raising the aggregation threshold sharply lowers re-identification risk while still selling something commercially useful. But group preferences still derive from individual behaviour, and without transparency and opt-out, trust risk accumulates anyway." }
+          "effects": {
+            "business": 3,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "提高聚合门槛能显著降低再识别风险，商业上仍可卖洞察。但「群体偏好」依旧来自个体行为，透明度与退出机制不到位时，仍会积累信任风险。",
+            "en": "Raising the aggregation threshold sharply lowers re-identification risk while still selling something commercially useful. But group preferences still derive from individual behaviour, and without transparency and opt-out, trust risk accumulates anyway."
+          }
         }
       ]
     },
@@ -200,16 +449,35 @@
       },
       "choices": [
         {
-          "text": { "zh": "靠校园、跑团与运动社群口碑慢慢铺", "en": "Grow through campus, run clubs and community word of mouth" },
+          "text": {
+            "zh": "靠校园、跑团与运动社群口碑慢慢铺",
+            "en": "Grow through campus, run clubs and community word of mouth"
+          },
           "next": "c3_label",
-          "effects": { "business": 1, "pmf": 1 },
-          "why": { "zh": "社群渠道慢，但每一批使用者都愿意给反馈，直接提升产品契合度；这类流量后续留存最好，也是单位成本最低的长期渠道（Canvas 5）。", "en": "Community channels are slow, but every cohort is willing to give feedback, directly improving fit; that traffic retains best and becomes the cheapest long-term channel (Canvas 5)." }
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "社群渠道慢，但每一批使用者都愿意给反馈，直接提升产品契合度；这类流量后续留存最好，也是单位成本最低的长期渠道（Canvas 5）。",
+            "en": "Community channels are slow, but every cohort is willing to give feedback, directly improving fit; that traffic retains best and becomes the cheapest long-term channel (Canvas 5)."
+          }
         },
         {
-          "text": { "zh": "买量投放 + 邀请返现，冲应用商店榜单", "en": "Paid acquisition plus referral cash to climb the app-store chart" },
+          "text": {
+            "zh": "买量投放 + 邀请返现，冲应用商店榜单",
+            "en": "Paid acquisition plus referral cash to climb the app-store chart"
+          },
           "next": "c3_label",
-          "effects": { "business": 3, "legal": 1, "ethics": 1 },
-          "why": { "zh": "买量最快，返现类活动常踩到平台规则、抽奖/返利合规与税务申报的边界；数据上的「增长」也无法代表产品真的好用。短期指标最好看。", "en": "Paid acquisition is fastest, but referral-cash schemes brush against platform rules, promotional compliance and tax filing; the growth numbers also say nothing about whether the product is any good. Best-looking short-term metrics." }
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "买量最快，返现类活动常踩到平台规则、抽奖/返利合规与税务申报的边界；数据上的「增长」也无法代表产品真的好用。短期指标最好看。",
+            "en": "Paid acquisition is fastest, but referral-cash schemes brush against platform rules, promotional compliance and tax filing; the growth numbers also say nothing about whether the product is any good. Best-looking short-term metrics."
+          }
         }
       ]
     },
@@ -221,16 +489,34 @@
       },
       "choices": [
         {
-          "text": { "zh": "做显著标识，并提供真人教练复核通道", "en": "Label it clearly and offer a human-coach review path" },
+          "text": {
+            "zh": "做显著标识，并提供真人教练复核通道",
+            "en": "Label it clearly and offer a human-coach review path"
+          },
           "next": "c3_bias",
-          "effects": { "moat": 1 },
-          "why": { "zh": "标识与人工复核是成本项：短期不加分、不加收入。但在健康建议这种高风险场景里，可追溯性与诚实标识会变成信任壁垒，也是日后被审查时的免死金牌。", "en": "Labelling and human review are pure cost: no immediate metric or revenue gain. But in high-stakes advice, traceability and honesty become a trust moat — and your best defence when someone audits you." }
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "标识与人工复核是成本项：短期不加分、不加收入。但在健康建议这种高风险场景里，可追溯性与诚实标识会变成信任壁垒，也是日后被审查时的免死金牌。",
+            "en": "Labelling and human review are pure cost: no immediate metric or revenue gain. But in high-stakes advice, traceability and honesty become a trust moat — and your best defence when someone audits you."
+          }
         },
         {
-          "text": { "zh": "不标识，让用户以为是真人教练写的", "en": "Skip the label; let users believe a human coach wrote it" },
+          "text": {
+            "zh": "不标识，让用户以为是真人教练写的",
+            "en": "Skip the label; let users believe a human coach wrote it"
+          },
           "next": "c3_bias",
-          "effects": { "business": 2, "legal": 3, "ethics": 2 },
-          "why": { "zh": "当前多个法域已要求对 AI 生成内容做显著标识并保留元数据；让用户误以为存在真人专业人士，还可能构成误导，在健康、医疗建议场景下后果更重。转化率确实更高。", "en": "Several jurisdictions now require conspicuous labelling and metadata for AI-generated content. Implying a human professional exists may also be misleading, with heavier consequences for health advice. Conversion really is higher, though." }
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "当前多个法域已要求对 AI 生成内容做显著标识并保留元数据；让用户误以为存在真人专业人士，还可能构成误导，在健康、医疗建议场景下后果更重。转化率确实更高。",
+            "en": "Several jurisdictions now require conspicuous labelling and metadata for AI-generated content. Implying a human professional exists may also be misleading, with heavier consequences for health advice. Conversion really is higher, though."
+          }
         }
       ]
     },
@@ -242,72 +528,153 @@
       },
       "choices": [
         {
-          "text": { "zh": "公开能力边界、加人工复核通道、补齐数据代表性", "en": "Publish the limits, add human review, fix data representativeness" },
+          "text": {
+            "zh": "公开能力边界、加人工复核通道、补齐数据代表性",
+            "en": "Publish the limits, add human review, fix data representativeness"
+          },
           "next": "c4_heatmap",
-          "effects": { "pmf": 2, "moat": 1 },
-          "why": { "zh": "承认局限并补数据，会让产品对更广泛的人群真正成立（PMF 上升），也让「可靠的健康建议」成为难以复制的定位。代价是发布会要推迟。", "en": "Admitting the limits and fixing data representativeness makes the product genuinely work for a wider population (higher fit) and makes 'reliable health advice' a hard-to-copy position. The cost is a delayed launch." }
+          "effects": {
+            "pmf": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "承认局限并补数据，会让产品对更广泛的人群真正成立（PMF 上升），也让「可靠的健康建议」成为难以复制的定位。代价是发布会要推迟。",
+            "en": "Admitting the limits and fixing data representativeness makes the product genuinely work for a wider population (higher fit) and makes 'reliable health advice' a hard-to-copy position. The cost is a delayed launch."
+          }
         },
         {
-          "text": { "zh": "先上线，规定默认适用人群是健康成年人", "en": "Ship now; declare the default user to be a healthy adult" },
+          "text": {
+            "zh": "先上线，规定默认适用人群是健康成年人",
+            "en": "Ship now; declare the default user to be a healthy adult"
+          },
           "next": "c4_heatmap",
-          "effects": { "ethics": 3, "legal": 1, "business": 1 },
-          "why": { "zh": "用小字限定人群，在实务上很难真的拦住高风险用户；一旦有人因此受伤，「已告知」通常不足以免责。好处是发布会如期举行。", "en": "Fine print rarely stops high-risk users in practice, and once someone is harmed, 'we told you' is usually not enough to discharge liability. The upside is that launch happens on schedule." }
+          "effects": {
+            "ethics": 3,
+            "legal": 1,
+            "business": 1
+          },
+          "why": {
+            "zh": "用小字限定人群，在实务上很难真的拦住高风险用户；一旦有人因此受伤，「已告知」通常不足以免责。好处是发布会如期举行。",
+            "en": "Fine print rarely stops high-risk users in practice, and once someone is harmed, 'we told you' is usually not enough to discharge liability. The upside is that launch happens on schedule."
+          }
         }
       ]
     },
     "c4_heatmap": {
       "act": "act4",
       "text": {
-        "zh": "一位研究者指出：你们的路线热力图可以还原某军营周边与几处变电站的作息规律，媒体开始追问。这是产品第一次真正站在聚光灯下。",
-        "en": "A researcher points out that your heat map reconstructs the routines around an army camp and several substations. The press starts asking questions. For the first time the product is genuinely in the spotlight."
+        "zh": "一位研究者指出：你们 App 里公开的位置聚合结果——不管它叫热力图、路线推荐还是训练摘要——可以还原某军营周边与几处变电站的作息规律，媒体开始追问。这是产品第一次真正站在聚光灯下。",
+        "en": "A researcher points out that the location aggregates you publish — call it a heat map, route suggestions or training summaries — reconstruct the routines around an army camp and several substations. The press starts asking questions. For the first time the product is genuinely in the spotlight."
       },
       "choices": [
         {
-          "text": { "zh": "拒不调整：这是用户生成的内容，平台无需负责", "en": "Refuse to change it: this is user-generated content, the platform is not responsible" },
+          "text": {
+            "zh": "拒不调整：这是用户生成的内容，平台无需负责",
+            "en": "Refuse to change it: this is user-generated content, the platform is not responsible"
+          },
           "next": "c4_funding",
-          "effects": { "national_security": 3, "legal": 2, "business": 1 },
-          "why": { "zh": "「用户生成」不转移平台的责任：一旦你知道了聚合后果仍不处理，就从被动变成了放任，国家安全与法律责任同时上升。短期收益只是省下一笔改造费。", "en": "'User-generated' does not transfer liability: once you know about the aggregated effect and do nothing, passivity becomes wilful blindness, raising both national-security and legal exposure. The saving is just one remediation bill." }
+          "effects": {
+            "national_security": 3,
+            "legal": 2,
+            "business": 1
+          },
+          "why": {
+            "zh": "「用户生成」不转移平台的责任：一旦你知道了聚合后果仍不处理，就从被动变成了放任，国家安全与法律责任同时上升。短期收益只是省下一笔改造费。",
+            "en": "'User-generated' does not transfer liability: once you know about the aggregated effect and do nothing, passivity becomes wilful blindness, raising both national-security and legal exposure. The saving is just one remediation bill."
+          }
         },
         {
-          "text": { "zh": "委托第三方做地理信息合规审计，对敏感区域全面遮蔽并降低聚合精度", "en": "Commission a third-party geographic compliance audit; mask sensitive areas and reduce aggregation precision" },
+          "text": {
+            "zh": "委托第三方做地理信息合规审计，对敏感区域全面遮蔽并降低聚合精度",
+            "en": "Commission a third-party geographic compliance audit; mask sensitive areas and reduce aggregation precision"
+          },
           "next": "c4_funding",
-          "requirements": { "business": ">=7" },
-          "lockedHint": { "zh": "做一次合规审计需要真金白银：商业模式分达到 7 才能负担（此刻买不起）。", "en": "A proper audit costs real money: it needs a business-model score of 7 (you cannot afford it yet)." },
-          "effects": { "moat": 2, "business": -1 },
-          "why": { "zh": "花钱做审计并降精度，短期牺牲了数据价值（商业模式分下降），但换来可对外公开的安全结论——这在政府、学校与企业客户面前是最难复制的优势。", "en": "Paying for an audit and lowering precision sacrifices some data value now (business score drops), but buys a publishable safety conclusion — with government, university and corporate clients that becomes the hardest advantage to copy." }
+          "requirements": {
+            "business": ">=7"
+          },
+          "lockedHint": {
+            "zh": "做一次合规审计需要真金白银：商业模式分达到 7 才能负担（此刻买不起）。",
+            "en": "A proper audit costs real money: it needs a business-model score of 7 (you cannot afford it yet)."
+          },
+          "effects": {
+            "moat": 2,
+            "business": -1
+          },
+          "why": {
+            "zh": "花钱做审计并降精度，短期牺牲了数据价值（商业模式分下降），但换来可对外公开的安全结论——这在政府、学校与企业客户面前是最难复制的优势。",
+            "en": "Paying for an audit and lowering precision sacrifices some data value now (business score drops), but buys a publishable safety conclusion — with government, university and corporate clients that becomes the hardest advantage to copy."
+          }
         },
         {
-          "text": { "zh": "被动处理：只在收到举报后删除具体地点的热力图层", "en": "Handle it reactively: remove the heat layer only where someone complains" },
+          "text": {
+            "zh": "被动处理：只在收到举报后删除具体地点的热力图层",
+            "en": "Handle it reactively: remove the heat layer only where someone complains"
+          },
           "next": "c4_funding",
-          "effects": { "national_security": 1, "ethics": 1, "business": 1 },
-          "why": { "zh": "按举报逐个删除，看起来成本低、也不影响其余功能；但没有系统性排查，同类区域仍会继续暴露，属于把风险留给下一个人去发现。", "en": "Deleting case by case looks cheap and leaves the rest of the product intact; without a systematic sweep, comparable sites stay exposed and you leave the risk for the next person to find." }
+          "effects": {
+            "national_security": 1,
+            "ethics": 1,
+            "business": 1
+          },
+          "why": {
+            "zh": "按举报逐个删除，看起来成本低、也不影响其余功能；但没有系统性排查，同类区域仍会继续暴露，属于把风险留给下一个人去发现。",
+            "en": "Deleting case by case looks cheap and leaves the rest of the product intact; without a systematic sweep, comparable sites stay exposed and you leave the risk for the next person to find."
+          }
         }
       ]
     },
     "c4_funding": {
       "act": "act4",
       "text": {
-        "zh": "最后一道题：要不要拿这笔钱？三家机构给的条款完全不同——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The last question: take the money? Three institutions offer very different terms — and the unfair advantage in Canvas 9 is usually written into those terms."
+        "zh": "位置数据的风波还没散，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The row over location data has not died down, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
         {
-          "text": { "zh": "接受境外战略投资，开放数据接口给对方生态", "en": "Take offshore strategic investment and open data interfaces to their ecosystem" },
+          "text": {
+            "zh": "接受境外战略投资，开放数据接口给对方生态",
+            "en": "Take offshore strategic investment and open data interfaces to their ecosystem"
+          },
           "next": "epilogue",
-          "effects": { "business": 3, "national_security": 2, "legal": 1 },
-          "why": { "zh": "大额资金加上渠道资源，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转与第三方共享义务——这不是一次性风险，而是长期敞口。", "en": "Large capital plus distribution channels lifts the business score fastest. But connecting local users' location and health data to an overseas ecosystem usually means ongoing cross-border flows and third-party sharing duties: not a one-off risk but a permanent exposure." }
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "大额资金加上渠道资源，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转与第三方共享义务——这不是一次性风险，而是长期敞口。",
+            "en": "Large capital plus distribution channels lifts the business score fastest. But connecting local users' location and health data to an overseas ecosystem usually means ongoing cross-border flows and third-party sharing duties: not a one-off risk but a permanent exposure."
+          }
         },
         {
-          "text": { "zh": "接受本地产业基金，扩张慢一些但保留数据主权", "en": "Take a local industry fund: slower expansion, but keep data sovereignty" },
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但保留数据主权",
+            "en": "Take a local industry fund: slower expansion, but keep data sovereignty"
+          },
           "next": "epilogue",
-          "effects": { "business": 1, "moat": 2 },
-          "why": { "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做政府、学校、医院客户时几乎不会被问出无法回答的问题——这就是护城河。", "en": "Local money is smaller and its terms stricter, but keeping data inside an explainable jurisdiction means nobody asks you questions you cannot answer when you sell to government, universities or hospitals. That is the moat." }
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做政府、学校、医院客户时几乎不会被问出无法回答的问题——这就是护城河。",
+            "en": "Local money is smaller and its terms stricter, but keeping data inside an explainable jurisdiction means nobody asks you questions you cannot answer when you sell to government, universities or hospitals. That is the moat."
+          }
         },
         {
-          "text": { "zh": "不融资，靠订阅收入自然增长", "en": "Take no funding; grow on subscription revenue alone" },
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscription revenue alone"
+          },
           "next": "epilogue",
-          "effects": { "business": -1, "moat": 1 },
-          "why": { "zh": "拒绝外部资金意味着现金流紧张、扩张变慢，但股权结构与数据边界都由你说了算，往后的每一次决策都简洁。这种独立性本身也是 Canvas 9 里的一种优势。", "en": "Refusing outside capital means tight cash and slower expansion, but ownership structure and data boundaries stay yours to decide, keeping every dealing simple. That independence is itself an advantage in Canvas 9." }
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "拒绝外部资金意味着现金流紧张、扩张变慢，但股权结构与数据边界都由你说了算，往后的每一次决策都简洁。这种独立性本身也是 Canvas 9 里的一种优势。",
+            "en": "Refusing outside capital means tight cash and slower expansion, but ownership structure and data boundaries stay yours to decide, keeping every dealing simple. That independence is itself an advantage in Canvas 9."
+          }
         }
       ]
     },
@@ -321,14 +688,41 @@
     }
   },
   "endingFlavor": {
-    "boom_ns": { "zh": "停业整改通知里引用的，正是你们当初用来炫耀的那张城市热力图。", "en": "The suspension order cites the very city heat map you once used to show off." },
-    "bust_ns": { "zh": "产品没有做起来，那张热力图却先一步被别人截了图。", "en": "The product never took off, but someone screenshotted the heat map first." },
-    "boom_legal": { "zh": "最初那批来源不明的数据包，最后成了尽调报告上的一行黑字。", "en": "The mystery data pack ended up as a single black line in the due-diligence report." },
-    "bust_legal": { "zh": "你们把几乎所有时间都花在了回应投诉律师函，而不是跑者身上。", "en": "Nearly all your time went to answering complaints rather than to runners." },
-    "boom_ethics": { "zh": "那位跑者把对比图发出去的当晚，应用商店评分从 4.8 掉到 2.1。", "en": "The night that runner posted the comparison chart, your store rating fell from 4.8 to 2.1." },
-    "bust_ethics": { "zh": "社群里流传的不是你们的产品，而是那次心悸漏报的截图。", "en": "What circulated in the community was not your product but the screenshot of that missed heart warning." },
-    "win_clean": { "zh": "当监管来敲门时，你们直接把数据流向图摊在了会议桌上。", "en": "When regulators knocked, you simply laid the data-flow map on the meeting table." },
-    "win_resilient": { "zh": "你们在事故复盘文档里写下的第一条，就是那次被及时拦下的心悸漏报。", "en": "The first entry in your incident-retro document is that heart warning caught just in time." },
-    "stalled": { "zh": "一年后，服务器还在跑，但没有人再提交周报了。", "en": "A year later the servers still run, but nobody files weekly summaries any more." }
+    "boom_ns": {
+      "zh": "停业整改通知里引用的，正是你们当初用来炫耀的那张城市热力图。",
+      "en": "The suspension order cites the very city heat map you once used to show off."
+    },
+    "bust_ns": {
+      "zh": "产品没有做起来，那张热力图却先一步被别人截了图。",
+      "en": "The product never took off, but someone screenshotted the heat map first."
+    },
+    "boom_legal": {
+      "zh": "最初那批来源不明的数据包，最后成了尽调报告上的一行黑字。",
+      "en": "The mystery data pack ended up as a single black line in the due-diligence report."
+    },
+    "bust_legal": {
+      "zh": "你们把几乎所有时间都花在了回应投诉律师函，而不是跑者身上。",
+      "en": "Nearly all your time went to answering complaints rather than to runners."
+    },
+    "boom_ethics": {
+      "zh": "那位跑者把对比图发出去的当晚，应用商店评分从 4.8 掉到 2.1。",
+      "en": "The night that runner posted the comparison chart, your store rating fell from 4.8 to 2.1."
+    },
+    "bust_ethics": {
+      "zh": "社群里流传的不是你们的产品，而是那次心悸漏报的截图。",
+      "en": "What circulated in the community was not your product but the screenshot of that missed heart warning."
+    },
+    "win_clean": {
+      "zh": "当监管来敲门时，你们直接把数据流向图摊在了会议桌上。",
+      "en": "When regulators knocked, you simply laid the data-flow map on the meeting table."
+    },
+    "win_resilient": {
+      "zh": "你们在事故复盘文档里写下的第一条，就是那次被及时拦下的心悸漏报。",
+      "en": "The first entry in your incident-retro document is that heart warning caught just in time."
+    },
+    "stalled": {
+      "zh": "一年后，服务器还在跑，但没有人再提交周报了。",
+      "en": "A year later the servers still run, but nobody files weekly summaries any more."
+    }
   }
 }
