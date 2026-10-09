@@ -760,9 +760,9 @@
     var params = new URLSearchParams(location.search);
     var langParam = params.get('lang');
     if (langParam === 'en' || langParam === 'zh') lang = langParam;
-    // 未显式指定 ?lang= 时，跟随浏览器语言：中文环境开局直接进中文，
-    // 否则仍是英文（课堂演示可用 ?lang=zh / ?lang=en 锁定）。
-    else if (navigator.language && navigator.language.toLowerCase().indexOf('zh') === 0) lang = 'zh';
+    // Default language is English. A Chinese-browser environment no longer
+    // auto-switches to Chinese; pin a demo with ?lang=zh / ?lang=en, or use
+    // the header toggle at runtime.
 
     document.querySelectorAll('#lang-toggle button').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
