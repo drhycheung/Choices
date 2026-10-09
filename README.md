@@ -73,11 +73,19 @@ The venture dimensions map directly onto the Lean Canvas blocks covered in class
 - **High risk + strong business** → *great numbers, then shut down* — growth amplifies the exposure.
 - **High risk + weak business** → both lines breached and nothing shipped.
 
+"Low risk" is not a single cell but a whole axis, so the nine endings are spread across the space rather than sitting on the four corners — and the validator must prove every one of them is reachable, not just the tidy quadrants.
+
+![The two-track outcome space](docs/dual-track-endings.svg)
+
 Three further design rules keep the tension honest:
 
 1. **No randomised outcomes, ever.** Randomness exists only at the very start, to draw which venture you run. Inside a story, every effect is an explicit number and every ending is a defined consequence of your choices — so a teacher can ask "at which exact step did this become unavoidable?" and there is a true answer.
 2. **Good options can be unaffordable.** Some of the best choices (an independent compliance audit, for example) carry a `requirements` gate on the business score: if you never built commercial strength, you cannot pay for the responsible path. The button stays visible but locked, with a hint explaining why — which is itself the lesson.
 3. **Every number is explained, and traced back to a step.** Each choice carries a `why` note (shown in the Decision Trail) stating why it raises or lowers each dimension. Every ending carries a full debrief: why it fired, the trade-off made, stakeholders affected, concrete mitigations, and a Lean Canvas reading. The debrief then closes the loop by attributing each number to the decisions that actually moved it — the risk section names the steps that pushed the risk lines up, and the Canvas section lists, box by box, which steps changed it and by how much. Students finish a run holding a draft outline for their reflective essay — issue identification with legal hooks, stakeholder analysis, and mitigation strategies.
+
+The whole thing is one transparent, deterministic pipeline. Each choice is a single step through the engine below, and the three design rules above are visible exactly where they act:
+
+![How the dual-track engine works](docs/dual-track-architecture.svg)
 
 Each story runs **at least fifteen decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings. Two of those rounds are branch points that open a *persistent branch arc*: several decisions written for the choice you made, which then rejoins the shared track.
 
