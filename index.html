@@ -3041,7 +3041,7 @@
             "zh": "只用授权数据，接受口型略逊的版本",
             "en": "Use authorised data only and accept slightly worse lip sync"
           },
-          "next": "ai-avatar_b1_clean",
+          "next": "cln_ops",
           "effects": {
             "pmf": 1
           },
@@ -3055,7 +3055,7 @@
             "zh": "混入第三方素材库与网络抓到的样本",
             "en": "Blend in third-party libraries and scraped samples"
           },
-          "next": "ai-avatar_b1_dirty",
+          "next": "drt_ops",
           "effects": {
             "pmf": 2,
             "legal": 2,
@@ -3064,260 +3064,6 @@
           "why": {
             "zh": "混合数据集通常交付出最好的效果指标，但你无法证明每一条的合法性基础；一旦有人主张权利，举证责任与追溯成本都在你们这边。",
             "en": "Mixed datasets usually produce the best quality metrics, but you cannot prove a lawful basis for each item; when someone asserts their rights, both the burden of proof and the tracing cost fall on you."
-          }
-        }
-      ]
-    },
-    "ai-avatar_b1_clean": {
-      "act": "act2",
-      "text": {
-        "zh": "两个月后，一家平台做上架审核，要你们逐条说明素材来源。能拿出授权文件的那部分只占训练集的一小部分——但每一条都对得上，演示效果也确实不如竞品惊艳。",
-        "en": "Two months on, a platform review asks you to account for every clip. The share backed by signed releases is small — but every item checks out, and your demo is frankly less flashy than rivals'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "把来源说明做成标准附件，任何客户都能索取",
-            "en": "Turn provenance into a standard annex any client can request"
-          },
-          "next": "c2_ops",
-          "effects": {
-            "pmf": 1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "把合规做成可交付的文档，等于把审核成本从每次投标里拿掉；它同时是别人短期内复制不了的东西。",
-            "en": "Packaging compliance as a deliverable removes review cost from every bid — and becomes the thing rivals cannot copy quickly."
-          }
-        },
-        {
-          "text": {
-            "zh": "口头保证来源合法，文档只在被追问时才给",
-            "en": "Give verbal assurances; hand over documents only when pressed"
-          },
-          "next": "c2_ops",
-          "effects": {
-            "business": 2,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
-            "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
-          }
-        }
-      ]
-    },
-    "ai-avatar_b1_dirty": {
-      "act": "act2",
-      "text": {
-        "zh": "效果确实上去了，演示场场惊艳。直到一位舞蹈老师发来私信：被反复调用的那段动作，来自她从未授权的公开课录像。",
-        "en": "Quality genuinely rose and every demo landed — until a dance teacher messaged: the move used over and over came from a class recording she never licensed."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "下架相关模型、删除来源不明的样本，回头补授权",
-            "en": "Pull the affected model, delete untraceable samples, go back for licences"
-          },
-          "next": "c2_ops",
-          "effects": {
-            "legal": -1,
-            "ethics": -1,
-            "pmf": -1
-          },
-          "why": {
-            "zh": "止损能减少后续责任，但减不掉已经发生的侵害，质量也会回退。自己发现永远比被起诉后整改便宜。",
-            "en": "Stopping limits further liability but does not undo the harm already done, and quality regresses. Finding it yourself is always cheaper than remediating after a suit."
-          }
-        },
-        {
-          "text": {
-            "zh": "先拖着，等真正有人正式主张权利再说",
-            "en": "Delay until someone formally asserts their rights"
-          },
-          "next": "c2_ops",
-          "effects": {
-            "pmf": 1,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "拖延换来上线时间，代价是把举证与赔偿谈判一起推到对方起诉之后——那时议价权已经不在你手上。",
-            "en": "Delay buys shipping time and defers the burden of proof and the settlement talk until after the suit — when you no longer set the price."
-          }
-        }
-      ]
-    },
-    "c2_ops": {
-      "act": "act2",
-      "text": {
-        "zh": "渲染要 GPU。本地机房排队两小时一步；境外云在低峰期便宜得接近免费。",
-        "en": "Rendering needs GPUs. The local cluster queues two hours per step; offshore cloud at off-peak is nearly free."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "境内渲染 + 校内助教做质量把关，素材不出境",
-            "en": "Render domestically with quality checks by teaching assistants; assets stay local"
-          },
-          "next": "c3_money",
-          "effects": {
-            "moat": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "排队与人工把关拖慢交付，但把关标准会固化成产品的质量检测流程，同时避免把人脸与声纹这类生物特征素材送出境内所带来的一切义务。",
-            "en": "Queues and manual checks slow delivery, but the review rubric hardens into product QA, while keeping biometric material — faces and voiceprints — out of every cross-border obligation."
-          }
-        },
-        {
-          "text": {
-            "zh": "境外云渲染 + 海外团队微调，又快又便宜",
-            "en": "Render on offshore cloud with overseas fine-tuning: fast and cheap"
-          },
-          "next": "c3_money",
-          "effects": {
-            "business": 2,
-            "national_security": 2,
-            "legal": 2
-          },
-          "why": {
-            "zh": "把人脸与声音这类生物特征数据交给境外处理链条，通常会同时触发敏感个人信息处理与跨境提供的严格要求，而这恰恰是最难事后补手续的一类。速度与成本优势明显。",
-            "en": "Handing biometric material to an overseas processing chain usually triggers both sensitive-personal-information rules and strict cross-border requirements at once — precisely the paperwork hardest to retrofit. The speed and cost advantage is obvious."
-          }
-        }
-      ]
-    },
-    "c3_money": {
-      "act": "act3",
-      "text": {
-        "zh": "钱开始进来了。销售说有一种收法，商家「几乎等于白拿我们的服务」。",
-        "en": "Money starts coming in. Sales says there is one pricing model where merchants get the service 'almost for free'."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "按月订阅，并明确写明形象与声音不转授权",
-            "en": "Monthly subscription stating that likeness and voice are never sublicensed"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 2,
-            "moat": 1
-          },
-          "why": {
-            "zh": "订阅收钱慢，但把「不转授权」写进条款，会让模特和商家都放心把最宝贵的素材交给你——这份信任积累到一定程度就没人能替（Canvas 9）。",
-            "en": "Subscriptions bill slowly, but promising never to sublicense reassures both models and merchants about handing over their most valuable assets — that trust, once banked, cannot be replaced (Canvas 9)."
-          }
-        },
-        {
-          "text": {
-            "zh": "免费生成 + 按带货成交额抽成，素材可二次授权给第三方",
-            "en": "Free generation plus revenue share, with assets sublicensable to third parties"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 4,
-            "legal": 2,
-            "ethics": 3
-          },
-          "why": {
-            "zh": "抽成模式最受欢迎、合同最好签；但对他人形象与声音的二次商业授权，通常远超原始授权范围，属于把创作者的权利当成可以再卖一次的库存。法律风险最高。",
-            "en": "Revenue share is the most popular and easiest contract to sign; but sublicensing someone's likeness and voice usually exceeds the original licence, treating a creator's rights as inventory you can sell twice. Highest legal exposure."
-          }
-        },
-        {
-          "text": {
-            "zh": "卖聚合效果洞察：品类话术与时段转化报告（不少于二十家）",
-            "en": "Sell aggregated insight: category scripts and time-slot conversion reports (minimum twenty stores)"
-          },
-          "next": "c3_channel",
-          "effects": {
-            "business": 3,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "在剥离个体标识后仍可出售有价值的洞察，是务实的中间路线；但如果并不告知数据来源与用途，透明度仍然不足，信任会慢慢流失。",
-            "en": "Selling useful insight after stripping identifiers is a pragmatic middle route; transparency still falls short if you never disclose where the data came from, and trust erodes quietly."
-          }
-        }
-      ]
-    },
-    "c3_channel": {
-      "act": "act3",
-      "text": {
-        "zh": "怎么铺量？隔壁写字楼有支地推团队，说一个月能签三百家；也有同行推荐的做法：找商圈里的头部商户示范。",
-        "en": "How do you scale? A field-sales team downstairs promises three hundred stores a month; another founder swears by flagship merchants as reference points."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "做标杆店示范 + 商圈口碑，每月只接能服务的数目",
-            "en": "Build flagship references and district referrals; take only what you can serve"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 1,
-            "pmf": 1
-          },
-          "why": {
-            "zh": "慢，但每家标杆店都会把话术模板磨得更准（契合度上升），而同商圈商户之间的口碑扩散是单位成本最低的渠道（Canvas 5）。",
-            "en": "It is slow, but each flagship sharpens the script templates (higher fit), and peer contagion within a district is the cheapest channel per win (Canvas 5)."
-          }
-        },
-        {
-          "text": {
-            "zh": "地推团队分销，签约返现冲门店数",
-            "en": "Distribute through field sales with signing bonuses to drive store count"
-          },
-          "next": "c3_deploy",
-          "effects": {
-            "business": 3,
-            "legal": 1,
-            "ethics": 1
-          },
-          "why": {
-            "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没有人能还原。",
-            "en": "Bonusing on signature count pushes sales to sign for merchants and even register accounts on their behalf — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
-          }
-        }
-      ]
-    },
-    "c3_deploy": {
-      "act": "act3",
-      "text": {
-        "zh": "合规同学第三次提醒：这类内容通常必须做显著标识并保留可追溯元数据，否则平台有义务下架。",
-        "en": "Someone in compliance reminds you, not for the first time: this kind of content usually must carry a conspicuous label and retain traceable metadata, or platforms are obliged to pull it."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "显著标识 + 嵌入不可见水印与生成元数据",
-            "en": "Conspicuous label plus invisible watermark and generation metadata"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "moat": 1
-          },
-          "why": {
-            "zh": "标识与水印不带来任何额外转化，纯粹是成本；但当诈骗视频出现时，可追溯的元数据是你唯一能自证清白的东西，也是最硬的品牌资产。",
-            "en": "Labelling and watermarking add zero conversion and are pure cost; but when a scam clip surfaces, traceable metadata is the only thing that can exonerate you — and your hardest brand asset."
-          }
-        },
-        {
-          "text": {
-            "zh": "不标识：用户要的就是「像真人」",
-            "en": "No label: users are paying for something that looks real"
-          },
-          "next": "c3_harm",
-          "effects": {
-            "business": 2,
-            "legal": 3,
-            "ethics": 2
-          },
-          "why": {
-            "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
-            "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling of AI-generated content, and omitting it can look like facilitating deception."
           }
         }
       ]
@@ -3334,7 +3080,7 @@
             "zh": "公开已知滥用情形、加公众人物检测与人工复核、建立举报通道",
             "en": "Publish known misuse patterns, add public-figure detection and human review, open a reporting channel"
           },
-          "next": "ai-avatar_b2_fixed",
+          "next": "fxd_incident",
           "effects": {
             "pmf": 2,
             "moat": 1
@@ -3349,7 +3095,7 @@
             "zh": "先不管，把「禁止用于虚假信息」写进用户协议",
             "en": "Do nothing for now; write 'prohibited for disinformation' into the terms of service"
           },
-          "next": "ai-avatar_b2_paper",
+          "next": "ppr_incident",
           "effects": {
             "ethics": 3,
             "legal": 1,
@@ -3362,114 +3108,345 @@
         }
       ]
     },
-    "ai-avatar_b2_fixed": {
-      "act": "act3",
+    "epilogue": {
+      "act": "act4",
       "text": {
-        "zh": "防护上线后，一部分商家抱怨流程变麻烦，转化率掉了一截。同时两个品牌客户说：正是因为你们做了检测，我们才敢用。",
-        "en": "After safeguards ship, merchants complain the flow got slower and conversion dips. Two brand clients say the opposite: we dared use you precisely because of the detection."
+        "zh": "十二个月后回到那条街。有的店还在用数字人卖早餐，有的店门口贴着「本店直播均为真人」的手写纸条。",
+        "en": "Twelve months later, back on that street. Some shops still sell breakfast through an avatar; others have a handwritten note saying tonight's stream is a real person."
+      },
+      "choices": []
+    },
+    "cln_ops": {
+      "act": "act2",
+      "text": {
+        "zh": "你的训练集每一条都能追到人。一家平台做上架审核时，别的团队在补材料，你们把标准授权附件往下一发就过了。现在的问题是：能不能把这套「来源可查」做成产品本身的一部分，而不只是应付审核？",
+        "en": "Every item in your training set traces back to a person. When a platform review hits, rivals scramble for paperwork; you attach the standard licence annex and pass. The question now: can you make 'traceable provenance' part of the product itself, not just a review ritual?"
       },
       "choices": [
         {
           "text": {
-            "zh": "把检测与复核写进交付标准，并公开处理时限",
-            "en": "Write detection and review into the delivery standard and publish turnaround times"
+            "zh": "把来源清单与授权凭证做成可交付的标准附件，任何客户都能一键索取",
+            "en": "Turn the provenance list and licences into a deliverable standard annex any client can fetch"
           },
-          "next": "c4_incident",
+          "next": "cln_money",
           "effects": {
-            "moat": 2
+            "pmf": 1,
+            "moat": 1
           },
           "why": {
-            "zh": "把「不容易被用来骗人」写成可验收的条款，它就从成本变成了采购理由，也是最难被复制的一类能力。",
-            "en": "Making 'hard to use for fraud' an acceptance criterion turns cost into a reason to buy — and the hardest capability to copy."
+            "zh": "把合规做成可交付的文档，等于把审核成本从每次投标里拿掉；它同时是别人短期内复制不了的东西（Canvas 9）。",
+            "en": "Packaging compliance as a deliverable removes review cost from every bid — and becomes the thing rivals cannot copy quickly (Canvas 9)."
           }
         },
         {
           "text": {
-            "zh": "为冲增长把复核改成抽查，人力省下来做投放",
-            "en": "Chase growth: downgrade review to spot checks, move the headcount to ads"
+            "zh": "先把效果做惊艳，授权文档等被追问再补",
+            "en": "Make the demo dazzling first; supply licence docs only when pressed"
           },
-          "next": "c4_incident",
+          "next": "cln_money",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 1
           },
           "why": {
-            "zh": "省下的人力立刻变增长数字，但你在客户面前说的「我们有复核」已经开始失真；失真被揭穿的代价远高于省下的钱。",
-            "en": "Freed headcount turns into growth immediately, but 'we review everything' is already drifting from the truth — and being caught costs far more than you saved."
+            "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
+            "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
           }
         }
       ]
     },
-    "ai-avatar_b2_paper": {
+    "cln_money": {
       "act": "act3",
       "text": {
-        "zh": "诈骗群还在扩散，那位评论员的团队发了公开声明，点名说「某数字人工具」造成了损害。你们的条款里写着禁止，只是没人读。",
-        "en": "The scam groups keep spreading and the commentator's team posts a statement naming 'a certain avatar tool' as the cause. Your terms prohibit it — nobody read them."
+        "zh": "钱开始进来了。销售说有一种收法，商家「几乎等于白拿我们的服务」——但你们的卖点恰恰是「来源可查」，怎么收钱决定了客户敢不敢把最宝贵的素材交给你。",
+        "en": "Money starts coming in. Sales pitches a model where merchants get the service 'almost for free' — but your edge is exactly 'traceable', so how you bill decides whether clients dare hand over their most valuable assets."
       },
       "choices": [
         {
           "text": {
-            "zh": "补做公众人物检测与人工复核，公开致歉并召回",
-            "en": "Add public-figure detection and human review; apologise publicly and recall"
+            "zh": "按月订阅，并明确写明形象与声音不转授权",
+            "en": "Monthly subscription stating that likeness and voice are never sublicensed"
           },
-          "next": "c4_incident",
+          "next": "cln_channel",
           "effects": {
-            "ethics": -1,
-            "legal": -1,
-            "business": -1,
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "订阅收钱慢，但把「不转授权」写进条款，会让模特和商家都放心把素材交给你——这份信任积累到一定程度就没人能替（Canvas 9）。",
+            "en": "Subscriptions bill slowly, but promising never to sublicense reassures both models and merchants — that trust, once banked, cannot be replaced (Canvas 9)."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费生成 + 按成交额抽成，素材可二次授权给第三方",
+            "en": "Free generation plus revenue share, with assets sublicensable to third parties"
+          },
+          "next": "cln_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式最受欢迎、合同最好签；但对他人形象与声音的二次商业授权，通常远超原始授权范围，把创作者的权利当成可以再卖一次的库存。法律风险最高。",
+            "en": "Revenue share is the most popular contract; but sublicensing someone's likeness and voice usually exceeds the original licence, treating a creator's rights as inventory to sell twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "cln_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？隔壁写字楼有支地推团队，说一个月能签三百家；也有同行推荐的做法：找商圈里的头部商户做示范。你手上是「来源可查」的口碑资产，怎么放大它？",
+        "en": "How do you scale? A field-sales team downstairs promises three hundred stores a month; another founder swears by flagship merchants as references. You hold a 'traceable' reputation asset — how do you amplify it?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "做标杆店示范 + 商圈口碑，每月只接能服务的数目",
+            "en": "Build flagship references and district referrals; take only what you can serve"
+          },
+          "next": "cln_deploy",
+          "effects": {
+            "business": 1,
             "pmf": 1
           },
           "why": {
-            "zh": "补救能止住继续扩散，也向平台与品牌客户证明你会修正；但它不能让已经受骗的人回到原点，收入也会先掉一块。",
-            "en": "Fixing it stops the spread and shows platforms and brands that you correct course — but it cannot restore those already cheated, and revenue dips first."
+            "zh": "慢，但每家标杆店都会把话术模板磨得更准（契合度上升），同商圈商户间的口碑扩散是单位成本最低的渠道（Canvas 5）。",
+            "en": "Slow, but each flagship sharpens the script templates (higher fit), and peer contagion within a district is the cheapest channel per win (Canvas 5)."
           }
         },
         {
           "text": {
-            "zh": "不回应，等热度过去，继续冲新增",
-            "en": "Stay silent, wait for the news cycle to pass, keep chasing sign-ups"
+            "zh": "地推团队分销，签约返现冲门店数",
+            "en": "Distribute through field sales with signing bonuses to drive store count"
           },
-          "next": "c4_incident",
+          "next": "cln_deploy",
           "effects": {
-            "ethics": 2,
-            "business": 2
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
           },
           "why": {
-            "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
-            "en": "Silence protects the short-term curve, and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
+            "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没有人能还原。",
+            "en": "Bonusing on signatures pushes sales to sign for merchants and register accounts for them — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
           }
         }
       ]
     },
-    "c4_incident": {
-      "act": "act4",
+    "cln_deploy": {
+      "act": "act3",
       "text": {
-        "zh": "警方来电：一个月内出现二十余起使用你们工具生成的诈骗视频，涉案金额不小。媒体标题已经在写了。",
-        "en": "The police call: more than twenty scam clips made with your tool in one month, with significant losses attached. The headlines are already being written."
+        "zh": "合规同学提醒：这类内容通常必须做显著标识并保留可追溯元数据，否则平台有义务下架。你这条线本来就是靠「可追溯」吃饭的，是把它做成默认，还是为了转化把它藏起来？",
+        "en": "Compliance reminds you: this content usually must carry a conspicuous label and retain traceable metadata, or platforms must pull it. Your line lives on 'traceable' — make it the default, or hide it for conversion?"
       },
       "choices": [
         {
           "text": {
-            "zh": "回应称生成器是中性的，使用者自负责任",
-            "en": "Respond that the generator is neutral and users bear responsibility"
+            "zh": "显著标识 + 嵌入不可见水印与生成元数据（默认开启）",
+            "en": "Conspicuous label plus invisible watermark and generation metadata, on by default"
           },
-          "next": "c4_funding",
+          "next": "c3_harm",
           "effects": {
-            "national_security": 3,
-            "legal": 2,
-            "business": 1
+            "moat": 1
           },
           "why": {
-            "zh": "「技术中立」在已经知道滥用路径的情况下很难成立：知情而不设防，会从免责变成放任，并对社会造成持续性的信息环境污染。短期省下的只是整改预算。",
-            "en": "'Technology is neutral' rarely survives once misuse paths are known: aware and undefended turns exemption into wilful blindness, and pollutes the information environment continuously. What you save is just the remediation budget."
+            "zh": "标识与水印不带来任何额外转化，纯粹是成本；但当诈骗视频出现时，可追溯的元数据是你唯一能自证清白的东西，也是最硬的品牌资产。",
+            "en": "Labelling and watermarking add zero conversion and are pure cost; but when a scam clip surfaces, traceable metadata is the only thing that can exonerate you — your hardest brand asset."
           }
         },
+        {
+          "text": {
+            "zh": "不标识：用户要的就是「像真人」",
+            "en": "No label: users are paying for something that looks real"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
+            "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling, and omitting it can look like facilitating deception."
+          }
+        }
+      ]
+    },
+    "drt_ops": {
+      "act": "act2",
+      "text": {
+        "zh": "效果确实上去了，演示场场惊艳。直到一位舞蹈老师发来私信：被反复调用的那段动作，来自她从未授权的公开课录像。工程说先拖着，合规说必须现在处理。这段来源不明的素材，已经进了你们的训练集。",
+        "en": "Quality genuinely rose and every demo landed — until a dance teacher messaged: the move used over and over came from a class recording she never licensed. Engineering says delay; compliance says handle it now. The untraceable clip is already in your training set."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "下架相关模型、删除来源不明的样本，回头补授权",
+            "en": "Pull the affected model, delete untraceable samples, go back for licences"
+          },
+          "next": "drt_money",
+          "effects": {
+            "legal": -1,
+            "ethics": -1,
+            "pmf": -1
+          },
+          "why": {
+            "zh": "止损能减少后续责任，但减不掉已经发生的侵害，质量也会回退。自己发现永远比被起诉后整改便宜。（这一步无法把已累积的风险归零。）",
+            "en": "Stopping limits further liability but does not undo the harm already done, and quality regresses. Finding it yourself is cheaper than after a suit. (This cannot zero out the risk already accumulated.)"
+          }
+        },
+        {
+          "text": {
+            "zh": "先拖着，等真正有人正式主张权利再说",
+            "en": "Delay until someone formally asserts their rights"
+          },
+          "next": "drt_money",
+          "effects": {
+            "pmf": 1,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "拖延换来上线时间，代价是把举证与赔偿谈判一起推到对方起诉之后——那时议价权已经不在你手上。",
+            "en": "Delay buys shipping time and defers the burden of proof and settlement talk until after the suit — when you no longer set the price."
+          }
+        }
+      ]
+    },
+    "drt_money": {
+      "act": "act3",
+      "text": {
+        "zh": "钱开始进来了——但你的素材来源经不起细看。销售想推「几乎白拿」的抽成模式冲增长，可一旦客户问起形象与声音的授权，你答不上来。怎么收钱才不会因一份授权问询就塌房？",
+        "en": "Money starts coming in — but your sourcing will not survive scrutiny. Sales wants the 'almost free' revenue-share model to chase growth, yet when a client asks about likeness and voice licences, you have no answer. How do you bill without collapsing at the first licence query?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "按月订阅，写明形象与声音不转授权（哪怕增长慢）",
+            "en": "Monthly subscription, no sublicensing — even if growth is slow"
+          },
+          "next": "drt_channel",
+          "effects": {
+            "business": 2,
+            "moat": 1
+          },
+          "why": {
+            "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
+            "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
+          }
+        },
+        {
+          "text": {
+            "zh": "免费生成 + 抽成，素材可二次授权给第三方",
+            "en": "Free generation plus revenue share, with assets sublicensable"
+          },
+          "next": "drt_channel",
+          "effects": {
+            "business": 4,
+            "legal": 2,
+            "ethics": 3
+          },
+          "why": {
+            "zh": "抽成模式最受欢迎；但对他人形象与声音的二次商业授权，通常远超原始授权范围，等于把别人的权利当成库存再卖一次。法律风险最高。",
+            "en": "Revenue share is the most popular; but sublicensing others' likeness and voice usually exceeds the original licence — selling someone's rights as inventory twice. Highest legal exposure."
+          }
+        }
+      ]
+    },
+    "drt_channel": {
+      "act": "act3",
+      "text": {
+        "zh": "怎么铺量？地推团队说一个月签三百家最来劲；可你手上的素材库本身就不干净，铺得越快，被追责的门店越多。是继续冲数，还是只做能兜住的标杆？",
+        "en": "How do you scale? Field sales promise three hundred stores a month; but your asset library is already tainted, so the faster you spread, the more stores get pulled into liability. Chase count, or only do flagships you can cover?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "只做能服务的标杆店，不冲门店数",
+            "en": "Only do flagships you can serve; do not chase store count"
+          },
+          "next": "drt_deploy",
+          "effects": {
+            "business": 1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "在素材存疑时控制扩散范围，能限制后续被追责的门店数；代价是增长数字不好看。",
+            "en": "Capping spread while sourcing is doubtful limits the stores later drawn into liability; the cost is an unimpressive growth number."
+          }
+        },
+        {
+          "text": {
+            "zh": "地推团队分销，签约返现冲门店数",
+            "en": "Distribute through field sales with signing bonuses to drive store count"
+          },
+          "next": "drt_deploy",
+          "effects": {
+            "business": 3,
+            "legal": 1,
+            "ethics": 1
+          },
+          "why": {
+            "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没人能还原。",
+            "en": "Bonusing on signatures pushes sales to sign for merchants and register accounts for them — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
+          }
+        }
+      ]
+    },
+    "drt_deploy": {
+      "act": "act3",
+      "text": {
+        "zh": "合规同学提醒：这类内容通常必须做显著标识并保留可追溯元数据，否则平台有义务下架。你这条线恰恰缺的就是可追溯——是现在补标识和水印，还是为了转化继续不标？",
+        "en": "Compliance reminds you: this content usually must carry a conspicuous label and retain traceable metadata, or platforms must pull it. Your line is exactly the one missing traceability — add labels and watermark now, or keep hiding them for conversion?"
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "补做显著标识 + 嵌入水印与生成元数据",
+            "en": "Add conspicuous labels plus watermark and generation metadata"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "moat": 1
+          },
+          "why": {
+            "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
+            "en": "Late labelling helps you show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
+          }
+        },
+        {
+          "text": {
+            "zh": "不标识：用户要的就是「像真人」",
+            "en": "No label: users are paying for something that looks real"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 2,
+            "legal": 3,
+            "ethics": 2
+          },
+          "why": {
+            "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
+            "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling, and omitting it can look like facilitating deception."
+          }
+        }
+      ]
+    },
+    "fxd_incident": {
+      "act": "act4",
+      "text": {
+        "zh": "警方来电：一个月内出现二十余起使用你们工具生成的诈骗视频，涉案金额不小。媒体标题已经在写了。你们之前上线了公众人物检测与人工复核——这次是把它当成产品能力来交付，还是退回「技术中立」的话术？",
+        "en": "The police call: more than twenty scam clips made with your tool in a month, with real losses. Headlines are being written. You already shipped public-figure detection and human review — this time, deliver it as product capability, or retreat to 'the tool is neutral'?"
+      },
+      "choices": [
         {
           "text": {
             "zh": "委托第三方做安全与滥用审计，公开发行版滥用审计摘要并建立下架机制",
             "en": "Commission an independent misuse audit, publish the findings and build takedown capability"
           },
-          "next": "c4_funding",
+          "next": "fxd_funding",
           "requirements": {
             "business": ">=7"
           },
@@ -3483,50 +3460,34 @@
           },
           "why": {
             "zh": "花钱做审计、公开的代价是被仔细阅读（商业模式分下降）；但一份可被监管与平台引用的结论，会把你从「风险源头」重新定义为「行业标准参与者」。",
-            "en": "Paying for an audit and publishing invites careful reading (business score drops), but a conclusion both regulators and platforms can cite reframes you from 'source of risk' to 'participant in industry standards'."
+            "en": "Paying for an audit and publishing invites careful reading (business drops); but a conclusion both regulators and platforms can cite reframes you from 'source of risk' to 'participant in industry standards'."
           }
         },
         {
           "text": {
-            "zh": "被动处理：收到报案才删除该形象、封禁该账号",
-            "en": "Handle reactively: delete specific avatars and ban accounts only after reports"
+            "zh": "回应称生成器是中性的，使用者自负责任",
+            "en": "Respond that the generator is neutral and users bear responsibility"
           },
-          "next": "c4_funding",
+          "next": "fxd_funding",
           "effects": {
-            "national_security": 1,
-            "ethics": 1,
+            "national_security": 3,
+            "legal": 2,
             "business": 1
           },
           "why": {
-            "zh": "逐个封禁看似不影响其他用户，实则是用受害者的报案做免费的滥用情报；在这期间，下一个受害者已经出现。成本最低，代价由他人承担。",
-            "en": "Banning case by case looks harmless to everyone else, but in effect you use victims' reports as free abuse intelligence — and in the meantime the next victim appears. Cheapest for you, paid for by someone else."
+            "zh": "「技术中立」在已经知道滥用路径的情况下很难成立：知情而不设防，会从免责变成放任，并对社会造成持续性的信息环境污染。",
+            "en": "'Technology is neutral' rarely survives once misuse paths are known: aware and undefended turns exemption into wilful blindness, polluting the information environment continuously."
           }
         }
       ]
     },
-    "c4_funding": {
+    "fxd_funding": {
       "act": "act4",
       "text": {
-        "zh": "诈骗视频的报道还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The fraud-video coverage is still running, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
+        "zh": "诈骗视频的报道还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但素材与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The fraud-video coverage is still running, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets — and the unfair advantage in Canvas 9 is usually written into those terms."
       },
       "choices": [
-        {
-          "text": {
-            "zh": "接受境外短视频平台的战略投资，把形象与声音素材库向其全球创作者开放",
-            "en": "Take strategic investment from an overseas short-video platform and open your library of faces and voices to its global creators"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。",
-            "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly."
-          }
-        },
         {
           "text": {
             "zh": "接受本地产业基金，扩张慢一些但素材与授权留在本地",
@@ -3539,7 +3500,23 @@
           },
           "why": {
             "zh": "本地资金额度有限、条款保守，但授权链条与素材库完整可控，面对平台审核、品牌合规与监管问询时几乎不会被问倒——这是护城河。",
-            "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so platform reviews, brand compliance and regulatory questions rarely knock you over. That is the moat."
+            "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so reviews, compliance and regulatory questions rarely knock you over. That is the moat."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外短视频平台的战略投资，把形象与声音素材库向其全球创作者开放",
+            "en": "Take strategic investment from an overseas short-video platform and open your library to its global creators"
+          },
+          "next": "epilogue",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。",
+            "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly."
           }
         },
         {
@@ -3559,13 +3536,101 @@
         }
       ]
     },
-    "epilogue": {
+    "ppr_incident": {
       "act": "act4",
       "text": {
-        "zh": "十二个月后回到那条街。有的店还在用数字人卖早餐，有的店门口贴着「本店直播均为真人」的手写纸条。",
-        "en": "Twelve months later, back on that street. Some shops still sell breakfast through an avatar; others have a handwritten note saying tonight's stream is a real person."
+        "zh": "警方来电：一个月内出现二十余起使用你们工具生成的诈骗视频，涉案金额不小。媒体标题已经在写了。你们当初只把「禁止用于虚假信息」写进用户协议——现在条款救不了场，是补做检测并公开致歉，还是继续沉默？",
+        "en": "The police call: more than twenty scam clips made with your tool in a month, with real losses. Headlines are being written. You only wrote 'prohibited for disinformation' into the terms — now the clause saves no one. Add detection and apologise publicly, or stay silent?"
       },
-      "choices": []
+      "choices": [
+        {
+          "text": {
+            "zh": "补做公众人物检测与人工复核，公开致歉并召回",
+            "en": "Add public-figure detection and human review; apologise publicly and recall"
+          },
+          "next": "ppr_funding",
+          "effects": {
+            "ethics": -1,
+            "legal": -1,
+            "business": -1,
+            "pmf": 1
+          },
+          "why": {
+            "zh": "补救能止住继续扩散，也向平台与品牌客户证明你会修正；但它不能让已经受骗的人回到原点，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
+            "en": "Fixing it stops the spread and shows platforms and brands you correct course — but it cannot restore those already cheated, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
+          }
+        },
+        {
+          "text": {
+            "zh": "不回应，等热度过去，继续冲新增",
+            "en": "Stay silent, wait for the news cycle to pass, keep chasing sign-ups"
+          },
+          "next": "ppr_funding",
+          "effects": {
+            "ethics": 2,
+            "business": 2
+          },
+          "why": {
+            "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
+            "en": "Silence protects the short-term curve and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
+          }
+        }
+      ]
+    },
+    "ppr_funding": {
+      "act": "act4",
+      "text": {
+        "zh": "诈骗视频的报道还在发酵，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但素材与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+        "en": "The fraud-video coverage is still running, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets — and the unfair advantage in Canvas 9 is usually written into those terms."
+      },
+      "choices": [
+        {
+          "text": {
+            "zh": "接受本地产业基金，扩张慢一些但素材与授权留在本地",
+            "en": "Take a local industry fund: slower expansion, assets and licences stay local"
+          },
+          "next": "epilogue",
+          "effects": {
+            "business": 1,
+            "moat": 2
+          },
+          "why": {
+            "zh": "本地资金额度有限、条款保守，但授权链条与素材库完整可控，面对平台审核、品牌合规与监管问询时几乎不会被问倒。",
+            "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so reviews and regulatory questions rarely knock you over."
+          }
+        },
+        {
+          "text": {
+            "zh": "接受境外短视频平台的战略投资，把形象与声音素材库向其全球创作者开放",
+            "en": "Take strategic investment from an overseas short-video platform and open your library to its global creators"
+          },
+          "next": "epilogue",
+          "effects": {
+            "business": 3,
+            "national_security": 2,
+            "legal": 1
+          },
+          "why": {
+            "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。",
+            "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly."
+          }
+        },
+        {
+          "text": {
+            "zh": "不融资，靠订阅收入自然增长",
+            "en": "Take no funding; grow on subscriptions alone"
+          },
+          "next": "epilogue",
+          "effects": {
+            "business": -1,
+            "moat": 1
+          },
+          "why": {
+            "zh": "现金流紧张、扩张变慢，但产品边界不被外部流量目标拉扯；在信任已经受损的情况下，这种克制至少不再新增外部依赖。",
+            "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around; with trust already damaged, restraint at least adds no new external dependency."
+          }
+        }
+      ]
     }
   },
   "endingFlavor": {
