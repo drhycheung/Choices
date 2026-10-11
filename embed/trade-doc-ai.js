@@ -563,7 +563,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "回应称系统只做文字整理，责任在申报人",
             "en": "Respond that you only process text and declarants are responsible"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 3,
             "legal": 2,
@@ -579,7 +579,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "委托第三方做出口管制合规审计，冻结高风险品类自动生成并补做客户尽职调查",
             "en": "Commission an export-control audit, freeze auto-generation for high-risk categories and add client due diligence"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "requirements": {
             "business": ">=7"
           },
@@ -601,7 +601,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "被动处理：被点到哪一批才停哪一批",
             "en": "Handle reactively: suspend only the batches that get flagged"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 1,
             "ethics": 1,
@@ -610,61 +610,6 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "why": {
             "zh": "按批次处置看起来最省事，问题是必然还有下一批；受管制的货不会因为这次没被问到就不存在。把责任交给运气，代价由他人承担。",
             "en": "Batch-by-batch handling looks cheapest, but there is always a next one: controlled cargo does not cease to exist because nobody asked this time. Leaving it to luck makes someone else pay."
-          }
-        }
-      ]
-    },
-    "c4_funding": {
-      "act": "act4",
-      "text": {
-        "zh": "约谈之后，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "After the interview with customs, three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "接受境外贸易基金，把单据数据向其全球风控团队开放",
-            "en": "Take an offshore trade fund and open your document data to its global risk team"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "资金与渠道一夜到位。但单据里的交易对手、流向与数量关系，长期看是一幅完整的区域贸易图谱——将其对外开放，性质远超资源共享。",
-            "en": "Capital and distribution arrive overnight. But counterparties, destinations and quantities in those documents add up to a complete regional trade map — opening it up goes far beyond sharing resources."
-          }
-        },
-        {
-          "text": {
-            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
-            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 1,
-            "moat": 2
-          },
-          "why": {
-            "zh": "本地资金额度有限、条款偏保守，但凭证留存、尽调材料与数据边界都完整可控，面对海关核查与复核时几乎不会被问倒——这就是护城河。",
-            "en": "Local money is smaller and more conservative, but records, due-diligence files and data boundaries stay auditable, so customs checks and reviews rarely leave you stuck. That is the moat."
-          }
-        },
-        {
-          "text": {
-            "zh": "不融资，靠服务费自然增长",
-            "en": "Take no funding; grow on service fees alone"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": -1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "现金流紧张、扩张变慢，但不必为了增长放松管制筛查，也不必为了业绩把建议往宽松侧推。在这个行业，这种克制本身就是信誉。",
-            "en": "Cash is tight and growth slows, but you never loosen screening for growth nor nudge advice towards permissive lines to hit targets. In this industry restraint is reputation."
           }
         }
       ]

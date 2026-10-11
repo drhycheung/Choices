@@ -557,7 +557,7 @@
             "zh": "拒不调整：这是用户生成的内容，平台无需负责",
             "en": "Refuse to change it: this is user-generated content, the platform is not responsible"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 3,
             "legal": 2,
@@ -573,7 +573,7 @@
             "zh": "委托第三方做地理信息合规审计，对敏感区域全面遮蔽并降低聚合精度",
             "en": "Commission a third-party geographic compliance audit; mask sensitive areas and reduce aggregation precision"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "requirements": {
             "business": ">=7"
           },
@@ -595,7 +595,7 @@
             "zh": "被动处理：只在收到举报后删除具体地点的热力图层",
             "en": "Handle it reactively: remove the heat layer only where someone complains"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 1,
             "ethics": 1,
@@ -604,61 +604,6 @@
           "why": {
             "zh": "按举报逐个删除，看起来成本低、也不影响其余功能；但没有系统性排查，同类区域仍会继续暴露，属于把风险留给下一个人去发现。",
             "en": "Deleting case by case looks cheap and leaves the rest of the product intact; without a systematic sweep, comparable sites stay exposed and you leave the risk for the next person to find."
-          }
-        }
-      ]
-    },
-    "c4_funding": {
-      "act": "act4",
-      "text": {
-        "zh": "位置数据的风波还没散，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The row over location data has not died down, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "接受境外战略投资，开放数据接口给对方生态",
-            "en": "Take offshore strategic investment and open data interfaces to their ecosystem"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "大额资金加上渠道资源，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转与第三方共享义务——这不是一次性风险，而是长期敞口。",
-            "en": "Large capital plus distribution channels lifts the business score fastest. But connecting local users' location and health data to an overseas ecosystem usually means ongoing cross-border flows and third-party sharing duties: not a one-off risk but a permanent exposure."
-          }
-        },
-        {
-          "text": {
-            "zh": "接受本地产业基金，扩张慢一些但保留数据主权",
-            "en": "Take a local industry fund: slower expansion, but keep data sovereignty"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 1,
-            "moat": 2
-          },
-          "why": {
-            "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做政府、学校、医院客户时几乎不会被问出无法回答的问题——这就是护城河。",
-            "en": "Local money is smaller and its terms stricter, but keeping data inside an explainable jurisdiction means nobody asks you questions you cannot answer when you sell to government, universities or hospitals. That is the moat."
-          }
-        },
-        {
-          "text": {
-            "zh": "不融资，靠订阅收入自然增长",
-            "en": "Take no funding; grow on subscription revenue alone"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": -1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "拒绝外部资金意味着现金流紧张、扩张变慢，但股权结构与数据边界都由你说了算，往后的每一次决策都简洁。这种独立性本身也是 Canvas 9 里的一种优势。",
-            "en": "Refusing outside capital means tight cash and slower expansion, but ownership structure and data boundaries stay yours to decide, keeping every dealing simple. That independence is itself an advantage in Canvas 9."
           }
         }
       ]

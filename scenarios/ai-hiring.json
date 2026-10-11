@@ -557,7 +557,7 @@
             "zh": "拒绝公开：算法是商业秘密，评分仅供参考",
             "en": "Refuse to disclose: the algorithm is a trade secret and scores are advisory only"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 3,
             "legal": 2,
@@ -573,7 +573,7 @@
             "zh": "委托第三方算法审计并公开摘要，建立评分可解释机制",
             "en": "Commission an independent algorithm audit, publish a summary, build explainability"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "requirements": {
             "business": ">=7"
           },
@@ -595,7 +595,7 @@
             "zh": "被动处理：只在收到投诉后人工复核该候选人",
             "en": "Handle it reactively: manually review only the candidates who complain"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 1,
             "ethics": 1,
@@ -604,61 +604,6 @@
           "why": {
             "zh": "逐个复核看似节省，实则把发现成本转嫁给最弱势的当事人——只有懂得投诉的人才拿得到救济，系统性偏差原封不动。",
             "en": "Case-by-case review looks cheap but shifts detection costs onto the most vulnerable: only people who know how to complain get relief, while systemic bias stays untouched."
-          }
-        }
-      ]
-    },
-    "c4_funding": {
-      "act": "act4",
-      "text": {
-        "zh": "投诉还没处理完，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The complaint is not resolved yet, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "接受境外 HR SaaS 巨头的战略投资，候选人数据对其全球客户开放",
-            "en": "Take strategic investment from an offshore HR SaaS giant and open candidate data to its global customers"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。",
-            "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce — including who works in critical industries — is open to overseas customers, you have continuous outbound transfer and third-party sharing you no longer control."
-          }
-        },
-        {
-          "text": {
-            "zh": "接受本地产业基金，扩张慢一些但数据留在本地",
-            "en": "Take a local industry fund: slower expansion, data stays local"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 1,
-            "moat": 2
-          },
-          "why": {
-            "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒——这就是护城河。",
-            "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers. That is the moat."
-          }
-        },
-        {
-          "text": {
-            "zh": "不融资，靠订阅收入自然增长",
-            "en": "Take no funding; grow on subscriptions alone"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": -1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "现金流会紧、扩张会慢，但不必为增长牺牲数据边界，也不必向股东解释每一次取舍。这种独立性在这个行业本身就是一种稀缺优势。",
-            "en": "Cash gets tight and growth slows, but you never trade away data boundaries for growth nor justify every trade-off to shareholders. In this industry that independence is itself scarce."
           }
         }
       ]

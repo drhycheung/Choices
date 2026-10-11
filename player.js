@@ -153,6 +153,9 @@
     o.start(t); o.stop(t + dur + 0.02);
   }
   function playStart() { ensureAudio(); beep(523, 0.09, 'square', 0); beep(659, 0.09, 'square', 0.10); beep(784, 0.12, 'square', 0.20); beep(1046, 0.18, 'square', 0.32); }
+  // 选择时的轻点音（issue #8）：很短、很轻的一个软音，只用来确认"按到了"，
+  // 不用方块波、音量压到 0.05，避免连续做十几个选择时变得嘈杂。
+  function playClick() { ensureAudio(); beep(620, 0.04, 'triangle', 0, 0.05); }
 
   var TYPE = {
     zh: { success: '成功', fail: '失败', compromise: '待完善', unknown: '未知' },
@@ -377,6 +380,7 @@
   function pressThenChoose(btn, index) {
     if (busy || state.finished) return;
     busy = true;
+    playClick();
     btn.classList.add('is-pressed');
     setTimeout(function () {
       busy = false;
@@ -524,7 +528,9 @@
           'ledger-net ' + (net === 0 ? 'flat' : (dl.bad ? 'bad' : 'good'))));
         li.appendChild(head);
 
-        var moves = dimMoves(k, 3);
+        // 列出全部改动来源（不截断）：列出的每一步增减相加必须正好等于上面的净变化，
+        // 否则学生核对总账时会发现"对不上"，误以为分数算错了。
+        var moves = dimMoves(k, 99);
         if (!moves.length) {
           li.appendChild(textEl('div', UI[lang].ledgerUntouched, 'ledger-none'));
         } else {

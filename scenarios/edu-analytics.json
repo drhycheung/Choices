@@ -557,7 +557,7 @@
             "zh": "否认并要求家长出示证据：学校也要负连带责任",
             "en": "Deny it and demand parents produce proof: the school is responsible too"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 3,
             "legal": 2,
@@ -573,7 +573,7 @@
             "zh": "委托第三方做数据合规审计并公开摘要，建立家长知情与查询通道",
             "en": "Commission an independent data-compliance audit, publish a summary, and open a parent inquiry channel"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "requirements": {
             "business": ">=7"
           },
@@ -595,7 +595,7 @@
             "zh": "被动处理：收到询问才解释一次，随后恢复原状",
             "en": "Handle reactively: explain once when asked, then carry on as before"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 1,
             "ethics": 1,
@@ -604,61 +604,6 @@
           "why": {
             "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。",
             "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more."
-          }
-        }
-      ]
-    },
-    "c4_funding": {
-      "act": "act4",
-      "text": {
-        "zh": "家长的询问还压在教育局案头，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The parents' questions are still sitting with the education bureau, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "接受境外教育科技基金，把学生数据接口向其全球教研团队开放",
-            "en": "Take an offshore edtech fund and open your student-data interfaces to its global research team"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
-            "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
-          }
-        },
-        {
-          "text": {
-            "zh": "接受本地教育公益/产业基金，扩张慢一些但数据留在本地",
-            "en": "Take local education or industry funding: slower expansion, data stays local"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 1,
-            "moat": 2
-          },
-          "why": {
-            "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
-            "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
-          }
-        },
-        {
-          "text": {
-            "zh": "不融资，靠订阅收入自然增长",
-            "en": "Take no funding; grow on subscriptions alone"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": -1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。",
-            "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth, nor justify trade-offs to shareholders. In education that restraint is your reputation."
           }
         }
       ]

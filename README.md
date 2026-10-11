@@ -87,7 +87,7 @@ And here is how the two scoreboards are wired together: every choice writes one 
 
 ![How the two tracks are wired together](docs/dual-track-architecture.svg)
 
-Each story runs **at least fifteen decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings. Two of those rounds are branch points that open a *persistent branch arc*: several decisions written for the choice you made, which then rejoins the shared track.
+Each story runs **at least thirteen decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings. Two of those rounds are branch points that open a *persistent branch arc*: several decisions written for the choice you made, which then rejoins the shared track.
 
 The story is **not a straight ladder**. Most steps are shared by everyone — so a class can still compare answers question by question — but two decision points (how you sourced your training data, and how you answered the first harm your product caused) send you onto a *persistent branch arc*: several questions written for that decision, which the other players never see, before the arc rejoins the shared track. Endings stay comparable.
 
@@ -106,7 +106,7 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
 | Full ending debrief | Trigger · trade-off · stakeholders · mitigations · Lean Canvas reading · legal hooks, in both languages |
 | Debrief traces back to decisions | The ending opens with a per-dimension **score ledger** (start → final, signed net change, and a worse/better verdict per dimension) and attributes every score to the exact steps that moved it |
-| Export a study report | The ending page exports the whole run as **Markdown** (score ledger, all 15 decisions with their deltas and reasons, full debrief) for printing or submission, or as **JSON** for marking and further analysis. Generated entirely in the browser — no backend |
+| Export a study report | The ending page exports the whole run as **Markdown** (score ledger, every decision with its deltas and reasons, full debrief) for printing or submission, or as **JSON** for marking and further analysis. Generated entirely in the browser — no backend |
 | Replayable without repetition | Six ventures, random draw on every start, plus a shuffle button on the start screen and the ending screen |
 | Multiple endings | 9 shared endings per scenario; the validator proves every one is reachable |
 | Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |

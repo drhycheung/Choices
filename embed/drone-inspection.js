@@ -561,7 +561,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "zh": "回应称航线由客户指定，影像归属客户负责",
             "en": "Respond that clients set the routes and own the imagery"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 3,
             "legal": 2,
@@ -577,7 +577,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "zh": "委托第三方做测绘与数据合规审计，冻结影像交付并建立敏感区域自动遮蔽",
             "en": "Commission an independent survey-and-data audit, freeze imagery delivery and add automatic masking of sensitive areas"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "requirements": {
             "business": ">=7"
           },
@@ -599,7 +599,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "zh": "被动处理：收到核查才从库中删除具体区段",
             "en": "Handle reactively: delete specific segments only after each inquiry"
           },
-          "next": "c4_funding",
+          "next": "epilogue",
           "effects": {
             "national_security": 1,
             "ethics": 1,
@@ -608,61 +608,6 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "why": {
             "zh": "按指示删片看似成本低；但已经交付给第三方的副本不会因为你删除本地文件而消失，且没有系统性排查，下一次核查会来得更快。",
             "en": "Deleting what you are told looks cheap; copies already delivered do not disappear when you delete your master, and without a systematic sweep the next inspection arrives sooner."
-          }
-        }
-      ]
-    },
-    "c4_funding": {
-      "act": "act4",
-      "text": {
-        "zh": "核查还没结束，三家机构却先后来谈钱：一家境外战略投资方条件最阔绰，但要求开放数据接口；一家本地产业基金额度小、条款多，但数据与合规留在本地；也有人劝你们干脆别拿钱，靠订阅收入慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
-        "en": "The review is not finished, and three institutions arrive with money: an offshore strategic investor, generous but asking for data access; a local industry fund, smaller and stricter, with data and paperwork staying local; and voices telling you to take nothing and grow on subscriptions. Three term sheets on the table — and the unfair advantage in Canvas 9 is usually written into those terms."
-      },
-      "choices": [
-        {
-          "text": {
-            "zh": "接受境外基金，把影像成果向其全球客户开放检索",
-            "en": "Take offshore funding and make your imagery searchable for its global clients"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 3,
-            "national_security": 2,
-            "legal": 1
-          },
-          "why": {
-            "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
-            "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
-          }
-        },
-        {
-          "text": {
-            "zh": "接受本地产业基金，扩张慢一些但数据与合规留在本土",
-            "en": "Take a local industry fund: slower expansion, data and compliance stay domestic"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": 1,
-            "moat": 2
-          },
-          "why": {
-            "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
-            "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
-          }
-        },
-        {
-          "text": {
-            "zh": "不融资，靠服务费自然增长",
-            "en": "Take no funding; grow on service fees alone"
-          },
-          "next": "epilogue",
-          "effects": {
-            "business": -1,
-            "moat": 1
-          },
-          "why": {
-            "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。稳定且干净，在这个行业本身就是稀缺品。",
-            "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth, nor justify trade-offs to shareholders. Steady and clean is itself scarce in this industry."
           }
         }
       ]
