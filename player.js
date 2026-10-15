@@ -1035,7 +1035,9 @@
 
   function beginPlay() {
     if (!scenario.endings) scenario.endings = coreEndings;
-    var res = ChoicesValidate.validate(scenario, { endings: coreEndings });
+    // 只做结构检查：可达性搜索要遍历整个状态空间，开局前同步跑会卡死页面。
+    // 完整检查（无死路、每个结局可达）由 node validate.js 在开发期负责。
+    var res = ChoicesValidate.validate(scenario, { endings: coreEndings, deep: false });
     if (res.errors.length) showBanner(UI[lang].validateError + res.errors.join(lang === 'zh' ? '；' : '; '), 'error');
     applyChrome();
     state = ChoicesEngine.createState(scenario);

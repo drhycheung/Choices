@@ -20,9 +20,15 @@
 })(typeof self !== 'undefined' ? self : this, function (Engine) {
   'use strict';
 
-  // validate(scenario) 或 validate(scenario, { endings: <共享结局表> })
+  // validate(scenario) 或 validate(scenario, { endings: <共享结局表>, deep: false })
   // opts.endings 用于「多个场景共用一套结局」的情形（见 scenarios/endings-core.json）。
+  // opts.deep=false 只跑结构检查（A），跳过可达性搜索（B/C）。可达性搜索要遍历
+  // 整个 (节点, 维度) 状态空间——加上第四根维度后单个题材有上百万个状态，
+  // 放在每次开局前同步执行会让页面卡死。那是开发期的检查（node validate.js），
+  // 运行时只需要结构检查。
   function validate(scenario, opts) {
+    opts = opts || {};
+    const deep = opts.deep !== false;
     const errors = [];
     const warnings = [];
 
@@ -104,6 +110,10 @@
 
     if (errors.length > 0) {
       return { ok: false, errors: errors, warnings: warnings };
+    }
+
+    if (!deep) {
+      return { ok: true, errors: errors, warnings: warnings, maxDepth: 0 };
     }
 
     /* ---- B & C. 状态空间可达性搜索（BFS） ---- */
