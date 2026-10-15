@@ -158,6 +158,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "同类商品的归类规则与常见退单原因高度相似，容易积累对照样板；一旦在一个商会里形成口碑，就是最难复制的分销基础（Canvas 9）。缺点是客单价低。",
             "en": "Goods in one category share classification rules and rejection reasons, so reference patterns accumulate; once a chamber of commerce vouches for you, that distribution base is hardest to copy (Canvas 9). Unit prices are low."
@@ -173,6 +174,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "单据量增长最快，模型也学得最快。但你并不知道每个终端客户是谁、货往哪里去，尽职调查义务会逐渐落到无法履行的地步。",
             "en": "Volume grows fastest and the model learns fastest. But you stop knowing who each end client is or where goods move, so due-diligence duties slowly become impossible to discharge."
@@ -196,6 +198,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把问题定义为「敢不敢签」而不是「录得快不快」，产品就要给出可复核的归类依据。Canvas 2 的证据越扎实，报关员越敢把这款工具带到同事面前。",
             "en": "Defining it as 'dare to sign' rather than 'type faster' forces the product to produce reviewable classification evidence. Stronger Canvas 2 evidence makes brokers willing to recommend it to colleagues."
@@ -211,6 +214,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "一键生成最好演示，也最容易嵌入客户忙碌的一天。但当「快」成为唯一指标，人工复核会被跳过，错误的归类会以更快的速度被提交出去。",
             "en": "One click demos beautifully and fits a frantic working day. But when speed is the only metric, human review gets skipped and wrong classifications get filed faster."
@@ -226,6 +230,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "一个大单让 Canvas 6 立刻成立。但大货代要的是接口与流程自动化，而不是归类判断的可解释性，研发资源会从真正的难点上被拉开。",
             "en": "One big deal makes Canvas 6 works instantly. But a major forwarder wants APIs and workflow automation rather than explainable classification, pulling engineering away from the actual hard problem."
@@ -250,6 +255,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "不作最终判断会降低自动化卖点，但每一次人工确认都在喂养一套「错误—原因」语料，久而久之它会变成别人拿不走的报关知识库（Canvas 9）。",
             "en": "Refusing the final call weakens the automation pitch, but every human confirmation feeds an 'error and reason' corpus that becomes a customs knowledge base nobody else has (Canvas 9)."
@@ -265,6 +271,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "全自动最受欢迎，单量增长也最快。但报关单直接决定货物是否触及管制物项与许可要求，把这一步完全交给模型，等于让责任链条上没有人真正看一眼货到底是什么。",
             "en": "Full automation is most popular and scales fastest. But a declaration determines whether goods touch controlled items and licensing requirements; handing the step entirely to a model means nobody in the chain actually looks at what is being shipped."
@@ -288,6 +295,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "官方数据更新慢、检索麻烦，但它是唯一能在事后被用来证明你尽到了注意义务的依据。合规判断依赖可引用来源，而不是覆盖度。",
             "en": "Official data updates slowly and is awkward to query, but it is the only basis you can later cite to show you exercised due care: defensible decisions rest on citable sources, not on coverage."
@@ -304,6 +312,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "覆盖率高会让演示非常顺利。但管制清单随时间频繁调整，来源不明意味着你无法证明所用版本的时效性；把关键合规判断建立在这种数据上，后果由报关员和客户承担。",
             "en": "Better coverage makes demos smooth. But control lists change frequently and an unclear provenance means you cannot evidence version currency; critical compliance judgements built on it land on your brokers and customers."
@@ -327,6 +336,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "样本少会让识别率一般，但贸易单据通常含第三方企业与个人联系方式，授权清晰才能说明每一份的来源与可用范围。",
             "en": "A small sample means mediocre recognition, but trade documents routinely carry third-party company and personal contact details, so clean authorisation is what lets you account for each one's provenance and permitted use."
@@ -343,6 +353,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "效果提升明显。但这些单据属于他人商业资料，既无法证明取得合法，也可能包含受管制交易的痕迹；用它训练，等于把别人的合规风险装进了自己的模型。",
             "en": "Quality improves clearly. But those documents are other parties' commercial material: you cannot evidence lawful acquisition and they may contain traces of controlled transactions. Training on them loads someone else's compliance risk into your own model."
@@ -367,6 +378,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "报关行与出口企业最怕的是说不清数据从哪来；这一页对账单既是他们的内审材料，也是你最难被替代的地方。",
             "en": "Customs brokers and exporters fear most being unable to explain where data came from; that statement is their audit material and your hardest-to-replace asset."
@@ -382,6 +394,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下逐单归档的工作量，交付更快；但查验是有时限的，你要解释为什么平时拿不出来。",
             "en": "You save per-shipment archiving and deliver faster — but inspections run to a deadline, and you must explain why it was not ready."
@@ -407,6 +420,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉单据已经进入训练集这一事实，效果也会回退；自己发现永远比被查验后整改便宜。",
             "en": "Stopping limits further liability but does not undo that the documents entered training, and quality regresses. Finding it yourself beats remediating after an inspection."
@@ -424,6 +438,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "ethics": 1,
             "national_security": 1
           },
+          "actor": "law",
           "why": {
             "zh": "换来的是旺季吞吐与准确率，代价是：这些单据从哪来、有没有传递管制的敏感信息，举证责任已经落在你们身上。",
             "en": "You buy peak-season throughput and accuracy, and inherit the burden of proving where those documents came from and whether controlled details moved."
@@ -448,6 +463,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "拦截规则会让一部分正常单据变慢（短期指标受压），但在出口管制领域，一个可复核的拦截机制正是专业报关与政府项目采购时最看重的部分。",
             "en": "Blocking slows some legitimate filings (pressuring short-term metrics), but in export control a reviewable blocking mechanism is exactly what professional brokers and tenders value most."
@@ -464,6 +480,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "免责告知无法推翻你是建议提供者的事实。把已知的宽松倾向包装成「建议」，实质是把出口管制的判断成本转嫁给客户，而后果可能不只是罚款。",
             "en": "A disclaimer does not undo the fact that you supplied the advice. Wrapping a known permissive bias as 'suggestion' shifts export-control judgement onto clients, where consequences go beyond fines."
@@ -487,6 +504,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "愿意被抽查本身就是门槛：它筛掉做不到的同行，也让你不必只靠低价抢单。",
             "en": "Accepting spot checks is itself a moat — it filters rivals who cannot and gets you off competing on price alone."
@@ -502,6 +520,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "ethics": 2
           },
+          "actor": "design",
           "why": {
             "zh": "时效保住了，单量也上去了；但归类建议一旦涉及管制物项，「我们提示过」通常不足以切断责任。",
             "en": "You keep turnaround and volume — but once a classification touches controlled goods, 'we warned them' rarely severs liability."
@@ -528,6 +547,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": -1,
             "pmf": 1
           },
+          "actor": "design",
           "why": {
             "zh": "补救能止住继续错报，也向客户与海关证明你会修正；但它改不掉已经申报的记录，收入也会先掉一块。",
             "en": "Fixing it stops further misdeclaration and shows clients and customs you correct course — but it cannot rewrite filed entries, and revenue dips first."
@@ -544,6 +564,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "law",
           "why": {
             "zh": "告知书保护的是你们与客户的内部关系，不是申报义务；归类错误的责任不会因为它写得更清楚而转移。",
             "en": "The letter protects your relationship with the client, not the filing obligation; clearer wording does not move liability for a wrong classification."
@@ -569,6 +590,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "当专为你设计的功能明显影响申报结果时，「我只是工具」通常不足以免责；拒绝配合还会让调查把焦点从使用者转向设计者。短期省下的是配合成本。",
             "en": "When a purpose-built feature demonstrably shapes what gets declared, 'I am just a tool' rarely discharges liability; refusing cooperation also shifts the investigation's focus from users to designers. You save cooperation costs, briefly."
@@ -591,6 +613,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "moat": 2,
             "business": -1
           },
+          "actor": "design",
           "why": {
             "zh": "冻结高风险品类会立刻掉一部分收入（商业模式分下降），审计也贵；但一套经得起审计的管制筛查流程，会把你从「风险来源」变成「合规基础设施」。",
             "en": "Freezing high-risk categories drops revenue immediately (business score falls) and audits are costly; but an auditable screening process turns you from a source of risk into compliance infrastructure."
@@ -607,6 +630,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "ethics": 1,
             "business": 1
           },
+          "actor": "design",
           "why": {
             "zh": "按批次处置看起来最省事，问题是必然还有下一批；受管制的货不会因为这次没被问到就不存在。把责任交给运气，代价由他人承担。",
             "en": "Batch-by-batch handling looks cheapest, but there is always a next one: controlled cargo does not cease to exist because nobody asked this time. Leaving it to luck makes someone else pay."
@@ -639,6 +663,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅收钱慢，但「不替客户挑归类」会让报关员放心使用；在这个行业，可信中立就是最难被替代的优势（Canvas 9）。收入路径干净，尽调与跨境扩张都不受牵连。",
             "en": "Subscriptions bill slowly, but staying neutral on classification is what lets brokers use you comfortably; in this industry credible neutrality is the hardest advantage to displace (Canvas 9). The revenue path stays clean."
@@ -655,6 +680,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "design",
           "why": {
             "zh": "抽成模式的说服力最强，客户也能立刻看到收益。但把收入与少缴税绑定，等于用商业模式奖励低报——在绝大多数法域都可能被认定为申报不实甚至走私。",
             "en": "Revenue share persuades best and clients see the gain immediately. But tying income to lower duty means the business model rewards under-declaration, which most jurisdictions treat as false declaration or worse."
@@ -679,6 +705,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "慢，但商会内部的横向传播让每一批新客户都带着同类报关需求而来（契合度上升），而同业推荐是外贸行业最可靠的渠道（Canvas 5）。",
             "en": "It is slow, but lateral spread inside a chamber brings each new cohort with similar filing needs (higher fit), and peer referral is the most reliable channel in trade (Canvas 5)."
@@ -695,6 +722,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "夸张承诺转化率最高、客户增长最快。但通关结果由海关决定，任何「百分百」的承诺都难以兑现，还会吸引最想走捷径的那批客户。",
             "en": "Exaggerated promises convert best and grow fastest. But clearance is decided by customs, so any 'guaranteed' claim is unfulfillable — and it attracts exactly the clients most eager to cut corners."
@@ -718,6 +746,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "留痕增加存储与合规工作量，短期无收益。但当某一份报关单被追查时，痕迹是唯一能证明你们履行了注意义务的东西，也是专业服务的定价依据。",
             "en": "Keeping logs adds storage and compliance work with no short-term return. But when a declaration is investigated, that trail is your only proof of due care — and the basis for charging professional rates."
@@ -734,6 +763,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "无痕让产品更省事、客户更敢用。但报关环节的留痕与账簿凭证通常有法定保存期限，不留存既违反账簿要求，也让你无法解释任何一次判断。",
             "en": "No logs make the tool frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches bookkeeping rules and leaves you unable to explain any judgement."
@@ -758,6 +788,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -774,6 +805,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的商业资料当成库存再卖一次。法律风险最高。",
             "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's records as inventory twice. Highest legal exposure."
@@ -798,6 +830,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在单据存疑时控制扩散范围，能限制后续被追责的客户数；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
@@ -814,6 +847,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "承诺通关会诱导客户替他人代持申报，授权链条在第一米就断了；客户数很好看，责任链条却没人能还原。",
             "en": "A clearance promise pushes clients to file on others' behalf — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
@@ -837,6 +871,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "迟到的留痕能帮你在出事时自证「至少记了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late logging helps show 'at least we kept records' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
@@ -853,6 +888,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "无痕让产品更省事、客户更敢用。但报关留痕有法定保存期限，不做留存既违规，也让你无法解释任何一次判断——在来源本就存疑的这条线上，后果更重。",
             "en": "No logs make the tool frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches the rules and leaves you unable to explain any judgement — and on a line whose provenance is already doubtful, the consequences are heavier."
@@ -877,6 +913,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但凭证留存、尽调材料与数据边界都完整可控，面对海关核查时几乎不会被问倒——这就是护城河。",
             "en": "Local money is smaller and conservative, but records, due-diligence files and data boundaries stay auditable, so customs checks rarely leave you stuck. That is the moat."
@@ -893,6 +930,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但单据里的交易对手、流向与数量关系，长期看是一幅完整的区域贸易图谱——将其对外开放，性质远超资源共享，也触发跨境提供义务。",
             "en": "Capital and distribution arrive overnight. But counterparties, destinations and quantities in those documents add up to a complete regional trade map — opening it up goes far beyond sharing resources and triggers outbound-transfer duties."
@@ -908,6 +946,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但不必为了增长放松管制筛查。在这个行业，这种克制本身就是信誉。",
             "en": "Cash is tight and growth slows, but you never loosen screening for growth. In this industry restraint is reputation."
@@ -932,6 +971,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但凭证留存、尽调材料与数据边界都完整可控，面对海关核查时几乎不会被问倒——在信任已受损时，这种克制至少不再新增外部依赖。",
             "en": "Local money is smaller and conservative, but records, due-diligence files and data boundaries stay auditable, so customs checks rarely leave you stuck. With trust already damaged, restraint adds no new dependency."
@@ -948,6 +988,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但单据里的交易对手、流向与数量关系，长期看是一幅完整的区域贸易图谱——将其对外开放，性质远超资源共享，也触发跨境提供义务。",
             "en": "Capital and distribution arrive overnight. But counterparties, destinations and quantities in those documents add up to a complete regional trade map — opening it up goes far beyond sharing resources and triggers outbound-transfer duties."
@@ -963,6 +1004,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但不必为了增长放松管制筛查。在信任已经受损时，这种克制更是护城河。",
             "en": "Cash is tight and growth slows, but you never loosen screening for growth. With trust already damaged, this restraint is itself a moat."

@@ -158,6 +158,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "同一类资产的缺陷形态相似，容易积累标注样本与判读标准；这类行业口碑一旦建立，就是最难复制的部分（Canvas 9）。缺点是季节性很强、单量不稳定。",
             "en": "One asset class shares defect patterns, so labels and reading standards accumulate; once that industry reputation forms it is the hardest part to copy (Canvas 9). The drawbacks are seasonality and uneven deal flow."
@@ -173,6 +174,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "什么都接能最快填满账单。但不同任务意味着不同空域、不同客户、不同用途，空域合规与影像流向都难以逐一核查，最后连自己飞过哪些地方都说不清。",
             "en": "Saying yes to everything fills the ledger fastest. But every job means different airspace, clients and purposes, so permits and footage flows resist checking, and in the end you cannot even list where you flew."
@@ -196,6 +198,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把问题定义为「可举证的记录」而不是「省人工」，产品就有了明确边界：影像要能比对、时间戳要能追溯。Canvas 2 越扎实，续约越多。",
             "en": "Framing it as defensible records rather than saved labour gives the product a clear boundary: imagery must be comparable and timestamps traceable. Stronger Canvas 2 means more renewals."
@@ -211,6 +214,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "效率叙事最容易签单。但当速度成为唯一卖点，报批、留痕与人工复核会被当成拖慢速度的环节，安全边界会先被牺牲。",
             "en": "An efficiency story signs deals easiest. But when speed is the only selling point, permits, records and human sign-off are seen as friction, and safety margins are the first thing sacrificed."
@@ -226,6 +230,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "一个大单让 Canvas 6 立刻成立。但园区巡逻要的是覆盖面与频次，而不是缺陷判读的准确性，研发资源会从核心能力上被拉开。",
             "en": "One big deal makes Canvas 6 work instantly. But patrol work prizes coverage and frequency, not diagnostic accuracy, pulling engineering away from your core capability."
@@ -250,6 +255,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "边缘处理要自己优化模型体积，工期更长；但「不上云」会成为面向政府与关键基础设施客户时最难被抄袭的卖点，也是数据风险最小的一版。",
             "en": "Edge processing means optimising model size yourself and shipping later; but 'nothing goes to the cloud' becomes the hardest selling point to copy with government and critical-infrastructure clients, and carries the least data risk."
@@ -265,6 +271,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "云端看板最直观、最好演示。但把完整航拍影像长期集中存储，意味着你手上会逐渐积累沿线基础设施的高精度影像——这是敏感程度极高的一类资产。",
             "en": "Cloud dashboards are intuitive and demo beautifully. But retaining full flight footage means slowly accumulating high-precision imagery of everything along your flight lines — an extremely sensitive class of asset."
@@ -288,6 +295,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "逐次报批慢，排期会被卡；但每一次飞行都有可出示的手续，这在投标、续约与被查验时是最省事的通行证。",
             "en": "Filing each flight is slow and constrains scheduling; but every sortie carries paperwork you can produce, which is the cheapest pass during bidding, renewals and inspections."
@@ -304,6 +312,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "境外来源的空域数据既可能过时也可能失真，依赖它安排飞行等于把合规判断交给了不可控的数据源；一旦飞入未报批的空域，性质就从违规变成违法。效率明显更高。",
             "en": "Overseas airspace data may be stale or inaccurate; flying to it means outsourcing your compliance judgement to an uncontrolled source. Enter unapproved airspace once and a violation becomes an offence. Efficiency is clearly better, though."
@@ -327,6 +336,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "样本少意味着初期准确率不高，但每一项数据来源都能公开说明；在涉及关键基础设施的客户面前，这是进入门槛而不是缺点。",
             "en": "A small sample means lower early accuracy, but you can account publicly for every input; with critical-infrastructure clients that is an entry requirement rather than a weakness."
@@ -343,6 +353,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "效果提升明显。但影像包里是否夹杂禁拍区域的画面、是否包含未授权拍摄的素材，都无法核实；这类瑕疵一旦被发现，追溯极其困难。",
             "en": "Quality improves noticeably. But you cannot verify whether the pack includes imagery of restricted zones or footage shot without permission, and once discovered such defects are almost impossible to trace back."
@@ -367,6 +378,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "水务、园区这类客户要的就是「能举证我查过、也查得合法」；这一页附件正是他们审计时最省事的东西，也是别人抄不走的信任。",
             "en": "Clients like water utilities need to prove they inspected — lawfully. That annex is the cheapest thing they can hand an auditor, and the trust rivals cannot copy."
@@ -382,6 +394,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下逐单归档的工作量，交付也更快；但一旦有人质疑某一帧的来源，你要解释为什么当时拿不出来。",
             "en": "You save per-job archiving and deliver faster — but the first challenge to a frame means explaining why it was not available then."
@@ -407,6 +420,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉影像已经进入训练集这一事实，效果也会回退；自己发现永远比被查处后整改便宜。（这一步无法把已累积的风险归零。）",
             "en": "Stopping limits further liability but does not undo that the imagery entered your training set, and quality regresses. Finding it yourself beats remediating after an investigation. (This cannot zero out the risk already accumulated.)"
@@ -423,6 +437,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "换来的是交付速度与识别率，代价是：这些影像的取得方式是否合规，举证责任已经落在你们身上。",
             "en": "You buy delivery speed and detection rate, and inherit the burden of proving how that imagery was obtained."
@@ -447,6 +462,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "承认环境条件的影响会让报价结构变复杂（需要人工成本），但「漏判会被拦住」正是客户愿意长期签约的理由，也是护城河。",
             "en": "Admitting environmental limits complicates pricing (it needs people), but 'a miss will still be caught' is exactly why clients sign multi-year deals — and the moat itself."
@@ -463,6 +479,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "免责条款不能替结构做体检。漏判的裂缝会在下一次检查之前继续扩展，而客户以为有人看过——这是把已知缺陷转嫁给用户承担。交付如期。",
             "en": "A liability clause will not inspect a bridge. Missed cracks keep growing until the next survey while clients believe someone looked — passing known defects to the user. Delivery stays on schedule."
@@ -486,6 +503,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "当报告可能被用作举证或理赔材料，「可追溯」就从成本变成客户指定要的东西，也是最难抄的能力。",
             "en": "When a report may become evidence, traceability stops being overhead and becomes something clients specify — and the hardest thing to copy."
@@ -501,6 +519,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "ethics": 2
           },
+          "actor": "design",
           "why": {
             "zh": "进度保住了，成本也下来了；但你在报告上写的「已复核」已经开始失真，而报告一旦被当证据用，失真就是责任。",
             "en": "You keep the schedule and cut cost — but 'reviewed' on the report has started to drift, and once a report is used as evidence, that drift is liability."
@@ -527,6 +546,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": -1,
             "pmf": 1
           },
+          "actor": "design",
           "why": {
             "zh": "补救能止住继续漏判，也向客户证明你会修正；但它不能让渗漏不发生，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
             "en": "Fixing it stops further misses and shows clients you correct course — but it cannot undo the leak, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
@@ -542,6 +562,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "ethics": 2,
             "business": 2
           },
+          "actor": "law",
           "why": {
             "zh": "条款可能帮你赢下这一单索赔，也会帮客户记住：下次招标时，他们要找的是不会把限制藏在最后的供应商。",
             "en": "The clause may win this claim — and reminds the client that next tender they want a vendor who does not bury limits at the end."
@@ -567,6 +588,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "航线由客户提出，不转移拍摄者对禁飞区与敏感目标的注意义务；把责任推给客户，通常会换来客户反手把责任推回给你，并失去所有续约。短期省下整改成本。",
             "en": "A client requesting a route does not transfer the operator's duty of care over restricted zones and sensitive targets. Pushing blame usually gets it pushed straight back, along with every renewal. You save a remediation bill this quarter."
@@ -589,6 +611,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "moat": 2,
             "business": -1
           },
+          "actor": "design",
           "why": {
             "zh": "冻结交付会立刻损失收入分成（商业模式分下降），审计也要花钱；但一份站得住脚的结论，能让你保住别人拿不到的政府与公用事业合同。",
             "en": "Freezing delivery sacrifices revenue at once (business score drops) and auditing costs money; but a defensible conclusion lets you keep the government and utility contracts nobody else can win."
@@ -605,6 +628,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "ethics": 1,
             "business": 1
           },
+          "actor": "design",
           "why": {
             "zh": "按指示删片看似成本低；但已经交付给第三方的副本不会因为你删除本地文件而消失，且没有系统性排查，下一次核查会来得更快。",
             "en": "Deleting what you are told looks cheap; copies already delivered do not disappear when you delete your master, and without a systematic sweep the next inspection arrives sooner."
@@ -637,6 +661,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅收钱慢，但「不看客户的图」在这个行业里比任何功能都值钱：它是拿下政府与关键基础设施订单的钥匙，也是最难复制的信任（Canvas 9）。",
             "en": "Subscriptions bill slowly, but 'we never release your imagery' is worth more than any feature here: it is the key to winning government and critical-infrastructure contracts, and the hardest trust to copy (Canvas 9)."
@@ -653,6 +678,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "影像转售利润远高于服务费。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高，风险也最高。",
             "en": "Imagery resale is far more profitable than service fees. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin, highest risk."
@@ -677,6 +703,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "慢，但每个案例都会把判读标准与报告格式磨得更准（契合度上升）；在这个行业，口头推荐比反复投标更可靠（Canvas 5）。",
             "en": "It is slow, but every reference case sharpens the reading standard and report format (higher fit); in this industry a verbal recommendation beats tender effort (Canvas 5)."
@@ -693,6 +720,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节，也可能踩到不正当竞争边界。",
             "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review, and can brush against unfair-competition rules."
@@ -716,6 +744,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "留痕意味着自己把把柄存下来，短期确实更麻烦。但在航空与关键基础设施场景，可追溯的记录是区分「专业」与「草台班子」的唯一证据，也是定价能力的来源。",
             "en": "Keeping records means storing evidence against yourself and is more trouble short term. But in aviation and critical infrastructure, traceable records are the only proof separating professionals from cowboys — and the source of your pricing power."
@@ -732,6 +761,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管。",
             "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight."
@@ -756,6 +786,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -772,6 +803,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "影像转售最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
             "en": "Imagery resale is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
@@ -796,6 +828,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在素材存疑时控制扩散范围，能限制后续被追责的客户数；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
@@ -812,6 +845,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "返现与关系结构会诱导一线替客户代注册、代签，授权链条在第一米就断了；项目数很好看，责任链条却没人能还原。",
             "en": "Rebates and relationships push field crews to register and sign for clients — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
@@ -835,6 +869,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "迟到的留痕能帮你在出事时自证「至少记了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late records help show 'at least we logged it' when things break, but they cannot restore provenance; they stanch bleeding, not launder it."
@@ -851,6 +886,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管；这条线本就经不起查。",
             "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing them can count as obstructing oversight — and your line never survived a check anyway."
@@ -875,6 +911,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
             "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
@@ -891,6 +928,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
             "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
@@ -906,6 +944,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。稳定且干净，在这个行业本身就是稀缺品。",
             "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth, nor justify trade-offs to shareholders. Steady and clean is itself scarce in this industry."
@@ -930,6 +969,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款保守，但审批手续、飞行记录与影像边界都完整可控，面对监管核查与政府投标时几乎不会被问倒——这就是护城河。",
             "en": "Local money is smaller and conservative, but permits, flight records and imagery boundaries stay auditable, so regulatory inquiries and public tenders rarely trip you up. That is the moat."
@@ -946,6 +986,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但把国内基础设施的高精度影像对境外客户开放检索，属于持续时间更长、影响更难挽回的一类数据流出。",
             "en": "Capital and distribution arrive overnight. But making high-precision imagery of domestic infrastructure searchable for overseas customers is the kind of outflow that lasts longest and is hardest to reverse."
@@ -961,6 +1002,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但不必为了增长把影像交给任何人，也不必向股东解释每一次取舍。在信任已经受损时，这种克制至少不再新增外部依赖。",
             "en": "Cash is tight and growth slows, but you never hand imagery to anyone for growth. With trust already damaged, restraint adds no new dependency."

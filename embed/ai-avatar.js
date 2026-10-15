@@ -158,6 +158,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "同一类商家的带货话术与货品结构相似，容易形成可复用的模板与效果基准；这类口碑一旦铺开就是最难被抄走的资产（Canvas 9），只是单价很低。",
             "en": "One merchant category shares scripts and product structures, so templates and benchmarks become reusable; that reputation, once localised, is the hardest asset to copy (Canvas 9) — though unit prices stay low."
@@ -173,6 +174,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "海量用户意味着海量面孔与声音样本，而你既没有时间逐一核实授权，也很难监督每个数字人最终出现在什么场景。规模来得最快，失控也最快。",
             "en": "Mass adoption means mass volumes of faces and voices, with neither time to verify each licence nor visibility into where every avatar eventually appears. Scale arrives fastest, and so does loss of control."
@@ -196,6 +198,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把问题定义为「夜间空档」而不是「主播太贵」，产品的边界就清楚了：补齐时段而非替代人。Canvas 2 的证据越扎实，后续的功能与定价越容易说服人。",
             "en": "Framing the problem as 'dead night hours' rather than 'hosts are expensive' clarifies scope: fill the slot, do not replace the person. Stronger Canvas 2 evidence makes features and pricing far easier to defend."
@@ -211,6 +214,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "皮肤与形象的噱头确实能带来疯传式增长。但允许生成与现实公众人物高度相似的形象，通常落在肖像权、声音权益与反不正当竞争的交叉区，也最容易被用于误导。",
             "en": "Spectacle around looks and voices really does spread fast. But letting users generate likenesses close to real public figures lands squarely on the overlap of portrait rights, voice rights and unfair competition — and is easiest to misuse."
@@ -226,6 +230,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "一个定制大单让 Canvas 6 立刻成立，现金流确定。但产品会朝单一机构的直播间诉求偏移，中小商家的真实痛点被排在后面，契合度下降。",
             "en": "One bespoke deal makes Canvas 6 work immediately and removes cash doubt. But the roadmap bends towards one studio's studio-stage needs, pushing real merchant pain further down — fit drops."
@@ -250,6 +255,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "要求本人出镜并签署授权，会让上手流程变重、转化变慢；但这套授权凭证与唯一的音色−形象配对，恰是日后抵御盗用指控、拿下品牌客户的资产（Canvas 9）。",
             "en": "Requiring appearance and written authorisation makes onboarding heavy and conversion slow; but those consent records and unique voice-likeness pairings are exactly what defends you against impersonation claims and wins brand clients (Canvas 9)."
@@ -265,6 +271,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "零门槛带来最快的用户增长。但当任何人都能生成以假乱真的面孔与声音，这些素材进入公共信息环境的速度与规模，本身就是一类难以回收的公共风险。",
             "en": "Zero friction brings the fastest user growth. But once anyone can generate indistinguishable faces and voices, the speed and scale at which such clips enter the public information space is itself a hard-to-recall public risk."
@@ -288,6 +295,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "授权素材数量有限会限制初期效果，但每一份明示授权都能追溯到人，后续商用、转授权、出海都不会埋雷。这是一种慢但干净的底料。",
             "en": "Licensed material is limited, which caps early quality, but every explicit consent traces back to a person, so later commercial use, sublicensing and expansion carry no buried liabilities. Slow, but clean feedstock."
@@ -304,6 +312,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "未经许可的形象与声音属于受保护的人格权益，用它训练会直接种下侵权与非法生物特征处理的隐患；若素材中夹杂公职人员或敏感场景，后果更重。效果确实提升。",
             "en": "Unauthorised likeness and voice are protected personality interests; training on them plants the seed for infringement and unlawful biometric processing claims. It is worse still if the footage includes public officials or sensitive settings. It does improve output quality."
@@ -327,6 +336,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "效果略差会让演示没那么惊艳，但每一项数据的来源都能被写进技术文档；这在投标、尽调与平台审核时是最省时间的通行证。",
             "en": "Slightly weaker output makes demos less impressive, but every datum's provenance can go into the technical documentation — the most time-saving pass there is in bidding, diligence and platform review."
@@ -343,6 +353,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "混合数据集通常交付出最好的效果指标，但你无法证明每一条的合法性基础；一旦有人主张权利，举证责任与追溯成本都在你们这边。",
             "en": "Mixed datasets usually produce the best quality metrics, but you cannot prove a lawful basis for each item; when someone asserts their rights, both the burden of proof and the tracing cost fall on you."
@@ -367,6 +378,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "防护与复核会让一部分正常用户觉得麻烦（短期指标受压），但「不容易被用来骗人」会变成品牌客户的采购理由，也是最难复制的产品能力。",
             "en": "Safeguards annoy some legitimate users (pressuring short-term metrics), but 'hard to use for fraud' becomes the reason brand clients buy you — and the hardest capability to copy."
@@ -383,6 +395,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "条款只能约束愿意遵守条款的人。对已经发生的诈骗而言，「我们禁止过」通常不足以免责；实质是先上线、后果由受害者承担。指标好看。",
             "en": "Terms only bind people willing to read them. For fraud already happening, 'we prohibited it' rarely discharges liability; in substance you ship first and let victims absorb consequences. The metrics look good."
@@ -415,6 +428,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "把合规做成可交付的文档，等于把审核成本从每次投标里拿掉；它同时是别人短期内复制不了的东西（Canvas 9）。",
             "en": "Packaging compliance as a deliverable removes review cost from every bid — and becomes the thing rivals cannot copy quickly (Canvas 9)."
@@ -430,6 +444,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
             "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
@@ -454,6 +469,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅收钱慢，但把「不转授权」写进条款，会让模特和商家都放心把素材交给你——这份信任积累到一定程度就没人能替（Canvas 9）。",
             "en": "Subscriptions bill slowly, but promising never to sublicense reassures both models and merchants — that trust, once banked, cannot be replaced (Canvas 9)."
@@ -470,6 +486,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "抽成模式最受欢迎、合同最好签；但对他人形象与声音的二次商业授权，通常远超原始授权范围，把创作者的权利当成可以再卖一次的库存。法律风险最高。",
             "en": "Revenue share is the most popular contract; but sublicensing someone's likeness and voice usually exceeds the original licence, treating a creator's rights as inventory to sell twice. Highest legal exposure."
@@ -494,6 +511,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "慢，但每家标杆店都会把话术模板磨得更准（契合度上升），同商圈商户间的口碑扩散是单位成本最低的渠道（Canvas 5）。",
             "en": "Slow, but each flagship sharpens the script templates (higher fit), and peer contagion within a district is the cheapest channel per win (Canvas 5)."
@@ -510,6 +528,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没有人能还原。",
             "en": "Bonusing on signatures pushes sales to sign for merchants and register accounts for them — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
@@ -533,6 +552,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "标识与水印不带来任何额外转化，纯粹是成本；但当诈骗视频出现时，可追溯的元数据是你唯一能自证清白的东西，也是最硬的品牌资产。",
             "en": "Labelling and watermarking add zero conversion and are pure cost; but when a scam clip surfaces, traceable metadata is the only thing that can exonerate you — your hardest brand asset."
@@ -549,6 +569,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
             "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling, and omitting it can look like facilitating deception."
@@ -574,6 +595,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉已经发生的侵害，质量也会回退。自己发现永远比被起诉后整改便宜。（这一步无法把已累积的风险归零。）",
             "en": "Stopping limits further liability but does not undo the harm already done, and quality regresses. Finding it yourself is cheaper than after a suit. (This cannot zero out the risk already accumulated.)"
@@ -590,6 +612,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "拖延换来上线时间，代价是把举证与赔偿谈判一起推到对方起诉之后——那时议价权已经不在你手上。",
             "en": "Delay buys shipping time and defers the burden of proof and settlement talk until after the suit — when you no longer set the price."
@@ -614,6 +637,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -630,6 +654,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "抽成模式最受欢迎；但对他人形象与声音的二次商业授权，通常远超原始授权范围，等于把别人的权利当成库存再卖一次。法律风险最高。",
             "en": "Revenue share is the most popular; but sublicensing others' likeness and voice usually exceeds the original licence — selling someone's rights as inventory twice. Highest legal exposure."
@@ -654,6 +679,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在素材存疑时控制扩散范围，能限制后续被追责的门店数；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits the stores later drawn into liability; the cost is an unimpressive growth number."
@@ -670,6 +696,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没人能还原。",
             "en": "Bonusing on signatures pushes sales to sign for merchants and register accounts for them — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
@@ -693,6 +720,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late labelling helps you show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
@@ -709,6 +737,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
             "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling, and omitting it can look like facilitating deception."
@@ -740,6 +769,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "moat": 2,
             "business": -1
           },
+          "actor": "design",
           "why": {
             "zh": "花钱做审计、公开的代价是被仔细阅读（商业模式分下降）；但一份可被监管与平台引用的结论，会把你从「风险源头」重新定义为「行业标准参与者」。",
             "en": "Paying for an audit and publishing invites careful reading (business drops); but a conclusion both regulators and platforms can cite reframes you from 'source of risk' to 'participant in industry standards'."
@@ -756,6 +786,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "「技术中立」在已经知道滥用路径的情况下很难成立：知情而不设防，会从免责变成放任，并对社会造成持续性的信息环境污染。",
             "en": "'Technology is neutral' rarely survives once misuse paths are known: aware and undefended turns exemption into wilful blindness, polluting the information environment continuously."
@@ -780,6 +811,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款保守，但授权链条与素材库完整可控，面对平台审核、品牌合规与监管问询时几乎不会被问倒——这是护城河。",
             "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so reviews, compliance and regulatory questions rarely knock you over. That is the moat."
@@ -796,6 +828,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。",
             "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly."
@@ -811,6 +844,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但产品边界不被外部流量目标拉扯，也不必为了数字向的资金承诺放松把关。这种克制本身就是一种稀缺优势。",
             "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around by someone else's traffic targets, and you never loosen safeguards for a funding number. That restraint is itself scarce."
@@ -837,6 +871,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": -1,
             "pmf": 1
           },
+          "actor": "design",
           "why": {
             "zh": "补救能止住继续扩散，也向平台与品牌客户证明你会修正；但它不能让已经受骗的人回到原点，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
             "en": "Fixing it stops the spread and shows platforms and brands you correct course — but it cannot restore those already cheated, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
@@ -852,6 +887,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "ethics": 2,
             "business": 2
           },
+          "actor": "law",
           "why": {
             "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
             "en": "Silence protects the short-term curve and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
@@ -876,6 +912,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款保守，但授权链条与素材库完整可控，面对平台审核、品牌合规与监管问询时几乎不会被问倒。",
             "en": "Local money is smaller and more conservative, but the licence chain and asset library stay auditable, so reviews and regulatory questions rarely knock you over."
@@ -892,6 +929,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "渠道与流量一夜到位。但把本地模特与公众人物的面孔、声音库向境外创作者开放，等于让生物特征素材持续出境并形成不可逆的传播。",
             "en": "Distribution and traffic arrive overnight. But opening a library of local faces and voices to overseas creators means biometric material flows out continuously and irreversibly."
@@ -907,6 +945,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但产品边界不被外部流量目标拉扯；在信任已经受损的情况下，这种克制至少不再新增外部依赖。",
             "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around; with trust already damaged, restraint at least adds no new external dependency."
