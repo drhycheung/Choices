@@ -77,8 +77,10 @@ for (const f of files) {
   const m = {};
   T.forEach(t => { m[t.e] = (m[t.e] || 0) + 1; });
 
-  const bmin = Math.min(...T.map(t => t.d.business));
-  const low = T.filter(t => t.d.national_security <= 4 && t.d.legal <= 4 && t.d.ethics <= 4);
+  // 状态空间已到百万级：不能用 Math.min(...arr) 展开，会爆调用栈
+  let bmin = Infinity;
+  for (const t of T) if (t.d.business < bmin) bmin = t.d.business;
+  const low = T.filter(t => t.d.national_security <= 4 && t.d.legal <= 4 && t.d.ethics <= 4 && t.d.social <= 4);
   const strong = low.filter(t => t.d.business >= 6).length;
   const fail = Object.keys(m)
     .filter(k => k.indexOf('boom') === 0 || k.indexOf('bust') === 0)
@@ -102,7 +104,7 @@ for (const r of rows) {
     if (r.m[k] === undefined && (k === 'boom_social' || k === 'bust_social')) continue;
     console.log('   ' + k.padEnd(15) + pct(r.m[k] || 0, r.N));
   }
-  console.log('   三线<=4 中 business>=6 :  ' +
+  console.log('   四线<=4 中 business>=6 :  ' +
     (r.lowN ? r.strong + '/' + r.lowN + '  (' + (100 * r.strong / r.lowN).toFixed(0) + '%)' : '-'));
 }
 
@@ -111,6 +113,6 @@ console.log('【验收】对照 docs/balance-recalibration-plan.md §8');
 console.log('   business 终局最小值        现状 ' + String(worst.bmin).padStart(2) + '   目标 1-2');
 console.log('   stalled 最低占比           现状 ' + (100 * worst.stall).toFixed(2) + '%   目标 3%-8%');
 console.log('   win_clean 最低占比         现状 ' + (100 * worst.clean).toFixed(2) + '%   目标 0.2%-1%');
-console.log('   三线<=4 中 business>=6    现状 ' + (100 * worst.strong).toFixed(0) + '%   目标 70%-80%');
+console.log('   四线<=4 中 business>=6    现状 ' + (100 * worst.strong).toFixed(0) + '%   目标 70%-80%');
 console.log('   失败结局最高占比           现状 ' + (100 * worst.fail).toFixed(1) + '%   目标 80%-85%');
 console.log('-'.repeat(96) + '\n');

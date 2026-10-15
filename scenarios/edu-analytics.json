@@ -37,7 +37,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -49,7 +49,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -61,8 +61,20 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -168,7 +180,8 @@
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -208,7 +221,8 @@
           "next": "c2_product",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -281,7 +295,8 @@
           "next": "c2_keyresource",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -379,12 +394,30 @@
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "混入的数据能让准确率立刻好看，但你既无法说明来源，也无法履行对学生与家长的告知义务；这些学生的答题内容还会随模型权重长期留存。",
             "en": "Blending makes accuracy look good at once, but you can neither account for provenance nor discharge the duty to inform students and parents; their answers also persist in the model weights."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半数据字段：只留班级层面的统计",
+            "en": "Cut half the data fields: keep only class-level statistics"
+          },
+          "next": "edu-analytics_b1_clean",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃个体诊断——只有班级统计，教研就退回一次月考分析。精准度下降，但你换来一件事：家长看得懂这份记录针对的是谁、有没有出错。",
+            "en": "This gives up individual diagnosis: with only class statistics, teaching research falls back to a monthly exam analysis. Precision drops, but parents can now see who a record concerns and whether it contains an error."
           }
         }
       ]
@@ -420,7 +453,8 @@
           "next": "edu-analytics_b1_clean_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -480,7 +514,8 @@
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -522,7 +557,8 @@
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -595,7 +631,8 @@
           "next": "edu-analytics_b2_fixed_funding",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -638,7 +675,8 @@
           "next": "edu-analytics_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2
+            "business": 2,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -664,7 +702,8 @@
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -704,12 +743,64 @@
           "effects": {
             "national_security": 1,
             "ethics": 1,
-            "business": 1
+            "business": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
             "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。",
             "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell people first, and let them opt in"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」：家长能自己决定孩子的行为数据是否进入那些长期画像，默认设置必须改掉，还要给退出的人留一条损失不大的路径。代价真实但不致命——少了一些续约。",
+            "en": "What actually changes the product is the opt-in: parents decide whether a child's behavioural data enters the long-term profiles, the default has to change, and those who opt out need a path that costs them little. The cost is real but survivable — you lose some renewals."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让教师与家长共同定规则",
+            "en": "Community governance: teachers and parents set the rules together"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "AI 在替教师和学生下判断，而他们最想要的正是对规则有发言权。把这一步做完最贵也最慢：每次规则调整都要协商，你会因此错过至少一个学期的扩张窗口。",
+            "en": "The AI makes judgements about teachers and students, and what they want most is a say in the rules. Doing this is the most expensive and slowest: every rule change needs negotiation, and you will miss at least a term of expansion."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "那些长期学生画像之所以值钱，正是因为它们跨学年累积。你拆掉它，就得靠按学区收费活着，同时失去最容易向教育局演示的那个功能。",
+            "en": "The long-term student profiles are valuable precisely because they accumulate across school years. Dismantle them and you live on per-district fees, losing the feature that is easiest to demonstrate to education bureaus."
           }
         }
       ]
@@ -754,7 +845,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -813,7 +905,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -871,7 +964,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -931,7 +1025,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -973,7 +1068,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1014,7 +1110,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1056,7 +1153,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1114,7 +1212,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1165,6 +1264,14 @@
     "bust_ethics": {
       "zh": "早期用户不多，但其中一位是被标注为粗心的小女孩的母亲。",
       "en": "There were few early users, and one was the mother of the girl always labelled careless."
+    },
+    "boom_social": {
+      "zh": "教育局把它列进了推荐名录，教研组也写了表扬信。只是家长群里有人问了一句：我们能选择不用吗？教育局的答复是：这是学校统一采购的。",
+      "en": "The education bureau listed it as recommended and the teaching group sent a commendation. In the parents' group someone asked: can we opt out? The bureau replied that this is a centrally procured school system."
+    },
+    "bust_social": {
+      "zh": "成绩统计确实更准了，转学的学生却多了一倍。没有人说得出这个因果关系，但所有家长都指向同一样东西：我们孩子每天被打了多少分？",
+      "en": "The scores became genuinely more accurate and transfers doubled. No one could state the causal link, but every parent pointed at the same thing: how many points a day is our child being marked down for?"
     },
     "win_clean": {
       "zh": "教育局最终把你们的知情与复核流程写进了采购范本。",

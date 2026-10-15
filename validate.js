@@ -48,8 +48,8 @@
       if (typeof dims[k].higherIsRisk !== 'boolean') {
         warnings.push('维度 ' + k + ' 未声明 higherIsRisk(true/false)，HUD 无法判断方向');
       }
-      if (dims[k].group !== 'risk' && dims[k].group !== 'value') {
-        warnings.push('维度 ' + k + ' 未声明 group(risk/value)，HUD 无法分组显示');
+      if (['scope', 'instrument', 'value'].indexOf(dims[k].group) === -1) {
+        warnings.push('维度 ' + k + ' 未声明 group(scope/instrument/value)，HUD 无法分组显示');
       }
     }
 

@@ -41,7 +41,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -53,7 +53,7 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -65,8 +65,20 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -172,7 +184,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -212,7 +225,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "next": "c2_product",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
@@ -285,7 +299,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "next": "c2_keyresource",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -383,12 +398,30 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "效果提升明显。但这些单据属于他人商业资料，既无法证明取得合法，也可能包含受管制交易的痕迹；用它训练，等于把别人的合规风险装进了自己的模型。",
             "en": "Quality improves clearly. But those documents are other parties' commercial material: you cannot evidence lawful acquisition and they may contain traces of controlled transactions. Training on them loads someone else's compliance risk into your own model."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半单据内容：只读必要字段",
+            "en": "Cut half the document content: read required fields only"
+          },
+          "next": "trade-doc-ai_b1_clean",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃从附件里读关联方与最终地址——没有它们，识别准确率明显下降。但报关行能确切知道自己哪些商业信息被读走，也能确切知道它没有读走什么。",
+            "en": "This gives up reading counterparties and final addresses from attachments, which measurably reduces accuracy. In return, brokers know exactly which commercial details were read, and know what was not."
           }
         }
       ]
@@ -424,7 +457,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "next": "trade-doc-ai_b1_clean_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -485,7 +519,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "pmf": 1,
             "legal": 1,
             "ethics": 1,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -527,7 +562,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -583,7 +619,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "next": "trade-doc-ai_b2_fixed_funding",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -627,7 +664,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "ethics": 2,
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -653,7 +691,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -693,12 +732,64 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "national_security": 1,
             "ethics": 1,
-            "business": 1
+            "business": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
             "zh": "按批次处置看起来最省事，问题是必然还有下一批；受管制的货不会因为这次没被问到就不存在。把责任交给运气，代价由他人承担。",
             "en": "Batch-by-batch handling looks cheapest, but there is always a next one: controlled cargo does not cease to exist because nobody asked this time. Leaving it to luck makes someone else pay."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell clients first, and let them opt in"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」：报关行能自己决定其单据是否进入案例库，默认设置必须改掉，还要给退出的人留一条损失不大的路径。代价真实但不致命——少了一些长期客户。",
+            "en": "What actually changes the product is the opt-in: brokers decide whether their declarations enter the case library, the default has to change, and those who opt out need a path that costs them little. The cost is real but survivable — you lose some long-term clients."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让报关行共同定归类规则",
+            "en": "Community governance: brokers set the classification rules together"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "把归类口径交给报关行共同决定，等于承认替客户定归类这件事本身需要被监督。这一步最贵也最慢：每次口径调整都要协商，你会因此错过至少一个旺季的扩张窗口。",
+            "en": "Handing classification criteria to brokers together means accepting that deciding for clients needs oversight in itself. This is the most expensive and slowest: every criteria change needs negotiation, and you will miss at least one peak season of expansion."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "你之前靠分担关税抽成，正是因为掌握客户的单据流。拆掉它，就得纯靠单据计费活着，同时失去最容易卖的那个商业理由。",
+            "en": "Your revenue share on duty saved depended precisely on holding your clients' document flows. Dismantle that and you live purely on per-document fees, losing the easiest thing to sell."
           }
         }
       ]
@@ -743,7 +834,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "design",
           "why": {
@@ -802,7 +894,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -860,7 +953,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -919,7 +1013,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -961,7 +1056,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1002,7 +1098,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1044,7 +1141,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1102,7 +1200,8 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1153,6 +1252,14 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
     "bust_ethics": {
       "zh": "早期客户不多，但其中一位被查出申报不实后退出了合作。",
       "en": "There were few early clients, and one dropped out after being cited for false declaration."
+    },
+    "boom_social": {
+      "zh": "合规清单通过了海关的抽查，报关速度也提上来了。只是有几家同行悄悄换掉了你，去找那家承诺「不替客户表态」的。",
+      "en": "Your compliance list passed a customs spot check and declarations got faster. A few competitors quietly moved to the vendor that promises never to take a position on your classification."
+    },
+    "bust_social": {
+      "zh": "你们成了行业里最准的那批人之一。直到一个老报关行的人说了句实话：你们把我们的判断学走了，而我们从来不知道它被用在了哪里。",
+      "en": "You became one of the most accurate tools in the trade. Then an experienced broker said the quiet part: you learned our judgement, and we never found out where you used it."
     },
     "win_clean": {
       "zh": "年底复核时，只有你们能一次调齐全部校验与留存记录。",

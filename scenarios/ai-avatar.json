@@ -37,7 +37,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -49,7 +49,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -61,8 +61,20 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -168,7 +180,8 @@
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "policy",
           "why": {
@@ -208,7 +221,8 @@
           "next": "c2_product",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -281,7 +295,8 @@
           "next": "c2_keyresource",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -379,12 +394,30 @@
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "混合数据集通常交付出最好的效果指标，但你无法证明每一条的合法性基础；一旦有人主张权利，举证责任与追溯成本都在你们这边。",
             "en": "Mixed datasets usually produce the best quality metrics, but you cannot prove a lawful basis for each item; when someone asserts their rights, both the burden of proof and the tracing cost fall on you."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半素材：只用已授权的真实主播素材",
+            "en": "Cut half the material: use only authorised real performers"
+          },
+          "next": "cln_ops",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃共享模板库——那是这个产品最容易出爆款的地方。可复制性归零之后，每一场直播都要重新谈授权。但主播看得懂自己被用在了哪里，也就能拒绝其中一部分。",
+            "en": "This gives up the shared template library, the easiest source of viral clips. Without that reusability, every stream needs a fresh licence. But performers can see where their material is used, and can refuse part of it."
           }
         }
       ]
@@ -421,7 +454,8 @@
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -486,7 +520,8 @@
           "next": "cln_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -545,7 +580,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -604,7 +640,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -662,7 +699,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -722,7 +760,8 @@
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -764,7 +803,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -806,7 +846,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -847,7 +888,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -896,7 +938,8 @@
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -938,7 +981,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -997,12 +1041,64 @@
           "next": "ppr_funding",
           "effects": {
             "ethics": 2,
-            "business": 2
+            "business": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
             "en": "Silence protects the short-term curve and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell people first, and let them opt in"
+          },
+          "next": "ppr_funding",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」：主播能自己决定肖像与声音是否进入共享模板库，默认设置必须改掉，还要给退出的人留一条损失不大的路径。代价真实但不致命——少了一些签约。",
+            "en": "What actually changes the product is the opt-in: performers decide whether their likeness and voice enter the shared template library, the default has to change, and those who opt out need a path that costs them little. The cost is real but survivable — you lose some sign-ups."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让主播与商户共同定规则",
+            "en": "Community governance: performers and merchants set the rules together"
+          },
+          "next": "ppr_funding",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "合成肖像正在被拿去骗人，而主播最想要的正是对规则有发言权。这一步最贵也最慢：每次规则调整都要协商，你会因此错过至少一个季度的扩张窗口。",
+            "en": "Synthetic likenesses are being used to commit fraud, and what performers want most is a say in the rules. This is the most expensive and slowest: every rule change needs negotiation, and you will miss at least a quarter of expansion."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "ppr_funding",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "共享模板库之所以能出爆款，正是因为它能无限复用同一张脸。拆掉它，你就得靠纯签约费活着，同时失去整个平台的增长逻辑。",
+            "en": "The shared template library produces hits precisely because the same face can be reused without limit. Dismantle it and you live on signing fees alone, losing the platform's entire growth logic."
           }
         }
       ]
@@ -1039,7 +1135,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1090,6 +1187,14 @@
     "bust_ethics": {
       "zh": "早期用户不多，但其中一位是被仿冒的那位评论员本人。",
       "en": "There were few early users, and one of them was the commentator being impersonated."
+    },
+    "boom_social": {
+      "zh": "平台的合规审核一次通过，主播签约率也很高。只是有一天一位观众在直播里问：这个主播到底是真人还是模型？商家统一回答：都是真的。",
+      "en": "The platform's compliance review passed first time and sign-up rates are high. Then a viewer asked mid-stream: is this performer a real person or a model? Every merchant gave the same answer: both are real."
+    },
+    "bust_social": {
+      "zh": "换脸视频确实大多被拦住了。可商家社区里没人再提这件事——他们只是把「用真实主播」写进了合同，然后在备注里加了一句：没办法。",
+      "en": "Most face-swap videos were blocked. But nobody in the merchant community mentioned it again: they simply wrote \"use real performers\" into the contract and added a note in the margin: no alternative."
     },
     "win_clean": {
       "zh": "平台把你们的水印方案写进了它的推荐细则。",

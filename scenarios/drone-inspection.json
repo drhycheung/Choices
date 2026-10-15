@@ -37,7 +37,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -49,7 +49,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -61,8 +61,20 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -168,7 +180,8 @@
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -208,7 +221,8 @@
           "next": "c2_product",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -281,7 +295,8 @@
           "next": "c2_keyresource",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -379,12 +394,30 @@
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "效果提升明显。但影像包里是否夹杂禁拍区域的画面、是否包含未授权拍摄的素材，都无法核实；这类瑕疵一旦被发现，追溯极其困难。",
             "en": "Quality improves noticeably. But you cannot verify whether the pack includes imagery of restricted zones or footage shot without permission, and once discovered such defects are almost impossible to trace back."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半影像：只保留缺陷局部",
+            "en": "Cut half the imagery: keep only defect close-ups"
+          },
+          "next": "drone-inspection_b1_clean",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃完整飞行记录——只有缺陷局部，回溯能力就归零，争议时你拿不出证据。但它带来一件事：周边被拍到的居民不会因为一次例行巡检留下整年的记录。",
+            "en": "This gives up the full flight record: without complete imagery you cannot reconstruct anything, so you cannot prove what happened if it is disputed. In return, residents photographed on a routine inspection do not keep a year-long record."
           }
         }
       ]
@@ -420,7 +453,8 @@
           "next": "drone-inspection_b1_clean_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -480,7 +514,8 @@
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -522,7 +557,8 @@
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -595,7 +631,8 @@
           "next": "drone-inspection_b2_fixed_funding",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -638,7 +675,8 @@
           "next": "drone-inspection_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2
+            "business": 2,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -664,7 +702,8 @@
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -704,12 +743,64 @@
           "effects": {
             "national_security": 1,
             "ethics": 1,
-            "business": 1
+            "business": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
             "zh": "按指示删片看似成本低；但已经交付给第三方的副本不会因为你删除本地文件而消失，且没有系统性排查，下一次核查会来得更快。",
             "en": "Deleting what you are told looks cheap; copies already delivered do not disappear when you delete your master, and without a systematic sweep the next inspection arrives sooner."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell clients first, and let them opt in"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」：客户能自己决定飞检数据是否进入共享影像库，默认设置必须改掉，还要给退出的人留一条损失不大的路径。代价真实但不致命——少了一些标段。",
+            "en": "What actually changes the product is the opt-in: clients decide whether their inspection data enters the shared imagery library, the default has to change, and those who opt out need a path that costs them little. The cost is real but survivable — you lose some tenders."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让客户共同定影像规则",
+            "en": "Community governance: clients set the imagery rules together"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "把影像公开规则交给客户共同决定，等于承认这不是你们一家能定的事。这一步最贵也最慢：每次遮蔽调整都要协商，你会因此错过至少一个季度的扩张窗口。",
+            "en": "Handing the imagery rules to clients together means accepting this is not your decision alone. This is the most expensive and slowest: every masking change needs negotiation, and you will miss at least a quarter of expansion."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "影像库之所以值钱，正是因为它高精且连续。你拆掉它，就得纯靠飞行服务费活着，同时失去最容易中标的那个差异化。",
+            "en": "The imagery library is valuable precisely because it is high-resolution and continuous. Dismantle it and you live purely on flight fees, losing the easiest differentiator to win tenders."
           }
         }
       ]
@@ -754,7 +845,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -813,7 +905,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -871,7 +964,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -931,7 +1025,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -973,7 +1068,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -1014,7 +1110,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1056,7 +1153,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1114,7 +1212,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1165,6 +1264,14 @@
     "bust_ethics": {
       "zh": "早期项目不多，但其中一处漏判的裂缝后来成了抢修单。",
       "en": "There were few early projects, and one missed crack later became an emergency repair order."
+    },
+    "boom_social": {
+      "zh": "合规证书和审计报告都很齐，水务所续了标段。只是周边居民开始问一个技术问题：你们几点飞？他们想知道，也想知道为什么是那个时候。",
+      "en": "The certificates and audit reports were all in order and the water utility renewed. Then residents nearby started asking a technical question: what time do you fly? They wanted to know, and why that time."
+    },
+    "bust_social": {
+      "zh": "判读准确率做到了行业前列。直到一个村子的长老把三年的飞行记录拼在一起：你们知道我们什么时候在家。现在这件事上了新闻，而你们还没学会怎么回答。",
+      "en": "Reading accuracy reached an industry high. Then a village elder pieced together three years of flight records: you know when we are at home. That reached the news, and you do not yet have an answer."
     },
     "win_clean": {
       "zh": "年底招标会上，只有你们能把整套飞行留痕一次交齐。",

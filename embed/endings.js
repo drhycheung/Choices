@@ -498,16 +498,108 @@ window.CHOICES_EMBEDDED.endings = {
       }
     }
   },
+  "boom_social": {
+    "title": {
+      "zh": "守住了规矩，却没人要",
+      "en": "Compliant, and Nobody Wants It"
+    },
+    "type": "fail",
+    "condition": {
+      "legal": "<=4",
+      "ethics": "<=4",
+      "social": ">=5",
+      "business": ">=6"
+    },
+    "text": {
+      "zh": "三条线里最硬的两条你都守住了：法律干净，伦理也说得上过去，客户名单还在增长。但用户已经开始在评论区问同一件事——你们凭什么替我决定。这些期待从来没有写进任何一份合同，所以也没有任何一份文件能让它们消失。",
+      "en": "You held the two hardest lines: legally clean, ethically defensible, and the client list still growing. But users had started asking the same question in the comments: on what grounds do you decide for me. Those expectations were never written into a contract, so no document can make them disappear."
+    },
+    "reflection": {
+      "zh": "法律与伦理都说得过去，社会期待却失分——请说明这三者为什么会给出不同答案。",
+      "en": "Law and ethics both pass while social expectation fails. Explain why the three give different answers here."
+    },
+    "analysis": {
+      "trigger": {
+        "zh": "触发原因：法律与伦理都在 4 分以下、社会期待风险 5 分以上、商业分 6 分以上。数据完全合规，业务也确实做起来了，但没有人问过你。",
+        "en": "Why it fired: legal and ethics at 4 or below, social expectation risk at 5+, business at 6+. The data handling was compliant and the business is real — but nobody asked you."
+      },
+      "tradeoff": {
+        "zh": "你把「可证明的合规」当成了终点。这是法律视角的终点，不是社会视角的终点：法律问的是有没有规则管住这件事，伦理问的是成本分得公不公平，社会问的是受影响的人原本期待什么。前两个问题有答案，第三个问题从来不会自动成立。",
+        "en": "You treated demonstrable compliance as the finish line. That is where the legal view ends, not where the social view ends: law asks whether a rule governs the decision, ethics asks whether the costs fall fairly, and society asks what the affected people expected. The first two have answers. The third never resolves on its own."
+      },
+      "stakeholders": {
+        "zh": "受影响的人承担了成本却从未被问过；你的客户和投资人只看得见前两条线，所以他们的满意并不构成反驳。",
+        "en": "The affected people carried the cost and were never asked. Your clients and investors can only see the first two lines, so their satisfaction is not a rebuttal."
+      },
+      "mitigation": {
+        "zh": "可行的补救是把「我们不问你们想要什么」这件事改掉：在发布前就去问受影响的人，把答案写进产品规则，并接受这会让进度变慢。",
+        "en": "The workable remedy is to stop deciding on their behalf: ask the affected people before launch, write the answers into the product rules, and accept the delay that causes."
+      },
+      "canvas": {
+        "zh": "这一局提醒你的是 Lean Canvas 的顾客细分：你以为你知道自己服务谁，但真正知道自己服务谁的是那些从未被问过的人。",
+        "en": "What this run shows you is the customer segment box of the Lean Canvas: you thought you knew who you were serving, but the people who really knew were the ones never asked."
+      },
+      "legal": {
+        "zh": "没有任何一条法律要求你去问社会期待。但正因为没有，社会期待就成了唯一一个你必须自己负责、而没有人会替你兜底的维度。",
+        "en": "No law requires you to ask about social expectation. Precisely because none does, it is the one dimension you must answer for yourself, with nobody covering for you."
+      }
+    }
+  },
+  "bust_social": {
+    "title": {
+      "zh": "把每条线都压到最低，还是没做成",
+      "en": "Everything Held, Nothing Shipped"
+    },
+    "type": "fail",
+    "condition": {
+      "social": ">=5"
+    },
+    "text": {
+      "zh": "最后你没有越过任何一条线：没有踩红线，也没有做出一个真正有人要的产品。四条线你都压到最低了，结果还是没有做成——因为「社会期待风险为零」不是一个可达的状态。别人对你总有些期待，你只能选择承担多少，而不是归零。",
+      "en": "In the end you crossed no line: nothing illegal, and nothing anyone actually wanted either. You pushed all four lines to their lowest, and still did not build a business — because a social expectation risk of zero is not a reachable state. Other people always expect something of you. You can choose how much of it you carry, not whether any of it exists."
+    },
+    "reflection": {
+      "zh": "为什么「社会期待风险为零」不可达？这一局里是哪一步最先让它偏离零？",
+      "en": "Why is a social expectation risk of zero unreachable? Which step in this run pushed it furthest from zero?"
+    },
+    "analysis": {
+      "trigger": {
+        "zh": "触发原因：社会期待风险 5 分以上。法律、伦理、国家安全都守住了，但受影响的人不接受你替他们决定的方式。",
+        "en": "Why it fired: social expectation risk at 5+. Law, ethics and national security all held, but the people affected did not accept being decided for."
+      },
+      "tradeoff": {
+        "zh": "这一局教你的是那条最容易被略过的界线：法律风险可以归零——合规就是 0。伦理风险没有标准答案，只能辩。**社会期待风险没有「零」。** 你可以把落差压到可管理的程度，但没有人期待为零这件事，本身就是这个维度的定义。",
+        "en": "This run teaches the line most easily skipped. Legal risk can reach zero, because compliance is zero. Ethical risk has no standard answer, only an argument. Social expectation risk has no zero at all. You can bring the gap down to something manageable, but the fact that nobody expects nothing is itself the definition of this dimension."
+      },
+      "stakeholders": {
+        "zh": "受影响的人没有被问过，他们的期待因此没有被计入；等到它体现在流失和舆论上时，纠正成本已经远高于事先询问。",
+        "en": "The affected people were never asked, so their expectations were never counted in. By the time that shows up as churn and public comment, correcting it costs far more than asking would have."
+      },
+      "mitigation": {
+        "zh": "可行的补救是把预期显式化：提前告知、给出选择加入、把最敏感的一项从产品里去掉。第三项是唯一同时动两个工具的选项，代价是商业模式本身。",
+        "en": "The workable remedy is to make the expectation explicit: tell people early, let them opt in, and remove the most sensitive feature. That last one is the only option that moves two instruments at once, and it costs you the business model itself."
+      },
+      "canvas": {
+        "zh": "这一局提醒你的是价值主张：你承诺解决的是问题，但受影响的人买的是「不被代表」。这两件事不一样。",
+        "en": "What this run shows you is the value proposition: you promised to solve a problem, but what the affected people were buying was not being spoken for. Those are different things."
+      },
+      "legal": {
+        "zh": "这一次没有违法，也没有失信。所以复盘时最容易写成「下次注意沟通」——但真正的原因不是沟通，是你在没有人要求的情况下替所有人做了决定。",
+        "en": "Nothing was illegal and no commitment was broken. So the debrief is tempted to read as \"communicate better next time\". The real cause was not communication: you made the decision for everyone when nobody asked you to."
+      }
+    }
+  },
   "win_clean": {
     "title": {
-      "zh": "干净的胜利",
-      "en": "A Clean Win"
+      "zh": "干净通关（稀有徽章）",
+      "en": "A Clean Win (rare badge)"
     },
     "type": "success",
     "condition": {
       "national_security": "<=1",
       "legal": "<=1",
       "ethics": "<=1",
+      "social": "<=1",
       "business": ">=6"
     },
     "text": {
@@ -524,8 +616,8 @@ window.CHOICES_EMBEDDED.endings = {
         "en": "Why it fired: all three risk tracks stayed at 0 while business reached 6+ — growth and restraint held at the same time."
       },
       "tradeoff": {
-        "zh": "你做的取舍：每一次都选了「先把话说清楚」的版本——更慢的授权流程、更窄的数据范围、更贵的本地方案。代价是速度，回报是不必回头返工。",
-        "en": "The trade-off: every time you picked the version that 'said things plainly' — slower permissions, narrower data scope, pricier local options. The cost was speed; the return was never having to rebuild."
+        "zh": "这是「可持续的成功」那一格里分数最高的少数人：四条线全部压到最低，而且商业分依然站得住。按约定，它要求每条风险线都是零——而「社会期待风险为零」在现实中并不存在，这只是这个记分板的约定。你做的取舍：每一次都选了「先把话说清楚」的版本——更慢的授权流程、更窄的数据范围、更贵的本地方案。代价是速度，回报是不必回头返工。",
+        "en": "This is the small number of people who scored highest inside Sustainable Success: every line at its lowest and the business still standing. By convention it needs every risk line at zero, and a social expectation risk of zero does not exist in reality - it is a convention of this scoreboard, not a claim about the world. The trade-off: every time you picked the version that 'said things plainly' — slower permissions, narrower data scope, pricier local options. The cost was speed; the return was never having to rebuild."
       },
       "stakeholders": [
         {
@@ -585,14 +677,15 @@ window.CHOICES_EMBEDDED.endings = {
   },
   "win_resilient": {
     "title": {
-      "zh": "带着伤疤活下来",
-      "en": "Surviving With Scars"
+      "zh": "可持续的成功",
+      "en": "Sustainable Success"
     },
     "type": "success",
     "condition": {
       "national_security": "<=4",
       "legal": "<=4",
       "ethics": "<=4",
+      "social": "<=4",
       "business": ">=6"
     },
     "text": {
@@ -609,10 +702,14 @@ window.CHOICES_EMBEDDED.endings = {
         "en": "Why it fired: all three risk tracks stayed below 5 — costly but not breached — while business reached 6+."
       },
       "tradeoff": {
-        "zh": "你做的取舍：允许自己在少数非核心环节承担风险，以换取交付速度；同时保证一旦出事能定位、能回滚、能赔付。这是一种工程化的风险管理，而不是侥幸。",
-        "en": "The trade-off: you accepted risk in a few non-core areas to buy delivery speed, while guaranteeing you could locate, roll back and compensate if it broke. That is engineered risk management, not luck."
+        "zh": "这一格在讲义上叫「可持续的成功」：负责任的做法变成了别人必须达到的标准。你做的取舍：允许自己在少数非核心环节承担风险，以换取交付速度；同时保证一旦出事能定位、能回滚、能赔付。这是一种工程化的风险管理，而不是侥幸。",
+        "en": "On the matrix this quadrant is Sustainable Success: responsible practice became the standard others have to meet. The trade-off: you accepted risk in a few non-core areas to buy delivery speed, while guaranteeing you could locate, roll back and compensate if it broke. That is engineered risk management, not luck."
       },
       "stakeholders": [
+        {
+          "zh": "多数人能到的是这一格，而不是满分那一格。真正把四条线全部压到最低的人极少。",
+          "en": "Most people reach this quadrant rather than the all-clear one. Very few manage to hold every line at its lowest."
+        },
         {
           "who": {
             "zh": "被轻微影响的用户",
@@ -666,14 +763,15 @@ window.CHOICES_EMBEDDED.endings = {
   },
   "stalled": {
     "title": {
-      "zh": "干净，却走不动",
-      "en": "Clean, But Going Nowhere"
+      "zh": "过度谨慎",
+      "en": "Over-Cautious"
     },
     "type": "compromise",
     "condition": {
       "national_security": "<=4",
       "legal": "<=4",
       "ethics": "<=4",
+      "social": "<=4",
       "business": "<=5"
     },
     "text": {
@@ -690,8 +788,8 @@ window.CHOICES_EMBEDDED.endings = {
         "en": "Why it fired: risk stayed low but the business model never reached 6 — you succeeded at not being wrong and failed at building something."
       },
       "tradeoff": {
-        "zh": "你做的取舍：把每一次商业风险都当成道德风险回避了。事实上二者是两回事——拒绝一个收入模式、一台预算为零、也拒绝了一个产品存在的理由。",
-        "en": "The trade-off: you treated every commercial risk as an ethical risk. They are not the same thing — declining a revenue model also declined the product's reason to exist."
+        "zh": "讲义上这一格叫「过度谨慎：每一条风险都避开了，却没留下跑道」。你做的取舍：把每一次商业风险都当成道德风险回避了。事实上二者是两回事——拒绝一个收入模式、一台预算为零、也拒绝了一个产品存在的理由。",
+        "en": "On the matrix this quadrant is Over-cautious: every risk avoided, no runway left. The trade-off: you treated every commercial risk as an ethical risk. They are not the same thing — declining a revenue model also declined the product's reason to exist."
       },
       "stakeholders": [
         {

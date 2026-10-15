@@ -37,7 +37,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -49,7 +49,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -61,8 +61,20 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -168,7 +180,8 @@
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -208,7 +221,8 @@
           "next": "c2_product",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
@@ -281,7 +295,8 @@
           "next": "c2_keyresource",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -379,12 +394,30 @@
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "「公开可见」不等于「可用于训练」：多数情况下仍缺少合法性基础与告知义务；用未授权的简历训练就业评分模型，是当前正在被起诉的一类做法。模型效果确实变好。",
             "en": "'Publicly visible' does not mean 'available for training': in most cases there is still no lawful basis and no notice. Training an employment-scoring model on unauthorised CVs is exactly the practice now being litigated. The model does get better."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半数据字段：只留可核验的经历",
+            "en": "Cut half the data fields: keep only verifiable experience"
+          },
+          "next": "ai-hiring_b1_clean",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃用非结构化信息做匹配——没有完整档案，匹配精度就退回行业平均水平。但它带来一件事：候选人看得懂自己被拿去比的是什么，也就有机会纠正它。",
+            "en": "This gives up matching on unstructured information: without a full profile, matching falls back to the industry average. In return, candidates can see what they are being compared on, and can therefore correct it."
           }
         }
       ]
@@ -420,7 +453,8 @@
           "next": "ai-hiring_b1_clean_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -480,7 +514,8 @@
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -522,7 +557,8 @@
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -595,7 +631,8 @@
           "next": "ai-hiring_b2_fixed_funding",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -638,7 +675,8 @@
           "next": "ai-hiring_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2
+            "business": 2,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -664,7 +702,8 @@
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -704,12 +743,64 @@
           "effects": {
             "national_security": 1,
             "ethics": 1,
-            "business": 1
+            "business": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
             "zh": "逐个复核看似节省，实则把发现成本转嫁给最弱势的当事人——只有懂得投诉的人才拿得到救济，系统性偏差原封不动。",
             "en": "Case-by-case review looks cheap but shifts detection costs onto the most vulnerable: only people who know how to complain get relief, while systemic bias stays untouched."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell candidates first, and let them opt in"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」：求职者能自己决定要不要把自己的资料放进那个可搜索的人才池，默认设置必须改掉，还要给选择退出的人留一条损失不大的路径。代价真实但不致命——少了一些签单。",
+            "en": "What actually changes the product is the opt-in: candidates decide whether their profile enters the searchable pool, the default has to change, and those who opt out need a path that costs them little. The cost is real but survivable — you lose some sign-ups."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让求职��与 HR 共同定规则",
+            "en": "Community governance: candidates and HR set the rules together"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "把评分规则交给求职者与 HR 共同决定，等于承认被评分的人不该只是被评分的对象。这一步最贵也最慢，每一次规则调整都要协商，你会因此错过至少一个季度的扩张窗口。",
+            "en": "Handing the scoring rules to candidates and HR together means accepting that the people being scored are not merely objects. This is the most expensive and slowest option: every rule change needs negotiation, and you will miss at least a quarter of expansion."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "可搜索的人才池之所以值钱，正是因为它集中了本地劳动力结构。拆掉它，你就得靠按席位收费活着，同时失去那个最大的卖点，也会失去那份关于本地劳动力分布的地图。",
+            "en": "The searchable pool is valuable precisely because it concentrates the structure of the local workforce. Dismantle it and you live on per-seat fees, losing both your main selling point and the map of local workforce distribution."
           }
         }
       ]
@@ -754,7 +845,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -813,7 +905,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -871,7 +964,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -931,7 +1025,8 @@
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -973,7 +1068,8 @@
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1014,7 +1110,8 @@
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1056,7 +1153,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1114,7 +1212,8 @@
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1165,6 +1264,14 @@
     "bust_ethics": {
       "zh": "早期用户不多，但其中一位把评分差异图发到了校友群。",
       "en": "There were few early users, but one posted the scoring gap into an alumni group."
+    },
+    "boom_social": {
+      "zh": "系统的合规评分通过了客户审核，报表也做得很漂亮。只是每次面试结束，候选人都问同一句：这个分数到底是谁定的？HR 说这是公司政策。",
+      "en": "The compliance review passed and the reporting looked good. Every candidate simply asked the same question afterwards: who decided this score? HR answered that it was company policy."
+    },
+    "bust_social": {
+      "zh": "续约率是全行业最好的。直到一位候选人在 Glassdoor 上写了一句：他们从没问过我愿不愿意被这样比较。那句话被顶到了第一页。",
+      "en": "Renewal was the best in the industry. Then a candidate wrote on Glassdoor: they never asked whether I was willing to be compared this way. The post reached the front page."
     },
     "win_clean": {
       "zh": "劳动团体最终把你们的复核流程写进了他们的参考范例。",

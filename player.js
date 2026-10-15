@@ -38,7 +38,8 @@
       finalScore: '终局分数',
       brandSub: '文字交互式分支叙事模拟器',
       hudTitle: '双轨仪表盘 · DUAL-TRACK DASHBOARD',
-      groupRisk: '风险轨 · 愈低愈好',
+      groupScope: '范围轨 · 能走多远',
+      groupInstrument: '工具轨 · 什么在约束你',
       groupValue: '价值轨 · 愈高愈好',
       whyPrefix: '为什么：',
       actorPrefix: '谁该管：',
@@ -93,7 +94,8 @@
       finalScore: 'Final scores',
       brandSub: 'Interactive Branching Narrative Simulator',
       hudTitle: 'DUAL-TRACK DASHBOARD',
-      groupRisk: 'Risk track · lower is better',
+      groupScope: 'Scope · how far it reaches',
+      groupInstrument: 'Instruments · what constrains you',
       groupValue: 'Value track · higher is better',
       whyPrefix: 'Why: ',
       actorPrefix: 'Who can act: ',
@@ -283,9 +285,9 @@
   function renderDims() {
     var wrap = $('dims');
     wrap.innerHTML = '';
-    [['risk', UI[lang].groupRisk], ['value', UI[lang].groupValue]].forEach(function (g) {
+    groupOrder().forEach(function (g) {
       var keys = Object.keys(scenario.dimensions).filter(function (k) {
-        return (scenario.dimensions[k].group || 'risk') === g[0];
+        return (scenario.dimensions[k].group || 'instrument') === g[0];
       });
       if (!keys.length) return;
       var section = textEl('div', '', 'dim-group');
@@ -293,6 +295,18 @@
       keys.forEach(function (k) { section.appendChild(renderDimRow(k)); });
       wrap.appendChild(section);
     });
+  }
+
+  // 三族：范围（能走多远）/ 工具（什么在约束你）/ 创业（愈高愈好）。
+  // showScope 供 GEL1032 隐藏国安线（该课程没有国安维度）。
+  function groupOrder() {
+    var GROUPS = [
+      ['scope', UI[lang].groupScope],
+      ['instrument', UI[lang].groupInstrument],
+      ['value', UI[lang].groupValue]
+    ];
+    var showScope = scenario.showScope !== false;
+    return GROUPS.filter(function (g) { return g[0] !== 'scope' || showScope; });
   }
 
   /* ============ 叙事与选项 ============ */
@@ -506,9 +520,9 @@
     box.appendChild(textEl('h3', UI[lang].ledgerTitle, 'debrief-title'));
     box.appendChild(textEl('p', UI[lang].ledgerNote, 'ledger-note'));
 
-    [['risk', UI[lang].groupRisk], ['value', UI[lang].groupValue]].forEach(function (g) {
+    groupOrder().forEach(function (g) {
       var keys = Object.keys(scenario.dimensions).filter(function (k) {
-        return (scenario.dimensions[k].group || 'risk') === g[0];
+        return (scenario.dimensions[k].group || 'instrument') === g[0];
       });
       if (!keys.length) return;
 
@@ -587,10 +601,11 @@
     return any ? (box.appendChild(ul), box) : null;
   }
 
-  // 风险归因：三条风险线各自列出「是哪几步把它推高的」，不再三条加总成一个数字
+  // 风险归因：每条风险线各自列出「是哪几步把它推高的」，不再加总成一个数字。
+  // 用 group !== 'value' 而不是 === 'risk'：国安线归在 scope 族，用 'risk' 会把它整个漏掉。
   function riskAttribution() {
     var keys = Object.keys(scenario.dimensions).filter(function (k) {
-      return scenario.dimensions[k].group === 'risk';
+      return scenario.dimensions[k].group !== 'value';
     });
     var box = textEl('div', '', 'attribution');
     box.appendChild(textEl('p', UI[lang].riskAttrNote, 'attribution-note'));

@@ -41,7 +41,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "scope",
       "icon": "🛡️"
     },
     "legal": {
@@ -53,7 +53,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "⚖️"
     },
     "ethics": {
@@ -65,8 +65,20 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": true,
-      "group": "risk",
+      "group": "instrument",
       "icon": "🧐"
+    },
+    "social": {
+      "label": {
+        "zh": "社会期待风险",
+        "en": "Social expectation risk"
+      },
+      "initial": 1,
+      "min": 0,
+      "max": 10,
+      "higherIsRisk": true,
+      "group": "instrument",
+      "icon": "🗣"
     },
     "pmf": {
       "label": {
@@ -128,8 +140,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
     "intro": {
       "act": "act1",
       "text": {
-        "zh": "七月，你们拿到校内创业基金，众创空间的工位第一次有了三个固定的人。投资人开始陆续加微信，也有人打听你们的数据。接下来的一连串抉择，每一个都会同时改变两件事：公司的前途，以及它可能碰到的国家安全、法律与伦理红线。",
-        "en": "In July you took the campus seed fund, and for the first time three people sat at the same desk every day. Investors started adding you on WeChat, and some asked about your data. a chain of decisions now follow, and each one changes two things at once: the company's prospects, and the national-security, legal and ethical lines it may cross."
+        "zh": "七月，你们拿到校内创业基金，众创空间的工位第一次有了三个固定的人。投资人开始陆续加微信，也有人打听你们的数据。接下来的一连串抉择，每一个都会同时改变两件事：公司的前途，以及它可能碰到的国家安全、法律、伦理与社会期待红线。",
+        "en": "In July you took the campus seed fund, and for the first time three people sat at the same desk every day. Investors started adding you on WeChat, and some asked about your data. a chain of decisions now follow, and each one changes two things at once: the company's prospects, and the national-security, legal, ethical and social-expectation lines it may cross."
       },
       "choices": [
         {
@@ -172,7 +184,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "c1_problem",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -212,7 +225,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "c2_mvp",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
@@ -285,7 +299,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "c2_mapdata",
           "effects": {
             "business": 2,
-            "national_security": 1
+            "national_security": 1,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -383,12 +398,30 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "pmf": 2,
             "legal": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
             "zh": "来源不明的数据包让你无法证明合法性基础，也无法向用户披露用途；一旦被追问，举证责任在你们这边。换来的是模型效果立刻变好、演示更好看。",
             "en": "With a package of unclear provenance you cannot demonstrate a lawful basis nor disclose the purpose to users; when challenged, the burden of proof sits with you. What you get is a model that performs better and demos well."
+          }
+        },
+        {
+          "text": {
+            "zh": "砍掉一半数据字段：只留距离和时长",
+            "en": "Cut half the data fields: keep only distance and duration"
+          },
+          "next": "ai-fitness_b1_clean",
+          "effects": {
+            "social": -2,
+            "legal": -1,
+            "pmf": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这一步要放弃个性化训练的能力——没有心率与睡眠，教练就退回成一个配速表。营收与个性化同时受损，但你换来一件事：用户逐条看得懂自己的数据，也就看得懂你拿它做了什么。",
+            "en": "This abandons personalisation: without heart rate and sleep, the coach falls back to a pace table. Revenue and personalisation suffer together, but you gain one thing — members can read their own data and therefore see what you do with it."
           }
         }
       ]
@@ -424,7 +457,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "ai-fitness_b1_clean_money",
           "effects": {
             "business": 2,
-            "ethics": 1
+            "ethics": 1,
+            "social": 1
           },
           "actor": "policy",
           "why": {
@@ -484,7 +518,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "pmf": 1,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -526,7 +561,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "ethics": 3,
             "legal": 1,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -599,7 +635,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "ai-fitness_b2_fixed_funding",
           "effects": {
             "business": 2,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "design",
           "why": {
@@ -642,7 +679,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "next": "ai-fitness_b2_paper_funding",
           "effects": {
             "ethics": 2,
-            "business": 2
+            "business": 2,
+            "social": 1
           },
           "actor": "law",
           "why": {
@@ -668,7 +706,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "national_security": 3,
             "legal": 2,
-            "business": 1
+            "business": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -708,12 +747,64 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "national_security": 1,
             "ethics": 1,
-            "business": 1
+            "business": 1,
+            "social": 1
           },
           "actor": "design",
           "why": {
             "zh": "按举报逐个删除，看起来成本低、也不影响其余功能；但没有系统性排查，同类区域仍会继续暴露，属于把风险留给下一个人去发现。",
             "en": "Deleting case by case looks cheap and leaves the rest of the product intact; without a systematic sweep, comparable sites stay exposed and you leave the risk for the next person to find."
+          }
+        },
+        {
+          "text": {
+            "zh": "事前告知 + 选择加入",
+            "en": "Tell people first, and let them opt in"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -3,
+            "legal": -1,
+            "business": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "真正改产品的是「选择加入」这个动作本身：用户能自己决定要不要把轨迹并进热力图，你要把默认设置改掉，还要为退出的人留一条不损失太多的路径。代价真实但不致命——少了一些热度。",
+            "en": "What actually changes the product is the opt-in itself: users decide whether their traces join the heat map, so the default has to change and people who opt out need a path that costs them little. The cost is real but survivable — you lose some of the buzz."
+          }
+        },
+        {
+          "text": {
+            "zh": "社区共管：让会员代表参与图层规则",
+            "en": "Community governance: member representatives set the layer rules"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "ethics": -1,
+            "business": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "把规则交给会员代表，等于承认你们不该独自决定哪些地点值得公开。这一步最贵也最慢：每一次图层调整都要走一轮协商，你会因此错过至少一个季度的扩张窗口。但换来的不是分数，是那些代表愿意继续留在群里。",
+            "en": "Handing the rules to member representatives means accepting you should not decide alone which places are worth publishing. This is the most expensive and slowest option: every layer change needs a round of negotiation, and you will miss at least a quarter of expansion. What you gain is not a score but representatives willing to stay."
+          }
+        },
+        {
+          "text": {
+            "zh": "重构定价：少收数据，也少收钱",
+            "en": "Restructure the pricing: collect less data, and charge less"
+          },
+          "next": "epilogue",
+          "effects": {
+            "social": -4,
+            "national_security": -2,
+            "business": -3
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这是唯一同时动两个工具的选项，而且代价是商业模式本身：热力图靠聚合数据才有价值，你把它拆掉，就得靠会员费活着。你会同时失去那个最好传播的功能和一部分营收——但这也是唯一能让国安线和社会线一起降下来的做法。",
+            "en": "This is the only option that moves two instruments at once, and it costs the business model: the heat map only has value because it aggregates data, so dismantle it and you live on membership fees. You lose both the most shareable feature and part of your revenue — and it is also the only way to bring both the national-security and social lines down together."
           }
         }
       ]
@@ -758,7 +849,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -817,7 +909,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -875,7 +968,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -935,7 +1029,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 4,
             "legal": 2,
-            "ethics": 3
+            "ethics": 3,
+            "social": 3
           },
           "actor": "law",
           "why": {
@@ -977,7 +1072,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 3,
             "legal": 1,
-            "ethics": 1
+            "ethics": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1018,7 +1114,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 2,
             "legal": 3,
-            "ethics": 2
+            "ethics": 2,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1060,7 +1157,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1118,7 +1216,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "business": 3,
             "national_security": 2,
-            "legal": 1
+            "legal": 1,
+            "social": 2
           },
           "actor": "law",
           "why": {
@@ -1169,6 +1268,14 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
     "bust_ethics": {
       "zh": "社群里流传的不是你们的产品，而是那次心悸漏报的截图。",
       "en": "What circulated in the community was not your product but the screenshot of that missed heart warning."
+    },
+    "boom_social": {
+      "zh": "合规定义得漂亮，健康筛查中心也签了约。只是每个会员都收到了一条推送：请注意管理自己的运动数据。「健康」被重新定义了：由保险公司来定义。",
+      "en": "Compliance was defined beautifully and the clinics signed up. What every member received instead was a notification: please manage your own activity data. Health had been redefined — by the insurer."
+    },
+    "bust_social": {
+      "zh": "保费折扣做到了行业最低，会员社群也一直很安静。直到有人问：跑得越多保费越低，那不跑的人算不算被区别对待了？这个问题没有出现在任何一份合同里。",
+      "en": "The premium discount reached an industry low and the members were quiet. Until someone asked: if the more you run the lower your premium, are the people who do not run being treated differently? That question appeared in no contract."
     },
     "win_clean": {
       "zh": "当监管来敲门时，你们直接把数据流向图摊在了会议桌上。",
