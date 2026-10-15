@@ -77,7 +77,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🎯"
     },
     "business": {
@@ -89,7 +89,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "💰"
     },
     "moat": {
@@ -101,7 +101,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🏰"
     }
   },
@@ -158,6 +158,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "校内场景的反馈闭环短，老师每天都能指出产品哪里不对，迭代质量高；一旦在一所学校形成口碑，区域内其他学校会自己找上门（Canvas 9）。缺点是决策慢、预算低。",
             "en": "Schools offer a short feedback loop: teachers tell you daily what is wrong, which lifts iteration quality; once one school vouches for you, others in the district call you (Canvas 9). Decision cycles are slow and budgets are low."
@@ -173,6 +174,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "把未成年人最细密的行为数据直接暴露在家长端，会让「被持续观察」的感受进入家庭关系；涉及未成年人，通常需要监护人同意且遵循最有利原则。用户数增长很快。",
             "en": "Surfacing the finest-grained behavioural data of minors straight into parents' hands makes constant observation part of family life; where minors are involved, guardian consent and the best-interests principle usually apply. User counts grow fast."
@@ -196,6 +198,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把问题定义为归因，产品就要做到可解释：每一条评语都要能指出对应的错因。Canvas 2 的证据越扎实，教研主任越容易替你在校内说话。",
             "en": "Defining the problem as diagnosis forces explainability: every comment must trace to a specific misconception. The stronger the Canvas 2 evidence, the easier it is for the department head to advocate for you."
@@ -211,6 +214,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "一键生成确实最省老师时间，采购理由也最好讲。但当评语由模型代笔而老师照单发出时，学生与家长以为读到的是老师的判断，学术评价的诚实性开始失真。",
             "en": "One-click output genuinely saves teacher time and is easy to sell. But when the model drafts comments that go out under the teacher's name, students and parents believe they are reading a human judgement, and the honesty of assessment erodes."
@@ -226,6 +230,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "一个区域大单让 Canvas 6 立刻成立。但买方要的是排名与汇报口径，而不是课堂里的真实归因，产品会往「看板」偏移，与老师的真实需求拉开距离。",
             "en": "One district deal makes Canvas 6 work instantly. But the buyer wants rankings and reporting optics rather than diagnosis inside lessons, so the product drifts towards dashboards and away from real teacher needs."
@@ -250,6 +255,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "归因体系会沉淀成学科错因库与教研语料，这是别人抄不走的资产（Canvas 9）。它不如看板好演示，但每用一年都在加宽壁垒。",
             "en": "A diagnosis taxonomy accumulates into a misconception library and teaching corpus nobody else owns (Canvas 9). It demos less dramatically than dashboards, but every year of use widens the moat."
@@ -265,6 +271,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "全年级的结构化画像便于汇报、容易被采购。但未成年人长期的学习行为画像，是敏感程度极高且影响持久的数据集合；一旦跨境或外泄，几乎无法补救。",
             "en": "Year-group profiles are easy to present and easy to buy. But a long-running behavioural profile of minors is extremely sensitive and long-lasting; once transferred or leaked it can barely be remedied."
@@ -288,6 +295,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "授权慢、内容少，但每一道题的来源清楚；面向学校、教育局与出版社本身做销售时，这是唯一讲得出口的版本。",
             "en": "Licensing is slow and thin, but every item's provenance is clean — the only version you can defend when selling to schools, districts and the publishers themselves."
@@ -304,6 +312,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "未经授权的教材与教辅通常构成著作权侵权；把纸质内容数字化并入库还会放大侵权范围。效果提升立竿见影，法律风险也随之固化在产品的地基里。",
             "en": "Unauthorised textbooks and workbooks usually infringe copyright; digitising them into a corpus widens the infringement. Quality improves immediately while legal risk is poured into your foundations."
@@ -327,6 +336,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "样本小会让准确率不高，但涉及未成年人信息处理，合法性基础与最小化原则是被优先审查的项；授权清晰，后面才有资格谈扩容。",
             "en": "A small sample means lower accuracy, but for minors' data the lawful basis and data minimisation are the first things examined; clean authorisation is what earns you permission to expand later."
@@ -343,6 +353,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "混入的数据能让准确率立刻好看，但你既无法说明来源，也无法履行对学生与家长的告知义务；这些学生的答题内容还会随模型权重长期留存。",
             "en": "Blending makes accuracy look good at once, but you can neither account for provenance nor discharge the duty to inform students and parents; their answers also persist in the model weights."
@@ -367,6 +378,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "涉及未成年人的数据处理，能被家长读懂的那一页往往决定学校敢不敢续签；它也是最难被同行复制的信任。",
             "en": "With minors' data, the page a parent can understand decides whether the school renews — and that trust is the hardest thing to copy."
@@ -382,6 +394,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下逐项维护说明的工作量；但未成年人数据一旦被质疑，家长与主管单位的追问会同时到来。",
             "en": "You save the upkeep — but when minors' data is questioned, parents and the authority arrive at the same time."
@@ -407,6 +420,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，效果也会回退；自己发现永远比被通报后整改便宜。",
             "en": "Stopping limits further liability but does not undo processing already done, and quality regresses. Finding it yourself beats remediating after a notification."
@@ -423,6 +437,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "换来的是效果与续签机会，代价是：这些未成年人数据从哪来、凭什么用，举证责任已经落在你们身上。",
             "en": "You buy performance and the renewal, and inherit the burden of proving where that children's data came from and why you may use it."
@@ -447,6 +462,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "承认偏差并补课数据会让产品真正对每所学校成立（契合度上升）；「不放大教育不平等」也会成为教育局与公益资金采购时的核心理由。代价是延期。",
             "en": "Acknowledging bias and correcting for it makes the product genuinely work in every school (higher fit); 'does not amplify educational inequality' becomes the core procurement argument for districts and philanthropic funding. It costs delay."
@@ -463,6 +479,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "限定适用范围的小字挡不住实际使用，弱势学校的学生仍会被系统性地低评；这等于把已知的复制性偏差当作产品常态发布。上线如期。",
             "en": "Scope language never stops real usage, and students in under-resourced schools still get systematically marked down; you ship known reproduced bias as normal behaviour. Launch stays on schedule."
@@ -486,6 +503,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把「教师能否决」写成条款，你就从「替老师下判断」变成「给老师证据」，采购时最难被替代的正是这一点。",
             "en": "Contracts that guarantee teacher override turn you from 'judging for teachers' into 'giving teachers evidence' — the hardest position to displace."
@@ -501,6 +519,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "ethics": 2
           },
+          "actor": "design",
           "why": {
             "zh": "建议变果断、演示更好看；但评语会落进学生的档案，而你的复核已经不再真实发生。",
             "en": "Advice sounds decisive and demos look better — but those comments land in a child's record while your review no longer really happens."
@@ -527,6 +546,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": -1,
             "pmf": 1
           },
+          "actor": "design",
           "why": {
             "zh": "补救能止住继续贴标签，也向学校证明你会修正；但它擦不掉已经写进档案的评语，收入也会先掉一块。",
             "en": "Fixing it stops further labelling and shows the school you correct course — but it cannot erase comments already filed, and revenue dips first."
@@ -542,6 +562,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "ethics": 2,
             "business": 2
           },
+          "actor": "law",
           "why": {
             "zh": "更长的说明保护的是你们，不是那个孩子；当评语已经影响分班与评价，说明写得多细都不算免责。",
             "en": "Longer notes protect you, not the child. Once comments shape placement and assessment, no amount of detail discharges that."
@@ -567,6 +588,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "把举证责任推回给家长，在教育场景几乎总是错招：学校与教育局会要求你先自证；而拒绝回应本身就会被解读为心虚。短期省下的只是沟通成本。",
             "en": "Pushing the burden of proof back onto parents is almost always the wrong move in education: the school and the bureau will ask you to account for yourself first, and silence reads as guilt. All you save is some conversation."
@@ -589,6 +611,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "moat": 2,
             "business": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "审计与公开要花钱、也会被仔细挑错（商业模式分下降）；但一份可被引用的第三方结论，会让你在教育局采购名单上是唯一经得起查的一家。",
             "en": "Auditing costs money and invites scrutiny (business score drops), but a citable conclusion makes you the only vendor on the district's list that survives inspection."
@@ -605,6 +628,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "ethics": 1,
             "business": 1
           },
+          "actor": "design",
           "why": {
             "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。",
             "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more."
@@ -637,6 +661,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅收钱慢，但把「不向外输出」写进合同，会积累家长与老师双边的信任，这在教育场景里是最难被取代的优势。",
             "en": "Subscriptions bill slowly, but 'we never export' in the contract builds trust with both parents and teachers — in education the hardest advantage for a rival to displace."
@@ -653,6 +678,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
             "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
@@ -677,6 +703,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "慢，但深度打磨会让错因标注真正准确（契合度上升）；教师社群的传播虽然缓慢，却在教育场景里最可靠、单位成本最低。",
             "en": "It is slow, but deep work makes the misconception labels genuinely accurate (higher fit); teacher communities spread slowly yet most reliably, at the lowest cost per win."
@@ -693,6 +720,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
             "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
@@ -716,6 +744,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "限制 AI 的角色会削弱「自动化」的卖点，短期不好讲。但在影响升学的评价环节保留人工决定权，是整个产品在法律与伦理上最稳的一块地基。",
             "en": "Capping the AI's role undercuts your automation pitch and looks weak short term. But keeping a human decision-maker wherever a mark affects a child's path is the most stable foundation available, legally and ethically."
@@ -732,6 +761,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
             "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
@@ -756,6 +786,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -772,6 +803,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律与伦理风险最高。",
             "en": "Indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal and ethical exposure."
@@ -796,6 +828,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在素材存疑时控制扩散范围，能限制后续被追责的学生数；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
@@ -812,6 +845,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "代理商不会替你维护数据边界；用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传。",
             "en": "The reseller will not guard your data boundaries; advertising score improvements without causal evidence usually amounts to misleading claims in education marketing."
@@ -835,6 +869,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late labelling helps show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
@@ -851,6 +886,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "不留痕迹能避免日后被追责；但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
             "en": "Keeping no trail avoids later challenges; but where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
@@ -875,6 +911,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
             "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
@@ -891,6 +928,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
             "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
@@ -906,6 +944,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但不必为了增长把学生数据交给任何一方，也不必向股东解释每一次取舍。在教育行业，这种克制就是信誉。",
             "en": "Cash gets tight and growth slows, but you never trade student data to anyone for growth. In education that restraint is your reputation."
@@ -930,6 +969,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但数据边界与授权链条完整，面对教育局、家长与学校的审查时几乎不会被问倒——这就是护城河。",
             "en": "Local money is smaller and more conservative, but boundaries and licences stay intact, so reviews by the bureau, parents and schools rarely knock you over. That is the moat."
@@ -946,6 +986,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与教研资源到位最快。但把一整个地区的教学数据与学情画像接入境外研究网络，既是持续的跨境提供，也把未成年人数据的控制权交给了外部。",
             "en": "Capital and research support arrive fastest. But connecting a whole region's teaching data and student profiles into an overseas research network means continuous outbound transfer and cedes control over minors' data."
@@ -961,6 +1002,7 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但数据边界由你说了算。在信任已经受损时，这种克制至少不再新增外部依赖。",
             "en": "Cash gets tight and growth slows, but data boundaries stay yours. With trust already damaged, restraint adds no new dependency."

@@ -77,7 +77,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🎯"
     },
     "business": {
@@ -89,7 +89,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "💰"
     },
     "moat": {
@@ -101,7 +101,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🏰"
     }
   },
@@ -158,6 +158,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "细分社群的痛点最容易用访谈验证，高质量反馈会直接沉淀成产品口碑——口碑就是后来最难被抄走的护城河（Canvas 9）。代价是天花板低，短期看不到规模。",
             "en": "A narrow community's pain is the easiest to validate through interviews, and that feedback compounds into word of mouth — the moat competitors copy last (Canvas 9). The cost is a low ceiling and no visible scale early."
@@ -173,6 +174,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "宽口径设群意味着你会采到远超当前用途的运动与位置信息，日后很难向用户交代目的（目的外使用 → 知情同意失效）。换来的是短期数字漂亮，变现故事好讲。",
             "en": "A wide definition of your user means collecting movement and location far beyond today's purpose, which is hard to justify later (secondary use undermines informed consent). In exchange the early numbers look good and the monetisation story is easy to tell."
@@ -196,6 +198,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "花两周做用户访谈是最便宜的学习方式：它把 Canvas 2（问题）从假设变成证据，PMF 上升，后续每个功能决策都有参照点。代价只是时间。",
             "en": "Two weeks of interviews is the cheapest way to learn: it turns Canvas 2 (problem) from assumption into evidence, raises fit, and gives every later feature decision a reference point. It only costs time."
@@ -211,6 +214,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "游戏化确实能拉升短期留存（Canvas 8 指标变好看），但社交比较会诱导用户为排名暴露更多行踪与身体数据，知情同意开始失真。",
             "en": "Gamification does lift short-term retention (Canvas 8 looks better), but social comparison nudges users to expose more of their routes and bodies for status, and consent starts to degrade."
@@ -226,6 +230,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "单一大客户带来确定现金流（Canvas 6 直接跑通），但产品方向被买方牵着走，真实用户的痛点被排在后面，PMF 下降——这是一种常见的「用短期现金换长期匹配度」的取舍。",
             "en": "One big customer brings certain cash (Canvas 6 fires immediately), but the roadmap follows the buyer and real users queue behind them, lowering fit — the classic trade of near-term cash for long-term fit."
@@ -250,6 +255,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "个性化建议需要真实生理数据才能做准，反过来又会沉淀成别人拿不走的训练集与算法诀窍（Canvas 9）。它慢，但每一步都在加宽护城河。",
             "en": "Personalised advice needs real physiological data to be accurate, which in turn accumulates into training data and know-how nobody else has (Canvas 9). It is slower, but every step widens the moat."
@@ -265,6 +271,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "热力图传播性强，短期获客成本低。但「匿名」的轨迹聚合起来会长期记录特定地点的活动规律——2018 年就有运动 App 的热力图还原出军事基地的巡逻与作息。这是看不见的国家安全风险。",
             "en": "A heat map spreads well and acquires users cheaply. But aggregated 'anonymous' tracks record the rhythm of specific locations over time — back in 2018 one fitness app's heat map reconstructed patrol patterns at military bases. That is invisible national-security risk."
@@ -288,6 +295,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "测绘地理信息在很多法域属于受管制数据，使用有资质的来源是唯一稳妥做法。数据精度略差反而迫使你把产品做在「有用」而不是「精确」上，PMF 小幅提升。",
             "en": "Surveying and mapping data is regulated in many jurisdictions; licensed sources are the only safe option. Slightly worse precision forces you to optimise for usefulness rather than exactness, nudging fit upward."
@@ -304,6 +312,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "高精度地理信息常与地方测绘监管、重要数据识别与跨境提供规则直接相关；未核实的境外来源还可能夹带敏感区域的坐标体系。产品体验上去了，国家安全与合规风险同时抬升。",
             "en": "High-precision geographic data often touches local surveying rules, important-data identification and cross-border transfer requirements; an unverified overseas source may also embed coordinate systems for sensitive sites. Experience improves while security and compliance risk rise together."
@@ -327,6 +336,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "样本量小，但每一条都有清晰的法律基础与用途边界，后续扩容、融资尽调、上架审核都不会被拦。这是把合规成本前置的做法。",
             "en": "The sample is small, but every record has a clear legal basis and purpose boundary, so scaling, due diligence and app-store review never stall later. It front-loads compliance cost."
@@ -343,6 +353,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "来源不明的数据包让你无法证明合法性基础，也无法向用户披露用途；一旦被追问，举证责任在你们这边。换来的是模型效果立刻变好、演示更好看。",
             "en": "With a package of unclear provenance you cannot demonstrate a lawful basis nor disclose the purpose to users; when challenged, the burden of proof sits with you. What you get is a model that performs better and demos well."
@@ -367,6 +378,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "用户能自查的透明度会变成留存理由；对企业雇主来说，这一页正是他们法务最想看到的东西——它把合规成本前置，换来最难复制的信任。",
             "en": "Transparency users can verify becomes a retention reason; for employers it is exactly what their legal team wants — front-loading compliance cost for the hardest trust to copy."
@@ -382,6 +394,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下整理的时间让包装更好看，但运动健康数据一旦被质疑来源，解释成本会一次性爆发。",
             "en": "You save sorting work and the packaging looks better, but when health-data provenance is questioned the explaining lands all at once."
@@ -407,6 +420,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，指标也会回退；自己发现永远比被举报后整改便宜。（这一步无法把已累积的风险归零。）",
             "en": "Stopping limits further liability but does not undo processing already done, and metrics regress. Finding it yourself is cheaper than after a report. (This cannot zero out the risk already accumulated.)"
@@ -423,6 +437,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "换来上线时间与漂亮指标，代价是把「合法性基础」这个举证责任整个留给了未来的自己。",
             "en": "You buy shipping time and good metrics, leaving the entire burden of proving a lawful basis to your future self."
@@ -447,6 +462,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "承认局限并补数据，会让产品对更广泛的人群真正成立（PMF 上升），也让「可靠的健康建议」成为难以复制的定位。代价是发布会要推迟。",
             "en": "Admitting the limits and fixing data representativeness makes the product genuinely work for a wider population (higher fit) and makes 'reliable health advice' a hard-to-copy position. The cost is a delayed launch."
@@ -463,6 +479,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "用小字限定人群，在实务上很难真的拦住高风险用户；一旦有人因此受伤，「已告知」通常不足以免责。好处是发布会如期举行。",
             "en": "Fine print rarely stops high-risk users in practice, and once someone is harmed, 'we told you' is usually not enough to discharge liability. The upside is that launch happens on schedule."
@@ -486,6 +503,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "把「知道自己不擅长什么」写成条款，它就从自我检讨变成采购条件；这类信任最难被后来者复制。",
             "en": "Written into contracts, 'knowing what it is not good at' stops being an apology and becomes a purchase condition — the hardest trust to copy."
@@ -501,6 +519,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "ethics": 2
           },
+          "actor": "design",
           "why": {
             "zh": "曲线立刻好看，但预警一旦漏掉一次真实心悸，你要解释的不只是模型，还有为什么把提示藏起来。",
             "en": "The curve looks better at once — but the first missed palpitation means explaining not just the model, but why you hid the caveat."
@@ -527,6 +546,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": -1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "补救能止住继续误导，也向合作方证明你会修正；但它不能让这次晕倒不发生，收入也会先掉一块。（已累积的信任风险无法完全归零。）",
             "en": "Fixing it stops further misguidance and shows partners you correct course — but it cannot un-happen the collapse, and revenue dips first. (The trust risk already accumulated cannot be fully zeroed.)"
@@ -542,6 +562,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "ethics": 2,
             "business": 2
           },
+          "actor": "law",
           "why": {
             "zh": "条款是写给愿意读条款的人的；对已经发生的损害，「我们写过」通常不足以免责，反而留下知情的证据。",
             "en": "Clauses bind people who read them. For harm already done, 'we wrote it' rarely discharges liability — it documents that you knew."
@@ -567,6 +588,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "「用户生成」不转移平台的责任：一旦你知道了聚合后果仍不处理，就从被动变成了放任，国家安全与法律责任同时上升。短期收益只是省下一笔改造费。",
             "en": "'User-generated' does not transfer liability: once you know about the aggregated effect and do nothing, passivity becomes wilful blindness, raising both national-security and legal exposure. The saving is just one remediation bill."
@@ -589,6 +611,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "moat": 2,
             "business": -1
           },
+          "actor": "design",
           "why": {
             "zh": "花钱做审计并降精度，短期牺牲了数据价值（商业模式分下降），但换来可对外公开的安全结论——这在政府、学校与企业客户面前是最难复制的优势。",
             "en": "Paying for an audit and lowering precision sacrifices some data value now (business score drops), but buys a publishable safety conclusion — with government, university and corporate clients that becomes the hardest advantage to copy."
@@ -605,6 +628,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "ethics": 1,
             "business": 1
           },
+          "actor": "design",
           "why": {
             "zh": "按举报逐个删除，看起来成本低、也不影响其余功能；但没有系统性排查，同类区域仍会继续暴露，属于把风险留给下一个人去发现。",
             "en": "Deleting case by case looks cheap and leaves the rest of the product intact; without a systematic sweep, comparable sites stay exposed and you leave the risk for the next person to find."
@@ -637,6 +661,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅收入慢，但把「我们不会拿你的数据做什么」写进公开条款，会沉淀成最难复制的信任壁垒；收入路径干净，尽调与跨境扩张都不受牵连。",
             "en": "Subscription revenue is slow, but publishing 'we will never do X with your data' compounds into the hardest trust moat; the revenue path stays clean."
@@ -653,6 +678,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "去标识不等于匿名：轨迹高度唯一，通常仍属个人信息；卖给保险意味着日常行踪进入核保决策，远超合理预期。收入最高，法律与伦理风险也最高。",
             "en": "De-identified is not anonymous: traces are highly unique and usually still personal. Selling to insurers puts routines into underwriting, far beyond expectation. Highest revenue, highest risk."
@@ -677,6 +703,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "社群渠道慢，但每批使用者愿给反馈，直接提升契合度；同社群间口碑扩散是单位成本最低的渠道。",
             "en": "Community channels are slow but every cohort gives feedback, lifting fit; peer contagion is the cheapest channel per win."
@@ -693,6 +720,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "买量最快，返现活动常踩平台规则与税务边界；数据上的增长无法代表产品真的好用。短期指标最好看。",
             "en": "Paid acquisition is fastest; referral schemes brush platform and tax rules; the numbers say nothing about product quality. Best-looking short-term metrics."
@@ -716,6 +744,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "标识与人工复核是成本项，但在健康建议这种高风险场景，可追溯与诚实标识会变成信任壁垒，也是被审查时的免死金牌。",
             "en": "Labelling and human review are pure cost, but in high-stakes advice traceability and honesty become a trust moat — your best defence when audited."
@@ -732,6 +761,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "多个法域已要求对 AI 生成内容显著标识；让用户误以为有真人专业人士，在健康建议场景后果更重。转化率更高。",
             "en": "Several jurisdictions require conspicuous labelling; implying a human professional exists is worse for health advice. Conversion is higher, though."
@@ -756,6 +786,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -772,6 +803,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
             "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
@@ -796,6 +828,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在素材存疑时控制扩散范围，能限制后续被追责的用户数；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits later liability; the cost is an unimpressive growth number."
@@ -812,6 +845,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "返现结构会诱导销售替用户代注册，授权链条在第一米就断了；用户数很好看，责任链条却没人能还原。",
             "en": "Referral schemes push sales to register users for them — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
@@ -835,6 +869,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           "effects": {
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "迟到的标识能帮你在出事时自证「至少标了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late labelling helps show 'at least we marked it' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
@@ -851,6 +886,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "去掉标识让转化率明显变好，这正是危险之处：多个法域已要求 AI 生成内容显著标识，不做可能被视为为欺诈提供条件。",
             "en": "Dropping the label improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling."
@@ -875,6 +911,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做学校、医院客户时几乎不会被问出无法回答的问题。",
             "en": "Local money is smaller and stricter, but data stays inside an explainable jurisdiction, so you are rarely caught out later."
@@ -891,6 +928,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
             "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
@@ -906,6 +944,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但数据边界由你说了算，往后的决策都简洁。这种独立性本身也是一种优势。",
             "en": "Tight cash and slower growth, but data boundaries stay yours. That independence is itself an advantage."
@@ -930,6 +969,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度小、条款多，但数据留在可解释的法域内，日后做学校、医院客户时几乎不会被问出无法回答的问题。",
             "en": "Local money is smaller and stricter, but data stays inside an explainable jurisdiction, so you are rarely caught out later."
@@ -946,6 +986,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
             "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
@@ -961,6 +1002,7 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流紧张、扩张变慢，但数据边界由你说了算。在信任已经受损时，这种克制至少不再新增外部依赖。",
             "en": "Tight cash and slower growth, but data boundaries stay yours. With trust already damaged, restraint adds no new dependency."

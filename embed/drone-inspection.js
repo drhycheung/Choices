@@ -77,7 +77,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🎯"
     },
     "business": {
@@ -89,7 +89,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "💰"
     },
     "moat": {
@@ -101,7 +101,7 @@ window.CHOICES_EMBEDDED.scenarios["drone-inspection"] = {
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🏰"
     }
   },

@@ -39,8 +39,10 @@
       brandSub: '文字交互式分支叙事模拟器',
       hudTitle: '双轨仪表盘 · DUAL-TRACK DASHBOARD',
       groupRisk: '风险轨 · 愈低愈好',
-      groupVenture: '创业轨 · 愈高愈好',
+      groupValue: '价值轨 · 愈高愈好',
       whyPrefix: '为什么：',
+      actorPrefix: '谁该管：',
+      actor: { design: '设计', policy: '公司政策', law: '法律' },
       stepPrefix: '第',
       stepSuffix: '步',
       locked: '未解锁',
@@ -66,7 +68,7 @@
       exportNote: '报告含本局全部决策、每步的分数增减与理由、分数总账与结局复盘，可直接提交或打印。',
       exported: '已开始下载',
       perfectBadge: '完美通关',
-      perfectNote: '三条风险线全部为零，创业三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
+      perfectNote: '三条风险线全部为零，价值三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
       footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
       actionError: '错误: ',
       loadError: '无法加载场景：',
@@ -92,8 +94,10 @@
       brandSub: 'Interactive Branching Narrative Simulator',
       hudTitle: 'DUAL-TRACK DASHBOARD',
       groupRisk: 'Risk track · lower is better',
-      groupVenture: 'Venture track · higher is better',
+      groupValue: 'Value track · higher is better',
       whyPrefix: 'Why: ',
+      actorPrefix: 'Who can act: ',
+      actor: { design: 'design', policy: 'company policy', law: 'law' },
       stepPrefix: '',
       stepSuffix: '',
       locked: 'locked',
@@ -119,7 +123,7 @@
       exportJson: 'Download JSON data',
       exportNote: 'The report contains every decision, the score change and the reason behind each step, the score ledger and the ending debrief — ready to submit or print.',
       exported: 'Download started',
-      perfectNote: 'All three risk lines at zero and all three venture boxes at 7 or above — the only path in this venture that does it.',
+      perfectNote: 'All three risk lines at zero and all three value boxes at 7 or above — the only path in this venture that does it.',
       footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
       actionError: 'Error: ',
       loadError: 'Could not load the scenario: ',
@@ -233,7 +237,7 @@
     b.className = 'banner ' + (kind || 'info');
   }
 
-  /* ============ 仪表盘（双轨：风险轨 / 创业轨） ============ */
+  /* ============ 仪表盘（双轨：风险轨 / 价值轨） ============ */
 
   function riskColor(ratio) {
     if (ratio <= 0.2) return '#2e9e5b';
@@ -253,7 +257,7 @@
     var max = (typeof d.max === 'number') ? d.max : 10;
     var higherIsRisk = d.higherIsRisk !== false;
     var ratio = Math.max(0, Math.min(1, max ? val / max : 0));
-    var alarm = higherIsRisk && ratio >= 0.5;   // 风险轨过半才报警；创业轨永不报警
+    var alarm = higherIsRisk && ratio >= 0.5;   // 风险轨过半才报警；价值轨永不报警
     var color = trackColor(val, max, higherIsRisk);
 
     var row = textEl('div', '', 'dim' + (alarm ? ' danger' : ''));
@@ -279,7 +283,7 @@
   function renderDims() {
     var wrap = $('dims');
     wrap.innerHTML = '';
-    [['risk', UI[lang].groupRisk], ['venture', UI[lang].groupVenture]].forEach(function (g) {
+    [['risk', UI[lang].groupRisk], ['value', UI[lang].groupValue]].forEach(function (g) {
       var keys = Object.keys(scenario.dimensions).filter(function (k) {
         return (scenario.dimensions[k].group || 'risk') === g[0];
       });
@@ -428,6 +432,9 @@
       box.appendChild(chips);
     }
     if (choice && choice.why) box.appendChild(textEl('div', UI[lang].whyPrefix + pick(choice.why, lang), 'fb-why'));
+    if (choice && choice.actor && UI[lang].actor[choice.actor]) {
+      box.appendChild(textEl('div', UI[lang].actorPrefix + UI[lang].actor[choice.actor], 'fb-actor'));
+    }
     box.classList.remove('hidden');
   }
 
@@ -499,7 +506,7 @@
     box.appendChild(textEl('h3', UI[lang].ledgerTitle, 'debrief-title'));
     box.appendChild(textEl('p', UI[lang].ledgerNote, 'ledger-note'));
 
-    [['risk', UI[lang].groupRisk], ['venture', UI[lang].groupVenture]].forEach(function (g) {
+    [['risk', UI[lang].groupRisk], ['value', UI[lang].groupValue]].forEach(function (g) {
       var keys = Object.keys(scenario.dimensions).filter(function (k) {
         return (scenario.dimensions[k].group || 'risk') === g[0];
       });
@@ -559,7 +566,7 @@
 
   function canvasAttribution() {
     var keys = Object.keys(scenario.dimensions).filter(function (k) {
-      return scenario.dimensions[k].group === 'venture';
+      return scenario.dimensions[k].group === 'value';
     });
     if (!keys.length) return null;
     var box = textEl('div', '', 'attribution');
@@ -567,7 +574,7 @@
     var ul = textEl('ul', '', 'attr-boxes');
     var any = false;
     keys.forEach(function (k) {
-      // 逐维度取：这一格里被改动最多的那几步（ Venture 轨分数越高越好，配色按好坏）
+      // 逐维度取：这一格里被改动最多的那几步（价值轨分数越高越好，配色按好坏）
       var moves = dimMoves(k, 2);
       if (!moves.length) return;
       any = true;
@@ -984,6 +991,9 @@
 
       if (choice && choice.why) {
         li.appendChild(textEl('div', UI[lang].whyPrefix + pick(choice.why, lang), 'trace-why'));
+      }
+      if (choice && choice.actor && UI[lang].actor[choice.actor]) {
+        li.appendChild(textEl('div', UI[lang].actorPrefix + UI[lang].actor[choice.actor], 'trace-actor'));
       }
       list.appendChild(li);
     });

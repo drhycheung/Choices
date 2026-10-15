@@ -73,7 +73,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🎯"
     },
     "business": {
@@ -85,7 +85,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "💰"
     },
     "moat": {
@@ -97,7 +97,7 @@
       "min": 0,
       "max": 10,
       "higherIsRisk": false,
-      "group": "venture",
+      "group": "value",
       "icon": "🏰"
     }
   },
@@ -154,6 +154,7 @@
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "单一岗位类型的评价标准相对客观，容易与 HR 对齐并形成校验集；这类细分口碑一旦建立，就是后来者最难复制的部分（Canvas 9）。缺点是市场容量有限。",
             "en": "One role type has comparatively objective criteria, easy to align on with HR and turn into a validation set; once that reputation forms it is the hardest part for a competitor to copy (Canvas 9). The market is limited, though."
@@ -169,6 +170,7 @@
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "全岗位意味着模型必须用同一套标准判断完全不同的人群，偏见更容易被放大且难以解释；涉猎越广，对候选人的告知义务也越难履行。好处是数据量与合同额增长快。",
             "en": "Covering all roles means one yardstick judges very different populations, so bias amplifies and resists explanation; the wider the scope, the harder it is to discharge your duty to inform candidates. Volume and contract value grow fast, though."
@@ -192,6 +194,7 @@
           "effects": {
             "pmf": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "真正的因果在这句话里：HR 需要的是可解释的依据，而不是更快的排序。把产品定位在「给出可被质疑的证据」上，Canvas 2 的假设才成立。",
             "en": "The causal insight sits right there: HR needs defensible evidence, not faster ranking. Positioning the product as 'evidence you can challenge' is what makes Canvas 2 hold."
@@ -207,6 +210,7 @@
             "business": 2,
             "ethics": 1
           },
+          "actor": "design",
           "why": {
             "zh": "一键决策最符合「省时间」的采购理由，合同容易签。但把人的前途压缩成一个数字，会让候选人与面试官都失去追问的能力，自动化决策的问责开始缺位。",
             "en": "One-click decisions match the 'save time' purchasing rationale and are easy to sign. But collapsing someone's future into one number removes the ability to question it, and accountability for automated decisions starts to vanish."
@@ -222,6 +226,7 @@
             "business": 3,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "一个大单直接跑通 Canvas 6，现金流确定。但买方要的是汇报口径而非真实筛选效果，产品会往「看起来有AI」的方向偏，真切合度反而下降。",
             "en": "One large deal makes Canvas 6 work immediately and removes cash-flow doubt. But the buyer wants reporting optics rather than real screening quality, so the product drifts towards looking AI-driven while genuine fit drops."
@@ -246,6 +251,7 @@
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "测评与证据链会沉淀成题库、评分标准与效度数据，这是最难复制的部分（Canvas 9）。它增长慢，但每服务一家客户就多一层壁垒。",
             "en": "Assessments and evidence chains accumulate into question banks, rubrics and validity data — the pieces hardest to replicate (Canvas 9). Growth is slower, but every client adds another layer to the moat."
@@ -261,6 +267,7 @@
             "business": 2,
             "national_security": 1
           },
+          "actor": "design",
           "why": {
             "zh": "人才库与人才画像库传播性强、付费意愿高；但把大量本地劳动力（含关键行业、关键岗位人员）的结构化画像集中沉淀在一个可被检索的数据库里，本身就是敏感性极高的资产。",
             "en": "A searchable talent pool monetises well and spreads fast, but concentrating structured profiles of a local workforce — including people in critical roles and industries — creates an asset of very high sensitivity."
@@ -284,6 +291,7 @@
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "自建慢却在可控范围内：词库来源清晰、可解释、可维护，后续面对质询时能说清每个权重来自哪里。本地化还会顺带改善匹配质量。",
             "en": "Building it in-house is slower but stays explainable: clear provenance, maintainable, and you can account for every weight when challenged. Localisation also improves matching quality."
@@ -300,6 +308,7 @@
             "legal": 1,
             "pmf": 1
           },
+          "actor": "law",
           "why": {
             "zh": "把本地职位与人才结构持续发送给境外数据服务，可能构成重要数据或个人信息出境的连续流转，且依赖不可控的第三方。换来的是上线速度和现成的语义能力。",
             "en": "Streaming local job and workforce structure to an overseas service may amount to continuous cross-border transfer of important data or personal information, on infrastructure you do not control. The upside is speed and ready-made semantics."
@@ -323,6 +332,7 @@
           "effects": {
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "样本小会让短期内指标不好看，但授权链条完整意味着日后经得起尽调、追问与客户法务提问。这是把节奏让给了正确性。",
             "en": "A small sample makes the metrics look worse for now, but a complete authorisation chain survives due diligence, scrutiny and client counsel questions later. You trade pace for correctness."
@@ -339,6 +349,7 @@
             "legal": 2,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "「公开可见」不等于「可用于训练」：多数情况下仍缺少合法性基础与告知义务；用未授权的简历训练就业评分模型，是当前正在被起诉的一类做法。模型效果确实变好。",
             "en": "'Publicly visible' does not mean 'available for training': in most cases there is still no lawful basis and no notice. Training an employment-scoring model on unauthorised CVs is exactly the practice now being litigated. The model does get better."
@@ -363,6 +374,7 @@
             "pmf": 1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "候选人申诉与企业内审都要这一份依据；能提供它的供应商，在采购名单里会留在更靠上的位置。",
             "en": "Both candidate appeals and internal audits need that basis. Vendors who can produce it sit higher on the shortlist."
@@ -378,6 +390,7 @@
             "business": 2,
             "ethics": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "省下逐条维护说明的工作量，也避免被反复追问；但一旦进入劳动仲裁，你要解释为什么平时不给。",
             "en": "You save the upkeep and the repeated questions — but once a labour dispute starts you must explain why you withheld it."
@@ -403,6 +416,7 @@
             "ethics": -1,
             "pmf": -1
           },
+          "actor": "policy",
           "why": {
             "zh": "止损能减少后续责任，但减不掉已经发生的收集行为，效果也会回退；自己发现永远比被举报后整改便宜。",
             "en": "Stopping limits further liability but does not undo the collection, and quality regresses. Finding it yourself beats remediating after a report."
@@ -419,6 +433,7 @@
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "换来的是模型表现与交付时间，代价是把「我们凭什么持有这些数据」的举证责任整个留给了以后的自己。",
             "en": "You buy model performance and delivery time, and leave the burden of proving why you hold the data to your future self."
@@ -443,6 +458,7 @@
             "pmf": 2,
             "moat": 1
           },
+          "actor": "design",
           "why": {
             "zh": "「数据本来如此」是描述问题，不是解决问题。修正代表性会让评分对更广泛人群可靠，也让「可辩护的筛选」成为定位；代价是上线延期。",
             "en": "'The data is like that' describes the problem rather than solving it. Fixing representativeness makes scoring reliable across more people and makes 'defensible screening' your position; the cost is a delayed launch."
@@ -459,6 +475,7 @@
             "legal": 1,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。",
             "en": "Fine print will not contain the systemic effect, and once someone loses an opportunity the burden of proof stays with you. This turns known disparate impact into a shipped feature. Launch stays on schedule."
@@ -482,6 +499,7 @@
           "effects": {
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "愿意被审计本身就是门槛：它筛掉做不到的同行，也让你在招标里不必只拼价格。",
             "en": "Being auditable is itself a moat — it filters out rivals who cannot do it and gets you out of competing on price alone."
@@ -497,6 +515,7 @@
             "business": 2,
             "ethics": 2
           },
+          "actor": "design",
           "why": {
             "zh": "筛得多、交付快，指标立刻好看；但你在客户面前说的「我们有人复核」已经开始失真。",
             "en": "More candidates, faster delivery, better metrics at once — but 'a human reviews this' has started to drift from the truth."
@@ -523,6 +542,7 @@
             "business": -1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "补救能止住继续误判，也向客户证明你会修正；但它不能退回那七次拒绝，收入也会先掉一块。",
             "en": "Fixing it stops further misjudgement and shows clients you correct course — but it cannot return the seven rejections, and revenue dips first."
@@ -538,6 +558,7 @@
             "ethics": 2,
             "business": 2
           },
+          "actor": "law",
           "why": {
             "zh": "把责任推给客户能换来短期平安，但监管看的是谁设计了规则；这句话也会成为你知情的证据。",
             "en": "Pushing responsibility to the client buys short-term quiet, but regulators ask who designed the rule — and that line becomes evidence you knew."
@@ -563,6 +584,7 @@
             "legal": 2,
             "business": 1
           },
+          "actor": "law",
           "why": {
             "zh": "「商业秘密」不能覆盖涉及劳动权利的差别影响举证义务；把评分称作「参考」也不改变它在实务中的决定作用。短期省下的是公开成本，付出的是信任与法律责任。",
             "en": "'Trade secret' does not override the duty to account for disparate impact in employment, and calling scores advisory does not change their decisive role in practice. You save disclosure cost and pay in trust and liability."
@@ -585,6 +607,7 @@
             "moat": 2,
             "business": -1
           },
+          "actor": "design",
           "why": {
             "zh": "审计要花钱、公开要承担被挑错的风险（商业模式分下降），但一份可引用的独立结论，会让大企业客户、政府采购与学校就业部门把你当成唯一敢公开的那个选项。",
             "en": "Auditing costs money and publishing invites criticism (business score drops), but a citable independent conclusion makes you the one vendor that large employers, public procurement and career offices can safely pick."
@@ -601,6 +624,7 @@
             "ethics": 1,
             "business": 1
           },
+          "actor": "design",
           "why": {
             "zh": "逐个复核看似节省，实则把发现成本转嫁给最弱势的当事人——只有懂得投诉的人才拿得到救济，系统性偏差原封不动。",
             "en": "Case-by-case review looks cheap but shifts detection costs onto the most vulnerable: only people who know how to complain get relief, while systemic bias stays untouched."
@@ -633,6 +657,7 @@
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "订阅是最慢的收钱方式，但「不转售」写在合同里，会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。",
             "en": "Subscriptions collect money slowest, but 'we never resell' written into the contract becomes a two-sided promise to candidates and HR alike — and in this industry trust is the hardest advantage to copy (Canvas 9)."
@@ -649,6 +674,7 @@
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "把求职者数据当成商品转售，通常远超收集时的目的与合理预期，几乎必然违反告知同意义务。财务回报最快，法律与伦理负债也最大。",
             "en": "Treating jobseekers' data as inventory to resell goes far beyond the original purpose and reasonable expectation, which almost always breaches notice-and-consent duties. Fastest financial return, largest legal and ethical debt."
@@ -673,6 +699,7 @@
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。",
             "en": "It is slow, but every client forces you to explain your scoring, which raises fit; referrals are the cheapest channel per win and renew best (Canvas 5)."
@@ -689,6 +716,7 @@
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "代理能快速放大合同数，但按人头分成的结构会诱导代理夸大效果甚至代为填写岗位要求，把产品的可信度押在别人的销售话术上。",
             "en": "Agents multiply contract count quickly, but per-head incentives push them to overstate results or even write job specs themselves, resting your credibility on someone else's sales pitch."
@@ -712,6 +740,7 @@
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "披露与申诉通道是纯成本：不增加签约数也不提升短期指标。但在就业场景下，可问责的流程本身就是差异化优势，也是应对投诉与审查的第一道防线。",
             "en": "Disclosure and appeals are pure cost: no extra deals, no short-term metric lift. But in employment contexts an accountable process is itself the differentiator, and your first line of defence against complaints and audits."
@@ -728,6 +757,7 @@
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "不披露可以避免大量解释成本，客户也更省事。但涉及就业的关键自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。",
             "en": "Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness."
@@ -752,6 +782,7 @@
             "business": 2,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在已经埋雷的情况下，至少不再新增二次授权的风险；慢，但能多撑一阵不被问倒。",
             "en": "With liabilities already buried, at least you stop adding sublicensing risk; slow, but you survive longer without being caught out."
@@ -768,6 +799,7 @@
             "legal": 2,
             "ethics": 3
           },
+          "actor": "law",
           "why": {
             "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
             "en": "Revenue share is the most popular; but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
@@ -792,6 +824,7 @@
             "business": 1,
             "pmf": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "在素材存疑时控制扩散范围，能限制后续被追责的候选人数量；代价是增长数字不好看。",
             "en": "Capping spread while sourcing is doubtful limits the candidates later drawn into liability; the cost is an unimpressive growth number."
@@ -808,6 +841,7 @@
             "legal": 1,
             "ethics": 1
           },
+          "actor": "law",
           "why": {
             "zh": "按签约数提成的结构会诱导销售替企业代填岗位要求，授权链条在第一米就断了；合同数很好看，责任链条却没人能还原。",
             "en": "Bonusing on signatures pushes sales to write job specs on the client's behalf — the authorisation chain breaks in the first metre. Contract count looks great, accountability cannot be reconstructed."
@@ -831,6 +865,7 @@
           "effects": {
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "迟到的披露能帮你在出事时自证「至少说了」，但补不回来源；它更多是止血，不是洗白。",
             "en": "Late disclosure helps show 'at least we said so' when things break, but it cannot restore provenance; it stanches bleeding, not launders it."
@@ -847,6 +882,7 @@
             "legal": 3,
             "ethics": 2
           },
+          "actor": "law",
           "why": {
             "zh": "去掉披露让转化明显变好，这正是危险之处：涉及就业的自动化决策，多地已要求告知与人工介入，不标识通常被视为程序不当。",
             "en": "Dropping disclosure measurably improves conversion, which is exactly what makes it dangerous: automated employment decisions increasingly require notice and human involvement, and concealment is treated as procedural unfairness."
@@ -871,6 +907,7 @@
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒——这就是护城河。",
             "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers. That is the moat."
@@ -887,6 +924,7 @@
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。",
             "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce — including who works in critical industries — is open to overseas clients, you have continuous outbound transfer and third-party sharing you no longer control."
@@ -902,6 +940,7 @@
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流会紧、扩张会慢，但不必为增长牺牲数据边界，也不必向股东解释每一次取舍。这种独立性在这个行业本身就是一种稀缺优势。",
             "en": "Cash gets tight and growth slows, but you never trade away data boundaries for growth nor justify every trade-off to shareholders. In this industry that independence is itself scarce."
@@ -926,6 +965,7 @@
             "business": 1,
             "moat": 2
           },
+          "actor": "policy",
           "why": {
             "zh": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒。",
             "en": "Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers."
@@ -942,6 +982,7 @@
             "national_security": 2,
             "legal": 1
           },
+          "actor": "law",
           "why": {
             "zh": "资金与渠道一夜到位。但本地劳动力结构、关键行业的任职分布一旦对境外客户开放检索，就形成持续的数据出境与第三方共享，责任边界也不再由你掌控。",
             "en": "Capital and distribution arrive overnight. But once a searchable map of the local workforce is open to overseas clients, you have continuous outbound transfer and third-party sharing you no longer control."
@@ -957,6 +998,7 @@
             "business": -1,
             "moat": 1
           },
+          "actor": "policy",
           "why": {
             "zh": "现金流会紧、扩张会慢，但数据边界不被外部流量目标拉扯；在信任已经受损时，这种克制至少不再新增外部依赖。",
             "en": "Cash is tight and growth slows, but the product's boundaries are not dragged around by someone else's traffic targets; with trust already damaged, restraint adds no new external dependency."

@@ -424,6 +424,15 @@ body::before {
   border-radius: 4px;
 }
 
+/* 「谁该管」——对应 L06 第三问：设计、公司政策，还是法律（社会维度计划 §3.2） */
+.fb-actor, .trace-actor {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--purple);
+}
+
 /* 每次选择后立即展示「改了什么 + 为什么」，让因果在学习的当下就可见 */
 .feedback {
   margin: 0 0 18px;

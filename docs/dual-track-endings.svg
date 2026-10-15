@@ -2,8 +2,8 @@
   <rect width="1080" height="561" fill="#ffffff"/>
 
   <!-- column headers -->
-  <text x="412" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Weak venture</text>
-  <text x="777" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Strong venture</text>
+  <text x="412" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Weak value</text>
+  <text x="777" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Strong value</text>
 
   <!-- row labels -->
   <text x="215" y="205" text-anchor="end" font-size="15" fill="#6b7280">Low risk</text>

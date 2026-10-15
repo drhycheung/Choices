@@ -42,7 +42,7 @@ This game was written for **GEL2026 · Technology Entrepreneurship in AI-enhance
 
 | Course concern | What the game makes the student do |
 |---|---|
-| Digital / AI value creation | The venture track scores problem–solution fit, business model and moat — the Lean Canvas blocks from class — so pressing a button *is* practising the canvas |
+| Digital / AI value creation | The value track scores problem–solution fit, business model and moat — the Lean Canvas blocks from class — so pressing a button *is* practising the canvas |
 | Customer and problem validation | Act I forces a choice between interviewing users and chasing vanity metrics, and the scoreboard remembers which one paid |
 | AI data and model decisions | Acts II–III put training data, offshore processing and deployment on the scoreboard with explicit national-security and legal consequences |
 | National security, legal and ethical implications | Three separate risk dimensions, so "it is legal but creepy" and "it is safe but unlawful" are different scores, not one blurred warning |
@@ -64,9 +64,9 @@ So every choice in this game feeds **two scoreboards at once**:
 | Track | Dimensions | Direction |
 |---|---|---|
 | **Risk track** | National security · Legal compliance · Ethics and trust | lower is better |
-| **Venture track** | Problem–solution fit (Canvas 1–4) · Business model (Canvas 5–7) · Moat and unfair advantage (Canvas 8–9) | higher is better |
+| **Value track** | Problem–solution fit (Canvas 1–4) · Business model (Canvas 5–7) · Moat and unfair advantage (Canvas 8–9) | higher is better |
 
-The venture dimensions map directly onto the Lean Canvas blocks covered in class, so pressing a button *is* practising the canvas. Endings are gated by **both tracks together**, producing a two-dimensional outcome space:
+The value dimensions map directly onto the Lean Canvas blocks covered in class, so pressing a button *is* practising the canvas. Endings are gated by **both tracks together**, producing a two-dimensional outcome space:
 
 - **Low risk + strong business** → a sustainable company (compliance itself becomes the moat).
 - **Low risk + weak business** → *clean, but going nowhere* — over-caution quietly kills the venture.
@@ -100,7 +100,7 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices; every choice carries its own `next`, and two decision points per venture open a persistent branch arc with questions the other players never see |
 | Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) above the first node, so plot events like "your first customer is…" always have context. The cover shows only the venture name and hook |
 | Six venture scenarios | `scenarios/manifest.json` lists the packs; each play randomly draws one (or force one with `?scenario=<id>`) |
-| Dual-track dashboard | Six segmented neon bars in two groups — risk (red alarm past threshold) and venture (green when strong) |
+| Dual-track dashboard | Six segmented neon bars in two groups — risk (red alarm past threshold) and value (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
 | Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
@@ -115,7 +115,7 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 
 ### Scenario format (the data packet)
 
-A scenario is a JSON file with a `brief` (the venture briefing — what the business does, who buys it, where it stands, what data it touches — shown before the story starts), `dimensions` (grouped into `risk` / `venture`), a `start` node id, `nodes` (text + `choices` each with `effects`, an optional `why`, and optional `requirements`/`lockedHint`), an `acts` chapter map, and a per-scenario `endingFlavor`. Endings themselves live in a **shared file** (`scenarios/endings-core.json`) so every venture uses the same outcome system. Minimal shape:
+A scenario is a JSON file with a `brief` (the venture briefing — what the business does, who buys it, where it stands, what data it touches — shown before the story starts), `dimensions` (grouped into `risk` / `value`), a `start` node id, `nodes` (text + `choices` each with `effects`, an optional `why`, and optional `requirements`/`lockedHint`), an `acts` chapter map, and a per-scenario `endingFlavor`. Endings themselves live in a **shared file** (`scenarios/endings-core.json`) so every venture uses the same outcome system. Minimal shape:
 
 ```json
 {
@@ -131,7 +131,7 @@ A scenario is a JSON file with a `brief` (the venture briefing — what the busi
                             "higherIsRisk": true, "group": "risk", "icon": "🛡️" },
     "business": { "label": { "zh": "…", "en": "Business model" },
                   "initial": 2, "min": 0, "max": 10,
-                  "higherIsRisk": false, "group": "venture", "icon": "💰" }
+                  "higherIsRisk": false, "group": "value", "icon": "💰" }
   },
   "start": "intro",
   "nodes": {

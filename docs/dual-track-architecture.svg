@@ -28,7 +28,7 @@
 
   <!-- venture track card -->
   <rect x="550" y="196" width="435" height="246" rx="16" fill="#dff0e8" stroke="#c2e2d1"/>
-  <text x="575" y="233" font-size="18" font-weight="700" fill="#1d6b4f">Venture track · higher is better</text>
+  <text x="575" y="233" font-size="18" font-weight="700" fill="#1d6b4f">Value track · higher is better</text>
   <text x="575" y="259" font-size="14" fill="#2e8b64">the three Lean Canvas considerations</text>
   <rect x="595" y="278" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
   <text x="767" y="302" text-anchor="middle" font-size="15" fill="#374151">Problem–solution fit · Canvas 1–4</text>
