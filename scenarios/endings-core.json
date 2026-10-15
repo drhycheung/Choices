@@ -1,9 +1,15 @@
 {
   "endings": {
     "boom_ns": {
-      "title": { "zh": "数据很漂亮，然后被叫停", "en": "Great Numbers, Then Shut Down" },
+      "title": {
+        "zh": "数据很漂亮，然后被叫停",
+        "en": "Great Numbers, Then Shut Down"
+      },
       "type": "fail",
-      "condition": { "national_security": ">=5", "business": ">=6" },
+      "condition": {
+        "national_security": ">=5",
+        "business": ">=6"
+      },
       "text": {
         "zh": "你做出了一门真正跑得起来的生意：用户、收入、媒体曝光，曲线一路向上。然后某一天，监管部门带着数据流向图上门——你们采集、聚合或跨境流转的信息，已经超出了被容许的范围。停业整改、数据接口关停、投资人连夜撤出。增长替你把风险放大到了无法收场的量级。",
         "en": "You built a business that genuinely worked: users, revenue, press coverage, and a curve pointing up. Then one day regulators arrived with a map of your data flows — what you collected, aggregated or shipped overseas had crossed a line. Operations were suspended, data interfaces shut down, investors exited overnight. Growth amplified the risk to a scale no one could contain."
@@ -22,14 +28,50 @@
           "en": "The trade-off: you swapped controllability for scale and speed. Every 'collect now, sort it out later' decision bought visible growth and quietly raised invisible risk; when exposure came, the more successful the business, the heavier the landing."
         },
         "stakeholders": [
-          { "who": { "zh": "用户与被采集者", "en": "Users and the people whose data you hold" }, "impact": { "zh": "在完全不知情的情况下成为数据流转的一环，事后难以追索。", "en": "Became links in a data chain they never knew about, with little recourse afterwards." } },
-          { "who": { "zh": "监管与执法机关", "en": "Regulators and enforcement agencies" }, "impact": { "zh": "被迫在技术与证据都困难的情况下处理既成事实，处置成本转嫁给整个行业。", "en": "Forced to deal with a fait accompli under technical and evidential difficulty, pushing the cost onto the whole sector." } },
-          { "who": { "zh": "团队与投资人", "en": "The team and investors" }, "impact": { "zh": "账面估值建立在随时可能被叫停的业务之上，一夜归零。", "en": "Paper value rested on operations that could be halted at any moment — reset to zero overnight." } }
+          {
+            "who": {
+              "zh": "用户与被采集者",
+              "en": "Users and the people whose data you hold"
+            },
+            "impact": {
+              "zh": "在完全不知情的情况下成为数据流转的一环，事后难以追索。",
+              "en": "Became links in a data chain they never knew about, with little recourse afterwards."
+            }
+          },
+          {
+            "who": {
+              "zh": "监管与执法机关",
+              "en": "Regulators and enforcement agencies"
+            },
+            "impact": {
+              "zh": "被迫在技术与证据都困难的情况下处理既成事实，处置成本转嫁给整个行业。",
+              "en": "Forced to deal with a fait accompli under technical and evidential difficulty, pushing the cost onto the whole sector."
+            }
+          },
+          {
+            "who": {
+              "zh": "团队与投资人",
+              "en": "The team and investors"
+            },
+            "impact": {
+              "zh": "账面估值建立在随时可能被叫停的业务之上，一夜归零。",
+              "en": "Paper value rested on operations that could be halted at any moment — reset to zero overnight."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "做数据分类分级，把「不能商业化」的数据从一开始就隔离出变现通路。", "en": "Classify and grade your data, and physically separate anything that cannot be commercialised from the monetisation path." },
-          { "zh": "任何跨境流转前完成安全评估与标准合同，并保留可审计的数据流日志。", "en": "Complete a security assessment and standard contract before any cross-border transfer, and keep auditable data-flow logs." },
-          { "zh": "把「重大合规事件」写进 Canvas 8 的关键指标，让它和收入指标同等重要。", "en": "Put 'major compliance incident' into Canvas 8 key metrics with the same weight as revenue." }
+          {
+            "zh": "做数据分类分级，把「不能商业化」的数据从一开始就隔离出变现通路。",
+            "en": "Classify and grade your data, and physically separate anything that cannot be commercialised from the monetisation path."
+          },
+          {
+            "zh": "任何跨境流转前完成安全评估与标准合同，并保留可审计的数据流日志。",
+            "en": "Complete a security assessment and standard contract before any cross-border transfer, and keep auditable data-flow logs."
+          },
+          {
+            "zh": "把「重大合规事件」写进 Canvas 8 的关键指标，让它和收入指标同等重要。",
+            "en": "Put 'major compliance incident' into Canvas 8 key metrics with the same weight as revenue."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：你优化的是 Canvas 6（收入）与 Canvas 8（关键指标），却把 Canvas 7（成本结构）里的合规成本当成零。真正的护城河 Canvas 9 里，「数据规模」被误当成了「数据权利」——前者会随一次调查蒸发。",
@@ -42,9 +84,14 @@
       }
     },
     "bust_ns": {
-      "title": { "zh": "越过红线，也没做出东西", "en": "Crossed the Line and Shipped Nothing" },
+      "title": {
+        "zh": "越过红线，也没做出东西",
+        "en": "Crossed the Line and Shipped Nothing"
+      },
       "type": "fail",
-      "condition": { "national_security": ">=5" },
+      "condition": {
+        "national_security": ">=5"
+      },
       "text": {
         "zh": "公司没能长大，麻烦却已经长成了。产品还在找市场，你们的数据做法先一步引来了核查。没有规模、没有现金流，也没有合规缓冲——一个尚未成形的创业项目，就这样结束了。",
         "en": "The company never grew up, but the trouble did. The product was still searching for its market while your data practices had already attracted scrutiny. No scale, no cash flow, no compliance buffer — an unformed venture ends there."
@@ -63,14 +110,50 @@
           "en": "The trade-off: every 'cheap, fast but risky' choice saved execution cost without converting into user value. The risk was prepaid; the return never arrived."
         },
         "stakeholders": [
-          { "who": { "zh": "创始团队", "en": "The founding team" }, "impact": { "zh": "付出时间与信誉成本，收获了一个无法写进简历的教训。", "en": "Spent time and reputation for a lesson that cannot go on a CV." } },
-          { "who": { "zh": "被采集数据的对象", "en": "People whose data was collected" }, "impact": { "zh": "即便产品失败，他们留下的痕迹仍在流转，无人负责清理。", "en": "Even though the product failed, the traces they left keep circulating with nobody accountable for cleaning them up." } },
-          { "who": { "zh": "所在学校 / 孵化器", "en": "The university or incubator" }, "impact": { "zh": "背书被消耗，后续项目合规门槛被迫提高。", "en": "Its endorsement is spent, and the compliance bar rises for every project after yours." } }
+          {
+            "who": {
+              "zh": "创始团队",
+              "en": "The founding team"
+            },
+            "impact": {
+              "zh": "付出时间与信誉成本，收获了一个无法写进简历的教训。",
+              "en": "Spent time and reputation for a lesson that cannot go on a CV."
+            }
+          },
+          {
+            "who": {
+              "zh": "被采集数据的对象",
+              "en": "People whose data was collected"
+            },
+            "impact": {
+              "zh": "即便产品失败，他们留下的痕迹仍在流转，无人负责清理。",
+              "en": "Even though the product failed, the traces they left keep circulating with nobody accountable for cleaning them up."
+            }
+          },
+          {
+            "who": {
+              "zh": "所在学校 / 孵化器",
+              "en": "The university or incubator"
+            },
+            "impact": {
+              "zh": "背书被消耗，后续项目合规门槛被迫提高。",
+              "en": "Its endorsement is spent, and the compliance bar rises for every project after yours."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "在种子阶段就列一张「数据红线清单」，写清楚哪些数据绝不碰。", "en": "Write a 'data red-line list' at seed stage stating exactly which data you will never touch." },
-          { "zh": "把合规负责人与技术负责人的决策权对等，不允许单方面上线。", "en": "Give the compliance owner equal authority with the tech lead — no unilateral launches." },
-          { "zh": "用最小的真实数据做最窄的功能，而不是用最全的数据做最宽的功能。", "en": "Build the narrowest feature on the smallest real dataset, not the widest feature on the fullest one." }
+          {
+            "zh": "在种子阶段就列一张「数据红线清单」，写清楚哪些数据绝不碰。",
+            "en": "Write a 'data red-line list' at seed stage stating exactly which data you will never touch."
+          },
+          {
+            "zh": "把合规负责人与技术负责人的决策权对等，不允许单方面上线。",
+            "en": "Give the compliance owner equal authority with the tech lead — no unilateral launches."
+          },
+          {
+            "zh": "用最小的真实数据做最窄的功能，而不是用最全的数据做最宽的功能。",
+            "en": "Build the narrowest feature on the smallest real dataset, not the widest feature on the fullest one."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：Canvas 1（客群）与 Canvas 2（问题）从未被真正验证，团队却已经在 Canvas 7（成本结构）上不断透支——用那条最省力的路。省下的成本最终变成了罚款、返工与信誉。",
@@ -83,9 +166,15 @@
       }
     },
     "boom_legal": {
-      "title": { "zh": "增长故事撞上执法", "en": "The Growth Story Meets Enforcement" },
+      "title": {
+        "zh": "增长故事撞上执法",
+        "en": "The Growth Story Meets Enforcement"
+      },
       "type": "fail",
-      "condition": { "legal": ">=5", "business": ">=6" },
+      "condition": {
+        "legal": ">=5",
+        "business": ">=6"
+      },
       "text": {
         "zh": "商业模式跑通了，条款却是借来的：数据来源没有合法基础、权利归属含糊、授权链条断在一半。当收入曲线开始被媒体引用，诉讼与行政调查也随之而来。你们赢了市场，输给了合规性。",
         "en": "The business model worked, but the terms were borrowed: no lawful basis for the data, murky ownership, an authorisation chain that stops halfway. As soon as the revenue curve got quoted, so did the lawsuits and investigations. You won the market and lost the licence to run it."
@@ -104,14 +193,50 @@
           "en": "The trade-off: buying speed today with 'we'll fix the paperwork later'. Licences, permissions and contracts all cost time, and you deferred them past profitability — which is exactly when rights holders show up."
         },
         "stakeholders": [
-          { "who": { "zh": "原始权利人 / 数据提供方", "en": "Original rights holders and data suppliers" }, "impact": { "zh": "作品或数据被商业化，却从未获得授权或分成。", "en": "Their work or data was commercialised without permission or a share." } },
-          { "who": { "zh": "付费客户", "en": "Paying customers" }, "impact": { "zh": "购买的服务随时可能因侵权被下架，合同无法履行。", "en": "Bought a service that can be pulled at any moment for infringement, leaving contracts unfulfilled." } },
-          { "who": { "zh": "员工", "en": "Employees" }, "impact": { "zh": "在一个法律基础不稳的产品上投入职业黄金期。", "en": "Invested prime career years in a product with an unstable legal foundation." } }
+          {
+            "who": {
+              "zh": "原始权利人 / 数据提供方",
+              "en": "Original rights holders and data suppliers"
+            },
+            "impact": {
+              "zh": "作品或数据被商业化，却从未获得授权或分成。",
+              "en": "Their work or data was commercialised without permission or a share."
+            }
+          },
+          {
+            "who": {
+              "zh": "付费客户",
+              "en": "Paying customers"
+            },
+            "impact": {
+              "zh": "购买的服务随时可能因侵权被下架，合同无法履行。",
+              "en": "Bought a service that can be pulled at any moment for infringement, leaving contracts unfulfilled."
+            }
+          },
+          {
+            "who": {
+              "zh": "员工",
+              "en": "Employees"
+            },
+            "impact": {
+              "zh": "在一个法律基础不稳的产品上投入职业黄金期。",
+              "en": "Invested prime career years in a product with an unstable legal foundation."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "建立授权台账：每一项数据来源记录来源、依据、有效期与可否转授权。", "en": "Keep an authorisation ledger: source, legal basis, validity period and sub-licensability for every data or content input." },
-          { "zh": "在产品路线图里给「合规里程碑」排期，与版本发布同样硬性。", "en": "Schedule 'compliance milestones' on the roadmap with the same rigidity as releases." },
-          { "zh": "对外商业化前做一次知识产权与数据权属尽调。", "en": "Run an IP and data-ownership due diligence pass before monetising." }
+          {
+            "zh": "建立授权台账：每一项数据来源记录来源、依据、有效期与可否转授权。",
+            "en": "Keep an authorisation ledger: source, legal basis, validity period and sub-licensability for every data or content input."
+          },
+          {
+            "zh": "在产品路线图里给「合规里程碑」排期，与版本发布同样硬性。",
+            "en": "Schedule 'compliance milestones' on the roadmap with the same rigidity as releases."
+          },
+          {
+            "zh": "对外商业化前做一次知识产权与数据权属尽调。",
+            "en": "Run an IP and data-ownership due diligence pass before monetising."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：Canvas 4（解决方案）越做越重，Canvas 3（独特价值主张）却建立在无法授权的资源之上。Canvas 7（成本结构）漏算了权利金、诉讼准备金与合规改造费用。",
@@ -124,9 +249,14 @@
       }
     },
     "bust_legal": {
-      "title": { "zh": "官司比产品成熟得更早", "en": "Lawsuits Before Product-Market Fit" },
+      "title": {
+        "zh": "官司比产品成熟得更早",
+        "en": "Lawsuits Before Product-Market Fit"
+      },
       "type": "fail",
-      "condition": { "legal": ">=5" },
+      "condition": {
+        "legal": ">=5"
+      },
       "text": {
         "zh": "产品还没有证明自己有价值，法务文件已经先证明了它有问题。团队花在应付合规整改与纠纷上的时间，超过了花在用户上的时间。项目停在这里。",
         "en": "Before the product proved it had value, the paperwork proved it had problems. The team spent more time handling remediation and disputes than users. The venture stops here."
@@ -145,14 +275,50 @@
           "en": "The trade-off: scarce execution effort went into 'can we build it' rather than 'should we'. The result is neither user value nor a clean balance sheet."
         },
         "stakeholders": [
-          { "who": { "zh": "学校与导师", "en": "The university and supervisors" }, "impact": { "zh": "项目合规问题可能波及科研机构声誉与后续合作。", "en": "Compliance issues may reach the institution's reputation and future partnerships." } },
-          { "who": { "zh": "早期用户", "en": "Early users" }, "impact": { "zh": "投入时间迁移到一个随时可能消失的产品。", "en": "Invested time migrating to a product that may vanish without notice." } },
-          { "who": { "zh": "团队自身", "en": "The team itself" }, "impact": { "zh": "本可用于验证需求的时间被诉讼与整改占用。", "en": "Time that should have validated demand went to disputes and remediation." } }
+          {
+            "who": {
+              "zh": "学校与导师",
+              "en": "The university and supervisors"
+            },
+            "impact": {
+              "zh": "项目合规问题可能波及科研机构声誉与后续合作。",
+              "en": "Compliance issues may reach the institution's reputation and future partnerships."
+            }
+          },
+          {
+            "who": {
+              "zh": "早期用户",
+              "en": "Early users"
+            },
+            "impact": {
+              "zh": "投入时间迁移到一个随时可能消失的产品。",
+              "en": "Invested time migrating to a product that may vanish without notice."
+            }
+          },
+          {
+            "who": {
+              "zh": "团队自身",
+              "en": "The team itself"
+            },
+            "impact": {
+              "zh": "本可用于验证需求的时间被诉讼与整改占用。",
+              "en": "Time that should have validated demand went to disputes and remediation."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "在任何付费或公开发布前，完成一次最低限度的合规清单检查。", "en": "Complete a minimum compliance checklist before any paid or public launch." },
-          { "zh": "用开源许可明确、可商用的素材起步，避免权属灰区。", "en": "Start with clearly licensed, commercially usable inputs to avoid grey-zone ownership." },
-          { "zh": "把「遇到纠纷时谁拍板」写进创始人协议。", "en": "Write 'who decides when disputes arise' into the founders' agreement." }
+          {
+            "zh": "在任何付费或公开发布前，完成一次最低限度的合规清单检查。",
+            "en": "Complete a minimum compliance checklist before any paid or public launch."
+          },
+          {
+            "zh": "用开源许可明确、可商用的素材起步，避免权属灰区。",
+            "en": "Start with clearly licensed, commercially usable inputs to avoid grey-zone ownership."
+          },
+          {
+            "zh": "把「遇到纠纷时谁拍板」写进创始人协议。",
+            "en": "Write 'who decides when disputes arise' into the founders' agreement."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：Canvas 2（问题）还没被证伪就被 Canvas 4（解决方案）拖着走。团队把稀缺资源压在最昂贵的执行上，而不是最便宜的学习上。",
@@ -165,9 +331,15 @@
       }
     },
     "boom_ethics": {
-      "title": { "zh": "用户终于知道自己被卖了", "en": "Users Finally Find Out They Were Sold" },
+      "title": {
+        "zh": "用户终于知道自己被卖了",
+        "en": "Users Finally Find Out They Were Sold"
+      },
       "type": "fail",
-      "condition": { "ethics": ">=5", "business": ">=6" },
+      "condition": {
+        "ethics": ">=5",
+        "business": ">=6"
+      },
       "text": {
         "zh": "商业上的成功掩盖了一件事：用户的信任并没有换来尊重。当一位用户把你们的做法完整拆解并发布出来，舆论在一夜之间反转。卸载、退款、差评、媒体跟进——你确实做出了一家公司，只是它的地基是骗来的。",
         "en": "Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception."
@@ -186,14 +358,50 @@
           "en": "The trade-off: trading absent informed consent for conversion. Every 'users won't read it anyway' decision improved the funnel on paper and added to a trust deficit that becomes unrecoverable once exposed."
         },
         "stakeholders": [
-          { "who": { "zh": "受影响最深的弱势用户", "en": "The most vulnerable affected users" }, "impact": { "zh": "承担了最实质的伤害（例如误判、歧视、被利用），而收益最少。", "en": "Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit." } },
-          { "who": { "zh": "普通用户群体", "en": "The general user base" }, "impact": { "zh": "发现自己在不知情时成为产品的一部分，情感上的背叛感远超功能损失。", "en": "Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss." } },
-          { "who": { "zh": "广告与商业伙伴", "en": "Advertising and commercial partners" }, "impact": { "zh": "品牌安全连带受损，合作紧急叫停。", "en": "Brand-safety damage spilled over and partnerships were halted at short notice." } }
+          {
+            "who": {
+              "zh": "受影响最深的弱势用户",
+              "en": "The most vulnerable affected users"
+            },
+            "impact": {
+              "zh": "承担了最实质的伤害（例如误判、歧视、被利用），而收益最少。",
+              "en": "Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit."
+            }
+          },
+          {
+            "who": {
+              "zh": "普通用户群体",
+              "en": "The general user base"
+            },
+            "impact": {
+              "zh": "发现自己在不知情时成为产品的一部分，情感上的背叛感远超功能损失。",
+              "en": "Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss."
+            }
+          },
+          {
+            "who": {
+              "zh": "广告与商业伙伴",
+              "en": "Advertising and commercial partners"
+            },
+            "impact": {
+              "zh": "品牌安全连带受损，合作紧急叫停。",
+              "en": "Brand-safety damage spilled over and partnerships were halted at short notice."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "把关键决策做成「可解释、可拒绝、可撤销」：给出理由、提供关闭开关、允许删除。", "en": "Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion." },
-          { "zh": "对弱势群体做差异化的影响测试，而不是只看总体指标。", "en": "Run impact tests disaggregated by vulnerable groups rather than trusting headline averages." },
-          { "zh": "在商业条款里明确写下「我们不会用你的 X 数据做什么」，并接受审计。", "en": "Write 'we will never do X with your data' into your commercial terms — and submit to an audit." }
+          {
+            "zh": "把关键决策做成「可解释、可拒绝、可撤销」：给出理由、提供关闭开关、允许删除。",
+            "en": "Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion."
+          },
+          {
+            "zh": "对弱势群体做差异化的影响测试，而不是只看总体指标。",
+            "en": "Run impact tests disaggregated by vulnerable groups rather than trusting headline averages."
+          },
+          {
+            "zh": "在商业条款里明确写下「我们不会用你的 X 数据做什么」，并接受审计。",
+            "en": "Write 'we will never do X with your data' into your commercial terms — and submit to an audit."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：Canvas 8（关键指标）只看留存与转化，缺少「用户知情率」这类反向指标；Canvas 9（不公平优势）错把信息不对称当优势——它是最脆弱的一种优势。",
@@ -206,9 +414,14 @@
       }
     },
     "bust_ethics": {
-      "title": { "zh": "信任还没攒起来就塌了", "en": "Trust Collapsed Before Traction" },
+      "title": {
+        "zh": "信任还没攒起来就塌了",
+        "en": "Trust Collapsed Before Traction"
+      },
       "type": "fail",
-      "condition": { "ethics": ">=5" },
+      "condition": {
+        "ethics": ">=5"
+      },
       "text": {
         "zh": "还没有多少用户，可是最早一批用户已经受伤了。在小规模阶段，一次处理不当就是百分百负面的口碑。社群把你们的案例当成反面教材流传，而产品本身再也没机会被认真试用。",
         "en": "There were not many users yet, but the earliest ones were already harmed. At small scale, a single mishandled case reads as a hundred per cent negative word of mouth. The community circulated your case as a cautionary tale, and the product never got a fair trial."
@@ -227,14 +440,50 @@
           "en": "The trade-off: treating early users as expendable samples. You saved facilitation cost and manual review in the short term, and lost exactly the people who would have spread the word — the only free channel a young product has."
         },
         "stakeholders": [
-          { "who": { "zh": "早期采用者", "en": "Early adopters" }, "impact": { "zh": "承担了新产品未经充分评估的风险，却被告知这是「正常版本」。", "en": "Carried the risk of an insufficiently evaluated product, told it was just 'normal behaviour'." } },
-          { "who": { "zh": "倡导团体与媒体", "en": "Advocacy groups and the press" }, "impact": { "zh": "获得了一个清晰的、可用于公众教育的负面样本。", "en": "Gained a clear negative sample usable for public education." } },
-          { "who": { "zh": "行业同侪", "en": "Industry peers" }, "impact": { "zh": "全行业要为你们的做法额外解释一轮。", "en": "The whole sector has to spend a cycle explaining your conduct on your behalf." } }
+          {
+            "who": {
+              "zh": "早期采用者",
+              "en": "Early adopters"
+            },
+            "impact": {
+              "zh": "承担了新产品未经充分评估的风险，却被告知这是「正常版本」。",
+              "en": "Carried the risk of an insufficiently evaluated product, told it was just 'normal behaviour'."
+            }
+          },
+          {
+            "who": {
+              "zh": "倡导团体与媒体",
+              "en": "Advocacy groups and the press"
+            },
+            "impact": {
+              "zh": "获得了一个清晰的、可用于公众教育的负面样本。",
+              "en": "Gained a clear negative sample usable for public education."
+            }
+          },
+          {
+            "who": {
+              "zh": "行业同侪",
+              "en": "Industry peers"
+            },
+            "impact": {
+              "zh": "全行业要为你们的做法额外解释一轮。",
+              "en": "The whole sector has to spend a cycle explaining your conduct on your behalf."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "早期版本对高风险结论加人工复核，宁慢不许错。", "en": "Add manual review to high-stakes outputs in early versions — slower is better than wrong." },
-          { "zh": "公开已知局限，把「我们还做不到什么」写进产品文案。", "en": "Publish known limitations; put 'what we cannot yet do' into the product copy." },
-          { "zh": "设立一条真实可用的申诉通道，并保证有人真的会看。", "en": "Provide a genuine appeal channel and guarantee a human actually reads it." }
+          {
+            "zh": "早期版本对高风险结论加人工复核，宁慢不许错。",
+            "en": "Add manual review to high-stakes outputs in early versions — slower is better than wrong."
+          },
+          {
+            "zh": "公开已知局限，把「我们还做不到什么」写进产品文案。",
+            "en": "Publish known limitations; put 'what we cannot yet do' into the product copy."
+          },
+          {
+            "zh": "设立一条真实可用的申诉通道，并保证有人真的会看。",
+            "en": "Provide a genuine appeal channel and guarantee a human actually reads it."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：早期最该投资的是 Canvas 1（客群关系）与 Canvas 3（价值主张的可信度），你却把它们当成了可延后项。没有信任的产品，PMF 分数再高也无法变现。",
@@ -247,9 +496,17 @@
       }
     },
     "win_clean": {
-      "title": { "zh": "干净的胜利", "en": "A Clean Win" },
+      "title": {
+        "zh": "干净的胜利",
+        "en": "A Clean Win"
+      },
       "type": "success",
-      "condition": { "national_security": "<=0", "legal": "<=0", "ethics": "<=0", "business": ">=6" },
+      "condition": {
+        "national_security": "<=1",
+        "legal": "<=1",
+        "ethics": "<=1",
+        "business": ">=6"
+      },
       "text": {
         "zh": "你没有一次踩过红线，公司却真的长大了。更难得的是，这种长大是可以解释、可以复制、也可以接受的：投资人敢投、学校敢背书、监管来了你敢把数据流向图直接摊开给他们看。合规没有拖慢你——它替你省下了所有需要推倒重来的时间。",
         "en": "You never crossed a line, and the company genuinely grew. Better still, the growth is explainable, repeatable and defensible: investors will fund it, the university will back it, and when regulators arrive you can lay your data-flow map open on the table. Compliance did not slow you down — it saved you every hour you would have spent rebuilding."
@@ -268,14 +525,50 @@
           "en": "The trade-off: every time you picked the version that 'said things plainly' — slower permissions, narrower data scope, pricier local options. The cost was speed; the return was never having to rebuild."
         },
         "stakeholders": [
-          { "who": { "zh": "用户", "en": "Users" }, "impact": { "zh": "清楚知道自己交出了什么、换回了什么，具备真实的同意能力。", "en": "Know exactly what they gave and what they got, and can give genuine consent." } },
-          { "who": { "zh": "投资人", "en": "Investors" }, "impact": { "zh": "资产没有隐藏的地雷，尽调成本大幅下降。", "en": "No hidden landmines in the asset; due diligence becomes far cheaper." } },
-          { "who": { "zh": "监管与社会", "en": "Regulators and society" }, "impact": { "zh": "得到一个可以放进最佳实践案例的项目。", "en": "Gain a project that can be cited as good practice." } }
+          {
+            "who": {
+              "zh": "用户",
+              "en": "Users"
+            },
+            "impact": {
+              "zh": "清楚知道自己交出了什么、换回了什么，具备真实的同意能力。",
+              "en": "Know exactly what they gave and what they got, and can give genuine consent."
+            }
+          },
+          {
+            "who": {
+              "zh": "投资人",
+              "en": "Investors"
+            },
+            "impact": {
+              "zh": "资产没有隐藏的地雷，尽调成本大幅下降。",
+              "en": "No hidden landmines in the asset; due diligence becomes far cheaper."
+            }
+          },
+          {
+            "who": {
+              "zh": "监管与社会",
+              "en": "Regulators and society"
+            },
+            "impact": {
+              "zh": "得到一个可以放进最佳实践案例的项目。",
+              "en": "Gain a project that can be cited as good practice."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "把这次的选择清单沉淀成团队章程，做为下一款产品的默认约束。", "en": "Turn this decision list into a team charter that becomes the default constraint on the next product." },
-          { "zh": "继续保持第三方审计与公开透明度报告的节奏。", "en": "Keep third-party audits and a public transparency report on a steady cadence." },
-          { "zh": "为供应商与合作伙伴设定同等的数据标准，防止风险从上游渗入。", "en": "Hold suppliers and partners to the same data standards so risk cannot seep in upstream." }
+          {
+            "zh": "把这次的选择清单沉淀成团队章程，做为下一款产品的默认约束。",
+            "en": "Turn this decision list into a team charter that becomes the default constraint on the next product."
+          },
+          {
+            "zh": "继续保持第三方审计与公开透明度报告的节奏。",
+            "en": "Keep third-party audits and a public transparency report on a steady cadence."
+          },
+          {
+            "zh": "为供应商与合作伙伴设定同等的数据标准，防止风险从上游渗入。",
+            "en": "Hold suppliers and partners to the same data standards so risk cannot seep in upstream."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：你把 Canvas 9（不公平优势）建立在最难复制的东西上——可信的数据治理与用户信任。同时 Canvas 7（成本结构）把合规当常规投入而不是意外支出，因此规模越大边际成本越低。",
@@ -288,9 +581,17 @@
       }
     },
     "win_resilient": {
-      "title": { "zh": "带着伤疤活下来", "en": "Surviving With Scars" },
+      "title": {
+        "zh": "带着伤疤活下来",
+        "en": "Surviving With Scars"
+      },
       "type": "success",
-      "condition": { "national_security": "<=4", "legal": "<=4", "ethics": "<=4", "business": ">=6" },
+      "condition": {
+        "national_security": "<=4",
+        "legal": "<=4",
+        "ethics": "<=4",
+        "business": ">=6"
+      },
       "text": {
         "zh": "你不是零风险走到终点的——有些地方你确实走了捷径，也曾让用户替你承担了一部分代价。但你始终把它控制在可被修复的范围内：有日志、有开关、有人负责。公司活下来了，这些伤疤成了下一次可以少犯的错误清单。",
         "en": "You did not reach the finish line untouched — you took shortcuts in places, and users carried part of the cost. But you kept it inside a repairable range: there are logs, there is a switch, there is someone accountable. The company survived, and the scars become a checklist of mistakes to avoid next time."
@@ -309,14 +610,50 @@
           "en": "The trade-off: you accepted risk in a few non-core areas to buy delivery speed, while guaranteeing you could locate, roll back and compensate if it broke. That is engineered risk management, not luck."
         },
         "stakeholders": [
-          { "who": { "zh": "被轻微影响的用户", "en": "Lightly affected users" }, "impact": { "zh": "付出过代价，但因为存在救济通道，伤害被及时止住。", "en": "Paid a cost, but because remedies existed, the harm stopped in time." } },
-          { "who": { "zh": "团队", "en": "The team" }, "impact": { "zh": "获得了处理危机的实战经验，也留下了必须偿还的技术债。", "en": "Gained real crisis-handling experience and a stack of technical debt to repay." } },
-          { "who": { "zh": "投资人", "en": "Investors" }, "impact": { "zh": "看到一个能承认问题并复盘的团队——这往往比无瑕的记录更有价值。", "en": "See a team that admits problems and runs retrospectives — often worth more than a flawless record." } }
+          {
+            "who": {
+              "zh": "被轻微影响的用户",
+              "en": "Lightly affected users"
+            },
+            "impact": {
+              "zh": "付出过代价，但因为存在救济通道，伤害被及时止住。",
+              "en": "Paid a cost, but because remedies existed, the harm stopped in time."
+            }
+          },
+          {
+            "who": {
+              "zh": "团队",
+              "en": "The team"
+            },
+            "impact": {
+              "zh": "获得了处理危机的实战经验，也留下了必须偿还的技术债。",
+              "en": "Gained real crisis-handling experience and a stack of technical debt to repay."
+            }
+          },
+          {
+            "who": {
+              "zh": "投资人",
+              "en": "Investors"
+            },
+            "impact": {
+              "zh": "看到一个能承认问题并复盘的团队——这往往比无瑕的记录更有价值。",
+              "en": "See a team that admits problems and runs retrospectives — often worth more than a flawless record."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "把这段经历写成事故复盘文档，明确触发条件与止血步骤。", "en": "Write these episodes into incident-retro documents specifying triggers and stop-bleeding steps." },
-          { "zh": "优先偿还剩余的技术与合规债，趁它还没有连本带利。", "en": "Repay the remaining technical and compliance debt before interest compounds." },
-          { "zh": "为曾经受影响的用户做一次主动回访与补偿。", "en": "Proactively follow up and compensate the users once affected." }
+          {
+            "zh": "把这段经历写成事故复盘文档，明确触发条件与止血步骤。",
+            "en": "Write these episodes into incident-retro documents specifying triggers and stop-bleeding steps."
+          },
+          {
+            "zh": "优先偿还剩余的技术与合规债，趁它还没有连本带利。",
+            "en": "Repay the remaining technical and compliance debt before interest compounds."
+          },
+          {
+            "zh": "为曾经受影响的用户做一次主动回访与补偿。",
+            "en": "Proactively follow up and compensate the users once affected."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：你在 Canvas 8（关键指标）上补了反向指标，因而能在风险破表前发现问题；Canvas 3（价值主张）依然成立，所以纠偏之后没有失去市场。真正的差距在 Canvas 9——护城河还不够深，下一次对手会用同样的打法追上来。",
@@ -325,9 +662,17 @@
       }
     },
     "stalled": {
-      "title": { "zh": "干净，却走不动", "en": "Clean, But Going Nowhere" },
+      "title": {
+        "zh": "干净，却走不动",
+        "en": "Clean, But Going Nowhere"
+      },
       "type": "compromise",
-      "condition": { "national_security": "<=4", "legal": "<=4", "ethics": "<=4", "business": "<=5" },
+      "condition": {
+        "national_security": "<=4",
+        "legal": "<=4",
+        "ethics": "<=4",
+        "business": "<=5"
+      },
       "text": {
         "zh": "你没有做任何坏事，也几乎没做成任何事。为了不犯错误，你把每一个需要判断的环节都往后推：不敢谈钱、不敢谈数据、不敢谈扩张。一年过去，产品干净得像没上线过一样——而没法变现的产品，同样无法保护任何人。",
         "en": "You did nothing wrong, and you nearly shipped nothing. To avoid mistakes you deferred every judgement call: no commercials, no data deals, no expansion. A year on, the product is as clean as one that never launched — and a product that cannot earn money protects nobody either."
@@ -346,14 +691,50 @@
           "en": "The trade-off: you treated every commercial risk as an ethical risk. They are not the same thing — declining a revenue model also declined the product's reason to exist."
         },
         "stakeholders": [
-          { "who": { "zh": "团队", "en": "The team" }, "impact": { "zh": "付出了时间却没有获得市场反馈，学习曲线停滞。", "en": "Spent time without getting market feedback; the learning curve flattened." } },
-          { "who": { "zh": "潜在受益人", "en": "Would-be beneficiaries" }, "impact": { "zh": "本可以从产品中获益的人群从未接触到它。", "en": "The people the product was meant to help never got access to it." } },
-          { "who": { "zh": "出资方与学校", "en": "Funders and the university" }, "impact": { "zh": "资源被占用于一个不产生价值的谨慎项目。", "en": "Resources were tied up in a cautious project generating no value." } }
+          {
+            "who": {
+              "zh": "团队",
+              "en": "The team"
+            },
+            "impact": {
+              "zh": "付出了时间却没有获得市场反馈，学习曲线停滞。",
+              "en": "Spent time without getting market feedback; the learning curve flattened."
+            }
+          },
+          {
+            "who": {
+              "zh": "潜在受益人",
+              "en": "Would-be beneficiaries"
+            },
+            "impact": {
+              "zh": "本可以从产品中获益的人群从未接触到它。",
+              "en": "The people the product was meant to help never got access to it."
+            }
+          },
+          {
+            "who": {
+              "zh": "出资方与学校",
+              "en": "Funders and the university"
+            },
+            "impact": {
+              "zh": "资源被占用于一个不产生价值的谨慎项目。",
+              "en": "Resources were tied up in a cautious project generating no value."
+            }
+          }
         ],
         "mitigation": [
-          { "zh": "为「合规」与「商业」分别指定决策负责人，避免一个人拿两票否决权。", "en": "Split decision ownership for compliance and for commercial strategy so one person cannot hold two vetoes." },
-          { "zh": "设定最低可行收入目标，把它当成产品需求而非财务目标。", "en": "Set a minimum viable revenue target and treat it as a product requirement, not a finance metric." },
-          { "zh": "练习「在同等风险下换更好条款」——多数冲突其实出在条件没谈，而不是这件事不能做。", "en": "Practise getting better terms at the same risk level — most conflicts are about unnegotiated terms, not forbidden activity." }
+          {
+            "zh": "为「合规」与「商业」分别指定决策负责人，避免一个人拿两票否决权。",
+            "en": "Split decision ownership for compliance and for commercial strategy so one person cannot hold two vetoes."
+          },
+          {
+            "zh": "设定最低可行收入目标，把它当成产品需求而非财务目标。",
+            "en": "Set a minimum viable revenue target and treat it as a product requirement, not a finance metric."
+          },
+          {
+            "zh": "练习「在同等风险下换更好条款」——多数冲突其实出在条件没谈，而不是这件事不能做。",
+            "en": "Practise getting better terms at the same risk level — most conflicts are about unnegotiated terms, not forbidden activity."
+          }
         ],
         "canvas": {
           "zh": "Lean Canvas 复盘：Canvas 6（收入流）和 Canvas 5（渠道）几乎空白，导致 Canvas 8（关键指标）没有可看的数字。一个九格里只有上半部分的 Canvas，其实是草稿，不是商业模式。",

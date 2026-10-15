@@ -235,6 +235,22 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "一个大单让 Canvas 6 立刻成立。但大货代要的是接口与流程自动化，而不是归类判断的可解释性，研发资源会从真正的难点上被拉开。",
             "en": "One big deal makes Canvas 6 works instantly. But a major forwarder wants APIs and workflow automation rather than explainable classification, pulling engineering away from the actual hard problem."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃小型出口商，转做当下最热的相邻品类",
+            "en": "Pivot: drop small exporters and move to whichever adjacent category is trending"
+          },
+          "next": "c2_product",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "换赛道会丢掉你按商会与行业积累的报关口径与拒收原因。新行业要用另一套归类逻辑重新验证一遍，而刚证明有效的那套被丢掉了。纸面上盘子更大，实际是清零重建。",
+            "en": "A pivot discards the classification patterns and rejection reasons accumulated through chambers and sectors. A new industry needs a different logic validated again, and you discard the one that just worked. The market looks bigger on paper; in practice you are rebuilding from zero."
+          }
         }
       ]
     },
@@ -275,6 +291,22 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "why": {
             "zh": "全自动最受欢迎，单量增长也最快。但报关单直接决定货物是否触及管制物项与许可要求，把这一步完全交给模型，等于让责任链条上没有人真正看一眼货到底是什么。",
             "en": "Full automation is most popular and scales fastest. But a declaration determines whether goods touch controlled items and licensing requirements; handing the step entirely to a model means nobody in the chain actually looks at what is being shipped."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_keyresource",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "还没有客户真正依赖的方向不会因为投入更多而变正确。这一笔烧掉的是跑道，而报关业务一旦停摆，代理资质与客户关系都会流失。看起来像执行力，其实是拿存活时间换假设。",
+            "en": "A direction no client truly depends on does not become correct by absorbing more spend. What this burns is runway, and if a customs practice stalls, its agency credentials and client relationships walk away. It looks like persistence, but it trades survival for an assumption."
           }
         }
       ]
@@ -399,6 +431,23 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "省下逐单归档的工作量，交付更快；但查验是有时限的，你要解释为什么平时拿不出来。",
             "en": "You save per-shipment archiving and deliver faster — but inspections run to a deadline, and you must explain why it was not ready."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "trade-doc-ai_b1_clean_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "公开归类错误经验在短期内显得不专业，却是把信任变成转化的最短路径：报关行评估工具时，你的诚实本身就是证据。而且这类内容抄不走——抄的人没有同样的错可写。",
+            "en": "Publishing your classification mistakes looks unprofessional at first, but it is the shortest route from trust to conversion: when a broker assesses a tool, your honesty is itself the evidence. And it cannot be copied — a competitor has no equivalent errors to publish."
+          }
         }
       ]
     },
@@ -484,6 +533,22 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "why": {
             "zh": "免责告知无法推翻你是建议提供者的事实。把已知的宽松倾向包装成「建议」，实质是把出口管制的判断成本转嫁给客户，而后果可能不只是罚款。",
             "en": "A disclaimer does not undo the fact that you supplied the advice. Wrapping a known permissive bias as 'suggestion' shifts export-control judgement onto clients, where consequences go beyond fines."
+          }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "trade-doc-ai_b2_fixed",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "管制清单更新时，代理普遍会先暂停申报等确认。这不是惩罚，是申报流程本身要求的。营收立刻归零，而法律分同时上升提醒你：过渡期本身也需要被管理。",
+            "en": "When control lists are updated, agents generally pause declarations pending confirmation. This is not a penalty; it is what the declaration process requires. Revenue stops immediately, and the legal score rises to mark that the transition itself has to be managed."
           }
         }
       ]
@@ -685,6 +750,23 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "抽成模式的说服力最强，客户也能立刻看到收益。但把收入与少缴税绑定，等于用商业模式奖励低报——在绝大多数法域都可能被认定为申报不实甚至走私。",
             "en": "Revenue share persuades best and clients see the gain immediately. But tying income to lower duty means the business model rewards under-declaration, which most jurisdictions treat as false declaration or worse."
           }
+        },
+        {
+          "text": {
+            "zh": "最大的单一货代客户终止合约",
+            "en": "Your single largest freight forwarder terminates the contract"
+          },
+          "next": "trade-doc-ai_b1_clean_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一货代的断供会直接抽掉现金流与报关量。伦理分之所以上升，是因为最省事的应对通常是把归类口径放宽来服务剩下的客户——问题不在你做了什么，而在你只有一条腿站着。",
+            "en": "Losing one large forwarder removes the cash flow and the declaration volume at once. Ethics rises because the cheapest response is to loosen the classification criteria for whoever remains: the problem is not what you did, it is that you were standing on one leg."
+          }
         }
       ]
     },
@@ -727,6 +809,23 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
             "zh": "夸张承诺转化率最高、客户增长最快。但通关结果由海关决定，任何「百分百」的承诺都难以兑现，还会吸引最想走捷径的那批客户。",
             "en": "Exaggerated promises convert best and grow fastest. But clearance is decided by customs, so any 'guaranteed' claim is unfulfillable — and it attracts exactly the clients most eager to cut corners."
           }
+        },
+        {
+          "text": {
+            "zh": "让报关行参与治理：设常设用户小组",
+            "en": "Let customs brokers take part in governance: a standing user panel"
+          },
+          "next": "trade-doc-ai_b1_clean_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "共治会拖慢决定，但换来续约与口碑：被征求意见的报关行不容易流失。收益不在这一局的分数上，而在别人抄你的产品时抄不走这层关系。",
+            "en": "Shared governance slows decisions but buys renewal and word of mouth: brokers who were consulted do not churn. The return does not show up in this run's numbers; it shows up when a competitor copies the product and cannot copy the relationship."
+          }
         }
       ]
     },
@@ -767,6 +866,23 @@ window.CHOICES_EMBEDDED.scenarios["trade-doc-ai"] = {
           "why": {
             "zh": "无痕让产品更省事、客户更敢用。但报关环节的留痕与账簿凭证通常有法定保存期限，不留存既违反账簿要求，也让你无法解释任何一次判断。",
             "en": "No logs make the tool frictionless and lower clients' hesitation. But customs records have statutory retention periods; keeping none breaches bookkeeping rules and leaves you unable to explain any judgement."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "主动申报短期会掉单，长期却把最贵的风险变成可管理的流程。代价是真实的：这一局你会少赚一点。关键在于它是不靠「放弃生意」就能降低风险的少数选项之一——过去缺的正是这种。",
+            "en": "Reporting first costs orders now but turns the most expensive risk into a managed process later. The cost is real: you earn slightly less this run. What matters is that this is one of the few options that lowers risk without abandoning the business — which is exactly what used to be missing."
           }
         }
       ]

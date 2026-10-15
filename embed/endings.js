@@ -505,9 +505,9 @@ window.CHOICES_EMBEDDED.endings = {
     },
     "type": "success",
     "condition": {
-      "national_security": "<=0",
-      "legal": "<=0",
-      "ethics": "<=0",
+      "national_security": "<=1",
+      "legal": "<=1",
+      "ethics": "<=1",
       "business": ">=6"
     },
     "text": {

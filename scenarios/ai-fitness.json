@@ -10,20 +10,20 @@
   },
   "brief": {
     "product": {
-      "zh": "一款给跑步与健走用户的手机 App：记录路线、配速与心率，用 AI 生成训练计划、伤病预警与每周小结；也可以把用户轨迹汇总成一张公开的「热门路线」图层。",
-      "en": "A phone app for runners and walkers: it logs route, pace and heart rate, and uses AI to produce training plans, injury warnings and weekly summaries; it can also aggregate user traces into a public \"popular routes\" layer."
+      "zh": "一款绑定健康奖励的 App：会员运动后由 App 核验打卡，积分可在合作商户（咖啡店、健身房）兑换折扣；跑得越多，保险公司给的保费折扣越大。诊所与健康筛查中心也可以加入同一套计划。它还能把会员轨迹汇总成一张公开的「热门路线」图层。",
+      "en": "A health-rewards app: members log their exercise, the app verifies it, and the points are redeemed as discounts at partner merchants such as a coffee chain; more activity earns a larger insurance premium discount, and clinics or health-screening centres can join the same scheme later. It can also aggregate member traces into a public \"popular routes\" layer."
     },
     "customer": {
-      "zh": "城市跑者与健走人群（自用付费）；以及想把员工健康福利外包的企业雇主。",
-      "en": "Urban runners and walkers, who pay for themselves; and employers who want to outsource staff wellness."
+      "zh": "参加健康奖励保险计划的会员（自付保费）、提供折扣的合作商户，以及提供健康筛查的诊所。",
+      "en": "Members of a health-rewards insurance plan who pay their own premium; partner merchants offering the discounts; and clinics offering health screening."
     },
     "standing": {
-      "zh": "刚拿到校内创业基金，三位创始人，众创空间里三个固定工位；只有一个原型，收费模式尚未定型。",
-      "en": "A campus seed fund, three founders, three desks in the incubator, one prototype — and no decided business model yet."
+      "zh": "保险公司的一笔种子投资、三个创办人、众创空间三个工位、一个原型——商业模式还没定下来。",
+      "en": "A seed investment from an insurance partner, three founders, three desks in the incubator, one prototype — and no decided business model yet."
     },
     "data": {
-      "zh": "连续的 GPS 轨迹、心率与运动习惯。轨迹可持续追踪一个人的行踪，属敏感个人信息；一旦汇总公开，还可能复原敏感场所周边的作息规律。",
-      "en": "Continuous GPS traces, heart rate and exercise habits. Traces can track a person's movements over time and count as sensitive personal data; aggregated and published, they can also reconstruct routines around sensitive sites."
+      "zh": "连续 GPS 轨迹、心率与运动习惯。轨迹可以长期还原一个人的作息，属于敏感个人数据；一旦聚合后公开，即便「匿名」，也能在汇总层面重建敏感场所的规律——而会员逐条看自己的数据时，完全看不到这一点。",
+      "en": "Continuous GPS traces, heart rate and exercise habits. Traces can reconstruct a person's routines over time and count as sensitive personal data. Published in aggregate they rebuild patterns around sensitive sites even when \"anonymous\" — and no member sees this when reading their own records one at a time."
     }
   },
   "endingsShared": "endings-core.json",
@@ -231,14 +231,30 @@
             "zh": "单一大客户带来确定现金流（Canvas 6 直接跑通），但产品方向被买方牵着走，真实用户的痛点被排在后面，PMF 下降——这是一种常见的「用短期现金换长期匹配度」的取舍。",
             "en": "One big customer brings certain cash (Canvas 6 fires immediately), but the roadmap follows the buyer and real users queue behind them, lowering fit — the classic trade of near-term cash for long-term fit."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃当前细分，去做当下最热的相邻品类",
+            "en": "Pivot: drop this niche and move to whichever adjacent category is trending"
+          },
+          "next": "c2_mvp",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "追热点的代价是既有客户与口碑归零。新品类要从零学一遍定价与渠道，而你把已经验证过的痛点扔掉了。换赛道在纸面上常常显得更大，实际是把已经建起来的东西清零重建。",
+            "en": "Chasing a trend resets the customers and reputation you already have. The new category needs a fresh pricing and channel model, and you throw away a validated problem to do it. A pivot usually looks bigger on paper while quietly discarding what you had already built."
+          }
         }
       ]
     },
     "c2_mvp": {
       "act": "act2",
       "text": {
-        "zh": "MVP 只能做一件事。工程同学做了两个原型：一个是会看心率与疲劳的 AI 教练；一个是把全城跑者轨迹叠成的公共热力图。",
-        "en": "The MVP can do exactly one thing. Your engineer built two prototypes: an AI coach that reads heart rate and fatigue, and a public heat map layering every runner's tracks over the city."
+        "zh": "MVP 只能做一件事。工程同学做了两个原型：一个是会读心率与疲劳、并据此决定保费折扣的 AI 教练；另一个是把全城会员轨迹叠成的公共热力图，用来拉新会员。",
+        "en": "The MVP can do one thing. Your engineer built two prototypes: an AI coach that reads heart rate and fatigue and sets the premium discount; and a public heat map layering every member's tracks over the city, to bring in new members."
       },
       "choices": [
         {
@@ -269,8 +285,24 @@
           },
           "actor": "design",
           "why": {
-            "zh": "热力图传播性强，短期获客成本低。但「匿名」的轨迹聚合起来会长期记录特定地点的活动规律——2018 年就有运动 App 的热力图还原出军事基地的巡逻与作息。这是看不见的国家安全风险。",
-            "en": "A heat map spreads well and acquires users cheaply. But aggregated 'anonymous' tracks record the rhythm of specific locations over time — back in 2018 one fitness app's heat map reconstructed patrol patterns at military bases. That is invisible national-security risk."
+            "zh": "热力图传播性强，短期获客成本低。但「匿名」的轨迹聚合起来，会长期记录特定地点的活动规律。2017 年底有运动 App 公开全球热力图，2018 年 1 月被发现还原出军事基地的布局与巡逻路线；2025 年又有调查发现法国核潜艇艇员的活动轨迹同样被暴露。关键在于：会员确实是逐条自愿上传的，但默认设置与聚合方式是你的设计选择，而且没有人能看见汇总之后的结果。请在「单条记录」和「整体聚合」两个层面各测一次，你到底暴露了什么。",
+            "en": "A heat map spreads well and acquires members cheaply. But aggregated \"anonymous\" tracks record the rhythm of specific locations over time. In late 2017 a fitness app published a global heat map; by January 2018 it was shown to reveal the layout and patrol routes of military bases, and in 2025 an investigation found French nuclear submarine crews exposed the same way. What matters: members did upload each record voluntarily, but the default settings and the aggregation were the company's design choices, and nobody could see the collective risk in their own records. Test what your data reveals at the aggregate level, not only per user."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_mapdata",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "没有 PMF 的方向不会因为投入更多而变正确。这一笔烧掉的是跑道，而跑道是你唯一无法用融资补回来的资源。看起来像执行力，其实是拿存活时间换一个还没被证实的假设。",
+            "en": "A direction without product-market fit does not become correct by absorbing more spend. What this burns is runway, the one resource financing cannot replace. It looks like persistence, but it trades survival for an unproven assumption."
           }
         }
       ]
@@ -395,6 +427,23 @@
             "zh": "省下整理的时间让包装更好看，但运动健康数据一旦被质疑来源，解释成本会一次性爆发。",
             "en": "You save sorting work and the packaging looks better, but when health-data provenance is questioned the explaining lands all at once."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "ai-fitness_b1_clean_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "公开失败经验在短期内显得不专业，却是把信任变成转化的最短路径：客户要评估你时，你的诚实本身就是证据。这类内容也极难被抄——抄的人没有同样的坑可写。",
+            "en": "Publishing your failures looks unprofessional at first, but it is the shortest route from trust to conversion: when a client is assessing you, your honesty is itself the evidence. It is also hard to copy — a competitor has no equivalent mistakes to publish."
+          }
         }
       ]
     },
@@ -479,6 +528,39 @@
           "why": {
             "zh": "用小字限定人群，在实务上很难真的拦住高风险用户；一旦有人因此受伤，「已告知」通常不足以免责。好处是发布会如期举行。",
             "en": "Fine print rarely stops high-risk users in practice, and once someone is harmed, 'we told you' is usually not enough to discharge liability. The upside is that launch happens on schedule."
+          }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "ai-fitness_b2_fixed",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "合规期内订单暂停是结构性的，不是你做错了什么。但它会立刻计入营收，法律分同时上升提醒你：过渡期本身也需要被管理，事先申报与事后补文件是两回事。",
+            "en": "Orders pausing during a compliance transition is structural rather than a mistake on your part. It hits revenue immediately, and the legal score rises at the same time to mark that the transition itself has to be managed: filing in advance and filing afterwards are not the same thing."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "ai-fitness_b2_fixed",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "主动申报短期会掉单，长期却把最贵的风险变成可管理的流程。代价是真实的：这一局你会少赚一点。关键在于它是不靠「放弃生意」就能降低风险的少数选项之一——过去缺的正是这种。",
+            "en": "Reporting first costs orders now but turns the most expensive risk into a managed process later. The cost is real: you earn slightly less this run. What matters is that this is one of the few options that lowers risk without abandoning the business — which is exactly what used to be missing."
           }
         }
       ]
@@ -569,8 +651,8 @@
     "c4_heatmap": {
       "act": "act4",
       "text": {
-        "zh": "一位研究者指出：你们 App 里公开的位置聚合结果——不管它叫热力图、路线推荐还是训练摘要——可以还原某军营周边与几处变电站的作息规律，媒体开始追问。这是产品第一次真正站在聚光灯下。",
-        "en": "A researcher points out that the location aggregates you publish — call it a heat map, route suggestions or training summaries — reconstruct the routines around an army camp and several substations. The press starts asking questions. For the first time the product is genuinely in the spotlight."
+        "zh": "一位研究者指出：你们公开的位置聚合结果——不管叫热力图、路线推荐还是训练摘要——可以还原出某军事基地与几处变电站的作息与巡逻规律。L06 讲的那个案例在 2025 年被进一步追查，暴露的不只是地面单位。媒体开始追问，而对方的第一句话已经替你写好了：「每一条都是会员自愿分享的。」L06 已经回答过：会员自愿分享的是单条记录；默认设置与聚合规则是你的设计选择，而且没有任何人能看见汇总之后的结果。",
+        "en": "A researcher points out that the location aggregates you publish — call it a heat map, route suggestions or training summaries — reconstruct the routines and patrol patterns around a military base and several substations. In the case taught in L06, the exposure was traced further in 2025 and it reached crew members who never set foot on the site. The press starts asking questions, and the first line of defence is already written for you: \"every record was shared voluntarily.\" L06 already answered that: what members shared voluntarily were individual records. The default settings and the aggregation rule were the company's design choices, and nobody could see the result once everything was combined."
       },
       "choices": [
         {
@@ -586,8 +668,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "「用户生成」不转移平台的责任：一旦你知道了聚合后果仍不处理，就从被动变成了放任，国家安全与法律责任同时上升。短期收益只是省下一笔改造费。",
-            "en": "'User-generated' does not transfer liability: once you know about the aggregated effect and do nothing, passivity becomes wilful blindness, raising both national-security and legal exposure. The saving is just one remediation bill."
+            "zh": "会员确实逐条自愿上传了——但这正是 L06 那个案例的教训：「用户生成」和「用户自愿」都不转移责任。默认设置与聚合方式是你的设计选择；一旦知道汇总之后的后果仍不处理，放任就会同时构成国家安全与法律风险。短期收益只是省下一笔改造费。",
+            "en": "Members did upload each record voluntarily — which is precisely the lesson of the L06 case: \"user-generated\" and \"voluntary\" transfer no liability. The default settings and the aggregation were your design choices, and once the combined effect is known, passivity becomes wilful blindness, raising both national-security and legal exposure. The short-term gain is only the cost of a rebuild you did not have to pay."
           }
         },
         {
@@ -679,6 +761,23 @@
             "zh": "去标识不等于匿名：轨迹高度唯一，通常仍属个人信息；卖给保险意味着日常行踪进入核保决策，远超合理预期。收入最高，法律与伦理风险也最高。",
             "en": "De-identified is not anonymous: traces are highly unique and usually still personal. Selling to insurers puts routines into underwriting, far beyond expectation. Highest revenue, highest risk."
           }
+        },
+        {
+          "text": {
+            "zh": "最大的单一合作方（保险公司）终止合约",
+            "en": "Your single largest partner, the insurer, terminates the contract"
+          },
+          "next": "ai-fitness_b1_clean_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一合作方的断供会直接抽掉现金流与可见度。伦理分之所以上升，是因为最省事的应对通常是把剩下的会员成本转嫁出去——问题不在你做了什么，而在你只有一条腿站着。",
+            "en": "Losing one large partner removes the cash flow and the visibility at once. Ethics rises because the cheapest response is to shift the remaining cost onto other members: the problem is not what you did, it is that you were standing on one leg."
+          }
         }
       ]
     },
@@ -721,6 +820,23 @@
             "zh": "买量最快，返现活动常踩平台规则与税务边界；数据上的增长无法代表产品真的好用。短期指标最好看。",
             "en": "Paid acquisition is fastest; referral schemes brush platform and tax rules; the numbers say nothing about product quality. Best-looking short-term metrics."
           }
+        },
+        {
+          "text": {
+            "zh": "让会员参与治理：设常设用户小组",
+            "en": "Let members take part in governance: a standing user panel"
+          },
+          "next": "ai-fitness_b1_clean_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "共治会拖慢决定，但换来留存与口碑：被征求意见的会员不容易流失。收益不在这一局的分数上，而在别人抄你的产品时抄不走这层关系。",
+            "en": "Shared governance slows decisions but buys retention and word of mouth: members who were consulted do not churn. The return does not show up in this run's numbers; it shows up when a competitor copies the product and cannot copy the relationship."
+          }
         }
       ]
     },
@@ -761,6 +877,24 @@
           "why": {
             "zh": "多个法域已要求对 AI 生成内容显著标识；让用户误以为有真人专业人士，在健康建议场景后果更重。转化率更高。",
             "en": "Several jurisdictions require conspicuous labelling; implying a human professional exists is worse for health advice. Conversion is higher, though."
+          }
+        },
+        {
+          "text": {
+            "zh": "把「我们不卖你的数据」做成产品卖点",
+            "en": "Make \"we do not sell your data\" the product's selling point"
+          },
+          "next": "c3_bias",
+          "effects": {
+            "business": 1,
+            "pmf": 1,
+            "legal": -1,
+            "ethics": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "这是一个不靠规模取胜的差异化：数据留在自己手里，法律风险下降，会员也更愿意留下。代价是放弃一条靠卖数据快速抬高营收的路——但那条路本来就堵着法律问题。",
+            "en": "This is differentiation that does not depend on scale: data stays with you, legal exposure falls, and members are more willing to stay. The cost is giving up the fast route to revenue through selling data — a route that was already blocked by law."
           }
         }
       ]

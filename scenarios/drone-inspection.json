@@ -231,6 +231,22 @@
             "zh": "一个大单让 Canvas 6 立刻成立。但园区巡逻要的是覆盖面与频次，而不是缺陷判读的准确性，研发资源会从核心能力上被拉开。",
             "en": "One big deal makes Canvas 6 work instantly. But patrol work prizes coverage and frequency, not diagnostic accuracy, pulling engineering away from your core capability."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃基础设施，转做当下最热的相邻品类",
+            "en": "Pivot: drop infrastructure and move to whichever adjacent category is trending"
+          },
+          "next": "c2_product",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "基础设施巡检的行业口碑是靠一次次可复核的报告积累的，换赛道等于清零。新品类的缺陷类型、判读标准与报告格式都要重学，而你已经建立的那套是最难复制的资产。",
+            "en": "Reputation in infrastructure inspection accumulates one auditable report at a time; pivoting resets it. A new category needs its own defect patterns, reading standards and report format learned again, and the one you built is the asset hardest to copy."
+          }
         }
       ]
     },
@@ -271,6 +287,22 @@
           "why": {
             "zh": "云端看板最直观、最好演示。但把完整航拍影像长期集中存储，意味着你手上会逐渐积累沿线基础设施的高精度影像——这是敏感程度极高的一类资产。",
             "en": "Cloud dashboards are intuitive and demo beautifully. But retaining full flight footage means slowly accumulating high-precision imagery of everything along your flight lines — an extremely sensitive class of asset."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_keyresource",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "还没有客户真正依赖的方向不会因为投入更多而变正确。这一笔烧掉的是跑道，而飞检业务一旦停摆，机队和资质都会流失。看起来像执行力，其实是拿存活时间换假设。",
+            "en": "A direction no client truly depends on does not become correct by absorbing more spend. What this burns is runway, and if an inspection operation stalls, airframes and qualifications walk away with it. It looks like persistence, but it trades survival for an assumption."
           }
         }
       ]
@@ -395,6 +427,23 @@
             "zh": "省下逐单归档的工作量，交付也更快；但一旦有人质疑某一帧的来源，你要解释为什么当时拿不出来。",
             "en": "You save per-job archiving and deliver faster — but the first challenge to a frame means explaining why it was not available then."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "drone-inspection_b1_clean_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "判读标准一旦出错，整份报告都可能要推翻。把误判过的缺陷类型公开，等于承认你的判读有边界——而客户要的正是这种可复核的诚实，比一句「我们很准」有用得多。",
+            "en": "One reading error can invalidate a whole report. Publishing the defect types you have misread is an admission that your reading has limits — and clients want exactly that verifiable honesty, far more than a claim that you are never wrong."
+          }
         }
       ]
     },
@@ -479,6 +528,39 @@
           "why": {
             "zh": "免责条款不能替结构做体检。漏判的裂缝会在下一次检查之前继续扩展，而客户以为有人看过——这是把已知缺陷转嫁给用户承担。交付如期。",
             "en": "A liability clause will not inspect a bridge. Missed cracks keep growing until the next survey while clients believe someone looked — passing known defects to the user. Delivery stays on schedule."
+          }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "drone-inspection_b2_fixed",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "空域规则调整时，客户普遍会暂停飞行等审批。这不是惩罚，是安全流程本身要求的。营收立刻归零，而法律分同时上升提醒你：过渡期也需要被管理。",
+            "en": "When airspace rules change, clients generally pause flying pending approval. This is not a penalty; it is what the safety process requires. Revenue stops immediately, and the legal score rises to mark that the transition has to be managed too."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "drone-inspection_b2_fixed",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "空域规则的调整是外生的，你无法选择要不要面对。主动申报意味着先停飞等审——短期掉单，长期却把最贵的风险变成可管理的流程。",
+            "en": "Airspace rule changes are exogenous; you do not choose whether to face them. Reporting first means grounding while you wait — it costs money now but turns the most expensive risk into a managed process later."
           }
         }
       ]
@@ -679,6 +761,23 @@
             "zh": "影像转售利润远高于服务费。但把沿线基础设施的高精度影像打包出售，通常远超约定用途，也可能触及测绘成果管理要求。利润最高，风险也最高。",
             "en": "Imagery resale is far more profitable than service fees. But packaging high-precision imagery of infrastructure along your routes usually exceeds agreed purpose and may breach survey-output rules. Highest margin, highest risk."
           }
+        },
+        {
+          "text": {
+            "zh": "最大的单一客户终止合约",
+            "en": "Your single largest client terminates the contract"
+          },
+          "next": "drone-inspection_b1_clean_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一客户的断供会直接抽掉现金流，而巡检合同往往是多年期标段。伦理分上升，是因为最省事的应对通常是放宽判读标准来抢剩下的单——问题不在你做了什么，而在你只有一条腿站着。",
+            "en": "Losing one large client removes the cash flow, and inspection work is usually multi-year framework contracts. Ethics rises because the cheapest response is to loosen the reading standard to win whatever remains: the problem is not what you did, it is that you were standing on one leg."
+          }
         }
       ]
     },
@@ -721,6 +820,23 @@
             "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节，也可能踩到不正当竞争边界。",
             "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review, and can brush against unfair-competition rules."
           }
+        },
+        {
+          "text": {
+            "zh": "让客户参与制定判读标准：设常设用户小组",
+            "en": "Let clients help set the reading standard: a standing user panel"
+          },
+          "next": "drone-inspection_b1_clean_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "判读标准的争议是这门生意最大的成本之一。让客户参与定标准会慢，但换来续标率与「这家值得信」的判断——而且这层关系抄不走。",
+            "en": "Disagreement about reading standards is the largest cost in this business. Letting clients help set them is slower but buys renewal and the judgement that this vendor can be trusted — and the relationship cannot be copied."
+          }
         }
       ]
     },
@@ -761,6 +877,24 @@
           "why": {
             "zh": "关日志让报表最漂亮、问责最少。但飞行留痕通常是法定要求，删改或不予生成会被视为妨碍监管。",
             "en": "No logging makes reports cleanest and accountability thinnest. But flight records are usually a legal requirement; not producing or altering them can count as obstructing oversight."
+          }
+        },
+        {
+          "text": {
+            "zh": "把「我们不卖你的影像」做成产品卖点",
+            "en": "Make \"we do not release your imagery\" the product's selling point"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 1,
+            "pmf": 1,
+            "legal": -1,
+            "ethics": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "关键基础设施客户最怕影像外流。这句话把影像留在自己手里，法律风险下降，也更容易进最挑剔的标段——代价是放弃按影像库卖数据的路。",
+            "en": "Critical-infrastructure clients fear imagery leaving their control most of all. This keeps the imagery in your hands, lowers legal exposure, and wins the most demanding tenders — the cost is giving up the route of selling the imagery library."
           }
         }
       ]

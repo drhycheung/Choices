@@ -235,6 +235,22 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
             "zh": "一个大单直接跑通 Canvas 6，现金流确定。但买方要的是汇报口径而非真实筛选效果，产品会往「看起来有AI」的方向偏，真切合度反而下降。",
             "en": "One large deal makes Canvas 6 work immediately and removes cash-flow doubt. But the buyer wants reporting optics rather than real screening quality, so the product drifts towards looking AI-driven while genuine fit drops."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃当前细分，转做当下最热的相邻品类",
+            "en": "Pivot: drop this niche and move to whichever adjacent category is trending"
+          },
+          "next": "c2_product",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "换赛道会丢掉已经建立的雇主口碑与候选人来池。新行业要用另一套评分标准从头验证一遍，而你刚刚证明过的那套不要了。纸面上盘子更大，实际是清零重建。",
+            "en": "A pivot discards the employer reputation and candidate pool you have built. A new sector needs a different scoring standard validated from scratch, and you are throwing away the one you just proved. The market looks bigger on paper; in practice you are rebuilding from zero."
+          }
         }
       ]
     },
@@ -275,6 +291,22 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
           "why": {
             "zh": "人才库与人才画像库传播性强、付费意愿高；但把大量本地劳动力（含关键行业、关键岗位人员）的结构化画像集中沉淀在一个可被检索的数据库里，本身就是敏感性极高的资产。",
             "en": "A searchable talent pool monetises well and spreads fast, but concentrating structured profiles of a local workforce — including people in critical roles and industries — creates an asset of very high sensitivity."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_keyresource",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "还没有客户真正依赖的方向不会因为投入更多而变正确。这一笔烧掉的是跑道，而跑道是唯一无法用融资补回来的资源。看起来像执行力，其实是拿存活时间换一个还没被证实的假设。",
+            "en": "A direction no client truly depends on does not become correct by absorbing more spend. What this burns is runway, the one resource financing cannot replace. It looks like persistence, but it trades survival for an unproven assumption."
           }
         }
       ]
@@ -399,6 +431,23 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
             "zh": "省下逐条维护说明的工作量，也避免被反复追问；但一旦进入劳动仲裁，你要解释为什么平时不给。",
             "en": "You save the upkeep and the repeated questions — but once a labour dispute starts you must explain why you withheld it."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "ai-hiring_b1_clean_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "雇主评估供应商时最想要可验证的记录，而不是承诺。公开你在偏见与误判上犯过的错，等于交出一份别人拿不出的证据，也把「我们也会错」变成一种可信度。",
+            "en": "What an employer wants from a vendor is a verifiable record rather than a promise. Publishing the bias and misjudgement mistakes you have made hands over evidence nobody else can produce, and turns \"we get it wrong too\" into a form of credibility."
+          }
         }
       ]
     },
@@ -483,6 +532,39 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
           "why": {
             "zh": "限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。",
             "en": "Fine print will not contain the systemic effect, and once someone loses an opportunity the burden of proof stays with you. This turns known disparate impact into a shipped feature. Launch stays on schedule."
+          }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "ai-hiring_b2_fixed",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "合规期内订单暂停是结构性的，不是你做错了什么。但招聘系统的采购周期长，冻结会直接拖垮现金流，法律分同时上升提醒你：过渡期本身也需要被管理。",
+            "en": "Orders pausing during a compliance transition is structural rather than a mistake on your part. Procurement for hiring systems runs long, so a freeze hits cash flow directly, and the legal score rises to mark that the transition itself has to be managed."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "ai-hiring_b2_fixed",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "涉及自动招聘决策的规则正在收紧，主动申报短期掉单，长期却把最贵的风险变成可管理的流程。代价是真实的，但这是不靠放弃生意就能降低风险的少数选项之一。",
+            "en": "Rules on automated hiring decisions are tightening. Reporting first costs orders now but turns the most expensive risk into a managed process later. The cost is real, but this is one of the few options that lowers risk without abandoning the business."
           }
         }
       ]
@@ -683,6 +765,23 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
             "zh": "把求职者数据当成商品转售，通常远超收集时的目的与合理预期，几乎必然违反告知同意义务。财务回报最快，法律与伦理负债也最大。",
             "en": "Treating jobseekers' data as inventory to resell goes far beyond the original purpose and reasonable expectation, which almost always breaches notice-and-consent duties. Fastest financial return, largest legal and ethical debt."
           }
+        },
+        {
+          "text": {
+            "zh": "最大的单一客户终止合约",
+            "en": "Your single largest client terminates the contract"
+          },
+          "next": "ai-hiring_b1_clean_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一客户的断供会直接抽掉现金流与该行业的口碑。伦理分之所以上升，是因为最省事的应对通常是放宽评分标准来服务剩下的客户——问题不在你做了什么，而在你只有一条腿站着。",
+            "en": "Losing one large client removes the cash flow and the sector reputation at once. Ethics rises because the cheapest response is to loosen the scoring standard for whoever remains: the problem is not what you did, it is that you were standing on one leg."
+          }
         }
       ]
     },
@@ -725,6 +824,23 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
             "zh": "代理能快速放大合同数，但按人头分成的结构会诱导代理夸大效果甚至代为填写岗位要求，把产品的可信度押在别人的销售话术上。",
             "en": "Agents multiply contract count quickly, but per-head incentives push them to overstate results or even write job specs themselves, resting your credibility on someone else's sales pitch."
           }
+        },
+        {
+          "text": {
+            "zh": "让求职者和 HR 参与治理：设常设顾问组",
+            "en": "Let candidates and HR take part in governance: a standing advisory panel"
+          },
+          "next": "ai-hiring_b1_clean_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "让被评分的人看见评分怎么来的，是唯一能真正降低误判的做法。它会拖慢交付，但换来候选人信任与 HR 续约——而且这层关系抄不走。",
+            "en": "Letting the people being scored see how the score is produced is the only thing that genuinely reduces misjudgement. It slows delivery but buys candidate trust and HR renewal — and the relationship cannot be copied."
+          }
         }
       ]
     },
@@ -765,6 +881,24 @@ window.CHOICES_EMBEDDED.scenarios["ai-hiring"] = {
           "why": {
             "zh": "不披露可以避免大量解释成本，客户也更省事。但涉及就业的关键自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。",
             "en": "Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness."
+          }
+        },
+        {
+          "text": {
+            "zh": "把「我们不卖你的数据」做成产品卖点",
+            "en": "Make \"we do not sell your data\" the product's selling point"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 1,
+            "pmf": 1,
+            "legal": -1,
+            "ethics": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "求职者最担心简历流向不明。这句话把最敏感的数据留在自己手里，法律风险下降，候选人更愿意投——代价是放弃靠转售候选人资料快速抬营收的路。",
+            "en": "What jobseekers fear most is not knowing where their CVs go. This keeps the most sensitive data in your hands, lowers legal exposure, and makes candidates more willing to apply — the cost is giving up the quick route to revenue from reselling candidate profiles."
           }
         }
       ]

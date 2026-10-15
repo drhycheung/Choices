@@ -63,7 +63,8 @@ function sweep(scenario) {
 
 function pct(n, d) { return d ? ((100 * n / d).toFixed(2) + '%').padStart(8) : '       -'; }
 
-let worst = { clean: 1, stall: 1, bmin: 99, strong: 1, fail: 0 };
+// seed 必须是 0：strong/fail 用 Math.max 累加，seed=1 会让结果永远不小于 100%
+let worst = { clean: 1, stall: 1, bmin: 99, strong: 0, fail: 0 };
 const rows = [];
 
 for (const f of files) {

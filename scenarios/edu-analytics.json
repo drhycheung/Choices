@@ -231,6 +231,22 @@
             "zh": "一个区域大单让 Canvas 6 立刻成立。但买方要的是排名与汇报口径，而不是课堂里的真实归因，产品会往「看板」偏移，与老师的真实需求拉开距离。",
             "en": "One district deal makes Canvas 6 work instantly. But the buyer wants rankings and reporting optics rather than diagnosis inside lessons, so the product drifts towards dashboards and away from real teacher needs."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃当前学段，转做当下最热的相邻品类",
+            "en": "Pivot: drop this school level and move to whichever adjacent segment is trending"
+          },
+          "next": "c2_product",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "放弃已经拿到的学校口碑去追热点，等于把建立的信任清零。新学段要用另一套诊断标准重新验证，而刚证明有效的那套被丢掉了。教育行业尤其如此：换掉已验证的方案比拿不到新单更伤。",
+            "en": "Abandoning the school reputation you have earned to chase a trend resets the trust you have built. A new segment needs a different diagnostic standard validated again, and you discard the one that just worked. In education this is especially costly: replacing a proven approach does more damage than failing to win a new contract."
+          }
         }
       ]
     },
@@ -271,6 +287,22 @@
           "why": {
             "zh": "全年级的结构化画像便于汇报、容易被采购。但未成年人长期的学习行为画像，是敏感程度极高且影响持久的数据集合；一旦跨境或外泄，几乎无法补救。",
             "en": "Year-group profiles are easy to present and easy to buy. But a long-running behavioural profile of minors is extremely sensitive and long-lasting; once transferred or leaked it can barely be remedied."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_keyresource",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "还没有学校真正依赖的方向不会因为投入更多而变正确。这一笔烧掉的是跑道。学校采购周期长，一旦现金流断掉，比丢单严重得多。看起来像执行力，其实是拿存活时间换假设。",
+            "en": "A direction no school truly depends on does not become correct by absorbing more spend. What this burns is runway. School procurement cycles are long, so running out of cash does far more damage than losing a contract. It looks like persistence, but it trades survival for an assumption."
           }
         }
       ]
@@ -395,6 +427,23 @@
             "zh": "省下逐项维护说明的工作量；但未成年人数据一旦被质疑，家长与主管单位的追问会同时到来。",
             "en": "You save the upkeep — but when minors' data is questioned, parents and the authority arrive at the same time."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "edu-analytics_b1_clean_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "学校最怕选错系统后没人告诉他们真实情况。公开你在诊断偏差上犯过的错，等于交出一份别人拿不出的证据——教育局与家长要的正是这个。",
+            "en": "What schools fear most is choosing the wrong system and hearing nothing honest afterwards. Publishing the diagnostic-bias mistakes you have made hands over evidence nobody else can produce, which is exactly what districts and parents are asking for."
+          }
         }
       ]
     },
@@ -479,6 +528,39 @@
           "why": {
             "zh": "限定适用范围的小字挡不住实际使用，弱势学校的学生仍会被系统性地低评；这等于把已知的复制性偏差当作产品常态发布。上线如期。",
             "en": "Scope language never stops real usage, and students in under-resourced schools still get systematically marked down; you ship known reproduced bias as normal behaviour. Launch stays on schedule."
+          }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "edu-analytics_b2_fixed",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "涉及未成年人数据的规则收紧时，学校普遍会先停用再评估。这不是惩罚，是采购流程本身要求的。营收立刻归零，而法律分同时上升提醒你：过渡期也需要被管理。",
+            "en": "When rules on minors' data tighten, schools generally suspend a system before assessing it. This is not a penalty; it is what the procurement process requires. Revenue stops immediately, and the legal score rises to mark that the transition has to be managed too."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "edu-analytics_b2_fixed",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "涉及未成年人数据的规则收紧时，主动申报意味着先停后审——短期掉单，长期却把最贵的风险变成可管理的流程。这是唯一一条不靠放弃生意就能降低风险的路径。",
+            "en": "When rules on minors' data tighten, reporting first means suspending before assessing: it costs orders now but turns the most expensive risk into a managed process later. This is the one route that lowers risk without abandoning the business."
           }
         }
       ]
@@ -679,6 +761,23 @@
             "zh": "把在校学生的薄弱表现打包成销售线索，远超收集时的目的，且涉及未成年人——这是最典型的目的外使用，也是最容易被家长感知为背叛的一种做法。财务回报最快。",
             "en": "Packaging schoolchildren's weaknesses into sales leads goes far beyond the original purpose and involves minors — the textbook case of secondary use, and the easiest one for parents to read as betrayal. Fastest financial return."
           }
+        },
+        {
+          "text": {
+            "zh": "最大的单一学区终止合约",
+            "en": "Your single largest district terminates the contract"
+          },
+          "next": "edu-analytics_b1_clean_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一学区的断供会直接抽掉现金流，而学校的采购决策是集体做出的：失去一个学区往往连带失去同区的推荐。伦理分上升，是因为最省事的应对通常是放宽评分口径来留住剩下的学校。",
+            "en": "Losing one large district removes the cash flow, and school purchasing is a collective decision: losing one district often loses the referrals around it. Ethics rises because the cheapest response is to loosen the scoring criteria for whoever remains."
+          }
         }
       ]
     },
@@ -721,6 +820,23 @@
             "zh": "打包能快速覆盖大量学校。但用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传；而代理商也不会替你维护数据边界。",
             "en": "Bundling reaches many schools fast. But advertising score improvements without causal evidence usually amounts to misleading claims in education marketing, and the reseller will not guard your data boundaries for you."
           }
+        },
+        {
+          "text": {
+            "zh": "让教师与家长参与治理：设常设用户小组",
+            "en": "Let teachers and parents take part in governance: a standing user panel"
+          },
+          "next": "edu-analytics_b1_clean_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "AI 在替教师下判断，而教师最想要的就是能对规则提意见。共治会拖慢交付，但换来续约与口碑——而且这层关系抄不走。",
+            "en": "The AI makes judgements on teachers' behalf, and what teachers want most is a say in the rules. Shared governance slows delivery but buys renewal and reputation — and the relationship cannot be copied."
+          }
         }
       ]
     },
@@ -761,6 +877,24 @@
           "why": {
             "zh": "不留痕迹能避免日后被追责，也能减少存储成本。但涉及不利决定时，学生申诉与复核的权利就会落空，删除日志本身还可能被视为妨碍问责。",
             "en": "Keeping no trail avoids later challenges and cuts storage cost. But where adverse decisions affect students, the rights to appeal and review collapse, and deleting logs can itself look like obstructing accountability."
+          }
+        },
+        {
+          "text": {
+            "zh": "把「我们不卖你的数据」做成产品卖点",
+            "en": "Make \"we do not sell your data\" the product's selling point"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "business": 1,
+            "pmf": 1,
+            "legal": -1,
+            "ethics": -1
+          },
+          "actor": "design",
+          "why": {
+            "zh": "家长最担心孩子数据被拿去推销。这句话把数据留在学校与会员手里，法律风险下降，续约率上升——代价是放弃按清单卖给补习机构的路。",
+            "en": "What parents fear most is their children's data being used to sell tutoring. This keeps the data with schools and members, lowers legal exposure, and raises renewal — the cost is giving up the route of selling needs-improvement lists."
           }
         }
       ]

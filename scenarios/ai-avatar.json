@@ -231,6 +231,22 @@
             "zh": "一个定制大单让 Canvas 6 立刻成立，现金流确定。但产品会朝单一机构的直播间诉求偏移，中小商家的真实痛点被排在后面，契合度下降。",
             "en": "One bespoke deal makes Canvas 6 work immediately and removes cash doubt. But the roadmap bends towards one studio's studio-stage needs, pushing real merchant pain further down — fit drops."
           }
+        },
+        {
+          "text": {
+            "zh": "换赛道：放弃本地商户，转做当下最热的相邻品类",
+            "en": "Pivot: drop local merchants and move to whichever adjacent category is trending"
+          },
+          "next": "c2_product",
+          "effects": {
+            "business": -3,
+            "pmf": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "追热点的代价是既有商户与口碑归零。新品类要从零学一遍脚本与渠道，而你刚验证过的商户类型不要了。换赛道在纸面上常常显得更大，实际是把已经建起来的东西清零重建。",
+            "en": "Chasing a trend resets the merchants and reputation you already have. The new category needs its own scripts and channel model learned from scratch, and you discard the one you just proved. A pivot usually looks bigger on paper while quietly discarding what you had built."
+          }
         }
       ]
     },
@@ -271,6 +287,22 @@
           "why": {
             "zh": "零门槛带来最快的用户增长。但当任何人都能生成以假乱真的面孔与声音，这些素材进入公共信息环境的速度与规模，本身就是一类难以回收的公共风险。",
             "en": "Zero friction brings the fastest user growth. But once anyone can generate indistinguishable faces and voices, the speed and scale at which such clips enter the public information space is itself a hard-to-recall public risk."
+          }
+        },
+        {
+          "text": {
+            "zh": "在还没有人验证过的方向上继续烧钱",
+            "en": "Keep funding a direction nobody has validated yet"
+          },
+          "next": "c2_keyresource",
+          "effects": {
+            "business": -2,
+            "moat": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "没有 PMF 的方向不会因为投入更多而变正确。这一笔烧掉的是跑道，而跑道是唯一无法用融资补回来的资源。看起来像执行力，其实是拿存活时间换一个还没被证实的假设。",
+            "en": "A direction without product-market fit does not become correct by absorbing more spend. What this burns is runway, the one resource financing cannot replace. It looks like persistence, but it trades survival for an unproven assumption."
           }
         }
       ]
@@ -396,6 +428,22 @@
             "zh": "条款只能约束愿意遵守条款的人。对已经发生的诈骗而言，「我们禁止过」通常不足以免责；实质是先上线、后果由受害者承担。指标好看。",
             "en": "Terms only bind people willing to read them. For fraud already happening, 'we prohibited it' rarely discharges liability; in substance you ship first and let victims absorb consequences. The metrics look good."
           }
+        },
+        {
+          "text": {
+            "zh": "合规过渡期：新规落地，审核期间订单冻结",
+            "en": "Regulatory transition: new rules land and orders freeze while they are checked"
+          },
+          "next": "fxd_incident",
+          "effects": {
+            "business": -2,
+            "legal": 1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "合成肖像的规则收紧时，平台普遍会先下架再评估。这不是惩罚，是审核流程本身要求的。营收立刻归零，而法律分同时上升提醒你：过渡期本身也需要被管理。",
+            "en": "When rules on synthetic likenesses tighten, platforms generally delist before assessing. This is not a penalty; it is what the review process requires. Revenue stops immediately, and the legal score rises to mark that the transition itself has to be managed."
+          }
         }
       ]
     },
@@ -445,6 +493,23 @@
             "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
             "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
           }
+        },
+        {
+          "text": {
+            "zh": "把踩过的坑公开成方法论",
+            "en": "Publish the mistakes you have made as a public methodology"
+          },
+          "next": "cln_money",
+          "effects": {
+            "business": 2,
+            "moat": 1,
+            "ethics": -2
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "公开失败经验在短期内显得不专业，却是把信任变成转化的最短路径：品牌方要评估你时，你的诚实本身就是证据。而且这类内容抄不走——抄的人没有同样的坑可写。",
+            "en": "Publishing your failures looks unprofessional at first, but it is the shortest route from trust to conversion: when a brand is assessing you, your honesty is itself the evidence. And it cannot be copied — a competitor has no equivalent mistakes to publish."
+          }
         }
       ]
     },
@@ -486,6 +551,23 @@
           "why": {
             "zh": "抽成模式最受欢迎、合同最好签；但对他人形象与声音的二次商业授权，通常远超原始授权范围，把创作者的权利当成可以再卖一次的库存。法律风险最高。",
             "en": "Revenue share is the most popular contract; but sublicensing someone's likeness and voice usually exceeds the original licence, treating a creator's rights as inventory to sell twice. Highest legal exposure."
+          }
+        },
+        {
+          "text": {
+            "zh": "最大的单一 MCN 客户终止合约",
+            "en": "Your single largest MCN client terminates the contract"
+          },
+          "next": "cln_channel",
+          "effects": {
+            "business": -4,
+            "pmf": -1,
+            "ethics": 1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "单一 MCN 的断供会直接抽掉现金流，而主播正是靠他们才有一批可授权的肖像。伦理分之所以上升，是因为最省事的应对通常是把授权成本转嫁给剩下的模特与商户。",
+            "en": "Losing one large MCN removes the cash flow, and they were the source of most authorisable likenesses. Ethics rises because the cheapest response is to shift the licensing cost onto the remaining models and merchants."
           }
         }
       ]
@@ -529,6 +611,23 @@
             "zh": "按签约数提成的结构会诱导销售替商户代签、替商户注册账号，授权链条在第一米就断了；门店数很好看，责任链条却没有人能还原。",
             "en": "Bonusing on signatures pushes sales to sign for merchants and register accounts for them — the authorisation chain breaks in the first metre. Store count looks great, accountability cannot be reconstructed."
           }
+        },
+        {
+          "text": {
+            "zh": "让主播与商户参与治理：设常设用户小组",
+            "en": "Let performers and merchants take part in governance: a standing user panel"
+          },
+          "next": "cln_deploy",
+          "effects": {
+            "business": 2,
+            "pmf": 1,
+            "ethics": -1
+          },
+          "actor": "policy",
+          "why": {
+            "zh": "共治会拖慢决定，但换来签约率与口碑：被征求意见的主播与商户不容易流失。收益不在这一局的分数上，而在别人抄你的产品时抄不走这层关系。",
+            "en": "Shared governance slows decisions but buys sign-up and word of mouth: performers and merchants who were consulted do not churn. The return does not show up in this run's numbers; it shows up when a competitor copies the product and cannot copy the relationship."
+          }
         }
       ]
     },
@@ -569,6 +668,23 @@
           "why": {
             "zh": "去掉标识会让转化率明显变好，这正是它的危险之处：多个法域已要求 AI 生成内容显著标识，不做标识还可能被视为为欺诈提供条件。",
             "en": "Dropping the label measurably improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling, and omitting it can look like facilitating deception."
+          }
+        },
+        {
+          "text": {
+            "zh": "主动向监管方申报，并申请过渡期",
+            "en": "Report to the regulator yourself and apply for a transition period"
+          },
+          "next": "c3_harm",
+          "effects": {
+            "legal": -2,
+            "ethics": -1,
+            "business": -1
+          },
+          "actor": "law",
+          "why": {
+            "zh": "主动申报短期会掉单，长期却把最贵的风险变成可管理的流程。代价是真实的：这一局你会少赚一点。关键在于它是不靠「放弃生意」就能降低风险的少数选项之一——过去缺的正是这种。",
+            "en": "Reporting first costs orders now but turns the most expensive risk into a managed process later. The cost is real: you earn slightly less this run. What matters is that this is one of the few options that lowers risk without abandoning the business — which is exactly what used to be missing."
           }
         }
       ]
