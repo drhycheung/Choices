@@ -715,6 +715,21 @@ body::before {
 }
 .btn-shuffle-start span { display: block; }
 .btn-shuffle-start:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #0a4661; }
+
+/* 清除存档：故意做得比两个主按钮低调——它是机房维护用的，不是玩家的主要动作。 */
+.btn-clear-saves {
+  margin-top: 10px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 5px 11px;
+  cursor: pointer;
+}
+.btn-clear-saves:hover { color: var(--cyan); border-color: var(--cyan); }
+.btn-clear-saves span { display: block; }
 .start-sub .en {
   font-size: 20px;
   color: var(--cyan);

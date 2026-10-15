@@ -68,6 +68,10 @@
       exportJson: '下载 JSON 数据',
       exportNote: '报告含本局全部决策、每步的分数增减与理由、分数总账与结局复盘，可直接提交或打印。',
       exported: '已开始下载',
+      resumedNote: '已恢复上一次未完成的这一局（第',
+      resumedNoteEnd: '步）。接着玩即可，或点「重新开始」清空存档。',
+      clearSaves: '清除全部存档',
+      clearedNote: '已清除全部存档。',
       perfectBadge: '完美通关',
       perfectNote: '三条风险线全部为零，价值三格全部在 7 分以上——这是这个题材里唯一的一条路径。',
       footer: '核心引擎通用 · 场景为独立 JSON 数据包 · 纯静态站：可部署 GitHub Pages，亦可双击本地打开',
@@ -125,6 +129,10 @@
       exportJson: 'Download JSON data',
       exportNote: 'The report contains every decision, the score change and the reason behind each step, the score ledger and the ending debrief — ready to submit or print.',
       exported: 'Download started',
+      resumedNote: 'Resumed your unfinished run (at step',
+      resumedNoteEnd: '). Carry on, or press restart to clear the save.',
+      clearSaves: 'Clear all saved runs',
+      clearedNote: 'All saved runs cleared.',
       perfectNote: 'All three risk lines at zero and all three value boxes at 7 or above — the only path in this venture that does it.',
       footer: 'Universal engine · scenarios are standalone JSON data packs · pure static site: deploy to GitHub Pages or open this HTML directly',
       actionError: 'Error: ',
@@ -455,6 +463,7 @@
   function onChoose(i) {
     try { ChoicesEngine.choose(scenario, state, i); }
     catch (e) { showBanner(UI[lang].actionError + e.message, 'error'); return; }
+    saveRun();
     renderDims();
     renderFeedback();
     renderNode();
@@ -955,7 +964,9 @@
     var restart = textEl('button', UI[lang].restart, 'btn-restart');
     restart.onclick = restartGame;
     var shuffle = textEl('button', UI[lang].shuffle, 'btn-shuffle');
-    shuffle.onclick = function () { pendingId = pickScenarioId(true); loadAndStart(pendingId); };
+    // 换题材前先把当前这一局存下来，否则它会被 loadAndStart → beginPlay
+    // 里的 createState 直接覆盖掉。L07 要求学生连跑两局，这一步不能丢。
+    shuffle.onclick = function () { saveRun(); pendingId = pickScenarioId(true); loadAndStart(pendingId); };
     row.appendChild(restart);
     row.appendChild(shuffle);
     box.appendChild(row);
@@ -1025,6 +1036,8 @@
 
   function restartGame() {
     state = ChoicesEngine.createState(scenario);
+    clearRun();          // 重开是玩家明确的动作，所以这一局的存档也一并清掉，
+                          // 否则下次进入会恢复一个「已重开」的局。
     $('ending').className = 'ending hidden';
     $('stage').classList.remove('hidden');
     $('trace-panel').classList.add('hidden');
@@ -1032,6 +1045,68 @@
     renderNode();
     renderFeedback();
   }
+
+  /* ---- 存档：一局必须活过一次「换题材」 ----
+   L07 第 15 页要求学生跑两局：第一局用指定的题材，第二局换一个题材。
+   而「换一个题材」这个按钮会直接开始新的一局，旧的一局随之消失——
+   存档就是为这个场景存在的。
+   键名：choices.run.<scenario id>；只存 state，不存 scenario 本身。 */
+
+var SAVE_PREFIX = 'choices.run.';
+var SAVE_VERSION = 1;
+
+function saveKey() { return SAVE_PREFIX + (scenario ? scenario.id : 'run'); }
+
+function saveRun() {
+  if (!state || !scenario) return;
+  // 只在 state 真的指向一个还存在节点时才存：场景被改过之后，
+  // 指向已删除节点的存档会被丢弃，而不是恢复成一个坏状态。
+  var node = scenario.nodes && scenario.nodes[state.current];
+  if (!node) { clearRun(); return; }
+  try {
+    localStorage.setItem(saveKey(), JSON.stringify({
+      v: SAVE_VERSION,
+      savedAt: Date.now(),
+      scenarioId: scenario.id,
+      state: state
+    }));
+  } catch (e) { /* 隐私模式或配额满：存档失败不该影响正常游戏 */ }
+}
+
+function readRun() {
+  try {
+    var raw = localStorage.getItem(saveKey());
+    if (!raw) return null;
+    var saved = JSON.parse(raw);
+    if (!saved || saved.v !== SAVE_VERSION || !saved.state) return null;
+    var st = saved.state;
+    if (!st.current || !scenario.nodes || !scenario.nodes[st.current]) return null;
+    if (!st.dims) return null;
+    return saved;
+  } catch (e) { return null; }
+}
+
+function clearRun() {
+  try { localStorage.removeItem(saveKey()); } catch (e) {}
+}
+
+function clearAllRuns() {
+  try {
+    var kill = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.indexOf(SAVE_PREFIX) === 0) kill.push(k);
+    }
+    kill.forEach(function (k) { localStorage.removeItem(k); });
+  } catch (e) {}
+}
+
+function restoreRun() {
+  var saved = readRun();
+  if (!saved) { clearRun(); return false; }
+  state = saved.state;
+  return true;
+}
 
   function beginPlay() {
     if (!scenario.endings) scenario.endings = coreEndings;
@@ -1041,6 +1116,7 @@
     if (res.errors.length) showBanner(UI[lang].validateError + res.errors.join(lang === 'zh' ? '；' : '; '), 'error');
     applyChrome();
     state = ChoicesEngine.createState(scenario);
+    var restored = restoreRun();     // 有存档就用存档，而不是刚建好的新局
     $('ending').className = 'ending hidden';
     $('stage').classList.remove('hidden');
     $('trace-panel').classList.add('hidden');
@@ -1048,6 +1124,10 @@
     renderNode();
     renderFeedback();
     updateStartCard();
+    // 恢复了一局必须说出来：否则它看起来像 bug，学生会去点「重新开始」把它弄掉。
+    if (restored && state.history && state.history.length) {
+      showBanner(UI[lang].resumedNote + ' ' + state.history.length + UI[lang].resumedNoteEnd, 'info');
+    }
   }
 
   // 随机抽取一个创业题材（这是全局唯一的随机点，且可用 ?scenario= 指定）
@@ -1244,11 +1324,21 @@
     var shuffleBtn = $('shuffle-btn');
     if (shuffleBtn) shuffleBtn.addEventListener('click', function () {
       if (!manifest) return;
+      saveRun();                  // 换题材不能毁掉还没跑完的一局
       scenario = null;            // 换题材要丢掉上一份
       pendingId = pickScenarioId(true);
       updateStartCard();
       if (!$('start-screen').classList.contains('hidden')) return;  // 还在封面就先不加载
       loadAndStart(pendingId);
+    });
+
+    // 共用的机房里需要能把存档清干净，所以给一个出口。
+    var clearBtn = $('clear-saves-btn');
+    if (clearBtn) clearBtn.addEventListener('click', function () {
+      clearAllRuns();
+      state = null;
+      if (scenario) state = ChoicesEngine.createState(scenario);
+      showBanner(UI[lang].clearedNote, 'info');
     });
 
     if (location.protocol === 'file:') {
