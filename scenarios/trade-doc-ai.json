@@ -226,8 +226,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "一键生成最好演示，也最容易嵌入客户忙碌的一天。但当「快」成为唯一指标，人工复核会被跳过，错误的归类会以更快的速度被提交出去。",
-            "en": "One click demos beautifully and fits a frantic working day. But when speed is the only metric, human review gets skipped and wrong classifications get filed faster."
+            "zh": "商业分上去，因为一键生成整套报关单确实贴合赶单的节奏。但伦理与社会期待一起掉：报关行最想要的恰恰是人工复核，而「一键」意味着复核被跳过——最后签字的人并没有真的看过。",
+            "en": "Business rises, because one-click generation fits a frantic working day. Ethics and social expectation fall together: brokers want human review most of all, and one click means review is skipped, so the person who signs has not actually looked."
           }
         },
         {
@@ -458,8 +458,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "省下逐单归档的工作量，交付更快；但查验是有时限的，你要解释为什么平时拿不出来。",
-            "en": "You save per-shipment archiving and deliver faster — but inspections run to a deadline, and you must explain why it was not ready."
+            "zh": "商业分上去，是因为你省掉了逐票归档的工。但伦理与社会期待一起掉：报关行有权知道自己的商业单据被谁读过、留了多久，而你要等查验才交出来——而查验是有期限的。",
+            "en": "Business rises because you skip per-shipment archiving. Ethics and social expectation fall together: brokers were entitled to know who read their commercial documents and for how long you keep them, and you produce the list only at inspection, which has a deadline."
           }
         },
         {
@@ -501,8 +501,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "止损能减少后续责任，但减不掉单据已经进入训练集这一事实，效果也会回退；自己发现永远比被查验后整改便宜。",
-            "en": "Stopping limits further liability but does not undo that the documents entered training, and quality regresses. Finding it yourself beats remediating after an inspection."
+            "zh": "法律与伦理都下降，因为这批单据不再进入训练；但契合分也在跌，因为停用与重训会拉低识别率。自己发现比事后补救便宜——这一格真正的取舍在这里。",
+            "en": "Legal and ethics both fall, because the batch no longer enters training, but product-market fit falls too, because stopping and retraining lowers recognition quality. Finding it yourself is cheaper than remediating afterwards, and that is the real trade-off."
           }
         },
         {
@@ -520,8 +520,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "换来的是旺季吞吐与准确率，代价是：这些单据从哪来、有没有传递管制的敏感信息，举证责任已经落在你们身上。",
-            "en": "You buy peak-season throughput and accuracy, and inherit the burden of proving where those documents came from and whether controlled details moved."
+            "zh": "契合分上去，是因为旺季的吞吐与准确率都靠它。但法律、伦理与社会期待一起掉：这些单据是别人的商业材料，你拿不出取得方式，而这批数据里还含有交易对手与目的地。",
+            "en": "Product-market fit rises because the peak-season throughput and accuracy both depended on it. Legal, ethics and social expectation fall together: these are other parties' commercial documents, you cannot show how you got them, and they contain counterparties and destinations."
           }
         }
       ]
@@ -620,8 +620,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "时效保住了，单量也上去了；但归类建议一旦涉及管制物项，「我们提示过」通常不足以切断责任。",
-            "en": "You keep turnaround and volume — but once a classification touches controlled goods, 'we warned them' rarely severs liability."
+            "zh": "商业分立刻上去：通关量与周转保住。但伦理与社会期待一起掉：归类一旦碰到管制物，「我们已经提醒过」很少能切断责任——而这一栏原本就是拦这类货物用的。",
+            "en": "Business rises at once: volume and turnaround hold. Ethics and social expectation fall together: once a classification touches controlled goods, \"we warned them\" rarely severs liability, and this was the control that existed for exactly that case."
           }
         }
       ]
@@ -647,8 +647,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "补救能止住继续错报，也向客户与海关证明你会修正；但它改不掉已经申报的记录，收入也会先掉一块。",
-            "en": "Fixing it stops further misdeclaration and shows clients and customs you correct course — but it cannot rewrite filed entries, and revenue dips first."
+            "zh": "伦理与法律都下降，因为错误申报停止了；但商业分也在跌，因为客户先看到收入下滑。已经递交的申报单改不回来——修复只是阻止它再发生。",
+            "en": "Ethics and legal both fall, because the misdeclaration stops, but business falls too, because clients see the revenue drop first. Filed entries cannot be rewritten; fixing it only stops it happening again."
           }
         },
         {
@@ -665,8 +665,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "告知书保护的是你们与客户的内部关系，不是申报义务；归类错误的责任不会因为它写得更清楚而转移。",
-            "en": "The letter protects your relationship with the client, not the filing obligation; clearer wording does not move liability for a wrong classification."
+            "zh": "商业分上去，因为客户关系保住了。但伦理与社会期待一起掉：信里写得再清楚，也不改变申报义务由谁承担——而你改的只是措辞，不是做法。",
+            "en": "Business rises because the client relationship holds. Ethics and social expectation fall together: clearer wording does not move the filing obligation off you, and you changed the wording rather than the practice."
           }
         }
       ]
@@ -1014,8 +1014,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的商业资料当成库存再卖一次。法律风险最高。",
-            "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's records as inventory twice. Highest legal exposure."
+            "zh": "商业分大幅上去，因为分成是最容易谈成的合同。但法律、伦理与社会期待大幅下降：把别人的商业单据间接变现，等于把一个人的记录当库存卖两次——而那批有问题的样本也在其中。",
+            "en": "Business rises sharply because revenue share is the easiest contract to sign. Legal, ethics and social expectation fall sharply: indirectly monetising other parties' documents sells someone's record as inventory twice, and the questionable samples are counted in too."
           }
         }
       ]
@@ -1057,8 +1057,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "承诺通关会诱导客户替他人代持申报，授权链条在第一米就断了；客户数很好看，责任链条却没人能还原。",
-            "en": "A clearance promise pushes clients to file on others' behalf — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+            "zh": "商业分大幅上去，因为付费投放最快，排行榜也好看。但法律、伦理与社会期待一起掉：清关承诺会推动客户替别人报关，授权链当场就断——而你本来就说不清这些单据的来源。",
+            "en": "Business rises sharply because paid acquisition is fastest and the leaderboard looks good. Legal, ethics and social expectation fall together: a clearance promise pushes clients to file on others' behalf, which breaks the authorisation chain immediately, and you could not account for the provenance to begin with."
           }
         }
       ]

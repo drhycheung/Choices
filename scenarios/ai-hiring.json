@@ -458,8 +458,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "省下逐条维护说明的工作量，也避免被反复追问；但一旦进入劳动仲裁，你要解释为什么平时不给。",
-            "en": "You save the upkeep and the repeated questions — but once a labour dispute starts you must explain why you withheld it."
+            "zh": "商业分上去，是因为你省掉了长期维护评分依据的工，签约也更容易。但伦理与社会期待一起掉：候选人本来有权知道自己被拿去比了什么，而你在有人投诉之前从未讲过。",
+            "en": "Business rises because you skip maintaining the scoring basis and sell more easily. Ethics and social expectation fall together: candidates were entitled to know what they were compared on, and you told nobody until a complaint arrived."
           }
         },
         {
@@ -501,8 +501,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "止损能减少后续责任，但减不掉已经发生的收集行为，效果也会回退；自己发现永远比被举报后整改便宜。",
-            "en": "Stopping limits further liability but does not undo the collection, and quality regresses. Finding it yourself beats remediating after a report."
+            "zh": "法律与伦理都下降，因为停用之后就不再继续扩散；但契合分也在跌，因为停用与重训会直接影响当下这批指标。发现它比被举报之后再补救便宜——这才是这一格真正的取舍。",
+            "en": "Legal and ethics both fall, because stopping halts the spread, but product-market fit falls too, because stopping and retraining hits the current metrics. Finding it yourself is cheaper than remediating after a complaint, and that is the real trade-off here."
           }
         },
         {
@@ -519,8 +519,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "换来的是模型表现与交付时间，代价是把「我们凭什么持有这些数据」的举证责任整个留给了以后的自己。",
-            "en": "You buy model performance and delivery time, and leave the burden of proving why you hold the data to your future self."
+            "zh": "契合分上去，是因为这批数据把评分抬起来了，你也保住了交付期。但法律、伦理与社会期待一起掉：拿不出合法基础，将来要由你自证；而这些人从未同意过。",
+            "en": "Product-market fit rises because the batch lifted the scores and you kept the delivery date. Legal, ethics and social expectation fall together: without a lawful basis you carry the burden of proof later, and these people never agreed to it."
           }
         }
       ]
@@ -636,8 +636,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "筛得多、交付快，指标立刻好看；但你在客户面前说的「我们有人复核」已经开始失真。",
-            "en": "More candidates, faster delivery, better metrics at once — but 'a human reviews this' has started to drift from the truth."
+            "zh": "商业分立刻上去：交付更快、候选人数更多、报表也更好看。但伦理与社会期待一起掉：写着「人工复核」的那张表，从此与事实不符——而它会被当作证据使用。",
+            "en": "Business rises at once: faster delivery, more candidates, better-looking reports. Ethics and social expectation fall together: the sheet that says a human reviewed this no longer matches reality, and it is the sheet that gets relied on."
           }
         }
       ]
@@ -663,8 +663,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "补救能止住继续误判，也向客户证明你会修正；但它不能退回那七次拒绝，收入也会先掉一块。",
-            "en": "Fixing it stops further misjudgement and shows clients you correct course — but it cannot return the seven rejections, and revenue dips first."
+            "zh": "伦理与法律都下降，因为误判停止了；但商业分也在跌，因为客户会先看到收入下滑，看到改善要晚一步。这不能把那七个被拒的人退回来——修复只是阻止它再发生。",
+            "en": "Ethics and legal both fall, because the misjudgement stops, but business falls too, because clients see the revenue drop before they see the improvement. It does not return the seven rejections; fixing it only stops it happening again."
           }
         },
         {
@@ -680,8 +680,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "把责任推给客户能换来短期平安，但监管看的是谁设计了规则；这句话也会成为你知情的证据。",
-            "en": "Pushing responsibility to the client buys short-term quiet, but regulators ask who designed the rule — and that line becomes evidence you knew."
+            "zh": "商业分上去，因为责任被推回给客户，眼前的风波平息了。但伦理与社会期待一起掉：监管会问的是规则是谁设计的——而这句话会变成对你不利的证据。",
+            "en": "Business rises because the responsibility is pushed back to the client and the immediate storm passes. Ethics and social expectation fall together: regulators ask who designed the rule, and this sentence becomes evidence against you."
           }
         }
       ]
@@ -748,8 +748,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "逐个复核看似节省，实则把发现成本转嫁给最弱势的当事人——只有懂得投诉的人才拿得到救济，系统性偏差原封不动。",
-            "en": "Case-by-case review looks cheap but shifts detection costs onto the most vulnerable: only people who know how to complain get relief, while systemic bias stays untouched."
+            "zh": "商业分小涨，因为只看举报确实便宜。但风险三条线一起涨：逐案处理把发现成本转嫁给了最脆弱的人——只有知道怎么投诉的人，才拿得到救济。",
+            "en": "Business rises slightly, because reviewing only the complainants is genuinely cheap. All three risk lines rise: case-by-case handling shifts the cost of detection onto the most vulnerable, since only people who know how to complain get relief."
           }
         },
         {
@@ -1030,8 +1030,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
-            "en": "Revenue share is the most popular; but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+            "zh": "商业分大幅上去，因为转售候选人资料是最常见的做法。但法律、伦理与社会期待大幅下降：把求职者的资料当库存再卖一次，通常超出原始目的与合理预期，而那批有问题的样本也被算在里面。",
+            "en": "Business rises sharply because reselling candidate profiles is the most common approach. Legal, ethics and social expectation fall sharply: treating a jobseeker's data as inventory to resell usually exceeds the original purpose and reasonable expectation, and the questionable samples go along with it."
           }
         }
       ]

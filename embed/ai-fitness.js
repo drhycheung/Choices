@@ -462,8 +462,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "policy",
           "why": {
-            "zh": "省下整理的时间让包装更好看，但运动健康数据一旦被质疑来源，解释成本会一次性爆发。",
-            "en": "You save sorting work and the packaging looks better, but when health-data provenance is questioned the explaining lands all at once."
+            "zh": "商业分上去，是因为你省掉了整理来源的工，包装也更好看。但伦理与社会期待一起掉：这些数据本来可以说明是谁在用、用在哪，而你在有人问起之前从未对会员讲过——问题不在数字对不对，而在一整批人不知道自己被记录过。",
+            "en": "Business rises because you skip the provenance work and the packaging looks better. Ethics and social expectation fall together: this data could have shown who is using it and for what, and nobody was told before anyone asked. The problem is not that the numbers are wrong, it is that a whole group did not know they were recorded."
           }
         },
         {
@@ -523,8 +523,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "换来上线时间与漂亮指标，代价是把「合法性基础」这个举证责任整个留给了未来的自己。",
-            "en": "You buy shipping time and good metrics, leaving the entire burden of proving a lawful basis to your future self."
+            "zh": "契合分上去，是因为这批数据确实把模型抬起来了，你也赶上了发布窗口。但法律、伦理与社会期待一起掉：来源说不清，就无法证明合法基础；而这批数据的使用，从没有人被告知。",
+            "en": "Product-market fit rises because the batch really did lift the model and you hit the window. Legal, ethics and social expectation fall together: with unclear provenance you cannot show a lawful basis, and nobody was told this material was being used."
           }
         }
       ]
@@ -640,8 +640,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "design",
           "why": {
-            "zh": "曲线立刻好看，但预警一旦漏掉一次真实心悸，你要解释的不只是模型，还有为什么把提示藏起来。",
-            "en": "The curve looks better at once — but the first missed palpitation means explaining not just the model, but why you hid the caveat."
+            "zh": "商业分立刻上去：留存曲线变好，预警推送也不打断训练。但伦理与社会期待一起掉：那个本该拦住这次误判的复核环节，从此只是走个形式。",
+            "en": "Business rises at once: retention improves and the warning stops interrupting training. Ethics and social expectation fall together: the review step that was supposed to catch this misreading is now decorative."
           }
         }
       ]
@@ -684,8 +684,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "条款是写给愿意读条款的人的；对已经发生的损害，「我们写过」通常不足以免责，反而留下知情的证据。",
-            "en": "Clauses bind people who read them. For harm already done, 'we wrote it' rarely discharges liability — it documents that you knew."
+            "zh": "商业分上去，因为眼前这场纠纷安静了。但伦理与社会期待一起掉：条款只约束读它的人，而伤害已经发生——把「我们知道」写下来，是把推测变成可引用的证据。",
+            "en": "Business rises because the immediate dispute goes quiet. Ethics and social expectation fall together: a clause binds only the people who read it, and the harm has already happened. Writing down that you knew turns an inference into a quotable fact."
           }
         }
       ]
@@ -914,8 +914,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "买量最快，返现活动常踩平台规则与税务边界；数据上的增长无法代表产品真的好用。短期指标最好看。",
-            "en": "Paid acquisition is fastest; referral schemes brush platform and tax rules; the numbers say nothing about product quality. Best-looking short-term metrics."
+            "zh": "商业分大幅上去，因为付费投放最快。但法律、伦理与社会期待一起掉：推荐返佣要求用户替别人注册与授权——而这条链在第一步就断了，换来的是无法追溯的销量。",
+            "en": "Business rises sharply because paid acquisition is fastest. Legal, ethics and social expectation fall together: referral cash requires people to register and authorise on someone else's behalf, and that chain breaks in the first step, buying numbers nobody can trace."
           }
         },
         {
@@ -973,8 +973,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "多个法域已要求对 AI 生成内容显著标识；让用户误以为有真人专业人士，在健康建议场景后果更重。转化率更高。",
-            "en": "Several jurisdictions require conspicuous labelling; implying a human professional exists is worse for health advice. Conversion is higher, though."
+            "zh": "商业分上去，因为转化率确实更高。但法律、伦理与社会期待大幅下降：好几个司法辖区要求显著标注，而让人以为有一位真人教练在写，本身就更糟——健康建议尤其如此。",
+            "en": "Business rises because conversion really is higher. Legal, ethics and social expectation fall sharply: several jurisdictions require conspicuous labelling, and implying a human professional exists is worse still for health advice."
           }
         },
         {
@@ -1034,8 +1034,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "抽成模式最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
-            "en": "Revenue share is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+            "zh": "商业分大幅上去，因为卖数据是当下最容易讲通的故事。但法律、伦理与社会期待大幅下降：轨迹高度独特，通常仍属个人信息；把它送进核保，已经远远超出用户当初同意的用途。",
+            "en": "Business rises sharply because selling data is the easiest story to tell right now. Legal, ethics and social expectation fall sharply: traces are highly unique and usually still personal, and putting them into underwriting goes far beyond what anyone agreed to."
           }
         }
       ]
@@ -1077,8 +1077,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "返现结构会诱导销售替用户代注册，授权链条在第一米就断了；用户数很好看，责任链条却没人能还原。",
-            "en": "Referral schemes push sales to register users for them — the authorisation chain breaks immediately; counts look great, accountability cannot be reconstructed."
+            "zh": "商业分大幅上去，因为付费投放最快，榜上数字也好看。但法律、伦理与社会期待一起掉：返佣要求用户替别人注册，授权链在第一步就断了——而你现在连来源都说不清，这些销量更无法追溯。",
+            "en": "Business rises sharply because paid acquisition is fastest and the chart looks good. Legal, ethics and social expectation fall together: referral cash requires people to register on someone else's behalf, and the authorisation chain breaks in the first step, which matters more now that you cannot account for the provenance either."
           }
         }
       ]
@@ -1119,8 +1119,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "去掉标识让转化率明显变好，这正是危险之处：多个法域已要求 AI 生成内容显著标识，不做可能被视为为欺诈提供条件。",
-            "en": "Dropping the label improves conversion, which is exactly what makes it dangerous: several jurisdictions require conspicuous labelling."
+            "zh": "商业分上去，因为转化率更高——这也正是它危险的地方。但法律、伦理与社会期待大幅下降：没有标注会让来源问题更难解释，而补救已经晚了一步。",
+            "en": "Business rises because conversion is higher, which is exactly what makes it dangerous. Legal, ethics and social expectation fall sharply: without the label, provenance is harder to explain, and the fix arrives one step too late."
           }
         }
       ]
@@ -1162,8 +1162,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
-            "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
+            "zh": "商业分大幅上去，因为资本与渠道立刻到位。但国家安全、法律与社会期待一起掉：本地用户的轨迹持续流向境外生态，是一条永久性的数据通路，而不是一次性授权。",
+            "en": "Business rises sharply because capital and channels arrive at once. National security, legal and social expectation fall together: local members' traces flowing continuously into an overseas ecosystem is a permanent data route, not a one-off authorisation."
           }
         },
         {
@@ -1221,8 +1221,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-fitness"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "大额资金加渠道，商业分提升最快。但把本地用户的位置与健康数据接入境外生态，通常意味着持续的跨境流转——不是一次性风险，而是长期敞口。",
-            "en": "Large capital and channels lift business fastest, but connecting local users' data to an overseas ecosystem means ongoing cross-border flow — a permanent exposure."
+            "zh": "商业分大幅上去，因为资本与渠道立刻到位。但国家安全、法律与社会期待一起掉：本地用户的轨迹持续流向境外生态，是一条永久性的通路——而信任已经受损，这次让步的代价更高。",
+            "en": "Business rises sharply because capital and channels arrive at once. National security, legal and social expectation fall together: local members' traces flowing continuously into an overseas ecosystem is a permanent route, and with trust already damaged this concession costs more."
           }
         },
         {

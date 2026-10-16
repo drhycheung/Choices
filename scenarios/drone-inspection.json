@@ -458,8 +458,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "省下逐单归档的工作量，交付也更快；但一旦有人质疑某一帧的来源，你要解释为什么当时拿不出来。",
-            "en": "You save per-job archiving and deliver faster — but the first challenge to a frame means explaining why it was not available then."
+            "zh": "商业分上去，是因为你省掉了每单归档的工，排期也更宽裕。但伦理与社会期待一起掉：客户有权知道自己的影像存在多久、被谁看过，而你要等有人来问。",
+            "en": "Business rises because you skip archiving every job and gain scheduling room. Ethics and social expectation fall together: clients were entitled to know how long their imagery is kept and who has seen it, and you waited to be asked."
           }
         },
         {
@@ -519,8 +519,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "换来的是交付速度与识别率，代价是：这些影像的取得方式是否合规，举证责任已经落在你们身上。",
-            "en": "You buy delivery speed and detection rate, and inherit the burden of proving how that imagery was obtained."
+            "zh": "契合分上去，是因为这批影像提高了检出率，你也赶上了交期。但法律、伦理与社会期待一起掉：一旦被追问，你要自证这些影像是怎么取得的——而客户从未同意过它们进入训练集。",
+            "en": "Product-market fit rises because the imagery raised detection rates and you met the deadline. Legal, ethics and social expectation fall together: if challenged, you must prove how that imagery was obtained, and no client agreed to it entering your training set."
           }
         }
       ]
@@ -636,8 +636,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "进度保住了，成本也下来了；但你在报告上写的「已复核」已经开始失真，而报告一旦被当证据用，失真就是责任。",
-            "en": "You keep the schedule and cut cost — but 'reviewed' on the report has started to drift, and once a report is used as evidence, that drift is liability."
+            "zh": "商业分立刻上去：进度保住、成本下降。但伦理与社会期待一起掉：报告上还写着「已复核」，而这四个字一旦进入争议，就成了你们自己留下的证据。",
+            "en": "Business rises at once: the schedule holds and the cost drops. Ethics and social expectation fall together: the report still says reviewed, and once a report is used as evidence, that word is evidence against you."
           }
         }
       ]
@@ -680,8 +680,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "条款可能帮你赢下这一单索赔，也会帮客户记住：下次招标时，他们要找的是不会把限制藏在最后的供应商。",
-            "en": "The clause may win this claim — and reminds the client that next tender they want a vendor who does not bury limits at the end."
+            "zh": "商业分上去，因为这场索赔看起来能赢。但伦理与社会期待一起掉：条款也许能赢下这一次，可下一次招标时，客户会记得把限制条件埋在最后一页的是哪一家。",
+            "en": "Business rises because this claim looks winnable. Ethics and social expectation fall together: the clause may win this one, but the next tender will remember which vendor buries its limits on the last page."
           }
         }
       ]
@@ -910,8 +910,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "低价抢标能迅速堆出合同数。但低于成本的中标会挤压报批、双人操作与人工复核环节，也可能踩到不正当竞争边界。",
-            "en": "Low bidding stacks up contracts fast. But below-cost wins squeeze permits, two-person crews and sign-off review, and can brush against unfair-competition rules."
+            "zh": "商业分大幅上去，因为低价中标拿合同最快。但法律、伦理与社会期待一起掉：低于成本的报价会挤掉许可、双人机组与签核复核——而这些正是报告能被采信的原因。",
+            "en": "Business rises sharply because low bids win contracts fastest. Legal, ethics and social expectation fall together: below-cost wins squeeze out permits, two-person crews and sign-off review, which are exactly what made the report defensible."
           }
         },
         {
@@ -1030,8 +1030,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "影像转售最受欢迎；但把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律风险最高。",
-            "en": "Imagery resale is popular, but indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal exposure."
+            "zh": "商业分大幅上去，因为影像转售的毛利远高于服务费。但法律、伦理与社会期待大幅下降：把沿航线拍到的高精影像打包出售，等于把基础设施的现状一并卖掉——而那批有问题的素材也在其中。",
+            "en": "Business rises sharply because imagery resale earns far more than service fees. Legal, ethics and social expectation fall sharply: packaging high-precision imagery of infrastructure along your routes sells the state of that infrastructure, and the questionable samples are counted in too."
           }
         }
       ]

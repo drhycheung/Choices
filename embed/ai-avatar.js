@@ -529,8 +529,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           },
           "actor": "policy",
           "why": {
-            "zh": "省下整理的时间，也省下被问住的机会；但一旦有人追问，你要先解释为什么当初不肯给。",
-            "en": "You save the sorting work and the awkward moment — but when someone presses, you must first explain why you withheld it."
+            "zh": "商业分上去，是因为你省掉了整理授权的工，演示也更好看。但伦理与社会期待一起掉：主播与商户有权知道自己的肖像和声音被用在哪里，而你要等有人追问才解释——那一刻要解释的不只是这一次。",
+            "en": "Business rises because you skip sorting the licences and the demo looks better. Ethics and social expectation fall together: performers and merchants were entitled to know where their likeness and voice were used, and you explain only when pressed, at which point you are explaining more than this once."
           }
         },
         {
@@ -769,8 +769,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "拖延换来上线时间，代价是把举证与赔偿谈判一起推到对方起诉之后——那时议价权已经不在你手上。",
-            "en": "Delay buys shipping time and defers the burden of proof and settlement talk until after the suit — when you no longer set the price."
+            "zh": "契合分上去，是因为再拖一步你就会错过这一轮。但法律、伦理与社会期待一起掉：把举证与和解都推到起诉之后，就不再是你的节奏——那时决定权已经在对方手里。",
+            "en": "Product-market fit rises because another week of delay would cost you this round. Legal, ethics and social expectation fall together: pushing proof and settlement past a lawsuit means you no longer set the terms, and by then the decision is not yours to make."
           }
         }
       ]
@@ -1050,8 +1050,8 @@ window.CHOICES_EMBEDDED.scenarios["ai-avatar"] = {
           },
           "actor": "law",
           "why": {
-            "zh": "沉默保住了短期曲线，也让「你们明知而放任」从推测变成可被截图引用的事实——平台下架常常就发生在热度之后。",
-            "en": "Silence protects the short-term curve and turns 'they knew and let it run' from inference into a quotable fact — delisting often follows the news cycle."
+            "zh": "商业分上去，因为短期曲线保住了。但伦理与社会期待一起掉：沉默把「他们知道却放任」从推测变成了可引用的事实，而下架通常就是从这句话开始的。",
+            "en": "Business rises because the short-term curve holds. Ethics and social expectation fall together: silence turns \"they knew and let it run\" from an inference into a quotable fact, and delisting usually starts with that sentence."
           }
         },
         {

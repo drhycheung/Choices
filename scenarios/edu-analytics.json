@@ -458,8 +458,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "省下逐项维护说明的工作量；但未成年人数据一旦被质疑，家长与主管单位的追问会同时到来。",
-            "en": "You save the upkeep — but when minors' data is questioned, parents and the authority arrive at the same time."
+            "zh": "商业分上去，是因为你省掉了逐项整理的工，交付也更快。但伦理与社会期待一起掉：家长有权在事前知道孩子数据存在，而你要等有人来问。教育局和家长同时到场的那一刻，就不只是补材料的问题了。",
+            "en": "Business rises because you skip the per-item work and deliver faster. Ethics and social expectation fall together: parents were entitled to know the data existed before it mattered, and you waited to be asked. When the bureau and the parents arrive on the same day, this stops being a paperwork problem."
           }
         },
         {
@@ -501,8 +501,8 @@
           },
           "actor": "policy",
           "why": {
-            "zh": "止损能减少后续责任，但减不掉已经发生的处理行为，效果也会回退；自己发现永远比被通报后整改便宜。",
-            "en": "Stopping limits further liability but does not undo processing already done, and quality regresses. Finding it yourself beats remediating after a notification."
+            "zh": "法律与伦理都下降，因为这批数据不再继续使用；但契合分也在跌，因为停用与重训会拉低当下的准确度。自己发现比事后补救便宜——这一格真正的取舍在这里。",
+            "en": "Legal and ethics both fall, because the batch is no longer used, but product-market fit falls too, because stopping and retraining lowers accuracy for now. Finding it yourself is cheaper than remediating afterwards, and that is the real trade-off."
           }
         },
         {
@@ -519,8 +519,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "换来的是效果与续签机会，代价是：这些未成年人数据从哪来、凭什么用，举证责任已经落在你们身上。",
-            "en": "You buy performance and the renewal, and inherit the burden of proving where that children's data came from and why you may use it."
+            "zh": "契合分上去，是因为这批数据把诊断准确度抬起来了，你也拿到了续约。但法律、伦理与社会期待一起掉：这是儿童数据，来源与用途都要交代得清，而你把举证留给了自己。",
+            "en": "Product-market fit rises because the batch improved diagnosis accuracy and you kept the renewal. Legal, ethics and social expectation fall together: this is children's data, where source and purpose both have to be accounted for, and you left the proof to yourself."
           }
         }
       ]
@@ -636,8 +636,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "建议变果断、演示更好看；但评语会落进学生的档案，而你的复核已经不再真实发生。",
-            "en": "Advice sounds decisive and demos look better — but those comments land in a child's record while your review no longer really happens."
+            "zh": "商业分立刻上去：系统看起来更果断，演示效果也更好。但伦理与社会期待一起掉：默认通过的复核意味着教师不再真的检查——而那些评语是要写进学生记录的。",
+            "en": "Business rises at once: the system looks decisive and the demo improves. Ethics and social expectation fall together: a review that defaults to pass means teachers stop checking, and those comments end up in a child's record."
           }
         }
       ]
@@ -663,8 +663,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "补救能止住继续贴标签，也向学校证明你会修正；但它擦不掉已经写进档案的评语，收入也会先掉一块。",
-            "en": "Fixing it stops further labelling and shows the school you correct course — but it cannot erase comments already filed, and revenue dips first."
+            "zh": "伦理与法律都下降，因为系统性误标停止了；但商业分也在跌，因为学校先看到收入下滑。已归档的评语改不回来——修复只是阻止它再发生。",
+            "en": "Ethics and legal both fall, because the systematic mislabelling stops, but business falls too, because the school sees the revenue drop first. Archived comments cannot be rewritten; fixing it only stops it happening again."
           }
         },
         {
@@ -680,8 +680,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "更长的说明保护的是你们，不是那个孩子；当评语已经影响分班与评价，说明写得多细都不算免责。",
-            "en": "Longer notes protect you, not the child. Once comments shape placement and assessment, no amount of detail discharges that."
+            "zh": "商业分上去，因为关系保住了。但伦理与社会期待一起掉：更长的说明保护的是公司，不是那个孩子——评语一旦影响分班与评定，再多的文字也不能解除责任。",
+            "en": "Business rises because the relationship holds. Ethics and social expectation fall together: a longer note protects the company, not the child, and once comments shape placement and assessment, no amount of detail discharges that."
           }
         }
       ]
@@ -748,8 +748,8 @@
           },
           "actor": "design",
           "why": {
-            "zh": "解释一次能换来眼前的太平，却不会改变任何数据流向；真正有耐心的质询者还会再来一次，那时成本更高。",
-            "en": "Explaining once buys temporary calm without changing any data flow; patient questioners come back, and the second round costs more."
+            "zh": "商业分小涨，因为解释一次就能换来平静。但风险三条线一起涨：数据流一个字都没变，而耐心追问的人会回来——第二轮的成本更高。",
+            "en": "Business rises slightly, because explaining once buys calm. All three risk lines rise: not one thing changed in the data flow, and patient questioners come back, at which point the second round costs more."
           }
         },
         {
@@ -1030,8 +1030,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "把来源不明的样本间接商业化，等于把别人的权利当成库存再卖一次。法律与伦理风险最高。",
-            "en": "Indirectly commercialising questionable samples sells someone's rights as inventory twice. Highest legal and ethical exposure."
+            "zh": "商业分大幅上去，因为这份收入最直接。但法律、伦理与社会期待大幅下降：把学生弱点打包成销售线索，涉及未成年人，越过了最初目的——而那批有问题的样本也在其中。",
+            "en": "Business rises sharply because this revenue is the most direct. Legal, ethics and social expectation fall sharply: packaging schoolchildren's weaknesses into sales leads involves minors and goes beyond the original purpose, and the questionable samples are counted in too."
           }
         }
       ]
@@ -1073,8 +1073,8 @@
           },
           "actor": "law",
           "why": {
-            "zh": "代理商不会替你维护数据边界；用未经充分验证的因果宣称（成绩提升）做教育广告，通常构成虚假或引人误解的宣传。",
-            "en": "The reseller will not guard your data boundaries; advertising score improvements without causal evidence usually amounts to misleading claims in education marketing."
+            "zh": "商业分大幅上去，因为打包进学区单最快，数字也最好看。但法律、伦理与社会期待一起掉：经销商不会替你守住数据边界，而「保证提分」的宣传在拿不出因果证据时通常等于误导性宣传。",
+            "en": "Business rises sharply because bundling reaches districts fastest and the numbers look good. Legal, ethics and social expectation fall together: the reseller will not guard your data boundaries, and promising score gains without causal evidence is usually a misleading claim."
           }
         }
       ]
