@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 561" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <rect width="1080" height="561" fill="#ffffff"/>
 
-  <!-- column headers -->
+  <!-- column headers: weak value on the left, strong value on the right -->
   <text x="412" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Weak value</text>
   <text x="777" y="105" text-anchor="middle" font-size="16" fill="#6b7280">Strong value</text>
 
@@ -9,26 +9,27 @@
   <text x="215" y="205" text-anchor="end" font-size="15" fill="#6b7280">Low risk</text>
   <text x="215" y="392" text-anchor="end" font-size="15" fill="#6b7280">High risk</text>
 
-  <!-- top-left: low risk × weak venture -->
+  <!-- low risk × weak value -->
   <rect x="235" y="118" width="355" height="172" rx="16" fill="#f5f2ea" stroke="#e7e1d3"/>
-  <text x="412" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#453e30">Compliant, but the company stalls</text>
-  <text x="412" y="228" text-anchor="middle" font-size="15" fill="#8a8070">Over-conservative; the runway runs out</text>
+  <text x="412" y="188" text-anchor="middle" font-size="19" font-weight="700" fill="#453e30">😫 Over-cautious</text>
+  <text x="412" y="224" text-anchor="middle" font-size="15" fill="#8a8070">Every risk avoided, no runway left</text>
 
-  <!-- top-right: low risk × strong venture -->
+  <!-- low risk × strong value -->
   <rect x="600" y="118" width="355" height="172" rx="16" fill="#d9f0e5" stroke="#bfe3d2"/>
-  <text x="777" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#1d6b4f">Sustainable success</text>
-  <text x="777" y="228" text-anchor="middle" font-size="15" fill="#2e7d5f">Compliance itself becomes the competitive moat</text>
+  <text x="777" y="182" text-anchor="middle" font-size="19" font-weight="700" fill="#1d6b4f">😎 Sustainable success</text>
+  <text x="777" y="216" text-anchor="middle" font-size="15" fill="#2e7d5f">Responsible practice becomes</text>
+  <text x="777" y="238" text-anchor="middle" font-size="15" fill="#2e7d5f">the standard others must meet</text>
 
-  <!-- bottom-left: high risk × weak venture -->
+  <!-- high risk × weak value -->
   <rect x="235" y="302" width="355" height="172" rx="16" fill="#fdeeee" stroke="#f2d3d3"/>
-  <text x="412" y="380" text-anchor="middle" font-size="19" font-weight="700" fill="#8c2f39">Double loss</text>
-  <text x="412" y="412" text-anchor="middle" font-size="15" fill="#b04a52">Red lines crossed, and nothing shipped</text>
+  <text x="412" y="372" text-anchor="middle" font-size="19" font-weight="700" fill="#8c2f39">☠️ Double loss</text>
+  <text x="412" y="408" text-anchor="middle" font-size="15" fill="#b04a52">Red lines crossed, and nothing shipped</text>
 
-  <!-- bottom-right: high risk × strong venture -->
+  <!-- high risk × strong value -->
   <rect x="600" y="302" width="355" height="172" rx="16" fill="#f6c9cb" stroke="#ecaaaf"/>
-  <text x="777" y="380" text-anchor="middle" font-size="19" font-weight="700" fill="#7f1d2b">Boom-then-bust growth</text>
-  <text x="777" y="412" text-anchor="middle" font-size="15" fill="#96323e">Great numbers — then shut down</text>
+  <text x="777" y="372" text-anchor="middle" font-size="19" font-weight="700" fill="#7f1d2b">😭 Boom-then-bust</text>
+  <text x="777" y="408" text-anchor="middle" font-size="15" fill="#96323e">Great numbers, then shut down</text>
 
   <!-- footer -->
-  <text x="540" y="524" text-anchor="middle" font-size="15" fill="#6b7280">Each quadrant is then subdivided by the risk dimension that fired: national security / legal / ethics</text>
+  <text x="540" y="524" text-anchor="middle" font-size="15" fill="#6b7280">Each quadrant is then subdivided by the risk dimension that fired: national security / legal / ethics / social expectation</text>
 </svg>

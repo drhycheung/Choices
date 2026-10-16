@@ -1,34 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 610" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 632" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
   <defs>
     <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
       <path d="M0 0 L7 3.5 L0 7 Z" fill="#9ca3af"/>
     </marker>
   </defs>
-  <rect width="1080" height="610" fill="#ffffff"/>
+  <rect width="1080" height="632" fill="#ffffff"/>
 
   <!-- top node -->
   <rect x="360" y="58" width="360" height="86" rx="14" fill="#eaf2fd" stroke="#8fb3e8"/>
   <text x="540" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#2563eb">Every choice</text>
-  <text x="540" y="121" text-anchor="middle" font-size="14" fill="#3b82f6">one set of effects, written into both groups</text>
+  <text x="540" y="121" text-anchor="middle" font-size="14" fill="#3b82f6">one set of effects, written into both sides</text>
 
   <!-- branch arrows -->
   <path d="M505 147 C 430 168 355 178 318 190" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
   <path d="M575 147 C 650 168 725 178 762 190" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
 
-  <!-- risk track card -->
-  <rect x="95" y="196" width="435" height="246" rx="16" fill="#fbeaea" stroke="#f0c9c9"/>
-  <text x="120" y="233" font-size="18" font-weight="700" fill="#8c2f39">Scope + Instruments · lower is better</text>
-  <text x="120" y="259" font-size="14" fill="#c0392b">national_security / legal / ethics</text>
+  <!-- risk side: scope + instruments -->
+  <rect x="95" y="196" width="435" height="294" rx="16" fill="#fbeaea" stroke="#f0c9c9"/>
+  <text x="120" y="233" font-size="18" font-weight="700" fill="#8c2f39">Risk · lower risk is better</text>
+  <text x="120" y="259" font-size="14" fill="#c0392b">exposure to a line, not a measure of quality</text>
   <rect x="140" y="278" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
-  <text x="312" y="302" text-anchor="middle" font-size="15" fill="#374151">National security</text>
+  <text x="312" y="302" text-anchor="middle" font-size="15" fill="#374151">National security risk · scope</text>
   <rect x="140" y="326" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
-  <text x="312" y="350" text-anchor="middle" font-size="15" fill="#374151">Legal compliance</text>
+  <text x="312" y="350" text-anchor="middle" font-size="15" fill="#374151">Legal compliance risk</text>
   <rect x="140" y="374" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
-  <text x="312" y="398" text-anchor="middle" font-size="15" fill="#374151">Ethics</text>
+  <text x="312" y="398" text-anchor="middle" font-size="15" fill="#374151">Ethics and trust risk</text>
+  <rect x="140" y="422" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
+  <text x="312" y="446" text-anchor="middle" font-size="15" fill="#374151">Social expectation risk</text>
+  <text x="312" y="478" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a6b66">the three instruments answer three different questions, and need not agree</text>
 
-  <!-- venture track card -->
-  <rect x="550" y="196" width="435" height="246" rx="16" fill="#dff0e8" stroke="#c2e2d1"/>
-  <text x="575" y="233" font-size="18" font-weight="700" fill="#1d6b4f">Value track · higher is better</text>
+  <!-- value side -->
+  <rect x="550" y="196" width="435" height="294" rx="16" fill="#dff0e8" stroke="#c2e2d1"/>
+  <text x="575" y="233" font-size="18" font-weight="700" fill="#1d6b4f">Value track · higher value is better</text>
   <text x="575" y="259" font-size="14" fill="#2e8b64">the three Lean Canvas considerations</text>
   <rect x="595" y="278" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
   <text x="767" y="302" text-anchor="middle" font-size="15" fill="#374151">Problem–solution fit · Canvas 1–4</text>
@@ -36,12 +39,15 @@
   <text x="767" y="350" text-anchor="middle" font-size="15" fill="#374151">Business model · Canvas 5–7</text>
   <rect x="595" y="374" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
   <text x="767" y="398" text-anchor="middle" font-size="15" fill="#374151">Moat &amp; metrics · Canvas 8–9</text>
+  <text x="767" y="446" text-anchor="middle" font-size="15" fill="#374151">Value is judged, not risk-free</text>
+  <text x="767" y="478" text-anchor="middle" font-size="12.5" font-style="italic" fill="#4a7a66">the same four risk bars still apply to these decisions</text>
 
   <!-- down arrows -->
-  <path d="M312 446 L312 474" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
-  <path d="M768 446 L768 474" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
+  <path d="M312 494 L312 522" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
+  <path d="M768 494 L768 522" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
 
   <!-- bottom bar -->
-  <rect x="90" y="482" width="900" height="64" rx="12" fill="#f2f2f2" stroke="#e6e6e6"/>
-  <text x="540" y="520" text-anchor="middle" font-size="16" fill="#374151">Endings are gated jointly by both score sets · low risk ≠ a good company, high growth ≠ a good ending</text>
+  <rect x="90" y="530" width="900" height="64" rx="12" fill="#f2f2f2" stroke="#e6e6e6"/>
+  <text x="540" y="558" text-anchor="middle" font-size="16" fill="#374151">Endings are gated jointly by both sides</text>
+  <text x="540" y="580" text-anchor="middle" font-size="14" fill="#6b7280">low risk is not the same as a good company, and high growth is not the same as a good ending</text>
 </svg>
