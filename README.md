@@ -10,7 +10,7 @@ A retro arcade–style interactive branching-narrative simulator for classroom t
 
 ---
 
-**Built for:** [The Education University of Hong Kong (EdUHK)](https://www.eduhk.hk) — **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and also usable in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
+**Built for:** GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security, and also usable in GEL1032 Technology Entrepreneurship in AI-enhanced Business. See the **[teaching guide](docs/teaching-guide.md)**.
 
 ![一念之差 — start screen](docs/screenshot.png)
 
@@ -32,43 +32,12 @@ Many students struggle to feel how an everyday decision can cross a legal, ethic
 
 ---
 
-## 2. The course it was built for: GEL2026
+## 2. Built for the classroom
 
-This game was written for **GEL2026 · Technology Entrepreneurship in AI-enhanced Business and National Security** at [The Education University of Hong Kong](https://www.eduhk.hk). It also works unchanged in **GEL1032 · Technology Entrepreneurship in AI-enhanced Business**, which covers the same entrepreneurial ground without the national-security strand.
+Written for **GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security**, and usable unchanged in **GEL1032 Technology Entrepreneurship in AI-enhanced Business**.
 
-**What the course asks students to hold at once.** GEL2026 is a two-strand course. One strand is technology entrepreneurship: how AI and digital technologies create value, how a venture is planned and validated (customer segments, problems, solution, channels, revenue, unfair advantage), how a proposal is pitched. The other is national security education: how data, models and platforms can touch national-security, legal and ethical red lines, and what the law expects of the people who build them. Students are assessed on a business proposal, a pitch, and a reflective essay on a real AI business and its national-security implications.
-
-**The gap this game fills.** Taught separately, the two strands produce two familiar failure modes. Students write a business plan and bolt compliance on at the end as a slide nobody reads. Or they learn that security means "do not do it", which teaches nothing about running a company. Neither failure mode can survive a scoreboard where both tracks move on every single click.
-
-| Course concern | What the game makes the student do |
-|---|---|
-| Digital / AI value creation | The value track scores problem–solution fit, business model and moat — the Lean Canvas blocks from class — so pressing a button *is* practising the canvas |
-| Customer and problem validation | Act I forces a choice between interviewing users and chasing vanity metrics, and the scoreboard remembers which one paid |
-| AI data and model decisions | Acts II–III put training data, offshore processing and deployment on the scoreboard with explicit national-security and legal consequences |
-| National security, legal, ethical and social implications | Four separate risk dimensions, so "it is legal but nobody asked us" and "it is safe but socially unacceptable" are different scores, not one blurred warning |
-| Accountability and mitigation | Act IV offers a passive fix, a denial, or a real audit — and the audit is gated behind commercial strength, because responsibility has to be affordable |
-| Reflective essay | Every ending ends in a debrief: why it fired, the trade-off, who was affected, what could have been done, and the Lean Canvas reading — a draft skeleton for the essay |
-
-**Suggested classroom use.** Play one run individually or in pairs (15–20 minutes), pin a venture with `?scenario=ai-fitness` so the whole room compares like with like, then put the four quadrants of the outcome space on the board and ask who landed where and at which step it became unavoidable. Because the run is deterministic, "which step did it?" always has a true answer. Each run is saved in the browser, so switching venture to compare a second one no longer loses the first.
-
-### Classroom notes
-
-**The six scenarios are four different games.** The claim that six ventures means "no repeats" is true of the stories and not of the mechanics. Measured by comparing the `effects` of every choice in order:
-
-| Scenario | Choices | Identical to `ai-fitness` |
-|---|---|---|
-| `ai-hiring` | 55 | 55 of 55 — the same game, different skin |
-| `edu-analytics` | 55 | 54 of 55 |
-| `drone-inspection` | 55 | 52 of 55 |
-| `ai-avatar` | 51 | own structure |
-| `trade-doc-ai` | 54 | own structure |
-
-So `ai-fitness`, `ai-hiring` and `edu-analytics` are one game; `drone-inspection` is the same game with three tuned values; `ai-avatar` and `trade-doc-ai` each run on their own distribution.
-
-Two consequences worth stating rather than hiding:
-
-- **Recalibrating balance is three passes, not six.** The balance work only had to be done once per mechanics profile.
-- **Pinning `?scenario=` for a demonstration pins one profile.** If you pin `ai-fitness`, the whole room plays that profile. Students who then try a different venture on their own may still be playing the same game. This is worth telling the class, because it is also a teaching point: the decisions, not the subject matter, are what the exercise is about.
+> **The lesson lives in a separate guide.** Which course concerns the game addresses, how to run a session, which questions work on the students' own run reports, how to handle students finishing at different speeds, and how to adapt the game to a course of your own — all in
+> **[docs/teaching-guide.md](docs/teaching-guide.md)**
 
 ---
 
@@ -80,11 +49,13 @@ A single risk scoreboard has a hidden flaw. After two or three plays, a clever s
 
 So every choice in this game feeds **two scoreboards at once**:
 
-| Group | Dimensions | Direction |
+| Group | Dimensions shown | Better means |
 |---|---|---|
-| **Scope** | National security | lower is better |
-| **Instruments** | Legal compliance · Ethics and trust · Social expectation | lower is better |
-| **Value track** | Problem–solution fit (Canvas 1–4) · Business model (Canvas 5–7) · Moat and unfair advantage (Canvas 8–9) | higher is better |
+| **Scope** | National security **risk** | lower risk |
+| **Instruments** | Legal compliance **risk** · Ethics and trust **risk** · Social expectation **risk** | lower risk |
+| **Value track** | Problem–solution fit (Canvas 1–4) · Business model (Canvas 5–7) · Moat and unfair advantage (Canvas 8–9) | higher value |
+
+Each bar on the risk side measures a **risk** — exposure to a line the venture has to operate inside — rather than a quality. Lower risk is better, but nothing about a venture is improved by having less law.
 
 National security sits on its own because it asks *how far the effect reaches*, while the other three ask *what is constraining you*. That separation matters for the dashboard: four bars in one row would teach "push all four down", which is the habit the design is trying to break.
 
@@ -98,12 +69,12 @@ The third has no zero. Legal risk can be reduced to zero, because compliance is 
 
 The value dimensions map directly onto the Lean Canvas blocks covered in class, so pressing a button *is* practising the canvas. Endings are gated by **both tracks together**, producing a two-dimensional outcome space:
 
-- **Low risk + strong business** → a sustainable company (compliance itself becomes the moat).
-- **Low risk + weak business** → *clean, but going nowhere* — over-caution quietly kills the venture.
-- **High risk + strong business** → *great numbers, then shut down* — growth amplifies the exposure.
-- **High risk + weak business** → both lines breached and nothing shipped.
+- **Low risk + strong value** → 😎 **Sustainable success** — responsible practice becomes the standard others must meet.
+- **Low risk + weak value** → 😫 **Over-cautious** — every risk avoided, no runway left.
+- **High risk + strong value** → 😭 **Boom-then-bust** — great numbers, then shut down.
+- **High risk + weak value** → ☠️ **Double loss** — red lines crossed, and nothing shipped.
 
-"Low risk" is therefore not one ending but a whole quadrant — and each quadrant is then subdivided by the risk dimension that actually fired (national security, legal, or ethics):
+"Low risk" is therefore not one ending but a whole quadrant — and each quadrant is then subdivided by the risk dimension that actually fired (national security, legal, ethics, or social expectation), giving eleven endings. Endings are evaluated in declaration order and the first match wins, so a run that breaches national security *and* ethics at once is judged as national security.
 
 ![The two-track outcome space](docs/dual-track-endings.svg)
 
@@ -117,7 +88,7 @@ And here is how the two scoreboards are wired together: every choice writes one 
 
 ![How the two tracks are wired together](docs/dual-track-architecture.svg)
 
-Each story runs **at least thirteen decision rounds**, paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings. Two of those rounds are branch points that open a *persistent branch arc*: several decisions written for the choice you made, which then rejoins the shared track.
+Each story runs **thirteen or fourteen decision rounds** — fourteen everywhere except `ai-avatar`, whose longest chain is thirteen — paced so that consequences can accumulate and compound — fast enough to finish in class, slow enough that early choices visibly cause late endings. Two of those rounds are branch points that open a *persistent branch arc*: several decisions written for the choice you made, which then rejoins the shared track.
 
 The story is **not a straight ladder**. Most steps are shared by everyone — so a class can still compare answers question by question — but two decision points (how you sourced your training data, and how you answered the first harm your product caused) send you onto a *persistent branch arc*: several questions written for that decision, which the other players never see, before the arc rejoins the shared track. Endings stay comparable.
 
@@ -130,7 +101,7 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices; every choice carries its own `next`, and two decision points per venture open a persistent branch arc with questions the other players never see |
 | Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) above the first node, so plot events like "your first customer is…" always have context. The cover shows only the venture name and hook |
 | Six venture scenarios | `scenarios/manifest.json` lists the packs; each play randomly draws one (or force one with `?scenario=<id>`) |
-| Four mechanics, six stories | The six packs are **not** six different games. `ai-hiring` and `ai-fitness` are identical choice-for-choice in their effects; `edu-analytics` differs in one, `drone-inspection` in three. `ai-avatar` and `trade-doc-ai` each have their own distribution. So there are four distinct mechanics profiles. Pinning `?scenario=ai-fitness` means the room plays one of them — see [Classroom notes](#classroom-notes) |
+| Four mechanics, six stories | The six packs are **not** six different games: four distinct mechanics profiles behind six stories. Pinning `?scenario=` pins one profile, so say so when you pin. Detail in the [teaching guide](docs/teaching-guide.md) |
 | Dual-track dashboard | Seven segmented neon bars in three groups — scope (how far it reaches), instruments (what constrains you) and value (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
@@ -189,6 +160,85 @@ Tip: you can author scenes with an AI assistant — feed it the schema and the s
 
 ---
 
+### How many outcomes each story can reach
+
+A run is not a path with one ending; it is a walk over a state space, and the
+number of distinct end states reachable in a single story is in the hundreds of
+thousands. Every one of them maps deterministically to exactly one of the eleven
+endings. The table below is produced by enumerating all of them, not estimated.
+
+| Ending | `ai-fitness` | `ai-hiring` | `ai-avatar` | `edu-analytics` | `drone-inspection` | `trade-doc-ai` | All six |
+|---|---|---|---|---|---|---|---|
+| Boom-then-bust on national security | 73,853 (14.53%) | 73,853 (14.53%) | 23,808 (16.73%) | 71,854 (14.55%) | 74,177 (15.25%) | 74,661 (16.73%) | 392,206 (15.17%) |
+| Double loss on national security | 12,101 (2.38%) | 12,101 (2.38%) | 5,584 (3.92%) | 11,581 (2.34%) | 11,072 (2.28%) | 11,639 (2.61%) | 64,078 (2.48%) |
+| Boom-then-bust on law | 75,408 (14.83%) | 75,408 (14.83%) | 28,779 (20.22%) | 72,549 (14.69%) | 78,345 (16.11%) | 76,201 (17.08%) | 406,690 (15.73%) |
+| Double loss on law | 16,374 (3.22%) | 16,374 (3.22%) | 3,269 (2.30%) | 15,532 (3.14%) | 15,668 (3.22%) | 15,539 (3.48%) | 82,756 (3.20%) |
+| Boom-then-bust on ethics | 99,145 (19.50%) | 99,145 (19.50%) | 29,034 (20.40%) | 94,532 (19.14%) | 99,136 (20.38%) | 91,283 (20.46%) | 512,275 (19.81%) |
+| Double loss on ethics | 23,727 (4.67%) | 23,727 (4.67%) | 7,795 (5.48%) | 22,400 (4.54%) | 21,747 (4.47%) | 23,899 (5.36%) | 123,295 (4.77%) |
+| Boom-then-bust on social expectation | 66,671 (13.12%) | 66,671 (13.12%) | 18,969 (13.33%) | 68,175 (13.80%) | 48,990 (10.07%) | 37,942 (8.50%) | 307,418 (11.89%) |
+| Double loss on social expectation | 10,852 (2.13%) | 10,852 (2.13%) | 5,505 (3.87%) | 11,648 (2.36%) | 6,133 (1.26%) | 7,152 (1.60%) | 52,142 (2.02%) |
+| 😎 Sustainable success | 65,799 (12.94%) | 65,799 (12.94%) | 10,416 (7.32%) | 62,322 (12.62%) | 72,030 (14.81%) | 53,245 (11.93%) | 329,611 (12.75%) |
+| 😫 Over-cautious | 61,810 (12.16%) | 61,810 (12.16%) | 9,024 (6.34%) | 60,802 (12.31%) | 56,367 (11.59%) | 52,765 (11.83%) | 302,578 (11.70%) |
+| 🏅 A Clean Win (rare badge) | 2,581 (0.51%) | 2,581 (0.51%) | 148 (0.10%) | 2,537 (0.51%) | 2,766 (0.57%) | 1,813 (0.41%) | 12,426 (0.48%) |
+| **Total reachable end states** | **508,321** | **508,321** | **142,331** | **493,932** | **486,431** | **446,139** | **2,585,475** |
+
+#### How a figure in that table is produced
+
+Take **Over-cautious** in `ai-fitness`: 61,810 of 508,321, or 12.16%.
+
+A *case* is one distinct **end state** — the pair *(which node you finished on,
+what the seven dimension values are)*. It is not a path: many different click
+sequences arrive at the same end state, and they collapse into one. The script
+walks the tree from the start state and discards any state whose
+`(node, dimensions)` key it has seen before. That deduplication is what makes
+the search terminate. Each finished state is then matched against the endings in
+declaration order and the first condition that matches wins.
+
+Three end states that land in Over-cautious:
+
+```
+{ns:0, legal:0, ethics:2, social:0, pmf:2, business:0, moat:2}
+{ns:2, legal:0, ethics:1, social:0, pmf:2, business:1, moat:2}
+{ns:2, legal:0, ethics:2, social:0, pmf:2, business:2, moat:2}
+```
+
+All four risk lines held down; the business never got going.
+
+**These counts are not the odds a student will hit an ending.** Counting end
+states and counting playthroughs give different numbers, because many paths reach
+the same state and popular states attract more paths. Playing `ai-fitness` 200,000
+times with uniformly random clicks gives a different picture for two endings:
+
+| Ending | Of distinct end states | Of random playthroughs |
+|---|---|---|
+| Boom-then-bust on law | 14.83% | 24.15% |
+| A Clean Win | 0.51% | 0.85% |
+
+So the table answers *"is this outcome reachable, and how large is its region?"*
+Use it for that. For *"how often will my students get this?"* the answer depends
+on what a student actually chooses, which is a different measurement.
+
+Regenerate the table with `node --stack-size=6000 tools/outcome-counts.js`.
+
+Three things are worth reading off this table:
+
+- **The failure rate is high by design.** Most reachable end states are a bust of
+  some kind. The course's claim is that being responsible has a price, so a game
+  in which most runs succeed would be teaching the wrong thing.
+- **The four named quadrants are all reachable, and all roughly the same size.**
+  *Sustainable success* and *Over-cautious* each sit around 12%, which is what
+  makes the low-risk row a real choice rather than a formality. This was not
+  true before the balance work: *Over-cautious* used to be reachable 0.10% of
+  the time, i.e. effectively never.
+- **`A Clean Win` is a badge, not a goal.** At about 0.5% overall, and 0.10% in
+  `ai-avatar`, a student will usually not see it. Treat it as a marker of an
+  unusually careful run rather than something to aim for.
+
+Note that `ai-fitness` and `ai-hiring` have identical figures, for the reason
+given in section 5: they are the same mechanics profile.
+
+---
+
 ## 5. Technology choices
 
 | Decision | Rationale |
@@ -223,7 +273,7 @@ Desktop and mobile are supported (responsive layout). Choices give pressed-state
 |---|---|
 | Text-only interaction | No rich media; relies on narrative + choices (deliberate, easy to author) |
 | Random draw is per page load | The scenario is drawn once per visit; use `?scenario=` for a fixed classroom demo |
-| Reflection is optional | Depends on teacher facilitation; the debrief supports but does not replace it |
+| Reflection depends on facilitation | The ending debrief supports the discussion but does not replace it — see the [teaching guide](docs/teaching-guide.md) |
 | Shared endings are generic | The debrief text is venture-agnostic; each story adds its own one-line flavour |
 | Validator is structural | Checks reachability / causality / length, not pedagogical quality |
 | Fonts / CRT from CDN | Pixel font needs internet on first load; falls back to system fonts offline |
@@ -234,6 +284,7 @@ Desktop and mobile are supported (responsive layout). Choices give pressed-state
 
 | Document | What it covers |
 |---|---|
+| **[Teaching guide](docs/teaching-guide.md)** | For instructors: which course concerns the game addresses, how to run a session, which questions work on the students' own run reports, and how to adapt it to another course |
 | **[Vibe-coding guide](docs/vibe-coding.md)** | Design thinking behind this project, how it was built with an AI coding tool, and a complete prompt to reproduce it for classroom use |
 
 ---

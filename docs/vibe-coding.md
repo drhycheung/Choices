@@ -23,7 +23,7 @@ The project follows the Stanford d.school design-thinking model — empathise, d
 
 | Stage            | This project's arc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. Empathise** | GEL2026 runs two strands side by side — technology entrepreneurship (digital value creation, AI business models, Lean Canvas planning, pitching) and national security education (data, models and platforms touching legal, ethical and national-security red lines). Taught separately they produce two familiar failure modes: students write a business plan and bolt compliance on as a slide nobody reads, or they conclude that "security" simply means "don't do it". Neither is what the course wants. Observation: interactive, game-like experiences hold attention far longer than lecture warnings, and letting learners *see* a consequence (the numbers move) makes the lesson stick. |
+| **1. Empathise** | The target course runs two strands side by side — technology entrepreneurship (digital value creation, AI business models, Lean Canvas planning, pitching) and national security education (data, models and platforms touching legal, ethical and national-security red lines). Taught separately they produce two familiar failure modes: students write a business plan and bolt compliance on as a slide nobody reads, or they conclude that "security" simply means "don't do it". Neither is what the course wants. Observation: interactive, game-like experiences hold attention far longer than lecture warnings, and letting learners *see* a consequence (the numbers move) makes the lesson stick. |
 | **2. Define**    | **Problem statement:** *students never have to hold "this is a good business" and "this is a red line" in the same hand at the same time.* **Design goal:** a safe, repeatable, low-barrier experience where every choice moves a risk track AND a Lean-Canvas value track at once, and deterministically leads to a corresponding ending. **Success criterion:** a student can replay a run and answer three questions with evidence — which step pushed the risk up, which step made the venture stronger or weaker, and what that same choice cost on the other track. |
 | **3. Ideate**    | Options considered: lecture + case study, graded quiz with feedback, role-play, branching-narrative game. The interactive branching-narrative (game) format was chosen because it makes causality visible and repeatable, lowers the barrier with a familiar arcade frame, and cleanly separates a generic engine from pluggable topic data so the tool can be reused across courses (internship, research, …). Six ventures rather than one, drawn at random, so replaying teaches the *structure* of the dilemma instead of the answer to one story. |
 | **4. Prototype** | A static, front-end-only web app — vanilla HTML/CSS/JS, no build, no backend. A deterministic engine (`engine.js`) tracks **two scoreboards** (a risk track and a Lean-Canvas value track) and applies explicit `effects` (no RNG); a validator (`validate.js`) proves no dead-ends, that every ending is reachable, and that each story runs at least ten rounds; six venture scenario packets in `scenarios/` share one endings file (`endings-core.json`) with full debriefs; a player (`player.js` + `index.html` + `styles.css`) renders the narrative, the three-group dashboard, endings with debriefs, and the Decision Trail with a retro arcade skin. Every ending debrief **traces each number back to the exact step that moved it**. Bilingual ZH / EN, with all scenarios embedded so the file also works on double-click (`file://`). |
@@ -53,7 +53,7 @@ The topic (national security / law / ethics) is "serious". A retro neon arcade f
 
 1. **Research comparables** — Ink, Twine, ChoiceScript, Liberty Park, NetStrider, storylet frameworks. Conclusion: adopt the *engine / data separation* pattern; build with vanilla JS so it stays static and teachable.
 2. **Deterministic engine** (`engine.js`) — dimensions/state, explicit `effects`, condition-gated endings, decision-trail recording. No RNG anywhere.
-3. **Scenario schema + six venture scenarios** (`scenarios/*.json` + `manifest.json`) — six dimensions in two groups (risk / venture), twelve-plus decision rounds each, per-choice `why` notes, and a shared endings file (`endings-core.json`) with full debriefs (trigger / trade-off / stakeholders / mitigations / Lean Canvas / legal hooks).
+3. **Scenario schema + six venture scenarios** (`scenarios/*.json` + `manifest.json`) — seven dimensions in three groups (scope / instruments / value), twelve-plus decision rounds each, per-choice `why` notes, and a shared endings file (`endings-core.json`) with full debriefs (trigger / trade-off / stakeholders / mitigations / Lean Canvas / legal hooks).
 3b. **Coherence pass over the generated prose** — AI-authored scenes were re-read node by node. Threads that appeared without setup (the "biggest buyer", the three investors) were seeded one node earlier; lines that described an artefact belonging to another branch were rewritten to be branch-agnostic; stray non-target-language tokens and corrupted literals left by batch generation were swept out with a scanner before the JSON was allowed in.
 4. **Causal / path validator** (`validate.js`) — proves no dead-ends and that every ending is reachable (BFS over the state space). Great safety net when AI writes scenes.
 5. **Static player** (`player.js` + `index.html` + `styles.css`) — fetch loads the scenario, renders narrative/choices/risk bars/ending/trail.
@@ -62,7 +62,7 @@ The topic (national security / law / ethics) is "serious". A retro neon arcade f
 8. **Arcade reskin** — neon HUD with segmented "health-bar" risk meters, CRT scanlines, blocky drop-shadow choice buttons, a **PRESS START** intro screen. The pixel display font (Press Start 2P) is kept only for the large start-screen logo and PRESS START button; all other text uses a legible tech font (Chakra Petch + system CJK fallbacks) after playtesting showed small pixel text was unreadable.
 9. **Ending debrief gets attribution** — the debrief now reads the player's own history and appends, under the trigger section, the steps that raised the risk; and under the Canvas section, each Canvas box with the two steps that moved it most and the signed delta. Nothing is authored — it is all derived from `effects`, so it stays true however the story is rewritten.
 10. **Easter egg** — ↑↑↓↓←→←→BA on the start screen (or seven taps on the logo on a phone) opens a note about how the game works: no randomness inside a run, and exactly one path per venture that finishes with zero risk and all three venture boxes at 7+. It changes no state and no ending.
-11. **This README + vibe-coding guide** — restructured to the EdTech "house format" (motivation → course → design philosophy → features → design → run → limits → docs → licence).
+11. **This README + vibe-coding guide** — restructured to the EdTech "house format" (motivation → classroom pointer → design philosophy → features → design → run → limits → docs → licence), with the course-specific teaching material split out into its own guide.
 
 Every step was checked with `node test.js` and `node validate.js` before committing.
 
@@ -76,20 +76,21 @@ Paste this into an AI coding assistant. It reproduces the architecture and the e
 Build a **static, front-end-only interactive branching-narrative simulator** for classroom teaching. Repository name: Choices. No build step, no backend, no API key. Vanilla HTML/CSS/JS only.
 
 ## Problem statement (context / design intent)
-The goal is to help students *feel* how a small, ordinary decision can escalate into a legal, ethical, or national-security risk. Abstract warnings ("don't do X") are forgettable; an interactive experience where the learner sees risk numbers move and reaches a concrete ending is not. The simulator is built for EdUHK's GEL2026 Technology Entrepreneurship in AI-enhanced Business and National Security (and also GEL1032). It must be reusable across topics: the engine is generic, and each scenario is an independent JSON data packet the teacher can swap.
+The goal is to help students *feel* how a small, ordinary decision can escalate into a legal, ethical, social or national-security risk. Abstract warnings ("don't do X") are forgettable; an interactive experience where the learner sees risk numbers move and reaches a concrete ending is not. The simulator is built for a two-strand course of the kind described above: technology entrepreneurship alongside national security, legal and ethical concerns. It must be reusable across topics: the engine is generic, and each scenario is an independent JSON data packet the teacher can swap.
 
 ## Core design / learning model
 - Branching narrative: the student reads a node's text, picks one of several choices, and is taken to the next node or an ending.
 - Deterministic causality (the pedagogical core): every choice applies explicit numeric `effects` to the dimensions — NO randomness, NO dice, NO RNG anywhere inside a story. The same choice sequence ALWAYS reaches the same ending. Randomness is allowed ONLY to draw which scenario the player runs (and `?scenario=<id>` must be able to pin it).
 - DUAL-TRACK scoring (the design answer to "students just pick the safe option"): a risk track (National Security as scope; Legal / Ethics / Social expectation as instruments; 0-10, `higherIsRisk: true`) and a value track mapped to the Lean Canvas (Problem-solution fit, Business model, Moat; 0-10, `higherIsRisk: false`). Every choice feeds both. A dashboard shows three groups: scope, instruments, and value, with opposite colour logic (risk red past threshold; value green when strong).
-- Endings gated by joint conditions on BOTH tracks, producing a 2x2 outcome space: sustainable success / clean-but-stalled / growth-then-crackdown / double loss — plus per-dimension fail variants. Every ending must be reachable and every path must terminate (no dead-ends).
+- Endings gated by joint conditions on BOTH sides, producing a four-cell matrix: Sustainable success / Over-cautious / Boom-then-bust / Double loss. Each cell is then subdivided by *which* risk dimension fired, giving eleven endings. Every ending must be reachable and every path must terminate (no dead-ends).
+- The social dimension answers "what did the people affected expect?", which law and ethics do not answer. It has **no zero**: legal risk can reach zero because compliance is zero, but nobody expects nothing of you. Ship at least one ending that fires on the social dimension alone while everything else stays low, so a student can push every line down and still fail.
 - Requirement-gated choices: some responsible options carry `requirements` (e.g. the compliance audit needs business >= 7). A locked button must show a `lockedHint` explaining WHY it is unavailable — that explanation is the lesson.
 - Every choice carries a `why` note (bilingual) explaining why it moves each dimension; the Decision Trail replays step -> effect -> why.
 - Every ending carries a full bilingual debrief: why it fired, the trade-off made, stakeholders affected (who + impact), concrete mitigations, a Lean Canvas reading, and legal/regulatory hooks — so a run doubles as a draft outline for a reflective essay.
 - ATTRIBUTION: the debrief must also trace each number back to the player's actual decisions — under "why it fired", name the steps that pushed the risk lines up (step number, choice text, signed delta); under the Lean Canvas section, list each Canvas box with the two steps that moved it most. Derive this from the recorded decision trail and the explicit `effects`; never author it as prose that could drift out of sync with the numbers.
 - Each story must contain at least TEN decision rounds (validator warns below 10).
 - NARRATIVE COHERENCE: every node must read correctly on ANY path to it. Seed every thread one node before it is used (if a later choice says "build what the biggest buyer wants", an earlier node must have introduced that buyer; if the finale asks whether to take money from three funds, the previous node must have put those three term sheets on the table). Never describe an artefact that only exists on another branch ("your heat map" when the player may have built the coach) — write branch-agnostic lines instead.
-- Institutions are referred to generically ("the university"); never name the real university inside a story. Put course attribution in the README instead.
+- Institutions are referred to generically ("the university"); never name the real university inside a story. Put course attribution in the teaching guide instead, not in the README.
 - Reflection prompts are OPTIONAL per ending (teacher-led in class).
 
 ## Visual / style
@@ -123,23 +124,51 @@ The goal is to help students *feel* how a small, ordinary decision can escalate 
 - scenarios/*.json — one file per venture (e.g. ai-fitness.json, ai-hiring.json, ai-avatar.json, edu-analytics.json, drone-inspection.json, trade-doc-ai.json): a structured `brief`, dimensions (two groups), acts, shared decision nodes plus persistent branch arcs (each of the two branch points opens a multi-node arc), per-choice why notes, endingFlavor for scenario-specific colour.
 
 ## Scenario JSON shape
+
+Note the `group` values: `scope`, `instrument`, `value`. Putting every risk
+dimension in one group is the obvious move and it is wrong — it teaches the
+player to push them all down together, which is the habit the design exists to
+break. National security asks *how far the effect reaches*; the other three ask
+*what is constraining you*. The player filters on these exact strings.
+
+Every dimension must state `initial`, `min` and `max`; the validator rejects a
+dimension without them, because it needs a finite range to prove reachability.
+
 {
   "dimensions": {
-    "national_security": { "label": {"zh":"…","en":"National security risk"}, "initial":0,"min":0,"max":10,"higherIsRisk":true,"group":"risk","icon":"🛡️" },
-    "business":          { "label": {"zh":"…","en":"Business model"},          "initial":2,"min":0,"max":10,"higherIsRisk":false,"group":"venture","icon":"💰" }
+    "national_security": { "label": {"zh":"…","en":"National security risk"}, "initial":0,"min":0,"max":10,"higherIsRisk":true,"group":"scope","icon":"🛡️" },
+    "legal":             { "label": {"zh":"…","en":"Legal compliance risk"},"initial":0,"min":0,"max":10,"higherIsRisk":true,"group":"instrument","icon":"⚖️" },
+    "ethics":            { "label": {"zh":"…","en":"Ethics and trust risk"}, "initial":0,"min":0,"max":10,"higherIsRisk":true,"group":"instrument","icon":"🧐" },
+    "social":            { "label": {"zh":"…","en":"Social expectation risk"},"initial":1,"min":0,"max":10,"higherIsRisk":true,"group":"instrument","icon":"🗣️" },
+    "business":          { "label": {"zh":"…","en":"Business model"},         "initial":2,"min":0,"max":10,"higherIsRisk":false,"group":"value","icon":"💰" }
   },
   "start": "intro",
-  "nodes": { "intro": { "act":"act1", "text":{"zh":"…","en":"…"}, "choices":[ {"text":{"zh":"…","en":"…"},"next":"next_id","effects":{"business":2,"ethics":1},"why":{"zh":"…","en":"…"},"requirements":{"business":">=7"},"lockedHint":{"zh":"…","en":"…"}} ] } },
+  "nodes": { "intro": { "act":"act1", "text":{"zh":"…","en":"…"}, "choices":[ {
+    "text":{"zh":"…","en":"…"}, "next":"next_id",
+    "effects":{"business":2,"ethics":1,"social":1},
+    "actor":"design",
+    "why":{"zh":"…","en":"…"},
+    "requirements":{"business":">=7"}, "lockedHint":{"zh":"…","en":"…"}
+  } ] } },
   "endingFlavor": { "boom_ns": {"zh":"…","en":"…"} }
 }
+
+`actor` is one of `design`, `policy`, `law`: who can act on the harm this choice
+causes. It needs no engine change, because the player already reads the original
+choice object back out of the history. Give it to every choice that has effects.
 
 ## Implementation details
 - The engine advances nodes by player choices; keep no hidden state beyond the documented dimensions and the decision trail.
 - Endings are selected by FIRST match in declaration order against the joint conditions — order the shared endings so specific compound conditions (e.g. risk >= 5 AND business >= 6) are checked before the broader ones, and make sure the whole space is covered so no terminal state is unmatched.
-- The validator uses BFS over the (node, dimension-vector) state space to prove reachability and the absence of dead-ends; run it before shipping any scenario.
+- The validator uses BFS over the (node, dimension-vector) state space to prove reachability and the absence of dead-ends. It is a **development** check: run `node validate.js scenarios/<file>.json endings-core.json` before shipping. Note the second argument resolves relative to the scenario file, so pass the bare filename. Do **not** call it on every game start — the state space reaches hundreds of thousands per scenario, so a synchronous call there makes the page hang. Give the validator a `deep:false` mode that skips the search and use that at runtime.
+- The state space is large enough to need `node --stack-size=6000` for the analysis scripts, and large enough that `Math.min(...arr)` over it will blow the call stack. Loop instead of spreading.
+- Measure the outcome distribution, do not guess at it. `tools/outcome-counts.js` enumerates every reachable end state and counts the endings; `tools/balance-report.js` does the same per ending. Both are the only honest way to tell whether a change made the game better or just different.
+- Balance is fixed by changing the *supply of choices*, not by moving thresholds. The defect this project found was that only three choices could reduce the business score, and they were also the only ones that lowered any risk, so managing risk and keeping a business were bound together by scarcity. Adding four choices that can sink a venture and four that grow it safely fixed every outcome measure at once; no threshold change would have.
+- Save the run. A run lives in one variable, so anything that navigates away destroys it — including the scenario shuffle, which is a button the lesson itself asks students to press. Store it per scenario under a versioned key, save when the state changes and never in the reset path, and refuse to restore a save whose node no longer exists. Tell the student on screen that a run was resumed, or it looks like a bug and they press restart.
 - The player renders the SAME engine state for both languages; switching language never re-runs the engine.
 - Opening sound only: a short arcade "power-on" arpeggio on PRESS START; no choice or ending sounds.
-- Re-run tools/embed-scenarios.py after editing any scenario so the offline copy stays in sync.
+- Re-run tools/embed-scenarios.py after editing any scenario so the offline copy stays in sync, and commit the artefacts.
+- Exports come in three formats and all three must read from the same helpers, so none of them can drift from the numbers. Markdown is for reading, JSON for marking, and .docx for handing in. A .docx is a ZIP package of XML, so it needs a ZIP writer; a store-only writer (no compression) is valid, needs no dependency, and keeps the offline `file://` copy working.
 
 ## Deliverables to verify
 - `node test.js` searches a triggering path for EVERY ending in EVERY scenario and replays each path twice, confirming identical outcomes (6 scenarios x 9 endings).
@@ -150,13 +179,25 @@ The goal is to help students *feel* how a small, ordinary decision can escalate 
 
 ---
 
-## 5. Classroom activity idea
+## 5. Classroom activity
 
-- **Author-a-scenario lab:** have students draft a *new* venture scenario JSON (e.g. an internship or a research-integrity dilemma) together with the AI, then run `node validate.js` on it. Discuss any unreachable endings or dead-ends the validator finds — that *is* the lesson about consequence and completeness.
-- **Consequence debrief:** after a playthrough, open the Decision Trail and ask "which single choice pushed the risk past the threshold — and what did that same choice buy the business?" The per-choice why-notes make the causal chain explicit on both tracks.
-- **Read the attribution, not just the score:** the ending names the exact steps behind every number. Ask students to defend or attack that attribution — was step 4 really the cause, or was it the accumulation from step 2? This is the habit the reflective essay needs.
-- **Compare quadrants, not endings:** put the four cells of the outcome space on the board and ask each group which cell they landed in. "Clean but stalled" and "growth then crackdown" are both failures, and arguing about which failure is worse is the actual course content.
-- **Debrief-to-essay bridge:** each ending's debrief (trigger / stakeholders / mitigation / legal hooks) is a ready-made skeleton for the reflective essay; have students rewrite it in their own words with the actual legal texts cited.
+The lesson material — how to run a session, which questions work on a student's
+own run report, how to handle students finishing at different speeds, and which
+two things to tell the class — has moved to the [teaching guide](teaching-guide.md).
+
+One idea is worth keeping here, because it is about the tool rather than the
+lesson: **author a scenario with the students.** Have them draft a *new* venture
+scenario JSON (an internship dilemma, a research-integrity question) alongside
+an AI assistant, then run the validator on it:
+
+```
+node validate.js scenarios/<file>.json endings-core.json
+```
+
+Discuss any unreachable endings or dead ends the validator reports. That
+discussion *is* the lesson about consequence and completeness: a story where some
+choices lead nowhere is a broken story, and the tool says so rather than letting
+a student find it the hard way.
 
 ---
 
