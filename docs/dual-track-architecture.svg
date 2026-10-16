@@ -9,7 +9,7 @@
   <!-- top node -->
   <rect x="360" y="58" width="360" height="86" rx="14" fill="#eaf2fd" stroke="#8fb3e8"/>
   <text x="540" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#2563eb">Every choice</text>
-  <text x="540" y="121" text-anchor="middle" font-size="14" fill="#3b82f6">one set of effects, written into both tracks</text>
+  <text x="540" y="121" text-anchor="middle" font-size="14" fill="#3b82f6">one set of effects, written into both groups</text>
 
   <!-- branch arrows -->
   <path d="M505 147 C 430 168 355 178 318 190" fill="none" stroke="#9ca3af" stroke-width="1.6" marker-end="url(#arr)"/>
@@ -17,7 +17,7 @@
 
   <!-- risk track card -->
   <rect x="95" y="196" width="435" height="246" rx="16" fill="#fbeaea" stroke="#f0c9c9"/>
-  <text x="120" y="233" font-size="18" font-weight="700" fill="#8c2f39">Risk track · lower is better</text>
+  <text x="120" y="233" font-size="18" font-weight="700" fill="#8c2f39">Scope + Instruments · lower is better</text>
   <text x="120" y="259" font-size="14" fill="#c0392b">national_security / legal / ethics</text>
   <rect x="140" y="278" width="345" height="38" rx="8" fill="#f4f4f2" stroke="#e4e4e1"/>
   <text x="312" y="302" text-anchor="middle" font-size="15" fill="#374151">National security</text>

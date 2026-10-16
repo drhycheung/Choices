@@ -362,7 +362,8 @@ return scenario.dimensions[k].group !== 'venture';        // 范围 + 工具都�
 # 1) 每个题材单独校验（无死路、每个结局可达、局数 ≥10）
 for f in scenarios/ai-*.json scenarios/edu-analytics.json \
          scenarios/drone-inspection.json scenarios/trade-doc-ai.json; do
-  node validate.js "$f" scenarios/endings-core.json || echo "FAIL $f"
+  # 第二个参数是相对于场景文件所在目录解析的，所以只写文件名
+  node validate.js "$f" endings-core.json || echo "FAIL $f"
 done
 
 # 2) 触发全部结局 + 重放两次确认确定性

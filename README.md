@@ -45,11 +45,30 @@ This game was written for **GEL2026 · Technology Entrepreneurship in AI-enhance
 | Digital / AI value creation | The value track scores problem–solution fit, business model and moat — the Lean Canvas blocks from class — so pressing a button *is* practising the canvas |
 | Customer and problem validation | Act I forces a choice between interviewing users and chasing vanity metrics, and the scoreboard remembers which one paid |
 | AI data and model decisions | Acts II–III put training data, offshore processing and deployment on the scoreboard with explicit national-security and legal consequences |
-| National security, legal and ethical implications | Three separate risk dimensions, so "it is legal but creepy" and "it is safe but unlawful" are different scores, not one blurred warning |
+| National security, legal, ethical and social implications | Four separate risk dimensions, so "it is legal but nobody asked us" and "it is safe but socially unacceptable" are different scores, not one blurred warning |
 | Accountability and mitigation | Act IV offers a passive fix, a denial, or a real audit — and the audit is gated behind commercial strength, because responsibility has to be affordable |
 | Reflective essay | Every ending ends in a debrief: why it fired, the trade-off, who was affected, what could have been done, and the Lean Canvas reading — a draft skeleton for the essay |
 
-**Suggested classroom use.** Play one run individually or in pairs (15–20 minutes), pin a venture with `?scenario=ai-fitness` so the whole room compares like with like, then put the four quadrants of the outcome space on the board and ask who landed where and at which step it became unavoidable. Because the run is deterministic, "which step did it?" always has a true answer.
+**Suggested classroom use.** Play one run individually or in pairs (15–20 minutes), pin a venture with `?scenario=ai-fitness` so the whole room compares like with like, then put the four quadrants of the outcome space on the board and ask who landed where and at which step it became unavoidable. Because the run is deterministic, "which step did it?" always has a true answer. Each run is saved in the browser, so switching venture to compare a second one no longer loses the first.
+
+### Classroom notes
+
+**The six scenarios are four different games.** The claim that six ventures means "no repeats" is true of the stories and not of the mechanics. Measured by comparing the `effects` of every choice in order:
+
+| Scenario | Choices | Identical to `ai-fitness` |
+|---|---|---|
+| `ai-hiring` | 55 | 55 of 55 — the same game, different skin |
+| `edu-analytics` | 55 | 54 of 55 |
+| `drone-inspection` | 55 | 52 of 55 |
+| `ai-avatar` | 51 | own structure |
+| `trade-doc-ai` | 54 | own structure |
+
+So `ai-fitness`, `ai-hiring` and `edu-analytics` are one game; `drone-inspection` is the same game with three tuned values; `ai-avatar` and `trade-doc-ai` each run on their own distribution.
+
+Two consequences worth stating rather than hiding:
+
+- **Recalibrating balance is three passes, not six.** The balance work only had to be done once per mechanics profile.
+- **Pinning `?scenario=` for a demonstration pins one profile.** If you pin `ai-fitness`, the whole room plays that profile. Students who then try a different venture on their own may still be playing the same game. This is worth telling the class, because it is also a teaching point: the decisions, not the subject matter, are what the exercise is about.
 
 ---
 
@@ -61,10 +80,21 @@ A single risk scoreboard has a hidden flaw. After two or three plays, a clever s
 
 So every choice in this game feeds **two scoreboards at once**:
 
-| Track | Dimensions | Direction |
+| Group | Dimensions | Direction |
 |---|---|---|
-| **Risk track** | National security · Legal compliance · Ethics and trust | lower is better |
+| **Scope** | National security | lower is better |
+| **Instruments** | Legal compliance · Ethics and trust · Social expectation | lower is better |
 | **Value track** | Problem–solution fit (Canvas 1–4) · Business model (Canvas 5–7) · Moat and unfair advantage (Canvas 8–9) | higher is better |
+
+National security sits on its own because it asks *how far the effect reaches*, while the other three ask *what is constraining you*. That separation matters for the dashboard: four bars in one row would teach "push all four down", which is the habit the design is trying to break.
+
+The three instrument dimensions answer three different questions, and they do not always agree:
+
+- **Legal** — is there a rule that governs this decision?
+- **Ethical** — is the distribution of cost fair?
+- **Social** — what did the people affected expect?
+
+The third has no zero. Legal risk can be reduced to zero, because compliance is zero. Ethics has no settled answer, only an argument. A social expectation risk of zero is not a reachable state — other people always expect something of you, and you choose how much of it you carry. The `bust_social` ending exists to make a student discover that by hitting it: they push all four lines as low as they can and still fail.
 
 The value dimensions map directly onto the Lean Canvas blocks covered in class, so pressing a button *is* practising the canvas. Endings are gated by **both tracks together**, producing a two-dimensional outcome space:
 
@@ -100,13 +130,14 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Interactive branching narrative | Pure front-end engine (`engine.js`) advances nodes by player choices; every choice carries its own `next`, and two decision points per venture open a persistent branch arc with questions the other players never see |
 | Venture brief before the story | Each pack opens with a structured briefing (what it does · who buys it · where it stands · data it touches) above the first node, so plot events like "your first customer is…" always have context. The cover shows only the venture name and hook |
 | Six venture scenarios | `scenarios/manifest.json` lists the packs; each play randomly draws one (or force one with `?scenario=<id>`) |
-| Dual-track dashboard | Six segmented neon bars in two groups — risk (red alarm past threshold) and value (green when strong) |
+| Four mechanics, six stories | The six packs are **not** six different games. `ai-hiring` and `ai-fitness` are identical choice-for-choice in their effects; `edu-analytics` differs in one, `drone-inspection` in three. `ai-avatar` and `trade-doc-ai` each have their own distribution. So there are four distinct mechanics profiles. Pinning `?scenario=ai-fitness` means the room plays one of them — see [Classroom notes](#classroom-notes) |
+| Dual-track dashboard | Seven segmented neon bars in three groups — scope (how far it reaches), instruments (what constrains you) and value (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
 | Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
 | Full ending debrief | Trigger · trade-off · stakeholders · mitigations · Lean Canvas reading · legal hooks, in both languages |
 | Debrief traces back to decisions | The ending opens with a per-dimension **score ledger** (start → final, signed net change, and a worse/better verdict per dimension) and attributes every score to the exact steps that moved it |
-| Export a study report | The ending page exports the whole run as **Markdown** (score ledger, every decision with its deltas and reasons, full debrief) for printing or submission, or as **JSON** for marking and further analysis. Generated entirely in the browser — no backend |
+| Export a study report | The ending page exports the whole run as **Markdown** (venture brief, score ledger, every decision with its deltas and reasons, full debrief) for printing or submission, as **JSON** for marking and further analysis, or as **Word (.docx)** for handing in. Generated entirely in the browser — no backend |
 | Replayable without repetition | Six ventures, random draw on every start, plus a shuffle button on the start screen and the ending screen |
 | Multiple endings | 9 shared endings per scenario; the validator proves every one is reachable |
 | Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |

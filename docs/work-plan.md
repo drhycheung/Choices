@@ -22,13 +22,18 @@ convert open issues and planned features into teaching requirements.
 
 | Slide | Requirement | Consequence |
 |---|---|---|
-| 15 — Activity (2) | Students play the assigned AI Fitness scenario first, then choose another scenario for a second run | The scenario-switch button currently destroys a run in progress (task D1). The lesson cannot be completed as written without a fix or without students exporting between every screen. |
-| 18 — Value-Risk Matrix | Four quadrants are named, including "Over-cautious — every risk avoided, no runway left" | This quadrant is the `stalled` ending, currently reachable in 0.10–0.51% of runs. Activity (3) on slide 24 grades "justify the quadrant with game evidence", so students are asked to supply evidence for a quadrant the game almost never produces. Task B1 is therefore required, not optional. |
-| 23 — Framework #3 | Legal, ethical and social are defined as three separate questions; social is "what do the people affected expect?" | Activity (3) requires an answer under each perspective, citing the student's own run report. The run report currently contains no social data. Task C is therefore required. |
+| 15 — Activity (2) | Students play the assigned AI Fitness scenario first, then choose another scenario for a second run | The scenario-switch button destroyed a run in progress, so the lesson could not be completed as written. Fixed by D1: each run is saved under `choices.run.<id>` and restored on return. |
+| 18 — Value-Risk Matrix | Four quadrants are named, including "Over-cautious — every risk avoided, no runway left" | That quadrant is the `stalled` ending, which was reachable in 0.10–0.51% of runs. Activity (3) on slide 24 grades "justify the quadrant with game evidence", so students had to supply evidence for a quadrant the game almost never produced. B1 raised it to 6.34%, and the ending titles now match the four names on the slide. |
+| 23 — Framework #3 | Legal, ethical and social are defined as three separate questions; social is "what do the people affected expect?" | Activity (3) requires an answer under each perspective, citing the student's own run report, which contained no social data at all. The social dimension (C) supplies it. |
 
 ---
 
-## 2. Completed
+## 2. Completed ✅
+
+All twenty tasks in section 3 are done as of 2026-10-16. ✅ marks a row.
+Known shortfall: `win_clean` sits at 0.10% against a target of 0.2–1%, and
+the failure rate at 86.2% against a target of 80–85%. Both are recorded in the
+commit that introduced them rather than hidden.
 
 - [x] Three construction plans committed (`balance-recalibration-plan.md`, `run-persistence-plan.md`, `social-dimension-plan.md`).
 - [x] Measurement script committed (`tools/balance-report.js`). Its output reproduces the baseline table in the balance plan exactly, confirmed 2026-10-15.
@@ -42,18 +47,18 @@ convert open issues and planned features into teaching requirements.
 
 | # | Task | Source | Files |
 |---|---|---|---|
-| A1 | Record that four scenarios share an identical mechanics profile, so "six scenarios, no repeats" is true of the stories but not of the mechanics | balance plan, Finding C | `README.md`, teaching notes |
+| A1 ✅ | Record that four scenarios share an identical mechanics profile, so "six scenarios, no repeats" is true of the stories but not of the mechanics | balance plan, Finding C | `README.md`, teaching notes |
 
 ### B. Scenario content
 
 | # | Task | Source | Files | Acceptance |
 |---|---|---|---|---|
-| B1 | Add 3–5 choices per effect profile that reduce `business` by 2–4, so a venture can genuinely fail | balance plan ① | `scenarios/*.json` × 6 | `business` minimum falls from 4–5 to 1–2 |
-| B2 | Add 3–4 choices per effect profile that grow the venture without raising any risk line | balance plan ② | `scenarios/*.json` × 6 | `stalled` rises to 3–8%; among runs with all three risk lines ≤4, those with `business` ≥6 fall from 97–99% to 70–80% |
-| B3 | Add the `actor` field to every choice, with values `design`, `policy` or `law`, and render it beside the `why` text | social plan, stage 3 | `scenarios/*.json` × 6, `player.js` | Each choice shows who can act on the harm it caused |
-| B4 | Add three social closure choices to the Act IV audit node in each scenario, with deliberately different commercial returns | social plan 4.1 | `scenarios/*.json` × 6 | The three options have different business outcomes; one moves two dimensions at once |
-| B5 | Rewrite the AI Fitness scenario around the Strava heatmap case, so it matches the case taught in L06 and recalled on L07 slide 14 | GitHub issue #12 | `scenarios/ai-fitness.json` | — |
-| B6 | Rewrite `why` texts so that every dimension changed by a choice is explained, not only the most conspicuous one | GitHub issue #11 | `scenarios/*.json` × 6 | 68 English and 102 Chinese texts currently under 160 and 60 characters respectively despite changing two or more dimensions |
+| B1 ✅ | Add 3–5 choices per effect profile that reduce `business` by 2–4, so a venture can genuinely fail | balance plan ① | `scenarios/*.json` × 6 | `business` minimum falls from 4–5 to 1–2 |
+| B2 ✅ | Add 3–4 choices per effect profile that grow the venture without raising any risk line | balance plan ② | `scenarios/*.json` × 6 | `stalled` rises to 3–8%; among runs with all three risk lines ≤4, those with `business` ≥6 fall from 97–99% to 70–80% |
+| B3 ✅ | Add the `actor` field to every choice, with values `design`, `policy` or `law`, and render it beside the `why` text | social plan, stage 3 | `scenarios/*.json` × 6, `player.js` | Each choice shows who can act on the harm it caused |
+| B4 ✅ | Add three social closure choices to the Act IV audit node in each scenario, with deliberately different commercial returns | social plan 4.1 | `scenarios/*.json` × 6 | The three options have different business outcomes; one moves two dimensions at once |
+| B5 ✅ | Rewrite the AI Fitness scenario around the Strava heatmap case, so it matches the case taught in L06 and recalled on L07 slide 14 | GitHub issue #12 | `scenarios/ai-fitness.json` | — |
+| B6 ✅ | Rewrite `why` texts so that every dimension changed by a choice is explained, not only the most conspicuous one | GitHub issue #11 | `scenarios/*.json` × 6 | 68 English and 102 Chinese texts currently under 160 and 60 characters respectively despite changing two or more dimensions |
 
 **Ordering note.** B5 should be completed before B1 and B2 are applied to
 `ai-fitness.json`, otherwise that file is written twice and the measured state
@@ -66,15 +71,15 @@ Stages 1, 2 and 4 only. Stage 3 is task B3 above and carries no engine changes.
 
 | # | Task | Source | Files |
 |---|---|---|---|
-| C1 | Add the `social` dimension to all six scenarios, with `initial`, `min` and `max` stated explicitly | social plan 1.1 | `scenarios/*.json` × 6 |
-| C2 | Change `national_security` to group `scope` and the other three risk dimensions to group `instrument`, so the dashboard separates "how far it reaches" from "what constrains you" | social plan 1.2 | `scenarios/*.json` × 6 |
-| C3 | Update the `intro` text in both languages to name the social expectation dimension | social plan 1.3 | `scenarios/*.json` × 6 |
-| C4 | Add `boom_social` and `bust_social` after `bust_ethics`, and add the `social` condition to `win_clean`, `win_resilient` and `stalled` | social plan 4.2 | `scenarios/endings-core.json` |
-| C5 | Write the five required analysis fields and both-language text for the two new endings, including the statement that social expectation risk cannot be reduced to zero | social plan 4.2 | `scenarios/endings-core.json` |
-| C6 | Add one ending flavour for each new ending, in every scenario | social plan 4.2 | `scenarios/*.json` × 6 |
-| C7 | Render the dashboard and the score ledger in three groups instead of two | social plan 2 | `player.js:282`, `player.js:502` |
-| C8 | Add the two new group labels in both languages, with a switch to hide the scope group for GEL1032 | social plan 2, §8 | `player.js` |
-| C9 | Change the ending-page risk attribution filter from `group === 'risk'` to `group !== 'venture'`, or the national security line disappears from the ending page | social plan W2 | `player.js:583-586` |
+| C1 ✅ | Add the `social` dimension to all six scenarios, with `initial`, `min` and `max` stated explicitly | social plan 1.1 | `scenarios/*.json` × 6 |
+| C2 ✅ | Change `national_security` to group `scope` and the other three risk dimensions to group `instrument`, so the dashboard separates "how far it reaches" from "what constrains you" | social plan 1.2 | `scenarios/*.json` × 6 |
+| C3 ✅ | Update the `intro` text in both languages to name the social expectation dimension | social plan 1.3 | `scenarios/*.json` × 6 |
+| C4 ✅ | Add `boom_social` and `bust_social` after `bust_ethics`, and add the `social` condition to `win_clean`, `win_resilient` and `stalled` | social plan 4.2 | `scenarios/endings-core.json` |
+| C5 ✅ | Write the five required analysis fields and both-language text for the two new endings, including the statement that social expectation risk cannot be reduced to zero | social plan 4.2 | `scenarios/endings-core.json` |
+| C6 ✅ | Add one ending flavour for each new ending, in every scenario | social plan 4.2 | `scenarios/*.json` × 6 |
+| C7 ✅ | Render the dashboard and the score ledger in three groups instead of two | social plan 2 | `player.js:282`, `player.js:502` |
+| C8 ✅ | Add the two new group labels in both languages, with a switch to hide the scope group for GEL1032 | social plan 2, §8 | `player.js` |
+| C9 ✅ | Change the ending-page risk attribution filter from `group === 'risk'` to `group !== 'venture'`, or the national security line disappears from the ending page | social plan W2 | `player.js:583-586` |
 
 **Two ordering constraints are mandatory and are stated in the social plan:**
 
@@ -87,15 +92,15 @@ Stages 1, 2 and 4 only. Stage 3 is task B3 above and carries no engine changes.
 
 | # | Task | Source | Notes |
 |---|---|---|---|
-| D1 | Save each run under `choices.run.<scenario id>`, restore it on load, never destroy a run silently on scenario switch, and add a control to clear all saved runs | run-persistence plan | Save only when the run changes, not on every redraw. Do not save in `beginPlay()` or `restartGame()`. The export format must not change while this is done. |
-| D2 | Add the venture description to both exported report formats | GitHub issue #13 | The `brief` field already exists and is displayed in the application, but appears in neither export. |
-| D3 | Add a `.docx` export alongside Markdown and JSON | GitHub issue #14 | A `.docx` file is a ZIP archive, so the existing `Blob` download cannot produce one. Requires a ZIP writer. Must consume `exportSteps()` and `exportLedger()` like the other two formats. |
+| D1 ✅ | Save each run under `choices.run.<scenario id>`, restore it on load, never destroy a run silently on scenario switch, and add a control to clear all saved runs | run-persistence plan | Save only when the run changes, not on every redraw. Do not save in `beginPlay()` or `restartGame()`. The export format must not change while this is done. |
+| D2 ✅ | Add the venture description to both exported report formats | GitHub issue #13 | The `brief` field already exists and is displayed in the application, but appears in neither export. |
+| D3 ✅ | Add a `.docx` export alongside Markdown and JSON | GitHub issue #14 | A `.docx` file is a ZIP archive, so the existing `Blob` download cannot produce one. Requires a ZIP writer. Must consume `exportSteps()` and `exportLedger()` like the other two formats. |
 
 ### E. Wording in the ending debrief
 
 | # | Task | Source |
 |---|---|---|
-| E1 | Bind "sustainable success" to `win_resilient`, and present `win_clean` as a rare distinction rather than the main target | balance plan ③ |
+| E1 ✅ | Bind "sustainable success" to `win_resilient`, and present `win_clean` as a rare distinction rather than the main target | balance plan ③ |
 
 Note: slide 18 of the L07 deck already makes this distinction correctly, so the
 remaining work is to make the in-application debrief use the same four names as
@@ -111,7 +116,8 @@ Run in this order. Stop at the first failure.
 # 1. Schema and reachability for all six scenarios
 for f in scenarios/ai-*.json scenarios/edu-analytics.json \
          scenarios/drone-inspection.json scenarios/trade-doc-ai.json; do
-  node validate.js "$f" scenarios/endings-core.json || echo "FAIL $f"
+  # 第二个参数是相对于场景文件所在目录解析的，所以只写文件名
+  node validate.js "$f" endings-core.json || echo "FAIL $f"
 done
 
 # 2. Every ending reachable, and replays identical (required: the teacher must be
