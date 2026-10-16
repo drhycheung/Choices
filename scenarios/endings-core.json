@@ -524,14 +524,24 @@
           "zh": "你把「可证明的合规」当成了终点。这是法律视角的终点，不是社会视角的终点：法律问的是有没有规则管住这件事，伦理问的是成本分得公不公平，社会问的是受影响的人原本期待什么。前两个问题有答案，第三个问题从来不会自动成立。",
           "en": "You treated demonstrable compliance as the finish line. That is where the legal view ends, not where the social view ends: law asks whether a rule governs the decision, ethics asks whether the costs fall fairly, and society asks what the affected people expected. The first two have answers. The third never resolves on its own."
         },
-        "stakeholders": {
-          "zh": "受影响的人承担了成本却从未被问过；你的客户和投资人只看得见前两条线，所以他们的满意并不构成反驳。",
-          "en": "The affected people carried the cost and were never asked. Your clients and investors can only see the first two lines, so their satisfaction is not a rebuttal."
-        },
-        "mitigation": {
-          "zh": "可行的补救是把「我们不问你们想要什么」这件事改掉：在发布前就去问受影响的人，把答案写进产品规则，并接受这会让进度变慢。",
-          "en": "The workable remedy is to stop deciding on their behalf: ask the affected people before launch, write the answers into the product rules, and accept the delay that causes."
-        },
+        "stakeholders": [
+          {
+            "who": {
+              "en": "The affected people",
+              "zh": "受影响的人"
+            },
+            "impact": {
+              "en": "Carried the cost and were never asked. Your clients and investors can only see the first two lines, so their satisfaction is not a rebuttal.",
+              "zh": "承担了成本却从未被问过；你的客户和投资人只看得见前两条线，所以他们的满意并不构成反驳。"
+            }
+          }
+        ],
+        "mitigation": [
+          {
+            "zh": "可行的补救是把「我们不问你们想要什么」这件事改掉：在发布前就去问受影响的人，把答案写进产品规则，并接受这会让进度变慢。",
+            "en": "The workable remedy is to stop deciding on their behalf: ask the affected people before launch, write the answers into the product rules, and accept the delay that causes."
+          }
+        ],
         "canvas": {
           "zh": "这一局提醒你的是 Lean Canvas 的顾客细分：你以为你知道自己服务谁，但真正知道自己服务谁的是那些从未被问过的人。",
           "en": "What this run shows you is the customer segment box of the Lean Canvas: you thought you knew who you were serving, but the people who really knew were the ones never asked."
@@ -568,14 +578,24 @@
           "zh": "这一局教你的是那条最容易被略过的界线：法律风险可以归零——合规就是 0。伦理风险没有标准答案，只能辩。**社会期待风险没有「零」。** 你可以把落差压到可管理的程度，但没有人期待为零这件事，本身就是这个维度的定义。",
           "en": "This run teaches the line most easily skipped. Legal risk can reach zero, because compliance is zero. Ethical risk has no standard answer, only an argument. Social expectation risk has no zero at all. You can bring the gap down to something manageable, but the fact that nobody expects nothing is itself the definition of this dimension."
         },
-        "stakeholders": {
-          "zh": "受影响的人没有被问过，他们的期待因此没有被计入；等到它体现在流失和舆论上时，纠正成本已经远高于事先询问。",
-          "en": "The affected people were never asked, so their expectations were never counted in. By the time that shows up as churn and public comment, correcting it costs far more than asking would have."
-        },
-        "mitigation": {
-          "zh": "可行的补救是把预期显式化：提前告知、给出选择加入、把最敏感的一项从产品里去掉。第三项是唯一同时动两个工具的选项，代价是商业模式本身。",
-          "en": "The workable remedy is to make the expectation explicit: tell people early, let them opt in, and remove the most sensitive feature. That last one is the only option that moves two instruments at once, and it costs you the business model itself."
-        },
+        "stakeholders": [
+          {
+            "who": {
+              "en": "The affected people",
+              "zh": "受影响的人"
+            },
+            "impact": {
+              "en": "Were never asked, so their expectations were never counted in. By the time that shows up as churn and public comment, correcting it costs far more than asking would have.",
+              "zh": "没有被问过，他们的期待因此没有被计入；等到它体现在流失和舆论上时，纠正成本已经远高于事先询问。"
+            }
+          }
+        ],
+        "mitigation": [
+          {
+            "zh": "可行的补救是把预期显式化：提前告知、给出选择加入、把最敏感的一项从产品里去掉。第三项是唯一同时动两个工具的选项，代价是商业模式本身。",
+            "en": "The workable remedy is to make the expectation explicit: tell people early, let them opt in, and remove the most sensitive feature. That last one is the only option that moves two instruments at once, and it costs you the business model itself."
+          }
+        ],
         "canvas": {
           "zh": "这一局提醒你的是价值主张：你承诺解决的是问题，但受影响的人买的是「不被代表」。这两件事不一样。",
           "en": "What this run shows you is the value proposition: you promised to solve a problem, but what the affected people were buying was not being spoken for. Those are different things."
@@ -699,14 +719,10 @@
           "en": "Why it fired: all three risk tracks stayed below 5 — costly but not breached — while business reached 6+."
         },
         "tradeoff": {
-          "zh": "这一格在讲义上叫「可持续的成功」：负责任的做法变成了别人必须达到的标准。你做的取舍：允许自己在少数非核心环节承担风险，以换取交付速度；同时保证一旦出事能定位、能回滚、能赔付。这是一种工程化的风险管理，而不是侥幸。",
-          "en": "On the matrix this quadrant is Sustainable Success: responsible practice became the standard others have to meet. The trade-off: you accepted risk in a few non-core areas to buy delivery speed, while guaranteeing you could locate, roll back and compensate if it broke. That is engineered risk management, not luck."
+          "zh": "这一格在讲义上叫「可持续的成功」：负责任的做法变成了别人必须达到的标准。你做的取舍：允许自己在少数非核心环节承担风险，以换取交付速度；同时保证一旦出事能定位、能回滚、能赔付。这是一种工程化的风险管理，而不是侥幸。多数人能到的是这一格，而不是满分那一格。真正把四条线全部压到最低的人极少。",
+          "en": "On the matrix this quadrant is Sustainable Success: responsible practice became the standard others have to meet. The trade-off: you accepted risk in a few non-core areas to buy delivery speed, while guaranteeing you could locate, roll back and compensate if it broke. That is engineered risk management, not luck. Most people reach this quadrant rather than the all-clear one. Very few manage to hold every line at its lowest."
         },
         "stakeholders": [
-          {
-            "zh": "多数人能到的是这一格，而不是满分那一格。真正把四条线全部压到最低的人极少。",
-            "en": "Most people reach this quadrant rather than the all-clear one. Very few manage to hold every line at its lowest."
-          },
           {
             "who": {
               "zh": "被轻微影响的用户",

@@ -42,6 +42,21 @@
 
     /* ---- A. 结构合法 ---- */
 
+    // U+FFFD 是「字符解码失败」的替换符：中文一旦经过 shell heredoc 或
+    // 批量生成就可能被截断，页面照常渲染，只是多出一个黑方块。这类损坏
+    // 不会让任何其他检查失败，所以在这里单独拦一道。
+    (function scanForReplacementChars(value, path, depth) {
+      if (depth > 12) return;
+      if (typeof value === 'string') {
+        if (value.indexOf('\uFFFD') >= 0) {
+          errors.push(path + ' 含 U+FFFD 乱码（字符在写入时被截断）');
+        }
+        return;
+      }
+      if (!value || typeof value !== 'object') return;
+      for (const k in value) scanForReplacementChars(value[k], path + '.' + k, depth + 1);
+    })(scenario, 'scenario', 0);
+
     if (!scenario.start) errors.push('缺少 start（起始节点）');
     else if (!nodes[scenario.start]) errors.push('start 指向不存在的节点: ' + scenario.start);
 
@@ -106,6 +121,32 @@
       ['trigger', 'tradeoff', 'stakeholders', 'mitigation', 'canvas'].forEach(function (f) {
         if (!an[f]) warnings.push('结局 ' + eid + ' 的复盘缺少 ' + f + '（总结页需要详细复盘）');
       });
+
+      // 复盘里两个数组的形状：写错形状不会让上面的存在性检查失败，只会
+      // 在导出的报告里静默丢掉整段，或者渲染成 "| undefined | undefined |"。
+      // stakeholders 必须是 [{who, impact}]，mitigation 必须是 [{zh, en}]。
+      if (an.stakeholders != null) {
+        if (!Array.isArray(an.stakeholders)) {
+          errors.push('结局 ' + eid + ' 的 analysis.stakeholders 必须是数组（每项 {who, impact}），当前是 ' +
+                      (typeof an.stakeholders));
+        } else {
+          an.stakeholders.forEach(function (s, i) {
+            if (!s || typeof s !== 'object' || !s.who || !s.impact) {
+              errors.push('结局 ' + eid + ' 的 analysis.stakeholders[' + i + '] 缺少 who 或 impact');
+            }
+          });
+        }
+      }
+      if (an.mitigation != null && !Array.isArray(an.mitigation)) {
+        errors.push('结局 ' + eid + ' 的 analysis.mitigation 必须是数组（每项 {zh, en}），当前是 ' +
+                    (typeof an.mitigation));
+      } else if (Array.isArray(an.mitigation)) {
+        an.mitigation.forEach(function (m, i) {
+          if (!m || typeof m !== 'object' || !(m.zh || m.en)) {
+            errors.push('结局 ' + eid + ' 的 analysis.mitigation[' + i + '] 缺少 zh 或 en');
+          }
+        });
+      }
     }
 
     if (errors.length > 0) {

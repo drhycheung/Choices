@@ -1,0 +1,801 @@
+{
+  "game": "Choices",
+  "scenarioId": "ai-hiring",
+  "scenarioTitle": {
+    "zh": "明眼 HireSight：AI 招聘筛选平台",
+    "en": "HireSight: An AI Hiring Platform"
+  },
+  "theme": {
+    "zh": "算法评分、劳动者权益与人才数据",
+    "en": "Algorithmic scoring, worker rights and talent data"
+  },
+  "ventureBrief": {
+    "product": "给企业 HR 用的简历筛选工具：批量上传简历后，模型按岗位要求给出匹配评分与排序；后续可扩展为面试辅训与技能测评。",
+    "customer": "中小企业的人力资源部门与招聘外包方；高校就业中心也是潜在采购方。",
+    "standing": "第一版已在创业中心写完，本地一家制造企业给了付费试点；团队三人，收费模式尚未定型。",
+    "data": "简历中的身份、学历、工作经历与测评结果。若评分参与是否进入面试的决定，即属自动化决策——候选人通常有权知情并要求人工复核。"
+  },
+  "exportedAt": "2026-10-16T09:12:35.421Z",
+  "language": "zh",
+  "endingId": "boom_ethics",
+  "endingTitle": {
+    "zh": "用户终于知道自己被卖了",
+    "en": "Users Finally Find Out They Were Sold"
+  },
+  "endingType": "fail",
+  "perfect": false,
+  "finalScores": {
+    "national_security": 1,
+    "legal": 3,
+    "ethics": 6,
+    "social": 9,
+    "pmf": 8,
+    "business": 9,
+    "moat": 7
+  },
+  "scoreLedger": [
+    {
+      "key": "national_security",
+      "label": "国家安全风险",
+      "group": "scope",
+      "higherIsRisk": true,
+      "start": 0,
+      "final": 1,
+      "net": 1,
+      "netWord": "（更糟）",
+      "bad": true,
+      "movedBy": [
+        {
+          "step": 4,
+          "choiceText": "候选人搜索与评分榜单：企业可以直接「搜人」",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        }
+      ]
+    },
+    {
+      "key": "legal",
+      "label": "法律合规风险",
+      "group": "instrument",
+      "higherIsRisk": true,
+      "start": 0,
+      "final": 3,
+      "net": 3,
+      "netWord": "（更糟）",
+      "bad": true,
+      "movedBy": [
+        {
+          "step": 10,
+          "choiceText": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
+          "delta": 3,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 11,
+          "choiceText": "先上线，把适用人群写成「毕业于重点院校的技术岗」",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 12,
+          "choiceText": "补做评分依据说明与人工复核通道，公开已知局限",
+          "delta": -1,
+          "word": "（更稳）",
+          "bad": false
+        }
+      ]
+    },
+    {
+      "key": "ethics",
+      "label": "伦理与信任风险",
+      "group": "instrument",
+      "higherIsRisk": true,
+      "start": 0,
+      "final": 6,
+      "net": 6,
+      "netWord": "（更糟）",
+      "bad": true,
+      "movedBy": [
+        {
+          "step": 11,
+          "choiceText": "先上线，把适用人群写成「毕业于重点院校的技术岗」",
+          "delta": 3,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 10,
+          "choiceText": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
+          "delta": 2,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 3,
+          "choiceText": "做 AI 综合评分与人才榜单，让决策一键完成",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 7,
+          "choiceText": "对外宣称算法合规，评分依据只在被投诉时给",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 12,
+          "choiceText": "补做评分依据说明与人工复核通道，公开已知局限",
+          "delta": -1,
+          "word": "（更稳）",
+          "bad": false
+        }
+      ]
+    },
+    {
+      "key": "social",
+      "label": "社会期待风险",
+      "group": "instrument",
+      "higherIsRisk": true,
+      "start": 1,
+      "final": 9,
+      "net": 8,
+      "netWord": "（更糟）",
+      "bad": true,
+      "movedBy": [
+        {
+          "step": 4,
+          "choiceText": "候选人搜索与评分榜单：企业可以直接「搜人」",
+          "delta": 2,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 10,
+          "choiceText": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
+          "delta": 2,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 11,
+          "choiceText": "先上线，把适用人群写成「毕业于重点院校的技术岗」",
+          "delta": 2,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 3,
+          "choiceText": "做 AI 综合评分与人才榜单，让决策一键完成",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        },
+        {
+          "step": 7,
+          "choiceText": "对外宣称算法合规，评分依据只在被投诉时给",
+          "delta": 1,
+          "word": "（更糟）",
+          "bad": true
+        }
+      ]
+    },
+    {
+      "key": "pmf",
+      "label": "问题–方案契合",
+      "group": "value",
+      "higherIsRisk": false,
+      "start": 2,
+      "final": 8,
+      "net": 6,
+      "netWord": "（更好）",
+      "bad": false,
+      "movedBy": [
+        {
+          "step": 2,
+          "choiceText": "深耕中小科技企业的技术岗，把一个岗位类型做透",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 5,
+          "choiceText": "自建本地化词库，用公开的行业分类标准起步",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 6,
+          "choiceText": "用试点企业书面授权的数据，接受样本量小的现实",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 9,
+          "choiceText": "靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 12,
+          "choiceText": "补做评分依据说明与人工复核通道，公开已知局限",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        }
+      ]
+    },
+    {
+      "key": "business",
+      "label": "商业模式",
+      "group": "value",
+      "higherIsRisk": false,
+      "start": 2,
+      "final": 9,
+      "net": 7,
+      "netWord": "（更好）",
+      "bad": false,
+      "movedBy": [
+        {
+          "step": 3,
+          "choiceText": "做 AI 综合评分与人才榜单，让决策一键完成",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 4,
+          "choiceText": "候选人搜索与评分榜单：企业可以直接「搜人」",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 7,
+          "choiceText": "对外宣称算法合规，评分依据只在被投诉时给",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 8,
+          "choiceText": "企业按席位订阅，并书面承诺不转售候选人数据",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 12,
+          "choiceText": "补做评分依据说明与人工复核通道，公开已知局限",
+          "delta": -1,
+          "word": "（更弱）",
+          "bad": true
+        },
+        {
+          "step": 13,
+          "choiceText": "接受本地产业基金，扩张慢一些但数据留在本地",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 14,
+          "choiceText": "委托第三方算法审计并公开摘要，建立评分可解释机制",
+          "delta": -1,
+          "word": "（更弱）",
+          "bad": true
+        }
+      ]
+    },
+    {
+      "key": "moat",
+      "label": "护城河与不公平优势",
+      "group": "value",
+      "higherIsRisk": false,
+      "start": 1,
+      "final": 7,
+      "net": 6,
+      "netWord": "（更好）",
+      "bad": false,
+      "movedBy": [
+        {
+          "step": 13,
+          "choiceText": "接受本地产业基金，扩张慢一些但数据留在本地",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 14,
+          "choiceText": "委托第三方算法审计并公开摘要，建立评分可解释机制",
+          "delta": 2,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 2,
+          "choiceText": "深耕中小科技企业的技术岗，把一个岗位类型做透",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        },
+        {
+          "step": 8,
+          "choiceText": "企业按席位订阅，并书面承诺不转售候选人数据",
+          "delta": 1,
+          "word": "（更好）",
+          "bad": false
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "act": "第一章 · 客群与问题（Canvas 1–2）",
+      "nodeId": "intro",
+      "nodeText": "你们三个人窝在创业中心写完了第一版，本地一家制造企业的 HR 试用后说：这是我用过最快的筛简历工具。然后她问：为什么这几个人的分数这么低？你们答不上来。",
+      "choiceText": "接下这笔试点合同，正式成立团队",
+      "why": "",
+      "actor": "",
+      "effects": []
+    },
+    {
+      "step": 2,
+      "act": "第一章 · 客群与问题（Canvas 1–2）",
+      "nodeId": "c1_segment",
+      "nodeText": "第一件事：先服务谁？校招邮件里，就业中心说今年毕业生简历量又涨了三成。",
+      "choiceText": "深耕中小科技企业的技术岗，把一个岗位类型做透",
+      "why": "单一岗位类型的评价标准相对客观，容易与 HR 对齐并形成校验集；这类细分口碑一旦建立，就是后来者最难复制的部分（Canvas 9）。缺点是市场容量有限。",
+      "actor": "设计",
+      "effects": [
+        {
+          "key": "pmf",
+          "label": "问题–方案契合",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "moat",
+          "label": "护城河与不公平优势",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "act": "第一章 · 客群与问题（Canvas 1–2）",
+      "nodeId": "c1_problem",
+      "nodeText": "第二件事：HR 的真痛点是什么？有人说是「简历太多看不完」，也有 HR 私下说「我不敢承担漏掉好人的责任」。就在这时候，大学就业中心又发来一封邮件：他们想采购一套就业版，条件是按他们的汇报口径来改。",
+      "choiceText": "做 AI 综合评分与人才榜单，让决策一键完成",
+      "why": "一键决策最符合「省时间」的采购理由，合同容易签。但把人的前途压缩成一个数字，会让候选人与面试官都失去追问的能力，自动化决策的问责开始缺位。",
+      "actor": "设计",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "ethics",
+          "label": "伦理与信任风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "social",
+          "label": "社会期待风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "act": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "nodeId": "c2_product",
+      "nodeText": "MVP 二选一：是替 HR 找理由，还是替 HR 得出结论？",
+      "choiceText": "候选人搜索与评分榜单：企业可以直接「搜人」",
+      "why": "人才库与人才画像库传播性强、付费意愿高；但把大量本地劳动力（含关键行业、关键岗位人员）的结构化画像集中沉淀在一个可被检索的数据库里，本身就是敏感性极高的资产。",
+      "actor": "设计",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "national_security",
+          "label": "国家安全风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "social",
+          "label": "社会期待风险",
+          "delta": 2,
+          "bad": true,
+          "word": "（更糟）"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "act": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "nodeId": "c2_keyresource",
+      "nodeText": "要让模型读懂岗位，需要一套完整的技能词库与职位映射。自建要好几个月；市面上有一套境外数据商的产品，接口现成。",
+      "choiceText": "自建本地化词库，用公开的行业分类标准起步",
+      "why": "自建慢却在可控范围内：词库来源清晰、可解释、可维护，后续面对质询时能说清每个权重来自哪里。本地化还会顺带改善匹配质量。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "pmf",
+          "label": "问题–方案契合",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "act": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "nodeId": "c2_training",
+      "nodeText": "效度验证需要的历史录用数据，试点企业只给了一小部分。团队担心模型不够聪明。",
+      "choiceText": "用试点企业书面授权的数据，接受样本量小的现实",
+      "why": "样本小会让短期内指标不好看，但授权链条完整意味着日后经得起尽调、追问与客户法务提问。这是把节奏让给了正确性。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "pmf",
+          "label": "问题–方案契合",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "act": "第二章 · 方案、数据与模型训练（Canvas 3–4）",
+      "nodeId": "ai-hiring_b1_clean",
+      "nodeText": "只用书面授权数据训出来的模型，样本小、覆盖面窄，在试点企业之外的岗位族上表现明显下降。但每一次评分，你们都能说清它依据了哪些字段。",
+      "choiceText": "对外宣称算法合规，评分依据只在被投诉时给",
+      "why": "商业分上去，是因为你省掉了长期维护评分依据的工，签约也更容易。但伦理与社会期待一起掉：候选人本来有权知道自己被拿去比了什么，而你在有人投诉之前从未讲过。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "ethics",
+          "label": "伦理与信任风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "social",
+          "label": "社会期待风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "act": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "nodeId": "ai-hiring_b1_clean_money",
+      "nodeText": "你们有清白的授权链条，怎么把「可解释的评分依据」变成收入？销售想推一种让 HR 几乎零成本用起来的收费方式——可公司得靠把托付给你们的候选人数据拿去变现才能赚到钱，这恰恰踩在你们「可信」的卖点上。",
+      "choiceText": "企业按席位订阅，并书面承诺不转售候选人数据",
+      "why": "订阅是最慢的收钱方式，但「不转售」写在合同里，会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "moat",
+          "label": "护城河与不公平优势",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "act": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "nodeId": "ai-hiring_b1_clean_channel",
+      "nodeText": "怎么让更多企业用上？一家招聘代理说，他手上有三百家企业愿意试用。你手上是「可解释」的口碑资产，怎么放大它？",
+      "choiceText": "靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户",
+      "why": "慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 0,
+          "bad": false,
+          "word": ""
+        },
+        {
+          "key": "pmf",
+          "label": "问题–方案契合",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "act": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "nodeId": "ai-hiring_b1_clean_deploy",
+      "nodeText": "法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道，并有权要求人工复核。你们这条线本来就是靠「可解释」吃饭的，是把它做成默认，还是为了转化把它藏起来？",
+      "choiceText": "不在候选人侧披露，企业对外的说法是「系统综合评估」",
+      "why": "不披露可以避免大量解释成本，客户也更省事。但涉及就业的关键自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。",
+      "actor": "法律",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 0,
+          "bad": false,
+          "word": ""
+        },
+        {
+          "key": "legal",
+          "label": "法律合规风险",
+          "delta": 3,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "ethics",
+          "label": "伦理与信任风险",
+          "delta": 2,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "social",
+          "label": "社会期待风险",
+          "delta": 2,
+          "bad": true,
+          "word": "（更糟）"
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "act": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "nodeId": "c3_harm",
+      "nodeText": "内部测试发现：模型对职业空档期较长的人、四十岁以上的候选人以及无明显「名企」标签的人评分系统性偏低。有人辩解说，这是因为数据本来就是这样。",
+      "choiceText": "先上线，把适用人群写成「毕业于重点院校的技术岗」",
+      "why": "限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。",
+      "actor": "法律",
+      "effects": [
+        {
+          "key": "ethics",
+          "label": "伦理与信任风险",
+          "delta": 3,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "legal",
+          "label": "法律合规风险",
+          "delta": 1,
+          "bad": true,
+          "word": "（更糟）"
+        },
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 0,
+          "bad": false,
+          "word": ""
+        },
+        {
+          "key": "social",
+          "label": "社会期待风险",
+          "delta": 2,
+          "bad": true,
+          "word": "（更糟）"
+        }
+      ]
+    },
+    {
+      "step": 12,
+      "act": "第三章 · 渠道、收入与问责（Canvas 5–8）",
+      "nodeId": "ai-hiring_b2_paper",
+      "nodeText": "一位四十岁以上的候选人向劳动部门咨询：他被同一套系统连拒七次，从未得到任何理由。媒体开始问，这套评分到底依据什么。",
+      "choiceText": "补做评分依据说明与人工复核通道，公开已知局限",
+      "why": "伦理与法律都下降，因为误判停止了；但商业分也在跌，因为客户会先看到收入下滑，看到改善要晚一步。这不能把那七个被拒的人退回来——修复只是阻止它再发生。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "ethics",
+          "label": "伦理与信任风险",
+          "delta": -1,
+          "bad": false,
+          "word": "（更稳）"
+        },
+        {
+          "key": "legal",
+          "label": "法律合规风险",
+          "delta": -1,
+          "bad": false,
+          "word": "（更稳）"
+        },
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": -1,
+          "bad": true,
+          "word": "（更弱）"
+        },
+        {
+          "key": "pmf",
+          "label": "问题–方案契合",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 13,
+      "act": "第四章 · 规模化与社会外溢（Canvas 7、9）",
+      "nodeId": "ai-hiring_b2_paper_funding",
+      "nodeText": "那位候选人的投诉还在发酵，三家机构却先后来谈钱：一家境外 HR SaaS 巨头条件最阔绰，但要求开放候选人数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。",
+      "choiceText": "接受本地产业基金，扩张慢一些但数据留在本地",
+      "why": "本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒。",
+      "actor": "公司政策",
+      "effects": [
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": 1,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "moat",
+          "label": "护城河与不公平优势",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        }
+      ]
+    },
+    {
+      "step": 14,
+      "act": "第四章 · 规模化与社会外溢（Canvas 7、9）",
+      "nodeId": "c4_incident",
+      "nodeText": "劳动权益团体拿到一份对比测试：同样的简历，只改性别与年龄，评分差了两档。他们准备向监管部门投诉，并要求公开算法说明。",
+      "choiceText": "委托第三方算法审计并公开摘要，建立评分可解释机制",
+      "why": "审计要花钱、公开要承担被挑错的风险（商业模式分下降），但一份可引用的独立结论，会让大企业客户、政府采购与学校就业部门把你当成唯一敢公开的那个选项。",
+      "actor": "设计",
+      "effects": [
+        {
+          "key": "moat",
+          "label": "护城河与不公平优势",
+          "delta": 2,
+          "bad": false,
+          "word": "（更好）"
+        },
+        {
+          "key": "business",
+          "label": "商业模式",
+          "delta": -1,
+          "bad": true,
+          "word": "（更弱）"
+        }
+      ]
+    }
+  ],
+  "endingText": {
+    "zh": "商业上的成功掩盖了一件事：用户的信任并没有换来尊重。当一位用户把你们的做法完整拆解并发布出来，舆论在一夜之间反转。卸载、退款、差评、媒体跟进——你确实做出了一家公司，只是它的地基是骗来的。",
+    "en": "Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception."
+  },
+  "endingFlavor": {
+    "zh": "那份只改了性别与年龄的对照测试，成了社交平台上的爆款。",
+    "en": "The matched-pair test with only gender and age changed went viral."
+  },
+  "endingReflection": {
+    "zh": "请把「用户不同意这件事」翻译成一句具体的商业后果，并说明它为什么迟早会发生。",
+    "en": "Translate 'users did not consent' into one concrete commercial consequence, and explain why it was bound to happen eventually."
+  },
+  "debrief": {
+    "trigger": {
+      "zh": "触发原因：伦理与信任风险 5 分以上，同时商业分 6 分以上——被伤害的用户越多，爆发时的反噬越猛。",
+      "en": "Why it fired: ethics risk at 5+ with a business score of 6+ — the more users you harmed, the harder the backlash when it surfaced."
+    },
+    "tradeoff": {
+      "zh": "你做的取舍：用知情同意的缺席换转化率。每一次「反正用户不会细看」的设计决策都在账面上提升了漏斗，也在暗处积累着一旦曝光就无法挽回的信任赤字。",
+      "en": "The trade-off: trading absent informed consent for conversion. Every 'users won't read it anyway' decision improved the funnel on paper and added to a trust deficit that becomes unrecoverable once exposed."
+    },
+    "stakeholders": [
+      {
+        "who": {
+          "zh": "受影响最深的弱势用户",
+          "en": "The most vulnerable affected users"
+        },
+        "impact": {
+          "zh": "承担了最实质的伤害（例如误判、歧视、被利用），而收益最少。",
+          "en": "Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit."
+        }
+      },
+      {
+        "who": {
+          "zh": "普通用户群体",
+          "en": "The general user base"
+        },
+        "impact": {
+          "zh": "发现自己在不知情时成为产品的一部分，情感上的背叛感远超功能损失。",
+          "en": "Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss."
+        }
+      },
+      {
+        "who": {
+          "zh": "广告与商业伙伴",
+          "en": "Advertising and commercial partners"
+        },
+        "impact": {
+          "zh": "品牌安全连带受损，合作紧急叫停。",
+          "en": "Brand-safety damage spilled over and partnerships were halted at short notice."
+        }
+      }
+    ],
+    "mitigation": [
+      {
+        "zh": "把关键决策做成「可解释、可拒绝、可撤销」：给出理由、提供关闭开关、允许删除。",
+        "en": "Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion."
+      },
+      {
+        "zh": "对弱势群体做差异化的影响测试，而不是只看总体指标。",
+        "en": "Run impact tests disaggregated by vulnerable groups rather than trusting headline averages."
+      },
+      {
+        "zh": "在商业条款里明确写下「我们不会用你的 X 数据做什么」，并接受审计。",
+        "en": "Write 'we will never do X with your data' into your commercial terms — and submit to an audit."
+      }
+    ],
+    "canvas": {
+      "zh": "Lean Canvas 复盘：Canvas 8（关键指标）只看留存与转化，缺少「用户知情率」这类反向指标；Canvas 9（不公平优势）错把信息不对称当优势——它是最脆弱的一种优势。",
+      "en": "Lean Canvas review: Canvas 8 (key metrics) tracked retention and conversion but no counter-metric like 'informed-user rate'; Canvas 9 (unfair advantage) mistook information asymmetry for an advantage — the most fragile kind there is."
+    },
+    "legal": {
+      "zh": "课堂讨论线索：告知同意的有效性、敏感个人信息的单独同意、自动化决策的解释权与拒绝权、消费者保护与公平交易规范。",
+      "en": "Classroom pointers: validity of notice and consent, separate consent for sensitive personal information, the right to explanation and to opt out of automated decisions, consumer protection and fair-trading rules."
+    }
+  }
+}

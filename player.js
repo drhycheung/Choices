@@ -703,6 +703,7 @@
         nodeText: pick(node && node.text, lang),
         choiceText: pick(h.choiceText, lang),
         why: (choice && choice.why) ? pick(choice.why, lang) : '',
+        actor: (choice && choice.actor && UI[lang].actor) ? UI[lang].actor[choice.actor] : '',
         effects: effects
       };
     });
@@ -753,22 +754,11 @@
     return rows;
   }
 
-  // 导出用的企划简报：与开局渲染同源，避免两处各写一份。
-  // 学生拿到报告时应当知道自己在玩哪门生意——issue #13。
-  function exportBrief() {
-    if (!scenario || !scenario.brief) return [];
-    var b = scenario.brief;
-    var rows = [];
-    if (typeof b === 'string') {
-      rows.push({ key: 'brief', label: UI[lang].briefTitle, text: b });
-      return rows;
-    }
-    BRIEF_ROWS.forEach(function (pair) {
-      var v = b[pair[0]];
-      if (!v) return;
-      rows.push({ key: pair[0], label: UI[lang][pair[1]], text: pick(v, lang) });
-    });
-    return rows;
+  // 一个增减值的「好坏」措辞。0 不是「变好」，是持平。
+  // 分数总账（净变化）与每一步的效果表都用它，两处不再各写一遍。
+  function verdictWord(delta, bad) {
+    if (delta === 0) return lang === 'zh' ? '持平' : 'unchanged';
+    return bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better');
   }
 
   function buildMarkdown() {
@@ -802,7 +792,7 @@
       L.push('## ' + (lang === 'zh' ? CN[sec - 1] + '、' + zh : sec + '. ' + en));
     }
     if (brief.length) {
-      heading(UI[lang].briefTitle, 'The venture');
+      heading(UI[lang].briefTitle, UI[lang].briefTitle);
       L.push('');
       brief.forEach(function (r) {
         L.push('- **' + r.label + '**: ' + r.text);
@@ -821,9 +811,7 @@
            (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
     L.push('| --- | --- | --- | --- |');
     ledger.forEach(function (r) {
-      var verdict = r.net === 0
-        ? (lang === 'zh' ? '持平' : 'unchanged')
-        : (r.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better'));
+      var verdict = verdictWord(r.net, r.bad);
       L.push('| ' + r.label + ' | ' + r.start + ' → ' + r.final + ' | ' +
              (r.net > 0 ? '+' : '') + r.net + ' | ' + verdict + ' |');
     });
@@ -837,7 +825,7 @@
       L.push('');
       if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
       if (s.nodeText) L.push('');
-      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice: ') + '**' + s.choiceText);
+      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice:') + '** ' + s.choiceText);
       L.push('');
       if (s.effects.length) {
         L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
@@ -845,13 +833,19 @@
                (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
         L.push('| --- | --- | --- |');
         s.effects.forEach(function (e) {
+          // 增减为 0 时不能说「变好」：分数没动。这是每一步的效果表，
+          // 与分数总账用同一套判断。
           L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
-                 (e.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better')) + ' |');
+                 verdictWord(e.delta, e.bad) + ' |');
         });
         L.push('');
       }
       if (s.why) {
-        L.push('**' + (lang === 'zh' ? '为什么：' : 'Why: ') + '**' + s.why);
+        L.push('**' + UI[lang].whyPrefix.trim() + '** ' + s.why);
+        L.push('');
+      }
+      if (s.actor) {
+        L.push('**' + UI[lang].actorPrefix.trim() + '** ' + s.actor);
         L.push('');
       }
     });
@@ -881,8 +875,12 @@
       if (an.stakeholders && an.stakeholders.length) {
         L.push('### ' + (lang === 'zh' ? '谁受到了影响' : 'Who was affected'));
         L.push('');
+        // 与 Word 版一致：用两列表格，不要破折号列表。
+        L.push('| ' + (lang === 'zh' ? '谁' : 'Who') + ' | ' +
+               (lang === 'zh' ? '受到什么影响' : 'Impact') + ' |');
+        L.push('| --- | --- |');
         an.stakeholders.forEach(function (sh) {
-          L.push('- **' + pick(sh.who, lang) + '** — ' + pick(sh.impact, lang));
+          L.push('| ' + pick(sh.who, lang) + ' | ' + pick(sh.impact, lang) + ' |');
         });
         L.push('');
       }
@@ -925,6 +923,12 @@
       finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
       scoreLedger: exportLedger(),
       steps: exportSteps(),
+      // 结局正文、场景专属 flavour、反思题：Markdown 与 Word 都会输出，
+      // JSON 以前漏了，脚本读不到。保持 {zh,en} 原样，与 endingTitle 一致。
+      endingText: ending ? (ending.text || null) : null,
+      endingFlavor: (scenario.endingFlavor && state.endingId)
+        ? (scenario.endingFlavor[state.endingId] || null) : null,
+      endingReflection: ending ? (ending.reflection || null) : null,
       debrief: ending ? ending.analysis : null
     }, null, 2);
   }
@@ -1066,10 +1070,11 @@
     '</Relationships>';
 
   function docxStyles() {
-    function st(id, name, sz, bold, extra) {
+    function st(id, name, sz, bold, rpr) {
       return '<w:style w:type="paragraph" w:styleId="' + id + '"><w:name w:val="' + name + '"/>' +
         '<w:pPr><w:spacing w:before="120" w:after="60"/></w:pPr>' +
-        '<w:rPr>' + (bold ? '<w:b/>' : '') + '<w:sz w:val="' + sz + '"/></w:rPr></w:style>';
+        '<w:rPr>' + (bold ? '<w:b/>' : '') + (rpr || '') +
+        '<w:sz w:val="' + sz + '"/></w:rPr></w:style>';
     }
     return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
@@ -1078,6 +1083,9 @@
       st('Heading1', 'heading 1', '30', true) +
       st('Heading2', 'heading 2', '25', true) +
       st('Normal', 'Normal', '21', false) +
+      st('Story', 'Story', '21', false, '<w:i/>') +
+      st('Flavour', 'Flavour', '20', false, '<w:i/>') +
+      st('Choice', 'Choice', '22', true) +
       st('TableText', 'Table Text', '19', false) +
       '<w:style w:type="table" w:styleId="TableGrid"><w:name w:val="Table Grid"/>' +
       '<w:tblPr><w:tblBorders>' +
@@ -1095,6 +1103,19 @@
     var brief = exportBrief();
     var B = [];
 
+    // 一级标题的编号与 Markdown 完全一致（buildMarkdown 里的 CN / sec），
+    // 两份报告要能逐节对照，所以编号和用词都取同一处。
+    var CN = ['一', '二', '三', '四', '五', '六'];
+    var sec = 0;
+    function h1(zh, en) {
+      sec++;
+      B.push(wp(lang === 'zh' ? CN[sec - 1] + '、' + zh : sec + '. ' + en, 'Heading1'));
+    }
+    function h1n(zh, en) {           // 与 h1 相同，但 sec 由调用方自行加一（与 Markdown 同）
+      B.push(wp(lang === 'zh' ? CN[sec] + '、' + zh : (sec + 1) + '. ' + en, 'Heading1'));
+      sec++;
+    }
+
     B.push(wp(lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report', 'Title'));
     B.push(wp(pick(scenario.title, lang), 'Heading2'));
     if (scenario.theme) B.push(wp(pick(scenario.theme, lang), 'Normal'));
@@ -1106,44 +1127,75 @@
     }
 
     if (brief.length) {
-      B.push(wp(UI[lang].briefTitle, 'Heading1'));
+      h1(UI[lang].briefTitle, UI[lang].briefTitle);
       B.push(wtbl(brief.map(function (r) { return [r.label, r.text]; })));
     }
 
-    B.push(wp(lang === 'zh' ? '分数总账' : 'Score ledger', 'Heading1'));
+    h1('分数总账', 'Score ledger');
     B.push(wtbl([[lang === 'zh' ? '维度' : 'Dimension', lang === 'zh' ? '开局 → 终局' : 'Start → Final',
                   lang === 'zh' ? '净变化' : 'Net', lang === 'zh' ? '好坏' : 'Verdict']].concat(
       ledger.map(function (r) {
-        var verdict = r.net === 0
-          ? (lang === 'zh' ? '持平' : 'unchanged')
-          : (r.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better'));
-        return [r.label, r.start + ' → ' + r.final, (r.net > 0 ? '+' : '') + r.net, verdict];
+        return [r.label, r.start + ' → ' + r.final, (r.net > 0 ? '+' : '') + r.net,
+                verdictWord(r.net, r.bad)];
       }))));
 
-    B.push(wp((lang === 'zh' ? '决策链（共 ' : 'Decision trail (') + steps.length + (lang === 'zh' ? ' 步）' : ' steps)'), 'Heading1'));
+    h1n('决策链（共 ' + steps.length + ' 步）',
+         'Decision trail (' + steps.length + ' steps)');
     steps.forEach(function (s) {
-      B.push(wp((s.act ? s.act + ' · ' : '') + stepLabel(s.step) + ' · ' + s.text, 'Heading2'));
+      // 与 Markdown 保持一致：先步数，再章节
+      B.push(wp(stepLabel(s.step) + (s.act ? ' · ' + s.act : ''), 'Heading2'));
+      if (s.nodeText) B.push(wp(s.nodeText.replace(/\s*\n+\s*/g, ' '), 'Story'));
+      B.push(wp((lang === 'zh' ? '你的选择：' : 'Your choice: ') + s.choiceText, 'Choice'));
       if (s.effects && s.effects.length) {
-        B.push(wp(s.effects.map(function (e) {
-          return e.label + ' ' + (e.delta > 0 ? '+' : '') + e.delta + (e.word ? ' ' + e.word : '');
-        }).join('   '), 'Normal'));
+        B.push(wtbl([[lang === 'zh' ? '受影响维度' : 'Dimension', lang === 'zh' ? '增减' : 'Change',
+                      lang === 'zh' ? '好坏' : 'Verdict']].concat(s.effects.map(function (e) {
+          return [e.label, (e.delta > 0 ? '+' : '') + e.delta, verdictWord(e.delta, e.bad)];
+        }))));
       }
       if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
-      if (s.actor) B.push(wp(UI[lang].actorPrefix + UI[lang].actor[s.actor], 'Normal'));
+      if (s.actor) B.push(wp(UI[lang].actorPrefix + s.actor, 'Normal'));
     });
 
-    if (ending && ending.analysis) {
-      B.push(wp(lang === 'zh' ? '结局复盘' : 'Ending debrief', 'Heading1'));
-      var an = ending.analysis;
-      Object.keys(an).forEach(function (field) {
-        var v = an[field];
-        var flat = Array.isArray(v)
-          ? v.map(function (x) { return typeof x === 'string' ? x : pick(x, lang); })
-          : [typeof v === 'string' ? v : pick(v, lang)];
-        B.push(wp(fieldLabel(field), 'Heading2'));
-        flat.forEach(function (line) { if (line) B.push(wp(line, 'Normal')); });
+    if (ending) {
+      var an = ending.analysis || {};
+      h1n('结局复盘', 'Ending debrief');
+      if (ending.text) B.push(wp(pick(ending.text, lang), 'Story'));
+      var fl = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
+      if (fl) B.push(wp(pick(fl, lang), 'Flavour'));
+
+      var secs = [
+        [lang === 'zh' ? '为什么会触发这个结局' : 'Why this ending fired', an.trigger],
+        [lang === 'zh' ? '你做了什么取舍' : 'The trade-off you made', an.tradeoff],
+        [lang === 'zh' ? '用 Lean Canvas 复盘' : 'Through the Lean Canvas', an.canvas],
+        [lang === 'zh' ? '法例与规范线索' : 'Legal and regulatory hooks', an.legal]
+      ];
+      secs.forEach(function (pair) {
+        if (!pair[1]) return;
+        B.push(wp(pair[0], 'Heading2'));
+        B.push(wp(pick(pair[1], lang), 'Normal'));
       });
+
+      if (an.stakeholders && an.stakeholders.length) {
+        B.push(wp(lang === 'zh' ? '谁受到了影响' : 'Who was affected', 'Heading2'));
+        B.push(wtbl([[lang === 'zh' ? '谁' : 'Who', lang === 'zh' ? '受到什么影响' : 'Impact']].concat(
+          an.stakeholders.map(function (sh) { return [pick(sh.who, lang), pick(sh.impact, lang)]; }))));
+      }
+      if (an.mitigation && an.mitigation.length) {
+        B.push(wp(lang === 'zh' ? '本来可以怎么做' : 'What you could have done', 'Heading2'));
+        an.mitigation.forEach(function (it, i) {
+          B.push(wp((i + 1) + '. ' + pick(it, lang), 'Normal'));
+        });
+      }
+      if (ending.reflection) {
+        B.push(wp(lang === 'zh' ? '反思' : 'Reflection', 'Heading2'));
+        B.push(wp(pick(ending.reflection, lang), 'Normal'));
+      }
     }
+
+    B.push(wp(lang === 'zh'
+      ? '本局无任何随机数：结局完全由上面这 ' + steps.length + ' 个选择决定。'
+      : 'No randomness in this run: the ending is fully determined by the ' +
+        steps.length + ' choices above.', 'Flavour'));
 
     var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
@@ -1159,14 +1211,6 @@
       { name: 'word/styles.xml', data: utf8(docxStyles()) },
       { name: 'word/document.xml', data: utf8(doc) }
     ]);
-  }
-
-  function fieldLabel(f) {
-    var zh = { trigger: '触发原因', tradeoff: '取舍', stakeholders: '利益相关者',
-               mitigation: '补救', canvas: '回到 Lean Canvas', legal: '法律角度' };
-    var en = { trigger: 'Why it fired', tradeoff: 'The trade-off', stakeholders: 'Who bore the cost',
-               mitigation: 'What could have been done', canvas: 'Back to the Lean Canvas', legal: 'The legal angle' };
-    return lang === 'zh' ? (zh[f] || f) : (en[f] || f);
   }
 
   function downloadBytes(filename, mime, bytes) {

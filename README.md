@@ -286,6 +286,7 @@ Desktop and mobile are supported (responsive layout). Choices give pressed-state
 |---|---|
 | **[Teaching guide](docs/teaching-guide.md)** | For instructors: which course concerns the game addresses, how to run a session, which questions work on the students' own run reports, and how to adapt it to another course |
 | **[Vibe-coding guide](docs/vibe-coding.md)** | Design thinking behind this project, how it was built with an AI coding tool, and a complete prompt to reproduce it for classroom use |
+| **[Example report](examples/README.md)** | One finished run exported in all three formats — the Markdown, Word and JSON files a student receives, with the choice list that produced them |
 
 ---
 

@@ -119,6 +119,46 @@ manifest.scenarios.forEach(function (meta) {
   console.log('');
 });
 
+/* --- D. 离线副本 embed/ 必须与 scenarios/ 同步 -----------------------------
+   改完 scenarios/*.json 后忘了跑 tools/embed-scenarios.py，file:// 双击打开的
+   离线副本就还是旧内容。这个漏步真实发生过：issue #17 把 scenarios/ai-hiring.json
+   里的乱码修好了，embed/ai-hiring.js 却还留着——而离线副本正是学生没网时的打开
+   方式。这里逐一比对「解析后的数据」，不管空格与缩进。 */
+console.log('--- 离线副本 embed/ 与 scenarios/ 是否一致 ---');
+const EMBED_DIR = path.join(__dirname, 'embed');
+
+function deepEqual(a, b) {
+  if (a === b) return true;
+  if (a === null || b === null || typeof a !== 'object' || typeof b !== 'object') return false;
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+  const ka = Object.keys(a), kb = Object.keys(b);
+  if (ka.length !== kb.length) return false;
+  return ka.every(function (k) { return deepEqual(a[k], b[k]); });
+}
+
+function readEmbedded(file) {
+  const txt = fs.readFileSync(path.join(EMBED_DIR, file), 'utf8');
+  const m = txt.match(/^window\.CHOICES_EMBEDDED[^\n]*? = (\{[\s\S]*\});\s*$/m);
+  if (!m) throw new Error('找不到内嵌赋值语句');
+  return JSON.parse(m[1]);
+}
+
+function checkEmbedded(label, file, expected) {
+  let got;
+  try { got = readEmbedded(file); }
+  catch (e) { got = 'ERROR: ' + e.message; }
+  const same = deepEqual(got, expected);
+  if (!same) allOk = false;
+  console.log('  ' + (same ? '✓' : '✗') + ' ' + label + ' → embed/' + file);
+}
+
+checkEmbedded('共享结局表', 'endings.js', coreEndings);
+manifest.scenarios.forEach(function (meta) {
+  const raw = JSON.parse(fs.readFileSync(path.join(SCEN_DIR, meta.file), 'utf8'));
+  checkEmbedded(meta.id, meta.id + '.js', raw);
+});
+console.log('');
+
 console.log('=== 总计：' + manifest.scenarios.length + ' 个题材 / ' + totalEndings + ' 个结局样本 ===');
 console.log(allOk ? '全部通过 ✓' : '存在问题 ✗');
 process.exit(allOk ? 0 : 1);
