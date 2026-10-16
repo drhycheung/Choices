@@ -731,11 +731,48 @@
     });
   }
 
+  // 导出用的企划简报：与开局渲染同源，避免两处各写一份。
+  // 学生拿到报告时应当知道自己在玩哪门生意——issue #13。
+  function exportBrief() {
+    if (!scenario || !scenario.brief) return [];
+    var b = scenario.brief;
+    var rows = [];
+    if (typeof b === 'string') {
+      rows.push({ key: 'brief', label: UI[lang].briefTitle, text: b });
+      return rows;
+    }
+    BRIEF_ROWS.forEach(function (pair) {
+      var v = b[pair[0]];
+      if (!v) return;
+      rows.push({ key: pair[0], label: UI[lang][pair[1]], text: pick(v, lang) });
+    });
+    return rows;
+  }
+
+  // 导出用的企划简报：与开局渲染同源，避免两处各写一份。
+  // 学生拿到报告时应当知道自己在玩哪门生意——issue #13。
+  function exportBrief() {
+    if (!scenario || !scenario.brief) return [];
+    var b = scenario.brief;
+    var rows = [];
+    if (typeof b === 'string') {
+      rows.push({ key: 'brief', label: UI[lang].briefTitle, text: b });
+      return rows;
+    }
+    BRIEF_ROWS.forEach(function (pair) {
+      var v = b[pair[0]];
+      if (!v) return;
+      rows.push({ key: pair[0], label: UI[lang][pair[1]], text: pick(v, lang) });
+    });
+    return rows;
+  }
+
   function buildMarkdown() {
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
     var an = (ending && ending.analysis) || {};
     var steps = exportSteps();
     var ledger = exportLedger();
+    var brief = exportBrief();
     var L = [];
 
     L.push('# ' + (lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report'));
@@ -753,8 +790,26 @@
     L.push('---');
     L.push('');
 
+    // 企划简报：让学生在报告上就能看出自己玩的是哪门生意
+    var CN = ['一', '二', '三', '四', '五', '六'];
+    var sec = 0;
+    function heading(zh, en) {
+      sec++;
+      L.push('## ' + (lang === 'zh' ? CN[sec - 1] + '、' + zh : sec + '. ' + en));
+    }
+    if (brief.length) {
+      heading(UI[lang].briefTitle, 'The venture');
+      L.push('');
+      brief.forEach(function (r) {
+        L.push('- **' + r.label + '**: ' + r.text);
+      });
+      L.push('');
+      L.push('---');
+      L.push('');
+    }
+
     // 分数总账
-    L.push('## ' + (lang === 'zh' ? '一、分数总账' : '1. Score ledger'));
+    heading('分数总账', 'Score ledger');
     L.push('');
     L.push('| ' + (lang === 'zh' ? '维度' : 'Dimension') + ' | ' +
            (lang === 'zh' ? '开局 → 终局' : 'Start → Final') + ' | ' +
@@ -771,7 +826,7 @@
     L.push('');
 
     // 决策链
-    L.push('## ' + (lang === 'zh' ? '二、决策链（共 ' + steps.length + ' 步）' : '2. Decision trail (' + steps.length + ' steps)'));
+    L.push('## ' + (lang === 'zh' ? CN[sec] + '、决策链（共 ' + steps.length + ' 步）' : (sec + 1) + '. Decision trail (' + steps.length + ' steps)')); sec++;
     L.push('');
     steps.forEach(function (s) {
       L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
@@ -801,7 +856,7 @@
     if (ending) {
       L.push('---');
       L.push('');
-      L.push('## ' + (lang === 'zh' ? '三、结局复盘' : '3. Ending debrief'));
+      L.push('## ' + (lang === 'zh' ? CN[sec] + '、结局复盘' : (sec + 1) + '. Ending debrief')); sec++;
       L.push('');
       if (ending.text) { L.push(pick(ending.text, lang)); L.push(''); }
       var fl = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
@@ -856,6 +911,7 @@
       scenarioId: scenario.id,
       scenarioTitle: scenario.title,
       theme: scenario.theme || null,
+      ventureBrief: exportBrief().reduce(function (acc, r) { acc[r.key] = r.text; return acc; }, {}),
       exportedAt: new Date().toISOString(),
       language: lang,
       endingId: state.endingId,
