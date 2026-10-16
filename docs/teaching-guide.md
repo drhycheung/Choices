@@ -194,9 +194,9 @@ Each run exports three formats, all generated in the browser:
 
 | Format | Use |
 |---|---|
-| **Markdown** | For reading, printing and submission. Contains the venture brief, the score ledger, every decision with its score deltas and the reason for each, and the full ending debrief. |
-| **Word (.docx)** | The same content as a document, for handing in directly. |
-| **JSON** | The full decision trail and debrief as data, for marking or further analysis. |
+| [**Markdown example**](../examples/report-ai-hiring-boom_ethics.md) | For reading, printing and submission. Contains the venture brief, the score ledger, every decision with its score deltas and the reason for each, and the full ending debrief. |
+| [**Word (.docx) example**](../examples/report-ai-hiring-boom_ethics.docx) | The same content as a document, for handing in directly. |
+| [**JSON example**](../examples/report-ai-hiring-boom_ethics.json) | The full decision trail and debrief as data, for marking or further analysis. |
 
 The report is the only durable record of a run, so it is worth asking for it
 every time. It is also the bridge into written work: the debrief is already
