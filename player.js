@@ -66,6 +66,8 @@
       exportTitle: '导出这一局的复盘报告',
       exportMd: '下载 Markdown 报告',
       exportJson: '下载 JSON 数据',
+      exportDocx: '下载 Word 报告（.docx）',
+      exportError: '无法生成 Word 文件：',
       exportNote: '报告含本局全部决策、每步的分数增减与理由、分数总账与结局复盘，可直接提交或打印。',
       exported: '已开始下载',
       resumedNote: '已恢复上一次未完成的这一局（第',
@@ -127,6 +129,8 @@
       exportTitle: 'Export this run for review',
       exportMd: 'Download Markdown report',
       exportJson: 'Download JSON data',
+      exportDocx: 'Download Word report (.docx)',
+      exportError: 'Could not build the Word file: ',
       exportNote: 'The report contains every decision, the score change and the reason behind each step, the score ledger and the ending debrief — ready to submit or print.',
       exported: 'Download started',
       resumedNote: 'Resumed your unfinished run (at step',
@@ -925,6 +929,258 @@
     }, null, 2);
   }
 
+  /* ---- .docx 导出（issue #14） ----
+     .docx 不是文本格式，而是一个 ZIP 包（OOXML），所以现有的 Blob 下载路径用不上：
+     浏览器没有内置的 ZIP 写入器（DecompressionStream 只能读不能写）。
+     这里手写一个「不压缩」的 ZIP 写入器——ZIP 的 stored 模式是合法格式，
+     Word / Pages / LibreOffice 都能打开，而且不需要任何外部依赖，
+     离线副本（file:// 双击打开）也照常可用。 */
+
+  var CRC_TABLE = (function () {
+    var t = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) {
+      var c = n;
+      for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+
+  function crc32(bytes) {
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < bytes.length; i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  function utf8(str) {
+    if (typeof TextEncoder !== 'undefined') return new TextEncoder().encode(str);
+    var out = [], i, c;
+    for (i = 0; i < str.length; i++) {
+      c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xC0 | (c >> 6), 0x80 | (c & 0x3F));
+      else out.push(0xE0 | (c >> 12), 0x80 | ((c >> 6) & 0x3F), 0x80 | (c & 0x3F));
+    }
+    return new Uint8Array(out);
+  }
+
+  // files: [{ name, data: Uint8Array }] → ZIP（stored，无压缩）
+  function zipStore(files) {
+    var parts = [], central = [], offset = 0;
+    files.forEach(function (f) {
+      var name = utf8(f.name);
+      var crc = crc32(f.data);
+      var local = new Uint8Array(30 + name.length);
+      var dv = new DataView(local.buffer);
+      dv.setUint32(0, 0x04034b50, true);   // local file header signature
+      dv.setUint16(4, 20, true);           // version needed
+      dv.setUint16(6, 0x0800, true);       // flags: UTF-8 filename
+      dv.setUint16(8, 0, true);            // method 0 = stored
+      dv.setUint16(10, 0, true);           // mod time
+      dv.setUint16(12, 0x21, true);        // mod date (1996-01-01, fixed → 导出结果可复现)
+      dv.setUint32(14, crc, true);
+      dv.setUint32(18, f.data.length, true);
+      dv.setUint32(22, f.data.length, true);
+      dv.setUint16(26, name.length, true);
+      dv.setUint16(28, 0, true);
+      local.set(name, 30);
+      parts.push(local, f.data);
+
+      var cen = new Uint8Array(46 + name.length);
+      var cv = new DataView(cen.buffer);
+      cv.setUint32(0, 0x02014b50, true);   // central directory signature
+      cv.setUint16(4, 20, true);
+      cv.setUint16(6, 20, true);
+      cv.setUint16(8, 0x0800, true);
+      cv.setUint16(10, 0, true);
+      cv.setUint16(12, 0, true);
+      cv.setUint16(14, 0x21, true);
+      cv.setUint32(16, crc, true);
+      cv.setUint32(20, f.data.length, true);
+      cv.setUint32(24, f.data.length, true);
+      cv.setUint16(28, name.length, true);
+      cv.setUint16(30, 0, true);
+      cv.setUint16(32, 0, true);
+      cv.setUint16(34, 0, true);
+      cv.setUint16(36, 0, true);
+      cv.setUint32(38, 0, true);
+      cv.setUint32(42, offset, true);
+      cen.set(name, 46);
+      central.push(cen);
+      offset += local.length + f.data.length;
+    });
+
+    var centralSize = central.reduce(function (a, c) { return a + c.length; }, 0);
+    var end = new Uint8Array(22);
+    var ev = new DataView(end.buffer);
+    ev.setUint32(0, 0x06054b50, true);     // end of central directory
+    ev.setUint16(8, files.length, true);
+    ev.setUint16(10, files.length, true);
+    ev.setUint32(12, centralSize, true);
+    ev.setUint32(16, offset, true);
+
+    var all = parts.concat(central, [end]);
+    var total = all.reduce(function (a, c) { return a + c.length; }, 0);
+    var out = new Uint8Array(total), pos = 0;
+    all.forEach(function (c) { out.set(c, pos); pos += c.length; });
+    return out;
+  }
+
+  function xmlEsc(s) {
+    return String(s === undefined || s === null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function wp(text, style) {
+    return '<w:p><w:pPr><w:pStyle w:val="' + (style || 'Normal') + '"/></w:pPr>' +
+      '<w:r><w:t xml:space="preserve">' + xmlEsc(text) + '</w:t></w:r></w:p>';
+  }
+
+  function wtbl(rows) {
+    var body = rows.map(function (r) {
+      return '<w:tr>' + r.map(function (c) {
+        return '<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/></w:tcPr>' + wp(c, 'TableText') + '</w:tc>';
+      }).join('') + '</w:tr>';
+    }).join('');
+    return '<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="5000" w:type="pct"/></w:tblPr>' +
+      body + '</w:tbl>';
+  }
+
+  var DOCX_CT = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+    '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+    '<Default Extension="xml" ContentType="application/xml"/>' +
+    '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+    '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
+    '</Types>';
+
+  var DOCX_RELS = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+    '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
+    '</Relationships>';
+
+  var DOCX_DOC_RELS = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+    '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
+    '</Relationships>';
+
+  function docxStyles() {
+    function st(id, name, sz, bold, extra) {
+      return '<w:style w:type="paragraph" w:styleId="' + id + '"><w:name w:val="' + name + '"/>' +
+        '<w:pPr><w:spacing w:before="120" w:after="60"/></w:pPr>' +
+        '<w:rPr>' + (bold ? '<w:b/>' : '') + '<w:sz w:val="' + sz + '"/></w:rPr></w:style>';
+    }
+    return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="PingFang SC"/><w:sz w:val="21"/></w:rPr></w:rPrDefault></w:docDefaults>' +
+      st('Title', 'Title', '40', true) +
+      st('Heading1', 'heading 1', '30', true) +
+      st('Heading2', 'heading 2', '25', true) +
+      st('Normal', 'Normal', '21', false) +
+      st('TableText', 'Table Text', '19', false) +
+      '<w:style w:type="table" w:styleId="TableGrid"><w:name w:val="Table Grid"/>' +
+      '<w:tblPr><w:tblBorders>' +
+      ['top', 'left', 'bottom', 'right', 'insideH', 'insideV'].map(function (s) {
+        return '<w:' + s + ' w:val="single" w:sz="4" w:space="0" w:color="BFBFBF"/>';
+      }).join('') + '</w:tblBorders></w:tblPr></w:style>' +
+      '</w:styles>';
+  }
+
+  // 与 Markdown / JSON 同源：都只读玩家真实走过的 history，不重新计算结论。
+  function buildDocxBytes() {
+    var ending = ChoicesEngine.getEnding(scenario, state.endingId);
+    var steps = exportSteps();
+    var ledger = exportLedger();
+    var brief = exportBrief();
+    var B = [];
+
+    B.push(wp(lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report', 'Title'));
+    B.push(wp(pick(scenario.title, lang), 'Heading2'));
+    if (scenario.theme) B.push(wp(pick(scenario.theme, lang), 'Normal'));
+    B.push(wp(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
+                            : 'Exported ' + new Date().toLocaleString('en-GB'), 'Normal'));
+    if (ending) {
+      B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading1'));
+      B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
+    }
+
+    if (brief.length) {
+      B.push(wp(UI[lang].briefTitle, 'Heading1'));
+      B.push(wtbl(brief.map(function (r) { return [r.label, r.text]; })));
+    }
+
+    B.push(wp(lang === 'zh' ? '分数总账' : 'Score ledger', 'Heading1'));
+    B.push(wtbl([[lang === 'zh' ? '维度' : 'Dimension', lang === 'zh' ? '开局 → 终局' : 'Start → Final',
+                  lang === 'zh' ? '净变化' : 'Net', lang === 'zh' ? '好坏' : 'Verdict']].concat(
+      ledger.map(function (r) {
+        var verdict = r.net === 0
+          ? (lang === 'zh' ? '持平' : 'unchanged')
+          : (r.bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better'));
+        return [r.label, r.start + ' → ' + r.final, (r.net > 0 ? '+' : '') + r.net, verdict];
+      }))));
+
+    B.push(wp((lang === 'zh' ? '决策链（共 ' : 'Decision trail (') + steps.length + (lang === 'zh' ? ' 步）' : ' steps)'), 'Heading1'));
+    steps.forEach(function (s) {
+      B.push(wp((s.act ? s.act + ' · ' : '') + stepLabel(s.step) + ' · ' + s.text, 'Heading2'));
+      if (s.effects && s.effects.length) {
+        B.push(wp(s.effects.map(function (e) {
+          return e.label + ' ' + (e.delta > 0 ? '+' : '') + e.delta + (e.word ? ' ' + e.word : '');
+        }).join('   '), 'Normal'));
+      }
+      if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
+      if (s.actor) B.push(wp(UI[lang].actorPrefix + UI[lang].actor[s.actor], 'Normal'));
+    });
+
+    if (ending && ending.analysis) {
+      B.push(wp(lang === 'zh' ? '结局复盘' : 'Ending debrief', 'Heading1'));
+      var an = ending.analysis;
+      Object.keys(an).forEach(function (field) {
+        var v = an[field];
+        var flat = Array.isArray(v)
+          ? v.map(function (x) { return typeof x === 'string' ? x : pick(x, lang); })
+          : [typeof v === 'string' ? v : pick(v, lang)];
+        B.push(wp(fieldLabel(field), 'Heading2'));
+        flat.forEach(function (line) { if (line) B.push(wp(line, 'Normal')); });
+      });
+    }
+
+    var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:body>' + B.join('') +
+      '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/>' +
+      '<w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr>' +
+      '</w:body></w:document>';
+
+    return zipStore([
+      { name: '[Content_Types].xml', data: utf8(DOCX_CT) },
+      { name: '_rels/.rels', data: utf8(DOCX_RELS) },
+      { name: 'word/_rels/document.xml.rels', data: utf8(DOCX_DOC_RELS) },
+      { name: 'word/styles.xml', data: utf8(docxStyles()) },
+      { name: 'word/document.xml', data: utf8(doc) }
+    ]);
+  }
+
+  function fieldLabel(f) {
+    var zh = { trigger: '触发原因', tradeoff: '取舍', stakeholders: '利益相关者',
+               mitigation: '补救', canvas: '回到 Lean Canvas', legal: '法律角度' };
+    var en = { trigger: 'Why it fired', tradeoff: 'The trade-off', stakeholders: 'Who bore the cost',
+               mitigation: 'What could have been done', canvas: 'Back to the Lean Canvas', legal: 'The legal angle' };
+    return lang === 'zh' ? (zh[f] || f) : (en[f] || f);
+  }
+
+  function downloadBytes(filename, mime, bytes) {
+    var blob = new Blob([bytes], { type: mime });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
   function download(filename, mime, text) {
     var blob = new Blob([text], { type: mime + ';charset=utf-8' });
     var url = URL.createObjectURL(blob);
@@ -946,8 +1202,17 @@
     md.onclick = function () { download(exportBaseName() + '.md', 'text/markdown', buildMarkdown()); };
     var js = textEl('button', UI[lang].exportJson, 'btn-export alt');
     js.onclick = function () { download(exportBaseName() + '.json', 'application/json', buildJSON()); };
+    var dx = textEl('button', UI[lang].exportDocx, 'btn-export alt');
+    dx.onclick = function () {
+      try {
+        downloadBytes(exportBaseName() + '.docx',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          buildDocxBytes());
+      } catch (e) { showBanner(UI[lang].exportError + e.message, 'error'); }
+    };
     row.appendChild(md);
     row.appendChild(js);
+    row.appendChild(dx);
     box.appendChild(row);
     return box;
   }
