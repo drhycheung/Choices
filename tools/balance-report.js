@@ -11,7 +11,7 @@
  *   node tools/balance-report.js scenarios/ai-fitness.json scenarios/ai-avatar.json
  *
  * 用途：改 scenarios/*.json 之后跑一次，看九个结局的占比怎么动。
- * 验收标准见 docs/balance-recalibration-plan.md §8。
+ * 验收标准就是下面这个 TARGETS 常量，不依赖仓库外的文件。
  */
 const fs = require('fs');
 const path = require('path');
@@ -109,7 +109,7 @@ for (const r of rows) {
 }
 
 console.log('\n' + '-'.repeat(96));
-console.log('【验收】对照 docs/balance-recalibration-plan.md §8');
+console.log('【验收】对照本文件的 TARGETS');
 console.log('   business 终局最小值        现状 ' + String(worst.bmin).padStart(2) + '   目标 1-2');
 console.log('   stalled 最低占比           现状 ' + (100 * worst.stall).toFixed(2) + '%   目标 3%-8%');
 console.log('   win_clean 最低占比         现状 ' + (100 * worst.clean).toFixed(2) + '%   目标 0.2%-1%');

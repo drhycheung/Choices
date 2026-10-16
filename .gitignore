@@ -5,5 +5,13 @@ node_modules/
 # 课程材料（科目大纲 / 进度表 / 课件）：仅本地参考，不推送到 GitHub
 GEL2026/
 
+# 建设计划与决策记录：已完成的工作记录，只在本地保留，不推送到 GitHub。
+# docs/teaching-guide.md 与 docs/vibe-coding.md 是公开文档，仍然推送。
+docs/work-plan.md
+docs/balance-recalibration-plan.md
+docs/social-dimension-plan.md
+docs/run-persistence-plan.md
+docs/actor-assignments.md
+
 # 工作记忆与每日笔记：私人笔记，不属于项目文档，不推送到 GitHub
 .workbuddy/
