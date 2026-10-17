@@ -7,7 +7,7 @@ the game is and how it is built; this file covers the lesson.
 
 ---
 
-## 1. What the game is for
+## 1. The design: learning through consequence
 
 Most students do not feel how an ordinary business decision can cross a legal,
 ethical or national-security line. Being told "don't do that" is forgettable,
@@ -94,7 +94,7 @@ still fail.
 
 ---
 
-## 2. What it was built for
+## 2. Course context and learning objectives
 
 The game was written for **GEL2026 · Technology Entrepreneurship in AI-enhanced
 Business and National Security** at the Education University of Hong Kong. It
@@ -109,12 +109,6 @@ channels, revenue, unfair advantage), how a proposal is pitched. The other is
 national security education: how data, models and platforms touch
 national-security, legal and ethical red lines, and what the law expects of the
 people who build them.
-
-**The gap it fills.** Taught separately, the two strands produce two familiar
-failure modes. Students write a business plan and bolt compliance on at the end
-as a slide nobody reads. Or they conclude that security means "do not do it",
-which teaches nothing about running a company. Neither failure mode survives a
-scoreboard where every click moves both tracks.
 
 | Course concern | What the game makes the student do |
 |---|---|
