@@ -1047,7 +1047,7 @@
         return '<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/></w:tcPr>' + wp(c, 'TableText') + '</w:tc>';
       }).join('') + '</w:tr>';
     }).join('');
-    return '<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="5000" w:type="pct"/></w:tblPr>' +
+    return '<w:tbl><w:tblPr><w:tblStyle w:val="TableGrid"/><w:tblW w:w="9638" w:type="dxa"/></w:tblPr>' +
       body + '</w:tbl>';
   }
 
