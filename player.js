@@ -1582,7 +1582,10 @@ function restoreRun() {
     renderDims();
     if (state) {
       if (state.finished) renderEnding();
-      else renderNode();
+      else {
+        renderNode();
+        renderFeedback();
+      }
     }
   }
 
