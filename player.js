@@ -1341,6 +1341,7 @@
 
     box.classList.remove('hidden');
     $('stage').classList.add('hidden');
+    $('trace-panel').classList.remove('hidden');
     renderTrace();
   }
 

@@ -145,7 +145,11 @@
             "zh": "接下这份合同，正式组队",
             "en": "Take the contract and assemble the team"
           },
-          "next": "c1_segment"
+          "next": "c1_segment",
+          "why": {
+            "zh": "这一步把首单巡检变成正式经营，让团队进入后续的产品与增长决策；它本身不改变任何评分维度，具体影响从下一步的选择开始计入。",
+            "en": "This turns the first inspection job into an operating venture and opens the later product and growth decisions. It does not change any score by itself; measurable effects begin with the next choice."
+          }
         }
       ]
     },

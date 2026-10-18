@@ -88,6 +88,17 @@ manifest.scenarios.forEach(function (meta) {
   console.log('--- ' + meta.id + ' · ' + pick(meta.title, 'zh') + ' ---');
   const scenario = load(meta.file);
 
+  const unexplained = [];
+  Object.keys(scenario.nodes).forEach(function (nid) {
+    (scenario.nodes[nid].choices || []).forEach(function (choice, index) {
+      if (!choice.why) unexplained.push(nid + '[' + index + ']');
+    });
+  });
+  if (unexplained.length) {
+    console.log('  ✗ 选项缺少解释: ' + unexplained.join(', '));
+    allOk = false;
+  }
+
   const res = Validate.validate(scenario, { endings: coreEndings });
   if (!res.ok) {
     console.log('  校验未通过 ✗: ' + res.errors.join('; '));
