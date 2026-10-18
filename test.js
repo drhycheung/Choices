@@ -14,6 +14,7 @@ const path = require('path');
 const Engine = require('./engine.js');
 const Validate = require('./validate.js');
 
+const playerSource = fs.readFileSync(path.join(__dirname, 'player.js'), 'utf8');
 const SCEN_DIR = path.join(__dirname, 'scenarios');
 const manifest = JSON.parse(fs.readFileSync(path.join(SCEN_DIR, 'manifest.json'), 'utf8'));
 const coreEndings = JSON.parse(fs.readFileSync(path.join(SCEN_DIR, manifest.endings), 'utf8')).endings;
@@ -160,5 +161,12 @@ manifest.scenarios.forEach(function (meta) {
 console.log('');
 
 console.log('=== 总计：' + manifest.scenarios.length + ' 个题材 / ' + totalEndings + ' 个结局样本 ===');
+const pageWidth = playerSource.match(/<w:pgSz w:w="(\d+)"/);
+const pageMargins = playerSource.match(/<w:pgMar w:top="\d+" w:right="(\d+)" w:bottom="\d+" w:left="(\d+)"/);
+const tableWidth = playerSource.match(/<w:tblW w:w="(\d+)" w:type="dxa"\/>/);
+const tablesAligned = pageWidth && pageMargins && tableWidth &&
+  Number(tableWidth[1]) === Number(pageWidth[1]) - Number(pageMargins[1]) - Number(pageMargins[2]);
+if (!tablesAligned) allOk = false;
+console.log((tablesAligned ? '✓' : '✗') + ' DOCX 表格宽度与页面正文宽度一致');
 console.log(allOk ? '全部通过 ✓' : '存在问题 ✗');
 process.exit(allOk ? 0 : 1);
