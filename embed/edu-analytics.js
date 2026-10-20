@@ -149,7 +149,11 @@ window.CHOICES_EMBEDDED.scenarios["edu-analytics"] = {
             "zh": "接下这所试点学校，正式启动",
             "en": "Take the pilot school and begin"
           },
-          "next": "c1_segment"
+          "next": "c1_segment",
+          "why": {
+            "zh": "这一步把试点机会变成正式经营，让团队进入后续的产品与增长决策；它本身不改变任何评分维度，具体影响从下一步的选择开始计入。",
+            "en": "This turns the pilot opportunity into an operating venture and opens the later product and growth decisions. It does not change any score by itself; measurable effects begin with the next choice."
+          }
         }
       ]
     },
