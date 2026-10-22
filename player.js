@@ -42,6 +42,8 @@
       groupInstrument: '工具轨 · 什么在约束你',
       groupValue: '价值轨 · 愈高愈好',
       whyPrefix: '为什么：',
+      nationalSecurityWhyPrefix: '国家安全分数变化原因：',
+      nationalSecurityScoreNote: '这条分数反映决策如何改变敏感信息或关键系统的暴露程度、可控性与可逆性；以下理由对应本次选择。',
       actorPrefix: '谁该管：',
       actor: { design: '设计', policy: '公司政策', law: '法律' },
       locked: '未解锁',
@@ -110,6 +112,8 @@
       groupInstrument: 'Instruments · what constrains you',
       groupValue: 'Value track · higher is better',
       whyPrefix: 'Why: ',
+      nationalSecurityWhyPrefix: 'Why the national-security score changed: ',
+      nationalSecurityScoreNote: 'This score reflects how a decision changes the exposure, control and reversibility of sensitive information or critical systems; the reason below explains this choice.',
       actorPrefix: 'Who can act: ',
       actor: { design: 'design', policy: 'company policy', law: 'law' },
       locked: 'locked',
@@ -478,7 +482,14 @@
       });
       box.appendChild(chips);
     }
-    if (choice && choice.why) box.appendChild(textEl('div', UI[lang].whyPrefix + pick(choice.why, lang), 'fb-why'));
+    var nationalSecurityChanged = h.effects && h.effects.national_security;
+    if (nationalSecurityChanged) {
+      box.appendChild(textEl('div', UI[lang].nationalSecurityScoreNote, 'fb-why'));
+    }
+    if (choice && choice.why) {
+      var whyPrefix = nationalSecurityChanged ? UI[lang].nationalSecurityWhyPrefix : UI[lang].whyPrefix;
+      box.appendChild(textEl('div', whyPrefix + pick(choice.why, lang), 'fb-why'));
+    }
     if (choice && choice.actor && UI[lang].actor[choice.actor]) {
       box.appendChild(textEl('div', UI[lang].actorPrefix + UI[lang].actor[choice.actor], 'fb-actor'));
     }

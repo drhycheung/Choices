@@ -89,13 +89,22 @@ manifest.scenarios.forEach(function (meta) {
   const scenario = load(meta.file);
 
   const unexplained = [];
+  const missingLocalizedSecurityWhy = [];
   Object.keys(scenario.nodes).forEach(function (nid) {
     (scenario.nodes[nid].choices || []).forEach(function (choice, index) {
       if (!choice.why) unexplained.push(nid + '[' + index + ']');
+      if (choice.effects && choice.effects.national_security) {
+        const why = choice.why || {};
+        if (!why.en || !why.zh) missingLocalizedSecurityWhy.push(nid + '[' + index + ']');
+      }
     });
   });
   if (unexplained.length) {
     console.log('  ✗ 选项缺少解释: ' + unexplained.join(', '));
+    allOk = false;
+  }
+  if (missingLocalizedSecurityWhy.length) {
+    console.log('  ✗ 国家安全分数变化缺少双语解释: ' + missingLocalizedSecurityWhy.join(', '));
     allOk = false;
   }
 
