@@ -36,7 +36,7 @@ const PATH_PICKS = [
   ['c4_incident', 1]               // 委托第三方算法审计并公开摘要
 ];
 
-const lang = 'zh';
+const lang = 'en';
 const scenario = JSON.parse(fs.readFileSync(path.join(REPO, 'scenarios/ai-hiring.json'), 'utf8'));
 scenario.endings = JSON.parse(fs.readFileSync(path.join(REPO, 'scenarios/endings-core.json'), 'utf8')).endings;
 
@@ -107,11 +107,11 @@ const json = build.buildJSON();
 const jsonData = JSON.parse(json);
 const expectedQuadrant = {
   id: 'high_risk_strong_value',
-  label: '高风险 × 强价值 · 😭 繁荣后崩溃'
+  label: 'High risk × strong value · 😭 Boom-then-bust'
 };
 if (JSON.stringify(jsonData.endingQuadrant) !== JSON.stringify(expectedQuadrant) ||
-    !md.includes('结局象限：' + expectedQuadrant.label) ||
-    !docx.toString('utf8').includes('结局象限：' + expectedQuadrant.label)) {
+    !md.includes('Outcome quadrant: ' + expectedQuadrant.label) ||
+    !docx.toString('utf8').includes('Outcome quadrant: ' + expectedQuadrant.label)) {
   throw new Error('the exported reports do not identify the ending quadrant');
 }
 

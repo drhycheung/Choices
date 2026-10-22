@@ -1,290 +1,290 @@
-# 一念之差 · 本局复盘报告
+# Choices · Run Report
 
-**明眼 HireSight：AI 招聘筛选平台**  
-*算法评分、劳动者权益与人才数据*  
-导出于 2026/10/16 09:12:35
+**HireSight: An AI Hiring Platform**  
+*Algorithmic scoring, worker rights and talent data*  
+Exported 16/10/2026, 09:12:35
 
-**结局：用户终于知道自己被卖了**  
-类型：失败
-结局象限：高风险 × 强价值 · 😭 繁荣后崩溃
-
----
-
-## 一、企划简报 · 先看清楚这门生意
-
-- **做什么**: 给企业 HR 用的简历筛选工具：批量上传简历后，模型按岗位要求给出匹配评分与排序；后续可扩展为面试辅训与技能测评。
-- **卖给谁**: 中小企业的人力资源部门与招聘外包方；高校就业中心也是潜在采购方。
-- **现在走到哪**: 第一版已在创业中心写完，本地一家制造企业给了付费试点；团队三人，收费模式尚未定型。
-- **会碰到什么数据**: 简历中的身份、学历、工作经历与测评结果。若评分参与是否进入面试的决定，即属自动化决策——候选人通常有权知情并要求人工复核。
+**Ending: Users Finally Find Out They Were Sold**  
+Type: Fail
+Outcome quadrant: High risk × strong value · 😭 Boom-then-bust
 
 ---
 
-## 二、分数总账
+## 1. THE VENTURE · READ THIS FIRST
 
-| 维度 | 开局 → 终局 | 净变化 | 好坏 |
+- **What it does**: A CV-screening tool for HR: upload a batch of CVs and the model scores and ranks each candidate against the job spec; it can later extend into interview coaching and skills assessment.
+- **Who buys it**: HR teams and recruitment outsourcers at small and mid-sized firms; university careers services are also potential buyers.
+- **Where it stands**: Version one is finished in the incubator and a local manufacturer is paying for a pilot. Three people, pricing not settled.
+- **Data it touches**: Identities, education, work history and assessment results from CVs. If scoring feeds who gets an interview, that is automated decision-making — candidates normally have the right to know and to ask for human review.
+
+---
+
+## 2. Score ledger
+
+| Dimension | Start → Final | Net | Verdict |
 | --- | --- | --- | --- |
-| 国家安全风险 | 0 → 1 | +1 | 变差 |
-| 法律合规风险 | 0 → 3 | +3 | 变差 |
-| 伦理与信任风险 | 0 → 6 | +6 | 变差 |
-| 社会期待风险 | 1 → 9 | +8 | 变差 |
-| 问题–方案契合 | 2 → 8 | +6 | 变好 |
-| 商业模式 | 2 → 9 | +7 | 变好 |
-| 护城河与不公平优势 | 1 → 7 | +6 | 变好 |
+| National security risk | 0 → 1 | +1 | worse |
+| Legal compliance risk | 0 → 3 | +3 | worse |
+| Ethics and trust risk | 0 → 6 | +6 | worse |
+| Social expectation risk | 1 → 9 | +8 | worse |
+| Problem–solution fit | 2 → 8 | +6 | better |
+| Business model | 2 → 9 | +7 | better |
+| Moat and unfair advantage | 1 → 7 | +6 | better |
 
-## 三、决策链（共 14 步）
+## 3. Decision trail (14 steps)
 
-### 第 1 步 · 第一章 · 客群与问题（Canvas 1–2）
+### Step 1 · Act I · Customers and Problem (Canvas 1–2)
 
-> 你们三个人窝在创业中心写完了第一版，本地一家制造企业的 HR 试用后说：这是我用过最快的筛简历工具。然后她问：为什么这几个人的分数这么低？你们答不上来。
+> Three of you finished version one in the incubator. An HR lead at a local manufacturer tried it and said it was the fastest screening tool she had ever used. Then she asked why certain candidates scored so low. Nobody could answer.
 
-**你的选择：** 接下这笔试点合同，正式成立团队
+**Your choice:** Sign the pilot contract and form the team
 
-**为什么：** 这一步把试点机会变成正式经营，让团队进入后续的产品与增长决策；它本身不改变任何评分维度，具体影响从下一步的选择开始计入。
+**Why:** This turns the pilot opportunity into an operating venture and opens the later product and growth decisions. It does not change any score by itself; measurable effects begin with the next choice.
 
-### 第 2 步 · 第一章 · 客群与问题（Canvas 1–2）
+### Step 2 · Act I · Customers and Problem (Canvas 1–2)
 
-> 第一件事：先服务谁？校招邮件里，就业中心说今年毕业生简历量又涨了三成。
+> First question: who do you serve first? The career centre says graduate CV volume is up another thirty per cent this year.
 
-**你的选择：** 深耕中小科技企业的技术岗，把一个岗位类型做透
+**Your choice:** Go deep on technical roles at small and mid-sized tech firms
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 问题–方案契合 | +2 | 变好 |
-| 护城河与不公平优势 | +1 | 变好 |
+| Problem–solution fit | +2 | better |
+| Moat and unfair advantage | +1 | better |
 
-**为什么：** 单一岗位类型的评价标准相对客观，容易与 HR 对齐并形成校验集；这类细分口碑一旦建立，就是后来者最难复制的部分（Canvas 9）。缺点是市场容量有限。
+**Why:** One role type has comparatively objective criteria, easy to align on with HR and turn into a validation set; once that reputation forms it is the hardest part for a competitor to copy (Canvas 9). The market is limited, though.
 
-**谁该管：** 设计
+**Who can act:** design
 
-### 第 3 步 · 第一章 · 客群与问题（Canvas 1–2）
+### Step 3 · Act I · Customers and Problem (Canvas 1–2)
 
-> 第二件事：HR 的真痛点是什么？有人说是「简历太多看不完」，也有 HR 私下说「我不敢承担漏掉好人的责任」。就在这时候，大学就业中心又发来一封邮件：他们想采购一套就业版，条件是按他们的汇报口径来改。
+> Second question: what is the real pain? Some say too many CVs; privately, one HR says she is afraid of being blamed for missing a good candidate. Right then the university careers service emails again: they want to buy a careers edition, provided it reports the way they need.
 
-**你的选择：** 做 AI 综合评分与人才榜单，让决策一键完成
+**Your choice:** Ship an AI score and talent leaderboard so decisions take one click
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | +2 | 变好 |
-| 伦理与信任风险 | +1 | 变差 |
-| 社会期待风险 | +1 | 变差 |
+| Business model | +2 | better |
+| Ethics and trust risk | +1 | worse |
+| Social expectation risk | +1 | worse |
 
-**为什么：** 一键决策最符合「省时间」的采购理由，合同容易签。但把人的前途压缩成一个数字，会让候选人与面试官都失去追问的能力，自动化决策的问责开始缺位。
+**Why:** One-click decisions match the 'save time' purchasing rationale and are easy to sign. But collapsing someone's future into one number removes the ability to question it, and accountability for automated decisions starts to vanish.
 
-**谁该管：** 设计
+**Who can act:** design
 
-### 第 4 步 · 第二章 · 方案、数据与模型训练（Canvas 3–4）
+### Step 4 · Act II · Solution, Data and Training (Canvas 3–4)
 
-> MVP 二选一：是替 HR 找理由，还是替 HR 得出结论？
+> Two MVP candidates: give HR the reasoning, or give HR the verdict?
 
-**你的选择：** 候选人搜索与评分榜单：企业可以直接「搜人」
+**Your choice:** Candidate search with a scoring leaderboard so companies can 'shop' people
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | +2 | 变好 |
-| 国家安全风险 | +1 | 变差 |
-| 社会期待风险 | +2 | 变差 |
+| Business model | +2 | better |
+| National security risk | +1 | worse |
+| Social expectation risk | +2 | worse |
 
-**为什么：** 人才库与人才画像库传播性强、付费意愿高；但把大量本地劳动力（含关键行业、关键岗位人员）的结构化画像集中沉淀在一个可被检索的数据库里，本身就是敏感性极高的资产。
+**Why:** A searchable talent pool monetises well and spreads fast, but concentrating structured profiles of a local workforce — including people in critical roles and industries — creates an asset of very high sensitivity.
 
-**谁该管：** 设计
+**Who can act:** design
 
-### 第 5 步 · 第二章 · 方案、数据与模型训练（Canvas 3–4）
+### Step 5 · Act II · Solution, Data and Training (Canvas 3–4)
 
-> 要让模型读懂岗位，需要一套完整的技能词库与职位映射。自建要好几个月；市面上有一套境外数据商的产品，接口现成。
+> To read job specs the model needs a full skill taxonomy and job mapping. Building it takes months; an overseas vendor sells a ready-made API.
 
-**你的选择：** 自建本地化词库，用公开的行业分类标准起步
+**Your choice:** Build a local taxonomy on published industry classification standards
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 问题–方案契合 | +1 | 变好 |
+| Problem–solution fit | +1 | better |
 
-**为什么：** 自建慢却在可控范围内：词库来源清晰、可解释、可维护，后续面对质询时能说清每个权重来自哪里。本地化还会顺带改善匹配质量。
+**Why:** Building it in-house is slower but stays explainable: clear provenance, maintainable, and you can account for every weight when challenged. Localisation also improves matching quality.
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 6 步 · 第二章 · 方案、数据与模型训练（Canvas 3–4）
+### Step 6 · Act II · Solution, Data and Training (Canvas 3–4)
 
-> 效度验证需要的历史录用数据，试点企业只给了一小部分。团队担心模型不够聪明。
+> Validating the model needs historical hiring outcomes, and the pilot firm released only a slice. The team worries the model will look dumb.
 
-**你的选择：** 用试点企业书面授权的数据，接受样本量小的现实
+**Your choice:** Use only data the pilot covered in writing and accept a small sample
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 问题–方案契合 | +1 | 变好 |
+| Problem–solution fit | +1 | better |
 
-**为什么：** 样本小会让短期内指标不好看，但授权链条完整意味着日后经得起尽调、追问与客户法务提问。这是把节奏让给了正确性。
+**Why:** A small sample makes the metrics look worse for now, but a complete authorisation chain survives due diligence, scrutiny and client counsel questions later. You trade pace for correctness.
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 7 步 · 第二章 · 方案、数据与模型训练（Canvas 3–4）
+### Step 7 · Act II · Solution, Data and Training (Canvas 3–4)
 
-> 只用书面授权数据训出来的模型，样本小、覆盖面窄，在试点企业之外的岗位族上表现明显下降。但每一次评分，你们都能说清它依据了哪些字段。
+> Trained only on authorised data, the model has a small, narrow sample and degrades outside the pilot firm's job families. But for every score you can say which fields it relied on.
 
-**你的选择：** 对外宣称算法合规，评分依据只在被投诉时给
+**Your choice:** Claim algorithmic compliance; release the basis only after a complaint
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | +2 | 变好 |
-| 伦理与信任风险 | +1 | 变差 |
-| 社会期待风险 | +1 | 变差 |
+| Business model | +2 | better |
+| Ethics and trust risk | +1 | worse |
+| Social expectation risk | +1 | worse |
 
-**为什么：** 商业分上去，是因为你省掉了长期维护评分依据的工，签约也更容易。但伦理与社会期待一起掉：候选人本来有权知道自己被拿去比了什么，而你在有人投诉之前从未讲过。
+**Why:** Business rises because you skip maintaining the scoring basis and sell more easily. Ethics and social expectation fall together: candidates were entitled to know what they were compared on, and you told nobody until a complaint arrived.
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 8 步 · 第三章 · 渠道、收入与问责（Canvas 5–8）
+### Step 8 · Act III · Channels, Revenue and Accountability (Canvas 5–8)
 
-> 你们有清白的授权链条，怎么把「可解释的评分依据」变成收入？销售想推一种让 HR 几乎零成本用起来的收费方式——可公司得靠把托付给你们的候选人数据拿去变现才能赚到钱，这恰恰踩在你们「可信」的卖点上。
+> You have a clean authorisation chain — how do you turn 'explainable scoring' into revenue? Sales wants a model where HR pays almost nothing — yet you would have to monetise the candidate data entrusted to you to make money, which is exactly what betrays your 'trustworthy' edge.
 
-**你的选择：** 企业按席位订阅，并书面承诺不转售候选人数据
+**Your choice:** Per-seat subscription with a written promise never to resell candidate data
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | +2 | 变好 |
-| 护城河与不公平优势 | +1 | 变好 |
+| Business model | +2 | better |
+| Moat and unfair advantage | +1 | better |
 
-**为什么：** 订阅是最慢的收钱方式，但「不转售」写在合同里，会成为对候选人与 HR 双边的信任承诺——在这个行业里，信任就是最难复制的优势（Canvas 9）。
+**Why:** Subscriptions collect money slowest, but 'we never resell' written into the contract becomes a two-sided promise to candidates and HR alike — and in this industry trust is the hardest advantage to copy (Canvas 9).
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 9 步 · 第三章 · 渠道、收入与问责（Canvas 5–8）
+### Step 9 · Act III · Channels, Revenue and Accountability (Canvas 5–8)
 
-> 怎么让更多企业用上？一家招聘代理说，他手上有三百家企业愿意试用。你手上是「可解释」的口碑资产，怎么放大它？
+> How do you reach more employers? One recruitment agent says he can put you in front of three hundred firms. You hold an 'explainable' reputation asset — how do you amplify it?
 
-**你的选择：** 靠 HR 社群与行业口碑慢慢铺，每月只接能服务的客户
+**Your choice:** Grow through HR communities and referrals, taking only clients you can serve
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | 0 | 持平 |
-| 问题–方案契合 | +1 | 变好 |
+| Business model | 0 | unchanged |
+| Problem–solution fit | +1 | better |
 
-**为什么：** 慢，但每一家客户都会逼你把评分解释清楚，产品契合度随之上升；这种渠道的单位成本最低，也最容易形成续约（Canvas 5）。
+**Why:** It is slow, but every client forces you to explain your scoring, which raises fit; referrals are the cheapest channel per win and renew best (Canvas 5).
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 10 步 · 第三章 · 渠道、收入与问责（Canvas 5–8）
+### Step 10 · Act III · Channels, Revenue and Accountability (Canvas 5–8)
 
-> 法学院的朋友提醒：如果 AI 参与决定是否进入面试，候选人通常有权知道，并有权要求人工复核。你们这条线本来就是靠「可解释」吃饭的，是把它做成默认，还是为了转化把它藏起来？
+> A friend in law school warns: if an AI helps decide who gets an interview, candidates usually have the right to know and to request human review. Your line lives on 'explainable' — make it the default, or hide it for conversion?
 
-**你的选择：** 不在候选人侧披露，企业对外的说法是「系统综合评估」
+**Your choice:** No candidate-facing disclosure; externally it is a 'system assessment'
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | 0 | 持平 |
-| 法律合规风险 | +3 | 变差 |
-| 伦理与信任风险 | +2 | 变差 |
-| 社会期待风险 | +2 | 变差 |
+| Business model | 0 | unchanged |
+| Legal compliance risk | +3 | worse |
+| Ethics and trust risk | +2 | worse |
+| Social expectation risk | +2 | worse |
 
-**为什么：** 不披露可以避免大量解释成本，客户也更省事。但涉及就业的关键自动化决策，在多地已要求告知、解释与人工介入；隐瞒通常会被认定为程序不当。
+**Why:** Not disclosing avoids a lot of explaining and keeps clients comfortable. But automated decisions touching employment increasingly require notice, explanation and human involvement; concealment is typically treated as procedural unfairness.
 
-**谁该管：** 法律
+**Who can act:** law
 
-### 第 11 步 · 第三章 · 渠道、收入与问责（Canvas 5–8）
+### Step 11 · Act III · Channels, Revenue and Accountability (Canvas 5–8)
 
-> 内部测试发现：模型对职业空档期较长的人、四十岁以上的候选人以及无明显「名企」标签的人评分系统性偏低。有人辩解说，这是因为数据本来就是这样。
+> Internal testing shows systematically lower scores for people with long career gaps, candidates over forty, and anyone without a famous employer on their CV. Someone argues the data simply looks like that.
 
-**你的选择：** 先上线，把适用人群写成「毕业于重点院校的技术岗」
+**Your choice:** Ship now and declare the intended population as 'graduates of leading institutions'
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 伦理与信任风险 | +3 | 变差 |
-| 法律合规风险 | +1 | 变差 |
-| 商业模式 | 0 | 持平 |
-| 社会期待风险 | +2 | 变差 |
+| Ethics and trust risk | +3 | worse |
+| Legal compliance risk | +1 | worse |
+| Business model | 0 | unchanged |
+| Social expectation risk | +2 | worse |
 
-**为什么：** 限定人群的小字实际上拦不住偏差的系统性影响，一旦有人因此失去机会举证责任仍在你们这边；这属于把已知的差别影响直接产品化。发布会如期。
+**Why:** Fine print will not contain the systemic effect, and once someone loses an opportunity the burden of proof stays with you. This turns known disparate impact into a shipped feature. Launch stays on schedule.
 
-**谁该管：** 法律
+**Who can act:** law
 
-### 第 12 步 · 第三章 · 渠道、收入与问责（Canvas 5–8）
+### Step 12 · Act III · Channels, Revenue and Accountability (Canvas 5–8)
 
-> 一位四十岁以上的候选人向劳动部门咨询：他被同一套系统连拒七次，从未得到任何理由。媒体开始问，这套评分到底依据什么。
+> A candidate over forty consults the labour authority: rejected seven times by the same system, never given a reason. Reporters start asking what the score actually rests on.
 
-**你的选择：** 补做评分依据说明与人工复核通道，公开已知局限
+**Your choice:** Add score explanations and a human review channel; publish the known limitations
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 伦理与信任风险 | -1 | 变好 |
-| 法律合规风险 | -1 | 变好 |
-| 商业模式 | -1 | 变差 |
-| 问题–方案契合 | +1 | 变好 |
+| Ethics and trust risk | -1 | better |
+| Legal compliance risk | -1 | better |
+| Business model | -1 | worse |
+| Problem–solution fit | +1 | better |
 
-**为什么：** 伦理与法律都下降，因为误判停止了；但商业分也在跌，因为客户会先看到收入下滑，看到改善要晚一步。这不能把那七个被拒的人退回来——修复只是阻止它再发生。
+**Why:** Ethics and legal both fall, because the misjudgement stops, but business falls too, because clients see the revenue drop before they see the improvement. It does not return the seven rejections; fixing it only stops it happening again.
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 13 步 · 第四章 · 规模化与社会外溢（Canvas 7、9）
+### Step 13 · Act IV · Scale and Spillover (Canvas 7, 9)
 
-> 那位候选人的投诉还在发酵，三家机构却先后来谈钱：一家境外 HR SaaS 巨头条件最阔绰，但要求开放候选人数据接口；一家本地产业基金额度小、条款多，但数据留在本地；也有人劝你们靠订阅慢慢长。三份条款摆在桌上——而不公平优势（Canvas 9）往往就写在这些条款里。
+> That candidate's complaint is still running, and three institutions arrive with money: an offshore HR SaaS giant, generous but asking for candidate-data access; a local industry fund, smaller and stricter, data local; and voices urging subscriptions alone. Three term sheets — and the unfair advantage in Canvas 9 is usually written into those terms.
 
-**你的选择：** 接受本地产业基金，扩张慢一些但数据留在本地
+**Your choice:** Take a local industry fund: slower expansion, data stays local
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 商业模式 | +1 | 变好 |
-| 护城河与不公平优势 | +2 | 变好 |
+| Business model | +1 | better |
+| Moat and unfair advantage | +2 | better |
 
-**为什么：** 本地资金额度有限、条款偏保守，但数据主权与解释链路都完整，面对政府、院校与大型雇主的合规审查时几乎不会被问倒。
+**Why:** Local capital is smaller and its terms more conservative, but data sovereignty and the audit trail stay intact, which means you will not be stumped in reviews by government, universities or large employers.
 
-**谁该管：** 公司政策
+**Who can act:** company policy
 
-### 第 14 步 · 第四章 · 规模化与社会外溢（Canvas 7、9）
+### Step 14 · Act IV · Scale and Spillover (Canvas 7, 9)
 
-> 劳动权益团体拿到一份对比测试：同样的简历，只改性别与年龄，评分差了两档。他们准备向监管部门投诉，并要求公开算法说明。
+> A labour-rights group ran a matched-pair test: identical CVs differing only in gender and age scored two bands apart. They are preparing a regulatory complaint and demanding the algorithm be explained.
 
-**你的选择：** 委托第三方算法审计并公开摘要，建立评分可解释机制
+**Your choice:** Commission an independent algorithm audit, publish a summary, build explainability
 
-| 受影响维度 | 增减 | 好坏 |
+| Dimension | Change | Verdict |
 | --- | --- | --- |
-| 护城河与不公平优势 | +2 | 变好 |
-| 商业模式 | -1 | 变差 |
+| Moat and unfair advantage | +2 | better |
+| Business model | -1 | worse |
 
-**为什么：** 审计要花钱、公开要承担被挑错的风险（商业模式分下降），但一份可引用的独立结论，会让大企业客户、政府采购与学校就业部门把你当成唯一敢公开的那个选项。
+**Why:** Auditing costs money and publishing invites criticism (business score drops), but a citable independent conclusion makes you the one vendor that large employers, public procurement and career offices can safely pick.
 
-**谁该管：** 设计
+**Who can act:** design
 
 ---
 
-## 四、结局复盘
+## 4. Ending debrief
 
-商业上的成功掩盖了一件事：用户的信任并没有换来尊重。当一位用户把你们的做法完整拆解并发布出来，舆论在一夜之间反转。卸载、退款、差评、媒体跟进——你确实做出了一家公司，只是它的地基是骗来的。
+Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception.
 
-*那份只改了性别与年龄的对照测试，成了社交平台上的爆款。*
+*The matched-pair test with only gender and age changed went viral.*
 
-### 为什么会触发这个结局
+### Why this ending fired
 
-触发原因：伦理与信任风险 5 分以上，同时商业分 6 分以上——被伤害的用户越多，爆发时的反噬越猛。
+Why it fired: ethics risk at 5+ with a business score of 6+ — the more users you harmed, the harder the backlash when it surfaced.
 
-### 你做了什么取舍
+### The trade-off you made
 
-你做的取舍：用知情同意的缺席换转化率。每一次「反正用户不会细看」的设计决策都在账面上提升了漏斗，也在暗处积累着一旦曝光就无法挽回的信任赤字。
+The trade-off: trading absent informed consent for conversion. Every 'users won't read it anyway' decision improved the funnel on paper and added to a trust deficit that becomes unrecoverable once exposed.
 
-### 用 Lean Canvas 复盘
+### Through the Lean Canvas
 
-Lean Canvas 复盘：Canvas 8（关键指标）只看留存与转化，缺少「用户知情率」这类反向指标；Canvas 9（不公平优势）错把信息不对称当优势——它是最脆弱的一种优势。
+Lean Canvas review: Canvas 8 (key metrics) tracked retention and conversion but no counter-metric like 'informed-user rate'; Canvas 9 (unfair advantage) mistook information asymmetry for an advantage — the most fragile kind there is.
 
-### 法例与规范线索
+### Legal and regulatory hooks
 
-课堂讨论线索：告知同意的有效性、敏感个人信息的单独同意、自动化决策的解释权与拒绝权、消费者保护与公平交易规范。
+Classroom pointers: validity of notice and consent, separate consent for sensitive personal information, the right to explanation and to opt out of automated decisions, consumer protection and fair-trading rules.
 
-### 谁受到了影响
+### Who was affected
 
-| 谁 | 受到什么影响 |
+| Who | Impact |
 | --- | --- |
-| 受影响最深的弱势用户 | 承担了最实质的伤害（例如误判、歧视、被利用），而收益最少。 |
-| 普通用户群体 | 发现自己在不知情时成为产品的一部分，情感上的背叛感远超功能损失。 |
-| 广告与商业伙伴 | 品牌安全连带受损，合作紧急叫停。 |
+| The most vulnerable affected users | Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit. |
+| The general user base | Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss. |
+| Advertising and commercial partners | Brand-safety damage spilled over and partnerships were halted at short notice. |
 
-### 本来可以怎么做
+### What you could have done
 
-1. 把关键决策做成「可解释、可拒绝、可撤销」：给出理由、提供关闭开关、允许删除。
-2. 对弱势群体做差异化的影响测试，而不是只看总体指标。
-3. 在商业条款里明确写下「我们不会用你的 X 数据做什么」，并接受审计。
+1. Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion.
+2. Run impact tests disaggregated by vulnerable groups rather than trusting headline averages.
+3. Write 'we will never do X with your data' into your commercial terms — and submit to an audit.
 
-### 反思
+### Reflection
 
-请把「用户不同意这件事」翻译成一句具体的商业后果，并说明它为什么迟早会发生。
+Translate 'users did not consent' into one concrete commercial consequence, and explain why it was bound to happen eventually.
 
 ---
 
-*本局无任何随机数：结局完全由上面这 14 个选择决定。*
+*No randomness in this run: the ending is fully determined by the 14 choices above.*
