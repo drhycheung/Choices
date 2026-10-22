@@ -36,7 +36,7 @@ const PATH_PICKS = [
   ['c4_incident', 1]               // 委托第三方算法审计并公开摘要
 ];
 
-const lang = 'zh';
+const lang = 'en';
 const scenario = JSON.parse(fs.readFileSync(path.join(REPO, 'scenarios/ai-hiring.json'), 'utf8'));
 scenario.endings = JSON.parse(fs.readFileSync(path.join(REPO, 'scenarios/endings-core.json'), 'utf8')).endings;
 
