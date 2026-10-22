@@ -6,6 +6,7 @@ Exported 16/10/2026, 09:12:35
 
 **Ending: Users Finally Find Out They Were Sold**  
 Type: Fail
+Outcome quadrant: High risk × strong value · 😭 Boom-then-bust
 
 ---
 

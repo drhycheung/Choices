@@ -23,6 +23,10 @@
     "en": "Users Finally Find Out They Were Sold"
   },
   "endingType": "fail",
+  "endingQuadrant": {
+    "id": "high_risk_strong_value",
+    "label": "High risk × strong value · 😭 Boom-then-bust"
+  },
   "perfect": false,
   "finalScores": {
     "national_security": 1,
