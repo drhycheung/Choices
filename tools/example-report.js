@@ -15,6 +15,14 @@
 const fs = require('fs');
 const path = require('path');
 
+// The two text formats stamp the export time with toLocaleString(), so the
+// timestamp would otherwise be rendered in whatever timezone the machine
+// happens to be in, and the golden files in examples/ would change every time
+// somebody in another timezone regenerates them. Pin the timezone so the
+// files are the same on every machine. A student exporting in Hong Kong still
+// sees their own local time in the browser; only this reference copy is fixed.
+process.env.TZ = 'UTC';
+
 const REPO = path.resolve(__dirname, '..');
 const OUT = path.join(REPO, 'examples');
 const BASE = 'report-ai-hiring-boom_ethics';
@@ -110,20 +118,54 @@ const expectedQuadrant = {
   label: 'High risk × strong value · 😭 Boom-then-bust'
 };
 const quadrantLine = 'Outcome quadrant: ' + expectedQuadrant.label;
+// The report must list its sections in this order, with these numbers. The
+// conclusion screen uses the same numbers, so "Section 3" means the same
+// thing on screen and in the export (issue #35).
+const SECTION_ORDER = [
+  ['venture', '1. THE VENTURE'],
+  ['ledger', '2. Score ledger'],
+  ['trail', '3. Decision trail'],
+  ['debrief', '4. Ending debrief']
+];
 function assertSectionOrder(report, prefix) {
-  const ending = report.indexOf(prefix + '3. Ending debrief');
-  const trail = report.indexOf(prefix + '4. Decision trail');
-  if (ending < 0 || trail < 0 || ending > trail) {
-    throw new Error('the ending debrief must be Section 3 before the decision trail');
-  }
-  return ending;
+  const at = SECTION_ORDER.map(function (pair) {
+    return report.indexOf(prefix + pair[1]);
+  });
+  at.forEach(function (pos, i) {
+    if (pos < 0) {
+      throw new Error('the report is missing the section: ' + SECTION_ORDER[i][1]);
+    }
+    if (i > 0 && pos <= at[i - 1]) {
+      throw new Error('the sections are out of order: ' + SECTION_ORDER[i][1] +
+                      ' must come after ' + SECTION_ORDER[i - 1][1]);
+    }
+  });
+  return at;
 }
 const docxText = docx.toString('utf8');
-const mdEnding = assertSectionOrder(md, '## ');
-const docxEnding = assertSectionOrder(docxText, '');
+const mdAt = assertSectionOrder(md, '## ');
+const docxAt = assertSectionOrder(docxText, '');
+// The venture section carries a plain title. The opening card keeps its
+// instruction ("READ THIS FIRST"), but that line is an instruction for the
+// player at the start of the game, not a section name in the report, so it
+// must not appear in either export. Checked exactly, not as a prefix: a
+// prefix check would pass for the old, longer heading too.
+const VENTURE_HEADING = '1. THE VENTURE';
+if (md.indexOf('## ' + VENTURE_HEADING + '\n') < 0 ||
+    md.indexOf('READ THIS FIRST') >= 0) {
+  throw new Error('the Markdown report must head the venture section with the plain ' +
+                  'title "' + VENTURE_HEADING + '"');
+}
+if (docxText.indexOf('<w:t xml:space="preserve">' + VENTURE_HEADING + '</w:t>') < 0 ||
+    docxText.indexOf('READ THIS FIRST') >= 0) {
+  throw new Error('the Word report must head the venture section with the plain ' +
+                  'title "' + VENTURE_HEADING + '"');
+}
+// The outcome quadrant is the result of the run, so it goes at the front of
+// the report, ahead of the first section (issue #33).
 if (JSON.stringify(jsonData.endingQuadrant) !== JSON.stringify(expectedQuadrant) ||
-    md.indexOf(quadrantLine) < mdEnding ||
-    docxText.indexOf(quadrantLine) < docxEnding ||
+    md.indexOf(quadrantLine) > mdAt[0] ||
+    docxText.indexOf(quadrantLine) > docxAt[0] ||
     json.indexOf('"endingQuadrant":') > json.indexOf('"scenarioId":')) {
   throw new Error('the exported reports do not identify the ending quadrant');
 }

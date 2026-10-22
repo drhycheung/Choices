@@ -22,13 +22,13 @@
 
   var UI = {
     zh: {
-      traceTitle: '决策轨迹',
       traceDesc: '每一步选择如何同时改变风险与公司，以及为什么会这样变。',
       choicesHead: '你的选择',
       restart: '再玩一次',
       shuffle: '换一个题材',
       thisRound: '本局题材',
       briefTitle: '企划简报 · 先看清楚这门生意',
+      briefTitleReport: '企划简报',
       briefProduct: '做什么',
       briefCustomer: '卖给谁',
       briefStanding: '现在走到哪',
@@ -44,8 +44,6 @@
       whyPrefix: '为什么：',
       actorPrefix: '谁该管：',
       actor: { design: '设计', policy: '公司政策', law: '法律' },
-      stepPrefix: '第',
-      stepSuffix: '步',
       locked: '未解锁',
       whyHeading: '为什么会触发这个结局',
       tradeoffHeading: '你做了什么取舍',
@@ -53,10 +51,11 @@
       mitigationHeading: '本来可以怎么做',
       canvasHeading: '用 Lean Canvas 复盘',
       legalHeading: '法例与规范线索',
+      reflectionHeading: '反思',
       footnote: '以上法律线索仅用于课堂讨论，请以最新条文为准。',
       canvasAttrNote: '这些格子是被下面这几步改动的',
       riskAttrNote: '风险是被这几步抬起来的',
-      ledgerTitle: '分数总账 · 哪一项升了、哪一项降了',
+      ledgerTitle: '哪一项升了、哪一项降了',
       ledgerNote: '每一项从开局到终局的净变化，以及是哪几步把它推动的。正负号是分数的加减，颜色是这件事的好坏。',
       ledgerMovedBy: '改动来源（按幅度排序）',
       ledgerUntouched: '整局没有任何一步改变这一项',
@@ -91,13 +90,13 @@
       fileError: '无法通过 file:// 加载场景：未找到内嵌场景'
     },
     en: {
-      traceTitle: 'Decision trail',
       traceDesc: 'How each choice moved risk and the business at the same time — and why.',
       choicesHead: 'Your choice',
       restart: 'Play again',
       shuffle: 'Another scenario',
       thisRound: 'This round',
       briefTitle: 'THE VENTURE · READ THIS FIRST',
+      briefTitleReport: 'THE VENTURE',
       briefProduct: 'What it does',
       briefCustomer: 'Who buys it',
       briefStanding: 'Where it stands',
@@ -113,8 +112,6 @@
       whyPrefix: 'Why: ',
       actorPrefix: 'Who can act: ',
       actor: { design: 'design', policy: 'company policy', law: 'law' },
-      stepPrefix: '',
-      stepSuffix: '',
       locked: 'locked',
       whyHeading: 'Why this ending fired',
       tradeoffHeading: 'The trade-off you made',
@@ -122,10 +119,11 @@
       mitigationHeading: 'What you could have done',
       canvasHeading: 'Through the Lean Canvas',
       legalHeading: 'Legal and regulatory hooks',
+      reflectionHeading: 'Reflection',
       footnote: 'Legal pointers are for classroom discussion only; always check the current texts.',
       canvasAttrNote: 'These boxes were moved by these decisions',
       riskAttrNote: 'The risk was raised by these decisions',
-      ledgerTitle: 'Score ledger — what went up, what went down',
+      ledgerTitle: 'What went up, what went down',
       ledgerNote: 'Every dimension from its starting value to its final value, and which steps moved it. The sign is the arithmetic (+ / −); the colour is whether that change was good or bad for you.',
       ledgerMovedBy: 'Moved by (largest first)',
       ledgerUntouched: 'No step in this run changed it',
@@ -368,12 +366,12 @@
     return el;
   }
 
-  function renderBrief() {
+  // 简报的正文（几行「做什么／卖给谁／…」）。开始画面与结论页共用；
+  // 结论页外面已经有章节标题，所以这里只给内容，不再重复一次标题。
+  function briefRows() {
     if (!scenario || !scenario.brief) return null;
     var b = scenario.brief;
-    var box = textEl('div', '', 'brief');
-    box.appendChild(textEl('div', UI[lang].briefTitle, 'brief-title'));
-
+    var box = textEl('div', '', 'brief-rows');
     if (typeof b === 'string') {
       box.appendChild(textEl('div', b, 'brief-para'));
       return box;
@@ -386,7 +384,16 @@
       row.appendChild(textEl('span', pick(v, lang), 'brief-val'));
       box.appendChild(row);
     });
-    return box.children.length > 1 ? box : null;
+    return box.children.length ? box : null;
+  }
+
+  function renderBrief() {
+    var rows = briefRows();
+    if (!rows) return null;
+    var box = textEl('div', '', 'brief');
+    box.appendChild(textEl('div', UI[lang].briefTitle, 'brief-title'));
+    box.appendChild(rows);
+    return box;
   }
 
   function renderStage(node, withBrief) {
@@ -769,7 +776,10 @@
     var b = scenario.brief;
     var rows = [];
     if (typeof b === 'string') {
-      rows.push({ key: 'brief', label: UI[lang].briefTitle, text: b });
+      // 报告里的简报用平铺的标题：「READ THIS FIRST」是开局卡片的提示语，
+      // 不该出现在报告里。纯文本的简报没有小标题，导出时按一段文字排，
+      // 与屏幕上显示的写法一致。
+      rows.push({ key: 'brief', label: UI[lang].briefTitleReport, text: b, plain: true });
       return rows;
     }
     BRIEF_ROWS.forEach(function (pair) {
@@ -785,6 +795,62 @@
   function verdictWord(delta, bad) {
     if (delta === 0) return lang === 'zh' ? '持平' : 'unchanged';
     return bad ? (lang === 'zh' ? '变差' : 'worse') : (lang === 'zh' ? '变好' : 'better');
+  }
+
+  /* ---- 报告与结论页共用的章节结构（issue #35） ----
+     顺序固定为：企划简报 → 分数总账 → 决策链 → 结局复盘。
+     结论页（屏幕）与 Markdown / Word / JSON 都从这里取编号与标题，
+     因此屏幕与导出逐节对应，不会各写一份而互相漂移。 */
+  var CN = ['一', '二', '三', '四', '五', '六'];
+
+  // 场景没有 brief 字段时简报这一节不存在，其后各节编号前移，
+  // 所以编号必须在运行时算出来，不能写死在各处的字面量里。
+  function reportSections() {
+    var keys = [];
+    if (exportBrief().length) keys.push('brief');
+    keys.push('ledger');
+    keys.push('trail');
+    keys.push('debrief');
+    return keys.map(function (key, i) {
+      return { key: key, n: i + 1, title: reportSectionTitle(key) };
+    });
+  }
+
+  function reportSectionTitle(key) {
+    // 报告里的这一节用平铺的标题（「企划简报」/ THE VENTURE）；
+    // 开局卡片仍用带提示语的标题（先看清楚这门生意 / READ THIS FIRST）。
+    if (key === 'brief') return UI[lang].briefTitleReport;
+    if (key === 'ledger') return lang === 'zh' ? '分数总账' : 'Score ledger';
+    if (key === 'trail') {
+      var n = exportSteps().length;
+      return lang === 'zh' ? '决策链（共 ' + n + ' 步）' : 'Decision trail (' + n + ' steps)';
+    }
+    return lang === 'zh' ? '结局复盘' : 'Ending debrief';
+  }
+
+  // 某一节的编号与标题；不存在时返回 null（例如场景没有简报）。
+  function reportSection(key) {
+    var list = reportSections();
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].key === key) return list[i];
+    }
+    return null;
+  }
+
+  // 章节标题的编号写法：中文「三、」，英文「3. 」
+  function sectionHeading(sec) {
+    return lang === 'zh' ? CN[sec.n - 1] + '、' + sec.title : sec.n + '. ' + sec.title;
+  }
+
+  // 「本局无随机数」的收尾说明：指向决策链所在的那一节，编号随场景变。
+  function noRandomNote() {
+    var sec = reportSection('trail');
+    var n = exportSteps().length;
+    if (lang === 'zh') {
+      return '本局无任何随机数：结局完全由第' + CN[sec.n - 1] + '节的 ' + n + ' 个选择决定。';
+    }
+    return 'No randomness in this run: the ending is fully determined by the ' +
+      n + ' choices in Section ' + sec.n + '.';
   }
 
   function buildMarkdown() {
@@ -803,30 +869,36 @@
     L.push(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
                         : 'Exported ' + new Date().toLocaleString('en-GB'));
     L.push('');
+    // 结局象限先写：这是这一局的结果，放在报告最前（issue #33）。
+    if (quadrant) {
+      L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
+      L.push('');
+    }
     L.push('---');
     L.push('');
 
-    // 企划简报：让学生在报告上就能看出自己玩的是哪门生意
-    var CN = ['一', '二', '三', '四', '五', '六'];
-    var sec = 0;
-    function heading(zh, en) {
-      sec++;
-      L.push('## ' + (lang === 'zh' ? CN[sec - 1] + '、' + zh : sec + '. ' + en));
-    }
-    if (brief.length) {
-      heading(UI[lang].briefTitle, UI[lang].briefTitle);
+    // 章节顺序与编号取自 reportSections()：企划简报 → 分数总账 → 决策链 → 结局复盘。
+    // 结论页也用同一份，学生在屏幕上看到的第几节就是报告里的第几节（issue #35）。
+    var first = true;
+    function heading(key) {
+      if (!first) { L.push('---'); L.push(''); }
+      first = false;
+      L.push('## ' + sectionHeading(reportSection(key)));
       L.push('');
+    }
+
+    // 企划简报：让学生在报告上就能看出自己玩的是哪门生意
+    if (brief.length) {
+      heading('brief');
       brief.forEach(function (r) {
+        if (r.plain) { L.push(r.text); L.push(''); return; }
         L.push('- **' + r.label + '**: ' + r.text);
       });
-      L.push('');
-      L.push('---');
       L.push('');
     }
 
     // 分数总账
-    heading('分数总账', 'Score ledger');
-    L.push('');
+    heading('ledger');
     L.push('| ' + (lang === 'zh' ? '维度' : 'Dimension') + ' | ' +
            (lang === 'zh' ? '开局 → 终局' : 'Start → Final') + ' | ' +
            (lang === 'zh' ? '净变化' : 'Net') + ' | ' +
@@ -839,16 +911,43 @@
     });
     L.push('');
 
-    // 结局复盘
-    if (ending) {
-      L.push('---');
+    // 决策链
+    heading('trail');
+    steps.forEach(function (s) {
+      L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
       L.push('');
-      L.push('## ' + (lang === 'zh' ? CN[sec] + '、结局复盘' : (sec + 1) + '. Ending debrief')); sec++;
+      if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
+      if (s.nodeText) L.push('');
+      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice:') + '** ' + s.choiceText);
       L.push('');
-      if (quadrant) {
-        L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
+      if (s.effects.length) {
+        L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
+               (lang === 'zh' ? '增减' : 'Change') + ' | ' +
+               (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
+        L.push('| --- | --- | --- |');
+        s.effects.forEach(function (e) {
+          // 增减为 0 时不能说「变好」：分数没动。这是每一步的效果表，
+          // 与分数总账用同一套判断。
+          L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
+                 verdictWord(e.delta, e.bad) + ' |');
+        });
         L.push('');
       }
+      if (s.why) {
+        L.push('**' + UI[lang].whyPrefix.trim() + '** ' + s.why);
+        L.push('');
+      }
+      if (s.actor) {
+        L.push('**' + UI[lang].actorPrefix.trim() + '** ' + s.actor);
+        L.push('');
+      }
+    });
+    L.push('*' + noRandomNote() + '*');
+    L.push('');
+
+    // 结局复盘
+    if (ending) {
+      heading('debrief');
       L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**');
       L.push('');
       L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
@@ -894,68 +993,29 @@
         L.push('');
       }
     }
-
-    // 决策链
-    L.push('---');
-    L.push('');
-    L.push('## ' + (lang === 'zh' ? CN[sec] + '、决策链（共 ' + steps.length + ' 步）' : (sec + 1) + '. Decision trail (' + steps.length + ' steps)')); sec++;
-    L.push('');
-    steps.forEach(function (s) {
-      L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
-      L.push('');
-      if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
-      if (s.nodeText) L.push('');
-      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice:') + '** ' + s.choiceText);
-      L.push('');
-      if (s.effects.length) {
-        L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
-               (lang === 'zh' ? '增减' : 'Change') + ' | ' +
-               (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
-        L.push('| --- | --- | --- |');
-        s.effects.forEach(function (e) {
-          // 增减为 0 时不能说「变好」：分数没动。这是每一步的效果表，
-          // 与分数总账用同一套判断。
-          L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
-                 verdictWord(e.delta, e.bad) + ' |');
-        });
-        L.push('');
-      }
-      if (s.why) {
-        L.push('**' + UI[lang].whyPrefix.trim() + '** ' + s.why);
-        L.push('');
-      }
-      if (s.actor) {
-        L.push('**' + UI[lang].actorPrefix.trim() + '** ' + s.actor);
-        L.push('');
-      }
-    });
-
-    L.push('---');
-    L.push('');
-    L.push('*' + (lang === 'zh'
-      ? '本局无任何随机数：结局完全由上面这 ' + steps.length + ' 个选择决定。'
-      : 'No randomness in this run: the ending is fully determined by the ' + steps.length + ' choices above.') + '*');
     return L.join('\n');
   }
 
   function buildJSON() {
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
+    // 键的顺序与报告的章节顺序一致：简报 → 分数总账 → 决策链 → 结局复盘。
+    // 读完 Markdown 再读 JSON，段落次序不会跳（issue #35）。
     return JSON.stringify({
       game: 'Choices',
       endingQuadrant: ending ? getEndingQuadrant() : null,
       scenarioId: scenario.id,
       scenarioTitle: scenario.title,
       theme: scenario.theme || null,
-      ventureBrief: exportBrief().reduce(function (acc, r) { acc[r.key] = r.text; return acc; }, {}),
       exportedAt: new Date().toISOString(),
       language: lang,
+      ventureBrief: exportBrief().reduce(function (acc, r) { acc[r.key] = r.text; return acc; }, {}),
+      finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
+      scoreLedger: exportLedger(),
+      steps: exportSteps(),
       endingId: state.endingId,
       endingTitle: ending ? ending.title : null,
       endingType: ending ? ending.type : null,
       perfect: isPerfectRun(),
-      finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
-      scoreLedger: exportLedger(),
-      steps: exportSteps(),
       // 结局正文、场景专属 flavour、反思题：Markdown 与 Word 都会输出，
       // JSON 以前漏了，脚本读不到。保持 {zh,en} 原样，与 endingTitle 一致。
       endingText: ending ? (ending.text || null) : null,
@@ -1137,17 +1197,10 @@
     var quadrant = ending ? getEndingQuadrant() : null;
     var B = [];
 
-    // 一级标题的编号与 Markdown 完全一致（buildMarkdown 里的 CN / sec），
+    // 一级标题的编号与 Markdown 完全一致（都取自 reportSections()），
     // 两份报告要能逐节对照，所以编号和用词都取同一处。
-    var CN = ['一', '二', '三', '四', '五', '六'];
-    var sec = 0;
-    function h1(zh, en) {
-      sec++;
-      B.push(wp(lang === 'zh' ? CN[sec - 1] + '、' + zh : sec + '. ' + en, 'Heading1'));
-    }
-    function h1n(zh, en) {           // 与 h1 相同，但 sec 由调用方自行加一（与 Markdown 同）
-      B.push(wp(lang === 'zh' ? CN[sec] + '、' + zh : (sec + 1) + '. ' + en, 'Heading1'));
-      sec++;
+    function h1(key) {
+      B.push(wp(sectionHeading(reportSection(key)), 'Heading1'));
     }
 
     B.push(wp(lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report', 'Title'));
@@ -1155,13 +1208,26 @@
     if (scenario.theme) B.push(wp(pick(scenario.theme, lang), 'Normal'));
     B.push(wp(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
                             : 'Exported ' + new Date().toLocaleString('en-GB'), 'Normal'));
-
-    if (brief.length) {
-      h1(UI[lang].briefTitle, UI[lang].briefTitle);
-      B.push(wtbl(brief.map(function (r) { return [r.label, r.text]; })));
+    // 结局象限先写：这是这一局的结果，放在报告最前（issue #33）。
+    if (quadrant) {
+      B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
+                quadrant.label, 'Heading2'));
     }
 
-    h1('分数总账', 'Score ledger');
+    if (brief.length) {
+      h1('brief');
+      // 分行的小标题（做什么／卖给谁／…）放进一张两列表格；
+      // 纯文本的简报没有小标题，就按一段文字排。
+      var briefRowsDocx = brief.filter(function (r) { return !r.plain; });
+      if (briefRowsDocx.length) {
+        B.push(wtbl(briefRowsDocx.map(function (r) { return [r.label, r.text]; })));
+      }
+      brief.forEach(function (r) {
+        if (r.plain) B.push(wp(r.text, 'Story'));
+      });
+    }
+
+    h1('ledger');
     B.push(wtbl([[lang === 'zh' ? '维度' : 'Dimension', lang === 'zh' ? '开局 → 终局' : 'Start → Final',
                   lang === 'zh' ? '净变化' : 'Net', lang === 'zh' ? '好坏' : 'Verdict']].concat(
       ledger.map(function (r) {
@@ -1169,13 +1235,26 @@
                 verdictWord(r.net, r.bad)];
       }))));
 
+    h1('trail');
+    steps.forEach(function (s) {
+      // 与 Markdown 保持一致：先步数，再章节
+      B.push(wp(stepLabel(s.step) + (s.act ? ' · ' + s.act : ''), 'Heading2'));
+      if (s.nodeText) B.push(wp(s.nodeText.replace(/\s*\n+\s*/g, ' '), 'Story'));
+      B.push(wp((lang === 'zh' ? '你的选择：' : 'Your choice: ') + s.choiceText, 'Choice'));
+      if (s.effects && s.effects.length) {
+        B.push(wtbl([[lang === 'zh' ? '受影响维度' : 'Dimension', lang === 'zh' ? '增减' : 'Change',
+                      lang === 'zh' ? '好坏' : 'Verdict']].concat(s.effects.map(function (e) {
+          return [e.label, (e.delta > 0 ? '+' : '') + e.delta, verdictWord(e.delta, e.bad)];
+        }))));
+      }
+      if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
+      if (s.actor) B.push(wp(UI[lang].actorPrefix + s.actor, 'Normal'));
+    });
+    B.push(wp(noRandomNote(), 'Flavour'));
+
     if (ending) {
       var an = ending.analysis || {};
-      h1n('结局复盘', 'Ending debrief');
-      if (quadrant) {
-        B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
-                  quadrant.label, 'Heading2'));
-      }
+      h1('debrief');
       B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading2'));
       B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
       if (ending.text) B.push(wp(pick(ending.text, lang), 'Story'));
@@ -1210,28 +1289,6 @@
         B.push(wp(pick(ending.reflection, lang), 'Normal'));
       }
     }
-
-    h1n('决策链（共 ' + steps.length + ' 步）',
-         'Decision trail (' + steps.length + ' steps)');
-    steps.forEach(function (s) {
-      // 与 Markdown 保持一致：先步数，再章节
-      B.push(wp(stepLabel(s.step) + (s.act ? ' · ' + s.act : ''), 'Heading2'));
-      if (s.nodeText) B.push(wp(s.nodeText.replace(/\s*\n+\s*/g, ' '), 'Story'));
-      B.push(wp((lang === 'zh' ? '你的选择：' : 'Your choice: ') + s.choiceText, 'Choice'));
-      if (s.effects && s.effects.length) {
-        B.push(wtbl([[lang === 'zh' ? '受影响维度' : 'Dimension', lang === 'zh' ? '增减' : 'Change',
-                      lang === 'zh' ? '好坏' : 'Verdict']].concat(s.effects.map(function (e) {
-          return [e.label, (e.delta > 0 ? '+' : '') + e.delta, verdictWord(e.delta, e.bad)];
-        }))));
-      }
-      if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
-      if (s.actor) B.push(wp(UI[lang].actorPrefix + s.actor, 'Normal'));
-    });
-
-    B.push(wp(lang === 'zh'
-      ? '本局无任何随机数：结局完全由上面这 ' + steps.length + ' 个选择决定。'
-      : 'No randomness in this run: the ending is fully determined by the ' +
-        steps.length + ' choices above.', 'Flavour'));
 
     var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
@@ -1307,6 +1364,7 @@
       box.appendChild(textEl('h2', UI[lang].undefined));
       box.appendChild(textEl('p', UI[lang].undefinedDesc));
     } else {
+      // 结局象限先显示：这是这一局的结果，放在结论页最前（issue #33）。
       var quadrant = getEndingQuadrant();
       if (quadrant) {
         var result = textEl('div', '', 'ending-result');
@@ -1314,58 +1372,30 @@
         result.appendChild(textEl('div', quadrant.label, 'ending-result-value'));
         box.appendChild(result);
       }
-      var tagRow = textEl('div', '', 'ending-tag-row');
-      tagRow.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
-      if (isPerfectRun()) {
-        var badge = textEl('div', '★ ' + UI[lang].perfectBadge, 'perfect-badge');
-        badge.title = UI[lang].perfectNote;
-        tagRow.appendChild(badge);
-      }
-      box.appendChild(tagRow);
-      if (isPerfectRun()) box.appendChild(textEl('p', UI[lang].perfectNote, 'perfect-note'));
-      box.appendChild(textEl('h2', pick(ending.title, lang)));
-      box.appendChild(textEl('p', pick(ending.text, lang)));
-      var flavor = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
-      if (flavor) box.appendChild(textEl('p', pick(flavor, lang), 'ending-flavor'));
 
-      var an = ending.analysis || {};
-      var secs = [
-        scoreLedger(),   // 分数总账放最前：先看清六项分数各自怎么变的，再读复盘
-        debriefSection(UI[lang].whyHeading, an.trigger, riskAttribution()),
-        debriefSection(UI[lang].tradeoffHeading, an.tradeoff),
-        debriefSection(UI[lang].canvasHeading, an.canvas, canvasAttribution())
-      ];
-
-      if (an.stakeholders && an.stakeholders.length) {
-        var s = textEl('section', '', 'debrief');
-        s.appendChild(textEl('h3', UI[lang].stakeholdersHeading, 'debrief-title'));
-        var ul = textEl('ul', '', 'stakeholders');
-        an.stakeholders.forEach(function (sh) {
-          var li = textEl('li', '', 'stakeholder');
-          li.appendChild(textEl('strong', pick(sh.who, lang), 'sh-who'));
-          li.appendChild(textEl('span', pick(sh.impact, lang), 'sh-impact'));
-          ul.appendChild(li);
-        });
-        s.appendChild(ul);
-        secs.push(s);
+      // 以下按报告的章节顺序逐节呈现：企划简报 → 分数总账 → 决策链 → 结局复盘。
+      // 章节编号与标题都取自 reportSections()，与导出的 Markdown / Word 同一处，
+      // 因此屏幕上看到第几节，报告里就是第几节（issue #35）。
+      var sBrief = reportSection('brief');
+      if (sBrief) {
+        var briefBox = textEl('section', '', 'report-section');
+        briefBox.appendChild(textEl('h2', sectionHeading(sBrief), 'report-section-title'));
+        var rows = briefRows();
+        if (rows) briefBox.appendChild(rows);
+        box.appendChild(briefBox);
       }
 
-      if (an.mitigation && an.mitigation.length) {
-        var m = textEl('section', '', 'debrief');
-        m.appendChild(textEl('h3', UI[lang].mitigationHeading, 'debrief-title'));
-        var ol = textEl('ol', '', 'mitigations');
-        an.mitigation.forEach(function (it) { ol.appendChild(textEl('li', pick(it, lang), 'mitigation')); });
-        m.appendChild(ol);
-        secs.push(m);
-      }
+      var ledgerBox = textEl('section', '', 'report-section');
+      ledgerBox.appendChild(textEl('h2', sectionHeading(reportSection('ledger')), 'report-section-title'));
+      ledgerBox.appendChild(scoreLedger());
+      box.appendChild(ledgerBox);
 
-      secs.push(debriefSection(UI[lang].legalHeading, an.legal));
-      secs.forEach(function (s) { if (s) box.appendChild(s); });
-      if (an.legal) box.appendChild(textEl('p', UI[lang].footnote, 'footnote'));
+      box.appendChild(decisionTrail());
 
-      if (ending.reflection) {
-        box.appendChild(textEl('div', (lang === 'zh' ? '（反思）' : '(Reflection) ') + pick(ending.reflection, lang), 'reflection'));
-      }
+      var debriefBox = textEl('section', '', 'report-section');
+      debriefBox.appendChild(textEl('h2', sectionHeading(reportSection('debrief')), 'report-section-title'));
+      debriefBox.appendChild(endingBlock(ending));
+      box.appendChild(debriefBox);
     }
 
     var row = textEl('div', '', 'ending-actions');
@@ -1384,11 +1414,74 @@
 
     box.classList.remove('hidden');
     $('stage').classList.add('hidden');
-    $('trace-panel').classList.remove('hidden');
-    renderTrace();
   }
 
-  /* ============ 决策轨迹：每一步 + 为什么这样变 ============ */
+  /* 结局复盘这一节的正文：结局标题与类型、结局正文、题材补白，
+     以及各条复盘。小节的次序与报告第 4 节完全一致。 */
+  function endingBlock(ending) {
+    var box = textEl('div', '', 'ending-block');
+    var an = ending.analysis || {};
+
+    var tagRow = textEl('div', '', 'ending-tag-row');
+    tagRow.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
+    if (isPerfectRun()) {
+      var badge = textEl('div', '★ ' + UI[lang].perfectBadge, 'perfect-badge');
+      badge.title = UI[lang].perfectNote;
+      tagRow.appendChild(badge);
+    }
+    box.appendChild(tagRow);
+    if (isPerfectRun()) box.appendChild(textEl('p', UI[lang].perfectNote, 'perfect-note'));
+
+    box.appendChild(textEl('h3', pick(ending.title, lang), 'ending-title'));
+    if (ending.text) box.appendChild(textEl('p', pick(ending.text, lang), 'ending-text'));
+    var flavor = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
+    if (flavor) box.appendChild(textEl('p', pick(flavor, lang), 'ending-flavor'));
+
+    var secs = [
+      debriefSection(UI[lang].whyHeading, an.trigger, riskAttribution()),
+      debriefSection(UI[lang].tradeoffHeading, an.tradeoff),
+      debriefSection(UI[lang].canvasHeading, an.canvas, canvasAttribution())
+    ];
+
+    // 法例线索之后附上免责说明：它讲的是这一条，不能飘到别的章节去。
+    var legal = debriefSection(UI[lang].legalHeading, an.legal);
+    if (legal) {
+      legal.appendChild(textEl('p', UI[lang].footnote, 'footnote'));
+      secs.push(legal);
+    }
+
+    if (an.stakeholders && an.stakeholders.length) {
+      var s = textEl('section', '', 'debrief');
+      s.appendChild(textEl('h3', UI[lang].stakeholdersHeading, 'debrief-title'));
+      var ul = textEl('ul', '', 'stakeholders');
+      an.stakeholders.forEach(function (sh) {
+        var li = textEl('li', '', 'stakeholder');
+        li.appendChild(textEl('strong', pick(sh.who, lang), 'sh-who'));
+        li.appendChild(textEl('span', pick(sh.impact, lang), 'sh-impact'));
+        ul.appendChild(li);
+      });
+      s.appendChild(ul);
+      secs.push(s);
+    }
+
+    if (an.mitigation && an.mitigation.length) {
+      var m = textEl('section', '', 'debrief');
+      m.appendChild(textEl('h3', UI[lang].mitigationHeading, 'debrief-title'));
+      var ol = textEl('ol', '', 'mitigations');
+      an.mitigation.forEach(function (it) { ol.appendChild(textEl('li', pick(it, lang), 'mitigation')); });
+      m.appendChild(ol);
+      secs.push(m);
+    }
+
+    if (ending.reflection) {
+      secs.push(debriefSection(UI[lang].reflectionHeading, ending.reflection));
+    }
+
+    secs.forEach(function (s) { if (s) box.appendChild(s); });
+    return box;
+  }
+
+  /* ============ 决策链：每一步 + 为什么这样变 ============ */
 
   function scoreSummary() {
     var parts = [];
@@ -1398,10 +1491,13 @@
     return parts.join(lang === 'zh' ? '，' : ', ');
   }
 
-  function renderTrace() {
-    var list = $('trace-list');
-    list.innerHTML = '';
+  // 决策链这一节：章节编号与标题取自 reportSections()，与报告同一节。
+  function decisionTrail() {
+    var box = textEl('section', '', 'report-section');
+    box.appendChild(textEl('h2', sectionHeading(reportSection('trail')), 'report-section-title'));
+    box.appendChild(textEl('p', UI[lang].traceDesc, 'report-section-note'));
 
+    var list = textEl('ol', '', 'trace-list');
     state.history.forEach(function (h, idx) {
       var node = scenario.nodes[h.nodeId];
       var choice = (node && node.choices) ? node.choices[h.choiceIndex] : null;
@@ -1409,7 +1505,7 @@
 
       var act = actTitle(node);
       if (act) li.appendChild(textEl('div', act, 'trace-act'));
-      li.appendChild(textEl('div', (lang === 'zh' ? UI[lang].stepPrefix + (idx + 1) + UI[lang].stepSuffix : 'Step ' + (idx + 1)) + ' · ' + pick(h.choiceText, lang), 'trace-choice'));
+      li.appendChild(textEl('div', stepLabel(idx + 1) + ' · ' + pick(h.choiceText, lang), 'trace-choice'));
 
       var keys = Object.keys(h.effects || {});
       if (keys.length) {
@@ -1432,13 +1528,15 @@
       }
       list.appendChild(li);
     });
+    box.appendChild(list);
 
-    var fbox = $('trace-final');
-    if (fbox) {
-      fbox.classList.remove('hidden');
-      $('trace-final-label').textContent = UI[lang].finalScore;
-      $('trace-final-value').textContent = scoreSummary();
-    }
+    var fbox = textEl('div', '', 'trace-final');
+    fbox.appendChild(textEl('div', UI[lang].finalScore, 'trace-final-label'));
+    fbox.appendChild(textEl('div', scoreSummary(), 'trace-final-value'));
+    box.appendChild(fbox);
+
+    box.appendChild(textEl('p', noRandomNote(), 'trace-note'));
+    return box;
   }
 
   /* ============ 启动流程 ============ */
@@ -1449,7 +1547,6 @@
                           // 否则下次进入会恢复一个「已重开」的局。
     $('ending').className = 'ending hidden';
     $('stage').classList.remove('hidden');
-    $('trace-panel').classList.add('hidden');
     renderDims();
     renderNode();
     renderFeedback();
@@ -1528,7 +1625,6 @@ function restoreRun() {
     var restored = restoreRun();     // 有存档就用存档，而不是刚建好的新局
     $('ending').className = 'ending hidden';
     $('stage').classList.remove('hidden');
-    $('trace-panel').classList.add('hidden');
     renderDims();
     renderNode();
     renderFeedback();
@@ -1609,8 +1705,6 @@ function restoreRun() {
     var bs = $('brand-sub'); if (bs) bs.textContent = UI[lang].brandSub;
     var ft = $('app-footer'); if (ft) ft.textContent = UI[lang].footer;
     var ht = $('hud-title'); if (ht) ht.textContent = UI[lang].hudTitle;
-    var tt = $('trace-title'); if (tt) tt.textContent = UI[lang].traceTitle;
-    var td = $('trace-desc'); if (td) td.textContent = UI[lang].traceDesc;
     if (scenario) {
       var st = $('scenario-title'); if (st) st.textContent = pick(scenario.title, lang);
       var sth = $('scenario-theme'); if (sth) sth.textContent = pick(scenario.theme, lang);

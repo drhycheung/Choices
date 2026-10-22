@@ -15,6 +15,16 @@ section by section. The run ends at `boom_ethics` (“Users Finally Find Out The
 Were Sold”), which exercises the stakeholder table, the “Who can act” line on
 every step, and a score change of zero.
 
+Each file opens with the outcome quadrant and then lists the same four numbered
+sections in the same order: 1 the venture, 2 the score ledger, 3 the decision
+trail, 4 the ending debrief. The conclusion page on screen uses these numbers
+too, so a section can be cited by number across all of them.
+
+The opening card on the start screen carries a longer title for the same
+venture brief — "THE VENTURE · READ THIS FIRST" — because there it is an
+instruction to the player. In the report and on the conclusion page the
+section is simply "THE VENTURE".
+
 ## The run
 
 Fourteen choices, in this order:
@@ -59,8 +69,11 @@ added, and would reach 13 by the last step. The engine holds it at 10 from step
 9, and the run finishes on 9. Adding the numbers by hand produces a report
 showing scores that the game cannot actually reach.
 
-The export timestamp is frozen at 2026-10-16 17:12:35 (`.421Z`) so the files do
-not change on every run and `--check` stays meaningful. With the clock frozen,
+The export timestamp is frozen at 2026-10-16 09:12:35 (`.421Z`) so the files do
+not change on every run and `--check` stays meaningful. The two text formats
+stamp the time with `toLocaleString()`, so the script pins the timezone to UTC:
+without that, the same frozen instant would be written as a different clock
+time on every machine and the files would never match. With the clock frozen,
 the three files here are byte-for-byte what the running app produced for this
 run. To record a genuinely new run, change `FIXED_MS` in the script at the same
 time.

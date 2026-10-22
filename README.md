@@ -105,10 +105,11 @@ The story is **not a straight ladder**. Most steps are shared by everyone — so
 | Dual-track dashboard | Seven segmented neon bars in three groups — scope (how far it reaches), instruments (what constrains you) and value (green when strong) |
 | Deterministic cause → effect | Each choice carries explicit `effects` (no RNG in play); endings are gated by joint `condition`s on both tracks |
 | Locked choices with reasons | `requirements` gates (e.g. the audit needs business ≥ 7) show a `lockedHint` instead of silently disabling |
-| Per-choice "why" notes | The Decision Trail shows each step's chapter, choice, score deltas and the causal explanation |
-| Full ending debrief | Trigger · trade-off · stakeholders · mitigations · Lean Canvas reading · legal hooks, in both languages |
-| Debrief traces back to decisions | The ending opens with a per-dimension **score ledger** (start → final, signed net change, and a worse/better verdict per dimension) and attributes every score to the exact steps that moved it |
-| Export a study report | The ending page exports the whole run as **Markdown** (venture brief, score ledger, every decision with its deltas and reasons, ending quadrant and full debrief) for printing or submission, as **JSON** for marking and further analysis, or as **Word (.docx)** for handing in. Generated entirely in the browser — no backend |
+| Per-choice "why" notes | The decision trail — Section 3 of the ending page — shows each step's chapter, choice, score deltas and the causal explanation |
+| Full ending debrief | Trigger · trade-off · Lean Canvas reading · legal hooks · stakeholders · mitigations · reflection, in both languages |
+| Debrief traces back to decisions | The ending page carries a per-dimension **score ledger** (start → final, signed net change, and a worse/better verdict per dimension) and attributes every score to the exact steps that moved it |
+| Export a study report | The ending page exports the whole run as **Markdown** for printing or submission, as **JSON** for marking and further analysis, or as **Word (.docx)** for handing in. Generated entirely in the browser — no backend |
+| One structure on screen and on paper | The ending page and all three exports share the same four numbered sections — 1 the venture, 2 the score ledger, 3 the decision trail, 4 the ending debrief — with the outcome quadrant at the front of both. "Section 3" means the same thing on screen and in the export |
 | Replayable without repetition | Six ventures, random draw on every start, plus a shuffle button on the start screen and the ending screen |
 | Multiple endings | 9 shared endings per scenario; the validator proves every one is reachable |
 | Bilingual ZH / EN | Every player-facing string is `{ "zh": …, "en": … }`; toggle anytime via the header switch |

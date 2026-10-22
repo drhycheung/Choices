@@ -192,11 +192,22 @@ Each run exports three formats, all generated in the browser:
 | [**Word (.docx) example**](../examples/report-ai-hiring-boom_ethics.docx) | The same content as a document, for handing in directly. |
 | [**JSON example**](../examples/report-ai-hiring-boom_ethics.json) | The full decision trail and debrief as data, for marking or further analysis. |
 
+All four formats share one structure: the outcome quadrant first, then four
+numbered sections — 1 the venture, 2 the score ledger, 3 the decision trail,
+4 the ending debrief. The conclusion page on screen uses the same four numbers,
+so a student pointing at "Section 3" is pointing at the same thing whether
+they are looking at the screen or at the exported file.
+
+Section 1 is titled "THE VENTURE" (「企划简报」) in the report and on the
+conclusion page. The opening card at the start of the game titles the same
+briefing "THE VENTURE · READ THIS FIRST" (「企划简报 · 先看清楚这门生意」),
+because there it is telling the player what to do next.
+
 The report is the only durable record of a run, so it is worth asking for it
 every time. It is also the bridge into written work: the debrief is already
-structured as why it fired, the trade-off, who bore the cost, what could have
-been done, and a Lean Canvas reading — a skeleton the student rewrites in their
-own words.
+structured as why it fired, the trade-off, a Lean Canvas reading, the legal
+hooks, who bore the cost, what could have been done, and a reflection — a
+skeleton the student rewrites in their own words.
 
 ---
 

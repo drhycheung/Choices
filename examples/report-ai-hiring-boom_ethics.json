@@ -13,21 +13,14 @@
     "zh": "算法评分、劳动者权益与人才数据",
     "en": "Algorithmic scoring, worker rights and talent data"
   },
+  "exportedAt": "2026-10-16T09:12:35.421Z",
+  "language": "en",
   "ventureBrief": {
     "product": "A CV-screening tool for HR: upload a batch of CVs and the model scores and ranks each candidate against the job spec; it can later extend into interview coaching and skills assessment.",
     "customer": "HR teams and recruitment outsourcers at small and mid-sized firms; university careers services are also potential buyers.",
     "standing": "Version one is finished in the incubator and a local manufacturer is paying for a pilot. Three people, pricing not settled.",
     "data": "Identities, education, work history and assessment results from CVs. If scoring feeds who gets an interview, that is automated decision-making — candidates normally have the right to know and to ask for human review."
   },
-  "exportedAt": "2026-10-16T09:12:35.421Z",
-  "language": "en",
-  "endingId": "boom_ethics",
-  "endingTitle": {
-    "zh": "用户终于知道自己被卖了",
-    "en": "Users Finally Find Out They Were Sold"
-  },
-  "endingType": "fail",
-  "perfect": false,
   "finalScores": {
     "national_security": 1,
     "legal": 3,
@@ -726,6 +719,13 @@
       ]
     }
   ],
+  "endingId": "boom_ethics",
+  "endingTitle": {
+    "zh": "用户终于知道自己被卖了",
+    "en": "Users Finally Find Out They Were Sold"
+  },
+  "endingType": "fail",
+  "perfect": false,
   "endingText": {
     "zh": "商业上的成功掩盖了一件事：用户的信任并没有换来尊重。当一位用户把你们的做法完整拆解并发布出来，舆论在一夜之间反转。卸载、退款、差评、媒体跟进——你确实做出了一家公司，只是它的地基是骗来的。",
     "en": "Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception."

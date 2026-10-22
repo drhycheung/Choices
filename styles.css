@@ -369,25 +369,9 @@ body::before {
 }
 .choice.is-pressed:not(:disabled)::before { color: #fff; }
 
-/* ============ 决策轨迹（高分榜日志） ============ */
-.trace-panel {
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
-  border: 3px solid var(--purple);
-  border-radius: 10px;
-  padding: 16px 18px;
-  box-shadow: 0 0 18px rgba(177, 74, 255, .30);
-}
-.trace-panel h2 {
-  margin: 0 0 4px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--purple);
-  text-shadow: 0 0 6px rgba(177, 74, 255, .5);
-  display: flex; align-items: center; gap: 6px;
-}
+/* ============ 决策链（结论页第 3 节） ============ */
 /* 轨迹条目：章节 → 选择 → 分数变化 → 为什么 */
-#trace-list { margin: 10px 0 0; padding: 0; list-style: none; }
+.trace-list { margin: 14px 0 0; padding: 0; list-style: none; }
 .trace-item {
   font-size: 17px; line-height: 1.6;
   margin-bottom: 12px; padding: 12px 14px;
@@ -503,7 +487,9 @@ body::before {
   color: var(--ink);
   text-shadow: 0 0 8px rgba(255,255,255,.3);
 }
-.ending p { font-size: 18px; line-height: 1.7; color: #d6e0ff; }
+/* 只给没有自己 class 的段落上这个默认样式：
+   带 class 的段落各有各的字号与颜色，不该被这条规则盖掉。 */
+.ending p:not([class]) { font-size: 18px; line-height: 1.7; color: #d6e0ff; }
 .ending-result {
   margin: 0 0 20px;
   padding: 14px 18px;
@@ -538,14 +524,43 @@ body::before {
 .ending.type-success .ending-tag { color: var(--green); border-color: var(--green); text-shadow: 0 0 6px var(--green); }
 .ending.type-fail .ending-tag { color: var(--red); border-color: var(--red); text-shadow: 0 0 6px var(--red); }
 .ending.type-compromise .ending-tag { color: var(--yellow); border-color: var(--yellow); text-shadow: 0 0 6px var(--yellow); }
-.reflection {
-  margin-top: 16px;
-  padding: 12px 14px;
-  background: rgba(0, 240, 255, .06);
-  border-left: 3px solid var(--cyan);
-  border-radius: 6px;
-  font-size: 16px;
-  color: #cfeaff;
+/* ============ 结论页的章节：与报告逐节对应 ============
+   结论页与导出的报告用同一份章节顺序（企划简报 → 分数总账 → 决策链 → 结局复盘），
+   所以屏幕上看到的第几节，就是报告里的第几节。 */
+.report-section {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.ending h2.report-section-title {
+  margin: 0 0 14px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, .35);
+}
+.ending p.report-section-note {
+  margin: -8px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.ending h3.ending-title {
+  margin: 10px 0 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--ink);
+  text-shadow: 0 0 8px rgba(255, 255, 255, .3);
+}
+.ending p.ending-text { font-size: 18px; line-height: 1.7; color: #d6e0ff; }
+.trace-note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
 }
 .btn-restart {
   margin-top: 22px;
@@ -981,11 +996,12 @@ button, .choice, .icon-btn, .lang-toggle button {
   .dim-label { font-size: 14px; }
   .dim-val { font-size: 13px; }
   .dim-seg { height: 11px; }
-  #trace-list li { font-size: 16px; }
+  .trace-list li { font-size: 16px; }
   .trace-final-label { font-size: 14px; }
   .trace-final-value { font-size: 15px; }
   .ending { padding: 22px 18px; }
   .ending h2 { font-size: 21px; }
+  .ending h3.ending-title { font-size: 20px; }
   .debrief { padding: 12px 12px; }
   .debrief-title { font-size: 15px; }
   .debrief-body, .mitigation { font-size: 15px; }
