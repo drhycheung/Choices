@@ -1,5 +1,9 @@
 {
   "game": "Choices",
+  "endingQuadrant": {
+    "id": "high_risk_strong_value",
+    "label": "High risk × strong value · 😭 Boom-then-bust"
+  },
   "scenarioId": "ai-hiring",
   "scenarioTitle": {
     "zh": "明眼 HireSight：AI 招聘筛选平台",
@@ -23,10 +27,6 @@
     "en": "Users Finally Find Out They Were Sold"
   },
   "endingType": "fail",
-  "endingQuadrant": {
-    "id": "high_risk_strong_value",
-    "label": "High risk × strong value · 😭 Boom-then-bust"
-  },
   "perfect": false,
   "finalScores": {
     "national_security": 1,
