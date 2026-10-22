@@ -504,6 +504,28 @@ body::before {
   text-shadow: 0 0 8px rgba(255,255,255,.3);
 }
 .ending p { font-size: 18px; line-height: 1.7; color: #d6e0ff; }
+.ending-result {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border: 2px solid var(--cyan);
+  border-radius: 8px;
+  background: rgba(0, 240, 255, .08);
+  box-shadow: 0 0 18px rgba(0, 240, 255, .16);
+}
+.ending-result-label {
+  margin-bottom: 4px;
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.ending-result-value {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+}
 .ending-tag {
   display: inline-block;
   font-family: var(--font-body);

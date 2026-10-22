@@ -798,6 +798,8 @@
 
     L.push('# ' + (lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report'));
     L.push('');
+    if (quadrant) L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
+    if (quadrant) L.push('');
     L.push('**' + pick(scenario.title, lang) + '**  ');
     if (scenario.theme) L.push('*' + pick(scenario.theme, lang) + '*  ');
     L.push(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
@@ -806,7 +808,6 @@
       L.push('');
       L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**  ');
       L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
-      if (quadrant) L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
     }
     L.push('');
     L.push('---');
@@ -938,6 +939,7 @@
     var ending = ChoicesEngine.getEnding(scenario, state.endingId);
     return JSON.stringify({
       game: 'Choices',
+      endingQuadrant: ending ? getEndingQuadrant() : null,
       scenarioId: scenario.id,
       scenarioTitle: scenario.title,
       theme: scenario.theme || null,
@@ -947,7 +949,6 @@
       endingId: state.endingId,
       endingTitle: ending ? ending.title : null,
       endingType: ending ? ending.type : null,
-      endingQuadrant: ending ? getEndingQuadrant() : null,
       perfect: isPerfectRun(),
       finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
       scoreLedger: exportLedger(),
@@ -1147,6 +1148,10 @@
     }
 
     B.push(wp(lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report', 'Title'));
+    if (quadrant) {
+      B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
+                quadrant.label, 'Heading1'));
+    }
     B.push(wp(pick(scenario.title, lang), 'Heading2'));
     if (scenario.theme) B.push(wp(pick(scenario.theme, lang), 'Normal'));
     B.push(wp(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
@@ -1154,8 +1159,6 @@
     if (ending) {
       B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading1'));
       B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
-      if (quadrant) B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
-                              quadrant.label, 'Normal'));
     }
 
     if (brief.length) {
@@ -1303,6 +1306,13 @@
       box.appendChild(textEl('h2', UI[lang].undefined));
       box.appendChild(textEl('p', UI[lang].undefinedDesc));
     } else {
+      var quadrant = getEndingQuadrant();
+      if (quadrant) {
+        var result = textEl('div', '', 'ending-result');
+        result.appendChild(textEl('div', UI[lang].quadrantLabel, 'ending-result-label'));
+        result.appendChild(textEl('div', quadrant.label, 'ending-result-value'));
+        box.appendChild(result);
+      }
       var tagRow = textEl('div', '', 'ending-tag-row');
       tagRow.appendChild(textEl('div', (lang === 'zh' ? '结局 · ' : 'Ending · ') + typeLabel(ending.type), 'ending-tag'));
       if (isPerfectRun()) {
