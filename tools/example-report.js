@@ -96,7 +96,7 @@ class FrozenDate extends Date {
 const build = new Function(
   'lang', 'scenario', 'state', 'Date', 'ENGINE',
   typeRegion + '\n' + uiRegion + '\n' + harness + exportRegion +
-  '\nreturn { buildMarkdown: buildMarkdown, buildDocxBytes: buildDocxBytes, buildJSON: buildJSON };'
+  '\nreturn { buildMarkdown: buildMarkdown, buildDocxBytes: buildDocxBytes, buildJSON: buildJSON, getEndingQuadrant: getEndingQuadrant };'
 )(lang, scenario, state, FrozenDate, Engine);
 
 const md = build.buildMarkdown();
@@ -104,6 +104,36 @@ const docx = Buffer.from(build.buildDocxBytes());
 // No trailing newline on the JSON: the downloaded file has none either, and
 // these three files are meant to be exactly what a student receives.
 const json = build.buildJSON();
+const jsonData = JSON.parse(json);
+const expectedQuadrant = {
+  id: 'high_risk_strong_value',
+  label: '高风险 × 强价值 · 😭 繁荣后崩溃'
+};
+if (JSON.stringify(jsonData.endingQuadrant) !== JSON.stringify(expectedQuadrant) ||
+    !md.includes('结局象限：' + expectedQuadrant.label) ||
+    !docx.toString('utf8').includes('结局象限：' + expectedQuadrant.label)) {
+  throw new Error('the exported reports do not identify the ending quadrant');
+}
+
+const savedDims = Object.assign({}, state.dims);
+const riskKeys = Object.keys(scenario.dimensions).filter(function (key) {
+  return scenario.dimensions[key].higherIsRisk !== false;
+});
+[
+  [4, 6, 'low_risk_strong_value'],
+  [4, 5, 'low_risk_weak_value'],
+  [5, 6, 'high_risk_strong_value'],
+  [5, 5, 'high_risk_weak_value']
+].forEach(function (test) {
+  riskKeys.forEach(function (key) { state.dims[key] = test[0]; });
+  state.dims.business = test[1];
+  const actual = build.getEndingQuadrant();
+  if (!actual || actual.id !== test[2]) {
+    throw new Error('quadrant threshold mismatch: expected ' + test[2] +
+                    ', got ' + (actual && actual.id));
+  }
+});
+Object.keys(state.dims).forEach(function (key) { state.dims[key] = savedDims[key]; });
 
 const wanted = {
   [BASE + '.md']: Buffer.from(md, 'utf8'),
