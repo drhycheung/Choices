@@ -109,9 +109,13 @@ const expectedQuadrant = {
   id: 'high_risk_strong_value',
   label: 'High risk × strong value · 😭 Boom-then-bust'
 };
+const quadrantLine = 'Outcome quadrant: ' + expectedQuadrant.label;
 if (JSON.stringify(jsonData.endingQuadrant) !== JSON.stringify(expectedQuadrant) ||
-    !md.includes('Outcome quadrant: ' + expectedQuadrant.label) ||
-    !docx.toString('utf8').includes('Outcome quadrant: ' + expectedQuadrant.label)) {
+    md.indexOf(quadrantLine) < 0 ||
+    md.indexOf(quadrantLine) > md.indexOf('**HireSight:') ||
+    docx.toString('utf8').indexOf(quadrantLine) < 0 ||
+    docx.toString('utf8').indexOf(quadrantLine) > docx.toString('utf8').indexOf('HireSight:') ||
+    json.indexOf('"endingQuadrant":') > json.indexOf('"scenarioId":')) {
   throw new Error('the exported reports do not identify the ending quadrant');
 }
 
