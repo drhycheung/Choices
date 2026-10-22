@@ -110,11 +110,20 @@ const expectedQuadrant = {
   label: 'High risk × strong value · 😭 Boom-then-bust'
 };
 const quadrantLine = 'Outcome quadrant: ' + expectedQuadrant.label;
+function assertSectionOrder(report, prefix) {
+  const ending = report.indexOf(prefix + '3. Ending debrief');
+  const trail = report.indexOf(prefix + '4. Decision trail');
+  if (ending < 0 || trail < 0 || ending > trail) {
+    throw new Error('the ending debrief must be Section 3 before the decision trail');
+  }
+  return ending;
+}
+const docxText = docx.toString('utf8');
+const mdEnding = assertSectionOrder(md, '## ');
+const docxEnding = assertSectionOrder(docxText, '');
 if (JSON.stringify(jsonData.endingQuadrant) !== JSON.stringify(expectedQuadrant) ||
-    md.indexOf(quadrantLine) < 0 ||
-    md.indexOf(quadrantLine) > md.indexOf('**HireSight:') ||
-    docx.toString('utf8').indexOf(quadrantLine) < 0 ||
-    docx.toString('utf8').indexOf(quadrantLine) > docx.toString('utf8').indexOf('HireSight:') ||
+    md.indexOf(quadrantLine) < mdEnding ||
+    docxText.indexOf(quadrantLine) < docxEnding ||
     json.indexOf('"endingQuadrant":') > json.indexOf('"scenarioId":')) {
   throw new Error('the exported reports do not identify the ending quadrant');
 }
