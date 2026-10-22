@@ -23,6 +23,10 @@
     "en": "Users Finally Find Out They Were Sold"
   },
   "endingType": "fail",
+  "endingQuadrant": {
+    "id": "high_risk_strong_value",
+    "label": "高风险 × 强价值 · 😭 繁荣后崩溃"
+  },
   "perfect": false,
   "finalScores": {
     "national_security": 1,
@@ -343,7 +347,7 @@
       "nodeId": "intro",
       "nodeText": "你们三个人窝在创业中心写完了第一版，本地一家制造企业的 HR 试用后说：这是我用过最快的筛简历工具。然后她问：为什么这几个人的分数这么低？你们答不上来。",
       "choiceText": "接下这笔试点合同，正式成立团队",
-      "why": "",
+      "why": "这一步把试点机会变成正式经营，让团队进入后续的产品与增长决策；它本身不改变任何评分维度，具体影响从下一步的选择开始计入。",
       "actor": "",
       "effects": []
     },

@@ -69,6 +69,13 @@
       exportDocx: '下载 Word 报告（.docx）',
       exportError: '无法生成 Word 文件：',
       exportNote: '报告含本局全部决策、每步的分数增减与理由、分数总账与结局复盘，可直接提交或打印。',
+      quadrantLabel: '结局象限',
+      quadrants: {
+        low_risk_strong_value: '低风险 × 强价值 · 😎 可持续的成功',
+        low_risk_weak_value: '低风险 × 弱价值 · 😫 过度谨慎',
+        high_risk_strong_value: '高风险 × 强价值 · 😭 繁荣后崩溃',
+        high_risk_weak_value: '高风险 × 弱价值 · ☠️ 双重失败'
+      },
       exported: '已开始下载',
       resumedNote: '已恢复上一次未完成的这一局（第',
       resumedNoteEnd: '步）。接着玩即可，或点「重新开始」清空存档。',
@@ -132,6 +139,13 @@
       exportDocx: 'Download Word report (.docx)',
       exportError: 'Could not build the Word file: ',
       exportNote: 'The report contains every decision, the score change and the reason behind each step, the score ledger and the ending debrief — ready to submit or print.',
+      quadrantLabel: 'Outcome quadrant',
+      quadrants: {
+        low_risk_strong_value: 'Low risk × strong value · 😎 Sustainable success',
+        low_risk_weak_value: 'Low risk × weak value · 😫 Over-cautious',
+        high_risk_strong_value: 'High risk × strong value · 😭 Boom-then-bust',
+        high_risk_weak_value: 'High risk × weak value · ☠️ Double loss'
+      },
       exported: 'Download started',
       resumedNote: 'Resumed your unfinished run (at step',
       resumedNoteEnd: '). Carry on, or press restart to clear the save.',
@@ -736,6 +750,18 @@
     });
   }
 
+  function getEndingQuadrant() {
+    if (!state || !state.dims || typeof state.dims.business !== 'number') return null;
+    var lowRisk = Object.keys(scenario.dimensions).every(function (key) {
+      var dimension = scenario.dimensions[key];
+      return dimension.higherIsRisk === false || state.dims[key] <= 4;
+    });
+    var strongValue = state.dims.business >= 6;
+    var id = (lowRisk ? 'low_risk_' : 'high_risk_') +
+      (strongValue ? 'strong_value' : 'weak_value');
+    return { id: id, label: UI[lang].quadrants[id] };
+  }
+
   // 导出用的企划简报：与开局渲染同源，避免两处各写一份。
   // 学生拿到报告时应当知道自己在玩哪门生意——issue #13。
   function exportBrief() {
@@ -767,6 +793,7 @@
     var steps = exportSteps();
     var ledger = exportLedger();
     var brief = exportBrief();
+    var quadrant = ending ? getEndingQuadrant() : null;
     var L = [];
 
     L.push('# ' + (lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report'));
@@ -779,6 +806,7 @@
       L.push('');
       L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**  ');
       L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
+      if (quadrant) L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
     }
     L.push('');
     L.push('---');
@@ -919,6 +947,7 @@
       endingId: state.endingId,
       endingTitle: ending ? ending.title : null,
       endingType: ending ? ending.type : null,
+      endingQuadrant: ending ? getEndingQuadrant() : null,
       perfect: isPerfectRun(),
       finalScores: exportLedger().reduce(function (acc, r) { acc[r.key] = r.final; return acc; }, {}),
       scoreLedger: exportLedger(),
@@ -1101,6 +1130,7 @@
     var steps = exportSteps();
     var ledger = exportLedger();
     var brief = exportBrief();
+    var quadrant = ending ? getEndingQuadrant() : null;
     var B = [];
 
     // 一级标题的编号与 Markdown 完全一致（buildMarkdown 里的 CN / sec），
@@ -1124,6 +1154,8 @@
     if (ending) {
       B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading1'));
       B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
+      if (quadrant) B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
+                              quadrant.label, 'Normal'));
     }
 
     if (brief.length) {
