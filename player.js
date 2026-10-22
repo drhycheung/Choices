@@ -798,17 +798,10 @@
 
     L.push('# ' + (lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report'));
     L.push('');
-    if (quadrant) L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
-    if (quadrant) L.push('');
     L.push('**' + pick(scenario.title, lang) + '**  ');
     if (scenario.theme) L.push('*' + pick(scenario.theme, lang) + '*  ');
     L.push(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
                         : 'Exported ' + new Date().toLocaleString('en-GB'));
-    if (ending) {
-      L.push('');
-      L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**  ');
-      L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
-    }
     L.push('');
     L.push('---');
     L.push('');
@@ -846,44 +839,19 @@
     });
     L.push('');
 
-    // 决策链
-    L.push('## ' + (lang === 'zh' ? CN[sec] + '、决策链（共 ' + steps.length + ' 步）' : (sec + 1) + '. Decision trail (' + steps.length + ' steps)')); sec++;
-    L.push('');
-    steps.forEach(function (s) {
-      L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
-      L.push('');
-      if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
-      if (s.nodeText) L.push('');
-      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice:') + '** ' + s.choiceText);
-      L.push('');
-      if (s.effects.length) {
-        L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
-               (lang === 'zh' ? '增减' : 'Change') + ' | ' +
-               (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
-        L.push('| --- | --- | --- |');
-        s.effects.forEach(function (e) {
-          // 增减为 0 时不能说「变好」：分数没动。这是每一步的效果表，
-          // 与分数总账用同一套判断。
-          L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
-                 verdictWord(e.delta, e.bad) + ' |');
-        });
-        L.push('');
-      }
-      if (s.why) {
-        L.push('**' + UI[lang].whyPrefix.trim() + '** ' + s.why);
-        L.push('');
-      }
-      if (s.actor) {
-        L.push('**' + UI[lang].actorPrefix.trim() + '** ' + s.actor);
-        L.push('');
-      }
-    });
-
     // 结局复盘
     if (ending) {
       L.push('---');
       L.push('');
       L.push('## ' + (lang === 'zh' ? CN[sec] + '、结局复盘' : (sec + 1) + '. Ending debrief')); sec++;
+      L.push('');
+      if (quadrant) {
+        L.push(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') + quadrant.label);
+        L.push('');
+      }
+      L.push((lang === 'zh' ? '**结局：' : '**Ending: ') + pick(ending.title, lang) + '**');
+      L.push('');
+      L.push(lang === 'zh' ? '类型：' + typeLabel(ending.type) : 'Type: ' + typeLabel(ending.type));
       L.push('');
       if (ending.text) { L.push(pick(ending.text, lang)); L.push(''); }
       var fl = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
@@ -926,6 +894,41 @@
         L.push('');
       }
     }
+
+    // 决策链
+    L.push('---');
+    L.push('');
+    L.push('## ' + (lang === 'zh' ? CN[sec] + '、决策链（共 ' + steps.length + ' 步）' : (sec + 1) + '. Decision trail (' + steps.length + ' steps)')); sec++;
+    L.push('');
+    steps.forEach(function (s) {
+      L.push('### ' + (lang === 'zh' ? '第 ' + s.step + ' 步' : 'Step ' + s.step) + (s.act ? ' · ' + s.act : ''));
+      L.push('');
+      if (s.nodeText) L.push('> ' + s.nodeText.replace(/\n+/g, ' ') + '');
+      if (s.nodeText) L.push('');
+      L.push('**' + (lang === 'zh' ? '你的选择：' : 'Your choice:') + '** ' + s.choiceText);
+      L.push('');
+      if (s.effects.length) {
+        L.push('| ' + (lang === 'zh' ? '受影响维度' : 'Dimension') + ' | ' +
+               (lang === 'zh' ? '增减' : 'Change') + ' | ' +
+               (lang === 'zh' ? '好坏' : 'Verdict') + ' |');
+        L.push('| --- | --- | --- |');
+        s.effects.forEach(function (e) {
+          // 增减为 0 时不能说「变好」：分数没动。这是每一步的效果表，
+          // 与分数总账用同一套判断。
+          L.push('| ' + e.label + ' | ' + (e.delta > 0 ? '+' : '') + e.delta + ' | ' +
+                 verdictWord(e.delta, e.bad) + ' |');
+        });
+        L.push('');
+      }
+      if (s.why) {
+        L.push('**' + UI[lang].whyPrefix.trim() + '** ' + s.why);
+        L.push('');
+      }
+      if (s.actor) {
+        L.push('**' + UI[lang].actorPrefix.trim() + '** ' + s.actor);
+        L.push('');
+      }
+    });
 
     L.push('---');
     L.push('');
@@ -1148,18 +1151,10 @@
     }
 
     B.push(wp(lang === 'zh' ? '一念之差 · 本局复盘报告' : 'Choices · Run Report', 'Title'));
-    if (quadrant) {
-      B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
-                quadrant.label, 'Heading1'));
-    }
     B.push(wp(pick(scenario.title, lang), 'Heading2'));
     if (scenario.theme) B.push(wp(pick(scenario.theme, lang), 'Normal'));
     B.push(wp(lang === 'zh' ? '导出于 ' + new Date().toLocaleString('zh-CN')
                             : 'Exported ' + new Date().toLocaleString('en-GB'), 'Normal'));
-    if (ending) {
-      B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading1'));
-      B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
-    }
 
     if (brief.length) {
       h1(UI[lang].briefTitle, UI[lang].briefTitle);
@@ -1174,26 +1169,15 @@
                 verdictWord(r.net, r.bad)];
       }))));
 
-    h1n('决策链（共 ' + steps.length + ' 步）',
-         'Decision trail (' + steps.length + ' steps)');
-    steps.forEach(function (s) {
-      // 与 Markdown 保持一致：先步数，再章节
-      B.push(wp(stepLabel(s.step) + (s.act ? ' · ' + s.act : ''), 'Heading2'));
-      if (s.nodeText) B.push(wp(s.nodeText.replace(/\s*\n+\s*/g, ' '), 'Story'));
-      B.push(wp((lang === 'zh' ? '你的选择：' : 'Your choice: ') + s.choiceText, 'Choice'));
-      if (s.effects && s.effects.length) {
-        B.push(wtbl([[lang === 'zh' ? '受影响维度' : 'Dimension', lang === 'zh' ? '增减' : 'Change',
-                      lang === 'zh' ? '好坏' : 'Verdict']].concat(s.effects.map(function (e) {
-          return [e.label, (e.delta > 0 ? '+' : '') + e.delta, verdictWord(e.delta, e.bad)];
-        }))));
-      }
-      if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
-      if (s.actor) B.push(wp(UI[lang].actorPrefix + s.actor, 'Normal'));
-    });
-
     if (ending) {
       var an = ending.analysis || {};
       h1n('结局复盘', 'Ending debrief');
+      if (quadrant) {
+        B.push(wp(UI[lang].quadrantLabel + (lang === 'zh' ? '：' : ': ') +
+                  quadrant.label, 'Heading2'));
+      }
+      B.push(wp((lang === 'zh' ? '结局：' : 'Ending: ') + pick(ending.title, lang), 'Heading2'));
+      B.push(wp((lang === 'zh' ? '类型：' : 'Type: ') + typeLabel(ending.type), 'Normal'));
       if (ending.text) B.push(wp(pick(ending.text, lang), 'Story'));
       var fl = scenario.endingFlavor && scenario.endingFlavor[state.endingId];
       if (fl) B.push(wp(pick(fl, lang), 'Flavour'));
@@ -1226,6 +1210,23 @@
         B.push(wp(pick(ending.reflection, lang), 'Normal'));
       }
     }
+
+    h1n('决策链（共 ' + steps.length + ' 步）',
+         'Decision trail (' + steps.length + ' steps)');
+    steps.forEach(function (s) {
+      // 与 Markdown 保持一致：先步数，再章节
+      B.push(wp(stepLabel(s.step) + (s.act ? ' · ' + s.act : ''), 'Heading2'));
+      if (s.nodeText) B.push(wp(s.nodeText.replace(/\s*\n+\s*/g, ' '), 'Story'));
+      B.push(wp((lang === 'zh' ? '你的选择：' : 'Your choice: ') + s.choiceText, 'Choice'));
+      if (s.effects && s.effects.length) {
+        B.push(wtbl([[lang === 'zh' ? '受影响维度' : 'Dimension', lang === 'zh' ? '增减' : 'Change',
+                      lang === 'zh' ? '好坏' : 'Verdict']].concat(s.effects.map(function (e) {
+          return [e.label, (e.delta > 0 ? '+' : '') + e.delta, verdictWord(e.delta, e.bad)];
+        }))));
+      }
+      if (s.why) B.push(wp(UI[lang].whyPrefix + s.why, 'Normal'));
+      if (s.actor) B.push(wp(UI[lang].actorPrefix + s.actor, 'Normal'));
+    });
 
     B.push(wp(lang === 'zh'
       ? '本局无任何随机数：结局完全由上面这 ' + steps.length + ' 个选择决定。'

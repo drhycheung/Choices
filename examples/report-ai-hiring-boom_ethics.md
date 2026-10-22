@@ -1,13 +1,8 @@
 # Choices · Run Report
 
-Outcome quadrant: High risk × strong value · 😭 Boom-then-bust
-
 **HireSight: An AI Hiring Platform**  
 *Algorithmic scoring, worker rights and talent data*  
 Exported 16/10/2026, 09:12:35
-
-**Ending: Users Finally Find Out They Were Sold**  
-Type: Fail
 
 ---
 
@@ -32,7 +27,57 @@ Type: Fail
 | Business model | 2 → 9 | +7 | better |
 | Moat and unfair advantage | 1 → 7 | +6 | better |
 
-## 3. Decision trail (14 steps)
+---
+
+## 3. Ending debrief
+
+Outcome quadrant: High risk × strong value · 😭 Boom-then-bust
+
+**Ending: Users Finally Find Out They Were Sold**
+
+Type: Fail
+
+Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception.
+
+*The matched-pair test with only gender and age changed went viral.*
+
+### Why this ending fired
+
+Why it fired: ethics risk at 5+ with a business score of 6+ — the more users you harmed, the harder the backlash when it surfaced.
+
+### The trade-off you made
+
+The trade-off: trading absent informed consent for conversion. Every 'users won't read it anyway' decision improved the funnel on paper and added to a trust deficit that becomes unrecoverable once exposed.
+
+### Through the Lean Canvas
+
+Lean Canvas review: Canvas 8 (key metrics) tracked retention and conversion but no counter-metric like 'informed-user rate'; Canvas 9 (unfair advantage) mistook information asymmetry for an advantage — the most fragile kind there is.
+
+### Legal and regulatory hooks
+
+Classroom pointers: validity of notice and consent, separate consent for sensitive personal information, the right to explanation and to opt out of automated decisions, consumer protection and fair-trading rules.
+
+### Who was affected
+
+| Who | Impact |
+| --- | --- |
+| The most vulnerable affected users | Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit. |
+| The general user base | Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss. |
+| Advertising and commercial partners | Brand-safety damage spilled over and partnerships were halted at short notice. |
+
+### What you could have done
+
+1. Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion.
+2. Run impact tests disaggregated by vulnerable groups rather than trusting headline averages.
+3. Write 'we will never do X with your data' into your commercial terms — and submit to an audit.
+
+### Reflection
+
+Translate 'users did not consent' into one concrete commercial consequence, and explain why it was bound to happen eventually.
+
+---
+
+## 4. Decision trail (14 steps)
 
 ### Step 1 · Act I · Customers and Problem (Canvas 1–2)
 
@@ -243,48 +288,6 @@ Type: Fail
 **Why:** Auditing costs money and publishing invites criticism (business score drops), but a citable independent conclusion makes you the one vendor that large employers, public procurement and career offices can safely pick.
 
 **Who can act:** design
-
----
-
-## 4. Ending debrief
-
-Commercial success hid one thing: users' trust was never matched by respect. When one user reverse-engineered your practices and published the whole thing, sentiment flipped overnight. Uninstalls, refunds, one-star reviews, press follow-ups — you did build a company, its foundation was just obtained by deception.
-
-*The matched-pair test with only gender and age changed went viral.*
-
-### Why this ending fired
-
-Why it fired: ethics risk at 5+ with a business score of 6+ — the more users you harmed, the harder the backlash when it surfaced.
-
-### The trade-off you made
-
-The trade-off: trading absent informed consent for conversion. Every 'users won't read it anyway' decision improved the funnel on paper and added to a trust deficit that becomes unrecoverable once exposed.
-
-### Through the Lean Canvas
-
-Lean Canvas review: Canvas 8 (key metrics) tracked retention and conversion but no counter-metric like 'informed-user rate'; Canvas 9 (unfair advantage) mistook information asymmetry for an advantage — the most fragile kind there is.
-
-### Legal and regulatory hooks
-
-Classroom pointers: validity of notice and consent, separate consent for sensitive personal information, the right to explanation and to opt out of automated decisions, consumer protection and fair-trading rules.
-
-### Who was affected
-
-| Who | Impact |
-| --- | --- |
-| The most vulnerable affected users | Bore the most material harm — misjudgement, discrimination, exploitation — while receiving the least benefit. |
-| The general user base | Discovered they were part of the product without knowing; the sense of betrayal outweighs any functional loss. |
-| Advertising and commercial partners | Brand-safety damage spilled over and partnerships were halted at short notice. |
-
-### What you could have done
-
-1. Make consequential decisions explainable, refusable and reversible: give reasons, provide an off switch, allow deletion.
-2. Run impact tests disaggregated by vulnerable groups rather than trusting headline averages.
-3. Write 'we will never do X with your data' into your commercial terms — and submit to an audit.
-
-### Reflection
-
-Translate 'users did not consent' into one concrete commercial consequence, and explain why it was bound to happen eventually.
 
 ---
 
